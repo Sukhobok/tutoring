@@ -1,0 +1,181 @@
+@import "modules/reset.less";
+@import "modules/core.less";
+@import "modules/header.less";
+@import "modules/buttons.less";
+@import "modules/footer.less";
+
+#index_top {
+	position: relative;
+	height: 500px;
+	width: 100%;
+	min-width: 960px;
+	background: #000 url('../images/index_top.jpg');
+	background-size: cover;
+
+	.description {
+		display: block;
+		position: absolute;
+		top: 110px;
+		left: 10px;
+
+		p {
+			padding: 3px 3px;
+			margin-top: 3px;
+			display: inline-block;
+			background: rgba(0, 0, 0, .6);
+			color: #fff;
+			font-weight: 700;
+			font-size: 22px;
+		}
+	}
+
+	.video_tour {
+		display: block;
+		position: absolute;
+		top: 250px;
+		left: 10px;
+		cursor: pointer;
+	}
+}
+
+form.create-account {
+	display: block;
+	padding-top: 25px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 20px;
+	height: 340px;
+	position: absolute;
+	top: 80px;
+	right: 20px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, .4);
+
+	h3 {
+		font-weight: 700;
+		font-size: 14px;
+		padding-bottom: 15px;
+	}
+
+	.input_wrap {
+		display: block;
+		position: relative;
+	}
+
+	label {
+		background: url(../images/create-account-sprites.png) no-repeat;
+		display: block;
+		position: absolute;
+		top: 10px;
+
+		&.email {
+			background-position: -12px 0;
+			width: 12px;
+			height: 12px;
+		}
+
+		&.name {
+			background-position: 0 0;
+			width: 12px;
+			height: 12px;
+		}
+
+		&.password {
+			background-position: -24px 0;
+			width: 10px;
+			height: 12px;
+		}
+	}
+
+	input {
+		&[type="text"],
+		&[type="email"],
+		&[type="password"] {
+			color: #000;
+			background-repeat: no-repeat;
+			background-position: left center;
+			padding-left: 22px;
+			padding-bottom: 6px;
+			padding-top: 6px;
+			font-weight: 400;
+			font-size: 12px;
+			width: 230px;
+			border: 0;
+			border-bottom: 2px dotted #c7c7c7;
+		}
+	}
+
+	.input_checkbox {
+		padding-top: 6px;
+		color: #c7c7c7;
+		font-weight: 400;
+		font-size: 13px;
+	}
+
+	input[type="submit"] {
+		border: 0;
+		height: 60px;
+		width: 200px;
+		margin-top: 5px;
+		margin-left: 25px;
+		font-weight: 700;
+		font-size: 13px;
+		color: #000;
+		background: #c3d9ff;
+		cursor: pointer;
+		border-radius: 4px;
+		box-shadow: 0 5px 0px 0px #9eb3d8;
+	}
+
+	input[type="submit"]:hover {
+		background: #a9c5f6;
+	}
+}
+
+#index_mid {
+	background: #eef1f3;
+	min-height: 100px;
+	width: 100%;
+	min-width: 960px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	text-align: center;
+	color: #727272;
+	font-weight: 400;
+	font-size: 14px;
+
+	h2 {
+		font-size: 28px;
+		font-weight: 700;
+		color: #000;
+		padding-bottom: 20px;
+	}
+
+	p {
+		padding-bottom: 30px;
+	}
+
+	button {
+		border: 0;
+		height: 60px;
+		width: 200px;
+		margin: 0 auto;
+		font-weight: 400;
+		font-size: 12px;
+		color: #fff;
+		background: #82bb1f;
+		cursor: pointer;
+		border-radius: 4px;
+		box-shadow: 0 5px 0px 0px #699816;
+
+		&:hover { background: #77ac1a; }
+		&:active { box-shadow: 0 -2px 0px 0px #699816; }
+
+		.big_bold {
+			font-weight: 700;
+			font-size: 13px;
+			padding-bottom: 3px;
+		}
+	}
+}

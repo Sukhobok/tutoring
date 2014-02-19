@@ -1,0 +1,27 @@
+.ss-button {
+	display: block;
+	border: 0;
+	padding: 5px 12px;
+	font-weight: 700;
+	font-size: 13px;
+	cursor: pointer;
+	border-radius: 4px;
+
+	&.blue {
+		color: #000;
+		background: @ss-blue;
+		box-shadow: 0 4px 0px 0 darken(@ss-blue, 10%);
+		&:hover {
+			background: darken(@ss-blue, 3%);
+		}
+	}
+
+	&.green {
+		color: #fff;
+		background: @ss-green;
+		box-shadow: 0 4px 0px 0 darken(@ss-green, 10%);
+		&:hover {
+			background: darken(@ss-green, 3%);
+		}
+	}
+}

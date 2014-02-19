@@ -69,13 +69,30 @@ App::down(function()
 
 /*
 |--------------------------------------------------------------------------
-| Require The Filters File
+| Require The Filters + Views Data File
 |--------------------------------------------------------------------------
 |
-| Next we will load the filters file for the application. This gives us
-| a nice separate location to store our route and application filter
-| definitions instead of putting them all in the main routes file.
+| Next we will load the filters + views data file for the application.
+| This gives us a nice separate location to store our route and application
+| filter definitions instead of putting them all in the main routes file.
 |
 */
 
 require app_path().'/filters.php';
+require app_path().'/views_data.php';
+
+/*
+|--------------------------------------------------------------------------
+| Compile LESS files
+|--------------------------------------------------------------------------
+|
+| Here is the code for compiling LESS files on local environment
+|
+*/
+
+if (App::environment('local'))
+{
+	$less = new lessc;
+	$less->setFormatter('compressed');
+	$less->compileFile('app/assets/less/index.less', 'public/css/index.css');
+}
