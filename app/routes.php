@@ -11,5 +11,17 @@
 |
 */
 
-Route::get('/', 'PagesController@getIndex');
-Route::post('/', 'PagesController@postIndex');
+Route::group(array('before' => 'guest'), function()
+{
+	Route::get('/', 'PageController@getIndex');
+	Route::post('/', 'UserController@postSignUp');
+	Route::post('login', 'UserController@postLogIn');
+});
+
+Route::group(array('before' => 'auth'), function()
+{
+	Route::get('dashboard', array(
+		'as' => 'dashboard',
+		'uses' => 'PageController@getDashboard'
+	));
+});

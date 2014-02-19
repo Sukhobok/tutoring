@@ -5,12 +5,13 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	public static $first_signup_rules = array(
-		'name' => 'required|alpha|min:2',
+	public static $signup_rules = array(
+		'name' => 'required|min:2',
 		'nickname' => 'alpha',
 		'email' => 'required|email|unique:users',
 		'password' => 'required|min:6|confirmed',
-		'password_confirmation' => 'required|min:6'
+		'password_confirmation' => 'required|min:6',
+		'agree' => 'required'
 	);
 
 	/**

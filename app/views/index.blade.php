@@ -15,30 +15,30 @@
 
 			<div class="input_wrap">
 				<label for="name" class="name"></label>
-				{{ Form::text('name', Input::old('name'), array('placeholder' => 'YOUR NAME*')) }}
+				{{ Form::text('name', Input::old('name'), array('placeholder' => 'YOUR NAME*', 'class' => $input_classes['name'])) }}
 			</div>
 
 			<div class="input_wrap">
 				<label for="nickname" class="name"></label>
-				{{ Form::text('nickname', Input::old('nickname'), array('placeholder' => 'YOUR NICKNAME')) }}
+				{{ Form::text('nickname', Input::old('nickname'), array('placeholder' => 'YOUR NICKNAME', 'class' => $input_classes['nickname'])) }}
 			</div>
 
 			<div class="input_wrap">
 				<label for="email" class="email"></label>
-				{{ Form::email('email', Input::old('email'), array('placeholder' => 'E-MAIL ADDRESS*')) }}
+				{{ Form::email('email', Input::old('email'), array('placeholder' => 'E-MAIL ADDRESS*', 'class' => $input_classes['email'])) }}
 			</div>
 
 			<div class="input_wrap">
 				<label for="password" class="password"></label>
-				{{ Form::password('password', array('placeholder' => 'PASSWORD*')) }}
+				{{ Form::password('password', array('placeholder' => 'PASSWORD*', 'class' => $input_classes['password'])) }}
 			</div>
 
 			<div class="input_wrap">
 				<label for="password_confirmation" class="password"></label>
-				{{ Form::password('password_confirmation', array('placeholder' => 'RETYPE PASSWORD*')) }}
+				{{ Form::password('password_confirmation', array('placeholder' => 'RETYPE PASSWORD*', 'class' => $input_classes['password_confirmation'])) }}
 			</div>
 
-			<div class="input_checkbox">
+			<div class="input-checkbox {{ $input_classes['agree'] }}">
 				<input name="agree" value="yes" type="checkbox" /> I agree with the Terms and Conditions
 			</div><br />
 

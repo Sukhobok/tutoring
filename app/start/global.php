@@ -92,7 +92,11 @@ require app_path().'/views_data.php';
 
 if (App::environment('local'))
 {
+	Debugbar::startMeasure('less', 'Time for converting less to css');
+
 	$less = new lessc;
 	$less->setFormatter('compressed');
 	$less->compileFile('app/assets/less/index.less', 'public/css/index.css');
+
+	Debugbar::stopMeasure('less');
 }

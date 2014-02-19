@@ -14,4 +14,4 @@ View::composer('footer', function($view)
 	// $view->with('', '');
 });
 
-View::share('logged_in', false);
+View::share('logged_in', Auth::check());
