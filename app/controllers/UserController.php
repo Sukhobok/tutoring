@@ -27,8 +27,8 @@ class UserController extends BaseController {
 			$user->save();
 
 			Auth::attempt(array(
-				'email' => $user->email,
-				'password' => $user->password
+				'email' => Input::get('email'),
+				'password' => Input::get('password')
 			));
 
 			return Redirect::route('dashboard');
@@ -58,6 +58,15 @@ class UserController extends BaseController {
 			return Redirect::to('/')
 				->with('login_error', true);
 		}
+	}
+
+	/**
+	 * Log Out
+	 */
+	public function getLogOut()
+	{
+		Auth::logout();
+		return Redirect::to('/');
 	}
 
 }

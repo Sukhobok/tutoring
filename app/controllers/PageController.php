@@ -39,8 +39,6 @@ class PageController extends BaseController {
 	 */
 	public function getDashboard()
 	{
-		$users = User::all();
-		Debugbar::info($users);
 		$this->layout->content = View::make('dashboard');
 	}
 

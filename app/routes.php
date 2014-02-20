@@ -20,6 +20,11 @@ Route::group(array('before' => 'guest'), function()
 
 Route::group(array('before' => 'auth'), function()
 {
+	Route::get('logout', array(
+		'as' => 'logout',
+		'uses' => 'UserController@getLogOut'
+	));
+	
 	Route::get('dashboard', array(
 		'as' => 'dashboard',
 		'uses' => 'PageController@getDashboard'
