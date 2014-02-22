@@ -5,6 +5,8 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	protected $appends = array('display_name');
+
 	public static $signup_rules = array(
 		'name' => 'required|min:2',
 		'nickname' => '',
@@ -56,6 +58,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	public function getDisplayNameAttribute()
+	{
+		if ($this->nickname)
+		{
+			return $this->name . ' (' . $this->nickname . ')';
+		}
+
+		return $this->name;
 	}
 
 }

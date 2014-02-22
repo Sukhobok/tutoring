@@ -32,7 +32,5 @@
 		{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
 		{{ HTML::script('js/script.min.js') }}
 	@endif
-	
-	
 </body>
 </html>

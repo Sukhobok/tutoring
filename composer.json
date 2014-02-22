@@ -4,12 +4,12 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
-		"way/generators": "1.1",
-		"leafo/lessphp": "0.4.0",
-		"barryvdh/laravel-debugbar": "1.*"
+		"laravel/framework": "4.1.*"
 	},
 	"require-dev": {
+		"way/generators": "1.1",
+		"leafo/lessphp": "0.4.0",
+		"barryvdh/laravel-debugbar": "1.*",
 		"devize/closure-compiler": "dev-master"
 	},
 	"autoload": {
