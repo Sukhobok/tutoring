@@ -1,0 +1,1 @@
+$('#right-calendar').datepicker();

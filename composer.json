@@ -9,6 +9,9 @@
 		"leafo/lessphp": "0.4.0",
 		"barryvdh/laravel-debugbar": "1.*"
 	},
+	"require-dev": {
+		"devize/closure-compiler": "dev-master"
+	},
 	"autoload": {
 		"classmap": [
 			"app/commands",

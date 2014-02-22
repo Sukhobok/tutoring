@@ -13,7 +13,11 @@
 
 Route::group(array('before' => 'guest'), function()
 {
-	Route::get('/', 'PageController@getIndex');
+	Route::get('/', array(
+		'as' => 'index',
+		'uses' => 'PageController@getIndex'
+	));
+
 	Route::post('/', 'UserController@postSignUp');
 	Route::post('login', 'UserController@postLogIn');
 });
@@ -24,7 +28,7 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'logout',
 		'uses' => 'UserController@getLogOut'
 	));
-	
+
 	Route::get('dashboard', array(
 		'as' => 'dashboard',
 		'uses' => 'PageController@getDashboard'

@@ -4,7 +4,13 @@
 	<meta charset="UTF-8">
 	<title>StudySquare</title>
 	{{ HTML::style('//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700') }}
-	{{ HTML::style('css/index.css') }}
+
+	@if (in_array(Route::getCurrentRoute()->getName(), $outer_pages))
+		{{ HTML::style('css/index.css') }}
+	@else
+		{{ HTML::style('css/style.css') }}
+	@endif
+
 	<link rel="shortcut icon" href="http://support.studysquare.com/wp-content/uploads/2013/12/120x120.png" />
 </head>
 
@@ -16,11 +22,17 @@
 	@endif
 
 	{{ $content }}
-	
+
 	@include('templates.footer')
 
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
-	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
-	{{ HTML::script('js/index.js') }}
+	@if (in_array(Route::getCurrentRoute()->getName(), $outer_pages))
+		{{ HTML::script('js/index.js') }}
+	@else
+		{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
+		{{ HTML::script('js/script.min.js') }}
+	@endif
+	
+	
 </body>
 </html>

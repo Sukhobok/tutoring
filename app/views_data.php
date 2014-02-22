@@ -15,3 +15,6 @@ View::composer('footer', function($view)
 });
 
 View::share('logged_in', Auth::check());
+
+// We need this in order to load specific assets
+View::share('outer_pages', array('index'));

@@ -4,7 +4,7 @@
 		{{ Form::open(array('url' => 'login')) }}
 			{{ Form::text('email', '', array('placeholder' => 'Email address')) }}
 			{{ Form::password('password', array('placeholder' => 'Password')) }}
-			{{ Form::submit('Log In', array('class' => 'ss-button blue')) }}
+			{{ Form::submit('Log In', array('class' => 'ss-button blue bold')) }}
 		{{ Form::close() }}
 
 		<h2>Forgot password?</h2>
@@ -20,7 +20,7 @@
 		</div>
 
 		<div class="header-button">
-			<button class="ss-button blue">
+			<button class="ss-button blue bold">
 				LOGIN
 			</button>
 		</div>
