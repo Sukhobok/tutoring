@@ -6,11 +6,11 @@
 
 		<div class="layout-main">
 			<div id="post_message">
-				{{ Form::open(array('url' => '/', 'files' => true)) }}
+				{{ Form::open(array('route' => 'user.post', 'files' => true)) }}
 					<h2>POST A QUESTION or MESSAGE</h2>
 					{{ Form::textarea('post') }}
 					{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
-					{{ Form::ss_file('photos', array('multiple' => '')) }}
+					{{ Form::ss_file('photos[]', array('multiple' => true)) }}
 					<div class="clear"></div>
 				{{ Form::close() }}
 			</div>

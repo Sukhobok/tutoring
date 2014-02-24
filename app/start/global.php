@@ -69,12 +69,12 @@ App::down(function()
 
 /*
 |--------------------------------------------------------------------------
-| Require The Filters + Views Data File
+| Require necesarry files
 |--------------------------------------------------------------------------
 |
-| Next we will load the filters + views data file for the application.
+| Next we will load the necesarry files for the application.
 | This gives us a nice separate location to store our route and application
-| filter definitions instead of putting them all in the main routes file.
+| files instead of putting them all in the main routes file.
 |
 */
 
@@ -82,45 +82,6 @@ require app_path().'/filters.php';
 require app_path().'/views_data.php';
 require app_path().'/studysquare.php';
 
-/*
-|--------------------------------------------------------------------------
-| Compile LESS & JS files
-|--------------------------------------------------------------------------
-|
-| Here is the code for compiling LESS & JS files on local environment
-|
-*/
-
-use Devize\ClosureCompiler\ClosureCompiler;
-if (App::environment('local'))
-{
-	// LESS
-	
-	Debugbar::startMeasure('less', 'Time for converting less to css');
-
-	$less = new lessc;
-	$less->setFormatter('compressed');
-	$less->compileFile('app/assets/less/index.less', 'public/css/index.css');
-
-	$less = new lessc;
-	$less->setFormatter('compressed');
-	$less->compileFile('app/assets/less/style.less', 'public/css/style.css');
-
-	Debugbar::stopMeasure('less');
-
-	// JS
-
-	Debugbar::startMeasure('js', 'Time for computing js');
-	
-	$compiler = new ClosureCompiler;
-	$compiler->setSourceBaseDir('app/assets/js/');
-	$compiler->setTargetBaseDir('public/js/');
-	$compiler->setSourceFiles(array(
-		'right_sidebar.js',
-		'core.js'
-	));
-	$compiler->setTargetFile('script.min.js');
-	$compiler->compile();
-
-	Debugbar::stopMeasure('js');
+if(App::environment('local')) {
+	require app_path().'/compile.php';
 }

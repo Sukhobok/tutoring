@@ -33,4 +33,9 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'dashboard',
 		'uses' => 'PageController@getDashboard'
 	));
+
+	Route::post('user/post', array(
+		'as' => 'user.post',
+		'uses' => 'PostController@postUserPost'
+	));
 });

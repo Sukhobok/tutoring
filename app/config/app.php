@@ -109,6 +109,8 @@ return array(
 
 		'Way\Generators\GeneratorsServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Aws\Laravel\AwsServiceProvider',
+		'Intervention\Image\ImageServiceProvider'
 	),
 
 	/*
@@ -176,6 +178,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+		'AWS' => 'Aws\Laravel\AwsFacade',
+		'GDImage' => 'Intervention\Image\Facades\Image'
 	),
 
 );

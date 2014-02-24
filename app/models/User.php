@@ -7,6 +7,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $appends = array('display_name');
 
+	/**
+	 * Validation rules
+	 * @var array
+	 */
 	public static $signup_rules = array(
 		'name' => 'required|min:2',
 		'nickname' => '',
@@ -18,21 +22,50 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
-	 *
 	 * @var string
 	 */
 	protected $table = 'users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
-	 *
 	 * @var array
 	 */
 	protected $hidden = array('password');
 
 	/**
+	 * Get user posts
+	 * @return Post
+	 */
+	public function posts()
+	{
+		return $this->morphMany('Post', 'author');
+	}
+
+	/**
+	 * Get profile posts for current user
+	 * @return Post
+	 */
+	public function profile_posts()
+	{
+		return $this->morphMany('Post', 'postable');
+	}
+
+	/**
+	 * Get display name
+	 * @return string Format: Name (Nickname)
+	 */
+	public function getDisplayNameAttribute()
+	{
+		if ($this->nickname)
+		{
+			return $this->name . ' (' . $this->nickname . ')';
+		}
+
+		return $this->name;
+	}
+
+	/**
 	 * Get the unique identifier for the user.
-	 *
 	 * @return mixed
 	 */
 	public function getAuthIdentifier()
@@ -42,7 +75,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Get the password for the user.
-	 *
 	 * @return string
 	 */
 	public function getAuthPassword()
@@ -52,22 +84,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Get the e-mail address where password reminders are sent.
-	 *
 	 * @return string
 	 */
 	public function getReminderEmail()
 	{
 		return $this->email;
-	}
-
-	public function getDisplayNameAttribute()
-	{
-		if ($this->nickname)
-		{
-			return $this->name . ' (' . $this->nickname . ')';
-		}
-
-		return $this->name;
 	}
 
 }
