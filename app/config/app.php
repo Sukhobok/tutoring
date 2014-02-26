@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => true,
+	'debug' => false,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://test232.studysquare.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'OrIzEjscMd3ZWOxYn3XnEmuhU6drooFN',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -107,8 +107,6 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Way\Generators\GeneratorsServiceProvider',
-		'Barryvdh\Debugbar\ServiceProvider',
 		'Aws\Laravel\AwsServiceProvider',
 		'Intervention\Image\ImageServiceProvider'
 	),
@@ -176,8 +174,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-
-		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+		
 		'AWS' => 'Aws\Laravel\AwsFacade',
 		'GDImage' => 'Intervention\Image\Facades\Image'
 	),

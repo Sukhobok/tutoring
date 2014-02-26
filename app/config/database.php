@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mysql_prod',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,12 +52,12 @@ return array(
 			'prefix'   => '',
 		),
 
-		'mysql' => array(
+		'mysql_prod' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'studysquare2',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'stdy!23',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

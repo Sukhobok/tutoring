@@ -32,6 +32,8 @@ class PageController extends BaseController {
 		$this->layout->content = View::make('index', array(
 			'input_classes' => $input_classes
 		));
+
+		return View::make('index');
 	}
 
 	/**
