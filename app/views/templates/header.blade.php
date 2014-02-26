@@ -1,7 +1,7 @@
 <header>
 	<div class="content">
 		<div class="header-logo">
-			<img src="http://studysquare.lh/images/logo-beta.png" />
+			{{ HTML::image('images/logo_beta.png', 'StudySquare') }}
 		</div>
 	</div>
 </header>

@@ -18,7 +18,7 @@ Route::group(array('before' => 'guest'), function()
 		'uses' => 'PageController@getIndex'
 	));
 
-	Route::post('/', 'UserController@postSignUp');
+	Route::post('signup', 'UserController@postSignUp');
 	Route::post('login', 'UserController@postLogIn');
 });
 

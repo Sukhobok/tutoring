@@ -13,7 +13,7 @@
     <!-- Stylesheet
 	===================================================================================================	 -->
 	
-   <!-- HTML5 shim, for IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!-- styles for IE --><!--[if lte IE 8]>
     <link rel="stylesheet" href="/themes/university/css/ie/ie.css" type="text/css" media="screen"/><![endif]-->
@@ -75,18 +75,18 @@
 	            
 	            <div class="btn-login pull-right">
 	            	<a href="#"><span class="toggle"></span><span class="toggleText">Member Login</span></a>
-	            	<form class="form-inline">
+	            	{{ Form::open(array('url' => 'login', 'class' => 'form-inline')) }}
 	            	
 		            	<div class="input-prepend">
 						  <span class="add-on"><i class="icon-user"></i></span>
-						  <input class="span2" id="prependedInput" type="text" placeholder="Username">
+						  {{ Form::text('email', '', array('placeholder' => 'Email', 'class' => 'span2', 'id' => 'prependedInput')) }}
 						</div>
 		            	<div class="input-prepend">
-						  <span class="add-on"><i class="icon-lock"></i></span>				  
-						  <input id="prependedInput2" type="password" class="span2 input-small" placeholder="Password">
+						  <span class="add-on"><i class="icon-lock"></i></span>
+						  {{ Form::password('password', array('placeholder' => 'Password', 'class' => 'span2 input-small', 'id' => 'prependedInput2')) }}
 						</div>
 		   			    <button type="submit" class="btn">Sign in</button>
-					</form>	
+					{{ Form::close() }}
 	            </div>
             
             </div>		
@@ -109,7 +109,7 @@
 	    	<div class="row-fluid">
 	    		<div class="span12">
 	    			<div class="form-container pull-right box animated pulse">
-		    			<form id="joinForm" action="join.php" method="post" accept-charset="utf-8">
+	    				{{ Form::open(array('url' => 'signup', 'id' => 'ss-joinForm')) }}
 						   <fieldset>
 						    
 						    <legend class="text-center nb nm"><span>Sign Up</span></legend>
@@ -119,95 +119,42 @@
 						    <div class="row-fluid">
 						    	<div class="span12">
 								    <label class="no">Name</label>
-								    <input type="text" name="name" placeholder="Name">
+								    {{ Form::text('name', Input::old('name'), array('placeholder' => 'Name', 'class' => $input_classes['name'])) }}
 						    	</div>
 						    </div>
 
 						    <div class="row-fluid">
 						    	<div class="span12">
 								    <label class="no">E-mail address</label>
-								    <input type="text" name="email" placeholder="E-mail address">
+								    {{ Form::email('email', Input::old('email'), array('placeholder' => 'E-mail address', 'class' => $input_classes['email'])) }}
 						    	</div>
 						    </div>
 
 						    <div class="row-fluid">
 						    	<div class="span12">
 								    <label class="no">Password</label>
-								    <input type="password" name="password" placeholder="Password">
+								    {{ Form::password('password', array('placeholder' => 'Password', 'class' => $input_classes['password'])) }}
 						    	</div>
 						    </div>
 
 						    <div class="row-fluid">
 						    	<div class="span12">
 								    <label class="no">Retype Password</label>
-								    <input type="password" name="retype_password" placeholder="Retype Password">
+								    {{ Form::password('password_confirmation', array('placeholder' => 'Retype Password', 'class' => $input_classes['password_confirmation'])) }}
 						    	</div>
 						    </div>
                             
 						    <div class="row-fluid">
 						    	<div class="span12">	
 						    		<div class="row-fluid">
-									    <select name="month" class="selectpicker span12">
-									    	<option disabled selected>You are a:</option>
-										  	<option>Student</option>
-										  	<option>Teacher</option>       
+									    <select name="you_are" class="selectpicker span12">
+									    	<option value="" disabled selected>You are a:</option>
+										  	<option value="s">Student</option>
+										  	<option value="t">Teacher</option>       
 										</select>
 									</div>
 						    	</div>
 						    </div>
-                            <!--
-                            <div class="row-fluid">
-						    	<div class="span12">	
-						    		<div class="row-fluid">
-						    										    
-									    <select name="month" class="selectpicker span12">
-										  <option>Level of Education</option>
-										  <option>Basic</option>       
-										    <option>No that Basic</option>       
-										    <option>Reguar</option>       
-										    <option>Advance</option>       
-										    <option>Proffesional</option> 
-                                            <option>Example</option>               
-										</select>
-									</div>
-						    	</div>
-						    </div>
-                            
-						    <div class="row-fluid">
-						    	<div class="span12">	
-						    		<div class="row-fluid">
-									    <select name="month" class="selectpicker span12">
-										  	<option>Country</option>
-										  	<option>Afghanistan</option>       
-										    <option>Albania</option>       
-										    <option>Argentina</option>       
-										    <option>Australia</option>       
-										    <option>Austria</option>       
-										    <option>Azerbaijan</option>   
-                                            <option>Brazil</option>    
-                                            <option>China</option>    
-                                            <option>Colombia</option>    
-                                            <option>Costa Rica</option>    
-                                            <option>Dominica</option>    
-                                            <option>France</option>    
-                                            <option>Germany</option>    
-                                            <option>Guatemala</option>    
-                                            <option>Ireland</option>    
-                                            <option>Jamaica</option> 
-                                            <option>Japan</option> 
-                                            <option>Jordan</option> 
-                                            <option>Luxembourg</option>    
-										</select>
-									</div>
-						    	</div>
-						    </div>
-                            
-						    <div class="row-fluid">
-						    	<div class="span12">
-								    <label class="no">Message</label>
-								    <textarea name="pass" placeholder="Message" rows="4"></textarea> 
-						    	</div>
-						    </div> -->
 						    
 						    		
 				    		<div class="formFoot">
@@ -224,7 +171,7 @@
 						    <span class="help-block text-center footForm">By signing up you agree our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span>
 
 						  </fieldset>
-						</form>
+						{{ Form::close() }}
 	    			</div>	    			
 	    		</div>
 	    	</div>
@@ -249,14 +196,11 @@
 	            </div>
 	            <div class="span5 right">	            	
 	            	<ul class="list-features text-left">
-	                	<li>Master of Business Administration</li>
-	                    <li>Master of Information Technology</li>
-	                    <li>Graduate Certificate in Information</li>
-	                    <li>Explore new places, events and real people near you</li>
-	                    <li>Master of Software Engineering</li>
-	                    <li>Systems Management</li>
-	                    <li>Master of Business Administration</li>
-	                    <li>Master of Information Technology</li>
+	                	<li>Increase Your Gpa</li>
+	                    <li>Collaborate With Other Students Around The World</li>
+	                    <li>Hire Tutors Immediately</li>
+	                    <li>Start Tutoring Sessions Instantly With Your Choice Of Tutor</li>
+	                    <li>Record Your Sessions And Watch Anytime</li>
 	                </ul>
 	            </div>
 	        </div> 	
@@ -311,7 +255,7 @@
             <div class="span4 item second">
             	<div class="avatar">
             		<img src="/themes/university/img/why/img-2.jpg" alt="//" />
-            		<span><em>Get Paid After Each Session</em></span>
+            		<span><em>Get Paid After Sessions</em></span>
             	</div>                
                 <p>Don’t wait weeks for a payout. Tutoring fees are collected as soon as the session is over.</p>
             </div>

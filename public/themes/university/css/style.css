@@ -349,7 +349,7 @@ header .slogan {
 	font-size: 1.4em;
 	margin-bottom: 1.5em;
 }
-.form-container form select, .form-container form input[type="text"], .form-container form input[type="password"], .form-container form textarea {
+.form-container form select, .form-container form input[type="text"], .form-container form input[type="email"], .form-container form input[type="password"], .form-container form textarea {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -365,7 +365,7 @@ header .slogan {
 	border-radius: 0;
 }
 
-.form-container form select:focus, .form-container form input[type="text"]:focus, .form-container form input[type="password"]:focus, .form-container form textarea:focus  {
+.form-container form select:focus, .form-container form input[type="text"]:focus, .form-container form input[type="email"]:focus, .form-container form input[type="password"]:focus, .form-container form textarea:focus  {
 	background: #253458;
 	box-shadow:none;
 }
@@ -1178,4 +1178,12 @@ i[class^="icon-"] {
 .ss-bg.item.third .ico:after {
 	border-color: #000 transparent transparent !important;
 	bottom: -9px;
+}
+
+.field-error {
+	background: #722 !important;
+}
+
+#ss-joinForm .row-fluid [class*="span"] {
+	margin-bottom: 9px;
 }
