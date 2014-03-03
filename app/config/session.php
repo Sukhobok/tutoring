@@ -16,7 +16,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'file',
+	'driver' => 'database',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return array(
 	|
 	*/
 
-	'lifetime' => 120,
+	'lifetime' => 2678400, // 5*12*31*24*60 - 5 years
 
 	'expire_on_close' => false,
 

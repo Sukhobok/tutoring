@@ -38,4 +38,9 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'user.post',
 		'uses' => 'PostController@postUserPost'
 	));
+
+	Route::get('settings/profile', array(
+		'as' => 'settings.profile',
+		'uses' => 'SettingsController@getProfile'
+	));
 });

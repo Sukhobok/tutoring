@@ -1,0 +1,35 @@
+.header-settings-extended {
+	position: absolute;
+	width: 400px; display: none;
+	background: #303030;
+	color: #fff;
+	border-bottom: 3px solid #040404;
+	font-size: 12px;
+	right: 0;
+	top: @header-height+3px;
+	z-index: 1;
+
+	&:before {
+		content: '';
+		position: absolute;
+		display: block;
+		height: 4px;
+		width: 50px;
+		right: 0;
+		top: -3px;
+		background: #303030;
+	}
+
+	ul li {
+		display: block;
+		padding: 4px 16px;
+		border-bottom: 1px solid #1f1f1f;
+		line-height: 30px;
+		vertical-align: middle;
+
+		&:hover {
+			background: #3a3a3a;
+			cursor: pointer;
+		}
+	}
+}

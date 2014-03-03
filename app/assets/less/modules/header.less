@@ -1,10 +1,12 @@
+@header-height: 46px;
+
 header {
 	width: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
 	background: #2a2a2a;
-	height: 46px;
+	height: @header-height;
 	min-width: 960px;
 	box-shadow: 0 2px 18px -2px rgba(0, 0, 0, .4);
 	z-index: 1;
@@ -19,6 +21,18 @@ header {
 .header-logo {
 	float: left;
 	padding-top: 8px;
+}
+
+.header-right {
+	float: right;
+
+	.header-icon {
+		display: inline-block;
+		text-align: center;
+		width: 50px;
+		line-height: @header-height+8px;
+		cursor: pointer;
+	}
 }
 
 .header-button {

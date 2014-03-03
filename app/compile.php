@@ -15,10 +15,6 @@ Debugbar::startMeasure('less', 'Time for converting less to css');
 
 $less = new lessc;
 $less->setFormatter('compressed');
-$less->compileFile('app/assets/less/index.less', 'public/css/index.css');
-
-$less = new lessc;
-$less->setFormatter('compressed');
 $less->compileFile('app/assets/less/style.less', 'public/css/style.css');
 
 Debugbar::stopMeasure('less');
