@@ -13,6 +13,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public static $signup_rules = array(
 		'name' => 'required|min:2',
+		'nickname' => '',
 		'email' => 'required|email|unique:users',
 		'password' => 'required|min:6|confirmed',
 		'password_confirmation' => 'required|min:6',
@@ -30,6 +31,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password');
+
+	/**
+	 * Change user data
+	 * @return string
+	 */
+	public static function change_user_data($what, $value)
+	{
+		$allowed = array('name', 'nickname', 'email');
+		if(in_array($what, $allowed))
+		{
+			$user = Auth::user();
+
+			$validator = Validator::make(
+				array($what => $value),
+				array($what => self::$signup_rules[$what])
+			);
+
+			if ($validator->passes()) {
+				$user->$what = $value;
+				$user->save();
+			}
+
+			return $user->$what;
+		}
+		return '';
+	}
 
 	/**
 	 * Get user posts

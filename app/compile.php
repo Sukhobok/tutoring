@@ -27,8 +27,9 @@ $compiler = new ClosureCompiler;
 $compiler->setSourceBaseDir('app/assets/js/');
 $compiler->setTargetBaseDir('public/js/');
 $compiler->setSourceFiles(array(
+	'core.js',
 	'right_sidebar.js',
-	'core.js'
+	'settings.js'
 ));
 $compiler->setTargetFile('script.min.js');
 $compiler->compile();

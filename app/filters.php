@@ -13,7 +13,14 @@
 
 App::before(function($request)
 {
-	//
+	// Remove extra spaces from elements in Input
+	$new_input = Input::all();
+	array_walk_recursive($new_input, function (&$item, $key)
+	{
+		$item = trim($item);
+	});
+
+	Input::replace($new_input);
 });
 
 
@@ -76,5 +83,22 @@ Route::filter('csrf', function()
 	if (Session::token() != Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
+	}
+});
+
+/*
+|--------------------------------------------------------------------------
+| Ajax Filter
+|--------------------------------------------------------------------------
+|
+| Check if the current request is ajax
+|
+*/
+
+Route::filter('ajax', function ()
+{
+	if (!Request::ajax())
+	{
+		App::abort(403, 'Unauthorized');
 	}
 });
