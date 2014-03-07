@@ -2,24 +2,39 @@
  * My Profile
  */
 
-$(document).on('click', 'input[data-ss-settings-expand]', function () {
-	var to_expand = this.getAttribute('data-ss-settings-expand');
-	$('td[data-ss-settings-expand="' + to_expand + '_o"]').hide();
-	$('td[data-ss-settings-expand="' + to_expand + '_e"]').show();
+$(document).on('change', '.page-settings .ss-picture-upload', function () {
+	if(this.files && this.files[0]) {
+		var file = this.files[0];
+		if (!file.type.match(/image.*/)) return false;
+
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			var preview = $('.page-settings #ss-picture-preview');
+			var uploaded_img = $('<img/>').attr('src', e.target.result);
+			
+			preview.html(uploaded_img).show();
+			uploaded_img.Jcrop({
+				aspectRatio: 1,
+				minSize: [50, 50],
+				setSelect: [100, 100, 50, 50],
+				onSelect: function(c) {
+					$('input[name="profile_x"]').val(c.x);
+					$('input[name="profile_y"]').val(c.y);
+					$('input[name="profile_w"]').val(c.w);
+					$('input[name="profile_h"]').val(c.h);
+				}
+			});
+		}
+		reader.readAsDataURL(file);
+	}
 });
 
-$(document).on('change', 'input[data-ss-settings-change]', function () {
-	var that = this;
-	var what = this.getAttribute('data-ss-settings-change');
-	var value = $(this).val();
+$(document).on('click', '.page-settings .ss-delete', function () {
+	$(this).parents('tr').remove();
+});
 
-	$.ajax({
-		url: '/ajax/settings/change',
-		type: 'POST',
-		dataType: 'text',
-		data: { what: what, value: value },
-		success: function (data) {
-			$(that).val(data);
-		}
-	});
+$(document).on('click', '.page-settings .ss-add-education', function () {
+	var snippet = $('.hide.snippet-add-education').clone().removeClass('hide');
+	var new_row = $('<tr></tr>').append($('<td></td>').append(snippet));
+	$('.ss-table-education').prepend(new_row);
 });

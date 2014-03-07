@@ -16,8 +16,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'nickname' => '',
 		'email' => 'required|email|unique:users',
 		'password' => 'required|min:6|confirmed',
-		'password_confirmation' => 'required|min:6',
-		'agree' => 'required'
+		'password_confirmation' => 'required|min:6'
+	);
+
+	public static $settings_profile_rules = array(
+		'name' => 'required|min:2',
+		'nickname' => '',
+		'email' => 'required|email',
+		'gender' => 'required'
+	);
+
+	public static $password_rules = array(
+		'password' => 'required|min:6|confirmed',
+		'password_confirmation' => 'required|min:6'
+	);
+
+	public static $birthday_rules = array(
+		'b_year' => 'required|numeric|min:1914|max:2004',
+		'b_month' => 'required|numeric|min:1|max:12',
+		'b_day' => 'required|numeric|min:1|max:31'
 	);
 
 	/**
@@ -88,6 +105,33 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 		return $this->name;
+	}
+
+	/**
+	 * Birthday setter
+	 * @param array $value
+	 */
+	public function setBirthdayAttribute($value)
+	{
+		$return = $value['y'] . '-' . $value['m'] . '-' . $value['d'];
+		$this->attributes['birthday'] = $return;
+	}
+
+	/**
+	 * Birthday getter
+	 * @param  string $value 
+	 * @return array
+	 */
+	public function getBirthdayAttribute($value)
+	{
+		$arr = explode('-', $value);
+		$return = array(
+			'y' => (int) $arr[0],
+			'm' => (int) $arr[1],
+			'd' => (int) $arr[2]
+		);
+
+		return $return;
 	}
 
 	/**

@@ -43,6 +43,11 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'settings.profile',
 		'uses' => 'SettingsController@getProfile'
 	));
+
+	Route::post('settings/profile', array(
+		'uses' => 'SettingsController@postProfile'
+	));
+
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()

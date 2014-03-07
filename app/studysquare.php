@@ -5,8 +5,8 @@
 | StudySquare
 |--------------------------------------------------------------------------
 |
-| Here is the code for some studysquare specific things that will run
-| before the application loads
+| Here is the code for some studysquare specific things that will be
+| registered before the application loads
 |
 */
 

@@ -26,7 +26,7 @@ class PostController extends BaseController {
 			$post = $user->posts()->save($post);
 			$post = $user->profile_posts()->save($post);
 
-			if(Input::file('photos')[0])
+			if (Input::file('photos')[0])
 			{
 				foreach (Input::file('photos') as $photo)
 				{

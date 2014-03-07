@@ -5,112 +5,122 @@
 		</div>
 
 		<div class="layout-main page-settings">
+			@foreach ($messages as $message)
+				<p>{{ $message }}</p>
+			@endforeach
+
 			<div class="ss-container">
 				<div class="ss-section">
-					<h1>General information</h1>
+					{{ Form::open(array('name' => 'settings.profile')) }}
+						{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
+						<h1>General information</h1>
+						<div class="clear"></div>
 
-					<table>
-						<tr>
-							<td>Name</td>
-							<td>
-								{{ Form::text('name', Auth::user()->name, array('class' => 'ss-input1', 'data-ss-settings-change' => 'name')) }}
-							</td>
-						</tr>
+						<table>
+							<tr>
+								<td>Name</td>
+								<td>
+									{{ Form::text('name', $user->name, array('class' => 'ss-input1')) }}
+								</td>
+							</tr>
 
-						<tr>
-							<td>Nickname</td>
-							<td>
-								{{ Form::text('nickname', Auth::user()->nickname, array('class' => 'ss-input1', 'data-ss-settings-change' => 'nickname')) }}
-							</td>
-						</tr>
+							<tr>
+								<td>Nickname</td>
+								<td>
+									{{ Form::text('nickname', $user->nickname, array('class' => 'ss-input1')) }}
+								</td>
+							</tr>
 
-						<tr>
-							<td>E-mail</td>
-							<td>
-								{{ Form::email('email', Auth::user()->email, array('class' => 'ss-input1', 'data-ss-settings-change' => 'email')) }}
-							</td>
-						</tr>
+							<tr>
+								<td>E-mail</td>
+								<td>
+									{{ Form::email('email', $user->email, array('class' => 'ss-input1')) }}
+								</td>
+							</tr>
 
-						<tr>
-							<td>Password</td>
-							<td data-ss-settings-expand="password_o">
-								{{ Form::password('password', array('class' => 'ss-input1', 'data-ss-settings-expand' => 'password')) }}
-							</td>
-							<td data-ss-settings-expand="password_e" style="display: none;">
-								asd
-							</td>
-						</tr>
+							<tr>
+								<td>Password</td>
+								<td>
+									Old password:
+									{{ Form::password('old_password', array('class' => 'ss-input2')) }}
+									<br />
+									New password:
+									{{ Form::password('password', array('class' => 'ss-input2')) }}
+									<br />
+									Retype new password:
+									{{ Form::password('password_confirmation', array('class' => 'ss-input2')) }}
+								</td>
+							</tr>
 
-						<tr>
-							<td>Birthday</td>
-							<td data-ss-settings-expand="birthday_o">
-								{{ Form::text('birthday', Auth::user()->birthday, array('class' => 'ss-input1', 'data-ss-settings-expand' => 'birthday')) }}
-							</td>
-							<td data-ss-settings-expand="birthday_e" style="display: none;">
-								asd2
-							</td>
-						</tr>
+							<tr>
+								<td>Birthday</td>
+								<td>
+									{{ Form::selectRange('b_year', date('Y')-10, date('Y')-100, $user->birthday['y'] ?: '1914', array('class' => 'ss-select uppercase')) }}
+									{{ Form::selectMonth('b_month', $user->birthday['m'] ?: '1', array('class' => 'ss-select uppercase')) }}
+									{{ Form::selectRange('b_day', 1, 31, $user->birthday['d'] ?: '1', array('class' => 'ss-select uppercase')) }}
+									<br />
+									{{ Form::checkbox('b_save', '1', (bool) $user->birthday['d']) }} Save birthday
+								</td>
+							</tr>
 
-						<tr>
-							<td>Gender</td>
-							<td data-ss-settings-expand="gender_o">
-								{{ Form::text('gender', ucfirst(Auth::user()->gender), array('class' => 'ss-input1', 'data-ss-settings-expand' => 'gender')) }}
-							</td>
-							<td data-ss-settings-expand="gender_e" style="display: none;">
-								asd3
-							</td>
-						</tr>
+							<tr>
+								<td>Gender</td>
+								<td>
+									{{ Form::select('gender', array(
+										'unknown' => 'Unknown',
+										'male' => 'Male',
+										'female' => 'Female'
+									), $user->gender, array('class' => 'ss-select')) }}
+								</td>
+							</tr>
 
-						<tr>
-							<td>Language</td>
-							<td data-ss-settings-expand="language_o">
-								{{ Form::text('language', '', array('class' => 'ss-input1', 'data-ss-settings-expand' => 'language')) }}
-							</td>
-							<td data-ss-settings-expand="language_e" style="display: none;">
-								asd2
-							</td>
-						</tr>
-					</table>
+							<tr>
+								<td>Languages</td>
+								<td>
+									{{ Form::text('languages', '', array('class' => 'ss-input1')) }}
+								</td>
+							</tr>
 
-					Profile Image: ...
+							<tr>
+								<td>Profile Picture</td>
+								<td>
+									{{ Form::ss_file('photo', array('class' => 'ss-picture-upload'), 'blue') }}
+									{{ Form::hidden('profile_x', '0') }}
+									{{ Form::hidden('profile_y', '0') }}
+									{{ Form::hidden('profile_w', '0') }}
+									{{ Form::hidden('profile_h', '0') }}
+									<div id="ss-picture-preview"></div>
+								</td>
+						</table>
+					{{ Form::close() }}
 				</div>
 
 				<div class="ss-section">
-					<h1>Education</h1>
+					{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
+					<h1 style="float: left;">Education</h1>
+					{{ Form::button('Add new', array('class' => 'ss-button blue bold ss-add-education')) }}
+					<div class="clear"></div>
 
-					<table border="">
-						<tr>
-							<td>High school</td>
-							<td class="settings_extend" data-settings-extend="high_s">
-								<input class="" type="text" value="" />
-							</td>
-						</tr>
+					<div class="hide snippet-add-education">
+						@include('settings.snippets.add_education')
+					</div>
 
-						<tr><td colspan="2"><hr style="border:none;border-bottom:1px dashed #ddd;" /></td></tr>
-
+					<table class="ss-table-education">
 						<tr>
 							<td>
-								College 
-								<br />
-								Add new
-							</td>
-							<td class="settings_extend" data-settings-extend="college">
-								<input class="" type="text" value="" />
+								High School - N/A<br />
+								<span class="bold">School name here</span><br />
+								2005-2009, Majored in <span class="bold">asd</span>
+								{{ Form::button('Delete', array('class' => 'ss-button red bold ss-delete')) }}
 							</td>
 						</tr>
-
-						<tr><td colspan="2"><hr style="border:none;border-bottom:1px dashed #ddd;" /></td></tr>
-
-						<tr>
-							<td>
-								Graduation School
-								<br />
-								Add new
-							</td>
-							<td class="settings_extend" data-settings-extend="graduation_s">
-								<input class="" type="text" value="" />
-							</td>
-						</tr>
+						<?php for($i = 1; $i <= 2; $i++): ?>
+							<tr>
+								<td>
+									@include('settings.snippets.add_education')
+								</td>
+							</tr>
+						<?php endfor; ?>
 					</table>
 				</div>
 			</div>

@@ -54,7 +54,7 @@ return array(
 
 		'mysql_prod' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '127.0.0.1',
 			'database'  => 'studysquare2',
 			'username'  => 'root',
 			'password'  => 'stdy!23',
@@ -65,7 +65,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '127.0.0.1',
 			'database'  => 'studysquare2',
 			'username'  => 'root',
 			'password'  => '',

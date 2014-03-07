@@ -81,7 +81,3 @@ App::down(function()
 require app_path().'/filters.php';
 require app_path().'/views_data.php';
 require app_path().'/studysquare.php';
-
-if(App::environment('local')) {
-	require app_path().'/compile.php';
-}
