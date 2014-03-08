@@ -11,7 +11,7 @@
 
 			<div class="ss-container">
 				<div class="ss-section">
-					{{ Form::open(array('name' => 'settings.profile')) }}
+					{{ Form::open(array('name' => 'settings.profile', 'files' => true)) }}
 						{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
 						<h1>General information</h1>
 						<div class="clear"></div>

@@ -76,24 +76,48 @@ class SettingsController extends BaseController {
 				}
 			}
 
-			if (Input::file('photo'))
+			if (Input::hasFile('photo')
+				&& Input::get('profile_w') > 0
+				&& Input::get('profile_w') == Input::get('profile_h'))
 			{
-				// $filename = 'profile_pictures/' . time() . str_random(16) . '.jpg';
-				// $image = GDImage::make($photo->getRealPath())
-				// 	->resize(800, null, true, false); // Max width: 800
+				$photo = Input::file('photo');
+				list($src_w, $src_h) = getimagesize($photo->getRealPath());
+
+				$profile_w = Input::get('profile_w');
+				$profile_h = Input::get('profile_h');
+				$profile_x = Input::get('profile_x');
+				$profile_y = Input::get('profile_y');
+
+				if ($src_w > 350)
+				{
+					$ratio = $src_w/350;
+					$profile_w*=$ratio;
+					$profile_h*=$ratio;
+					$profile_x*=$ratio;
+					$profile_y*=$ratio;
+				}
+
+				$filename = 'profile_pictures/' . time() . str_random(16) . '.jpg';
+				$image = GDImage::make($photo->getRealPath())
+					->crop($profile_w, $profile_h, $profile_x, $profile_y)
+					->resize(160, null, true, false);
 				
-				// $s3 = AWS::get('s3');
-				// $result = $s3->putObject(array(
-				// 	'Bucket' => 'studysquare',
-				// 	'Key' => $filename,
-				// 	'Body' => $image->encode('jpg'),
-				// 	'ACL' => 'public-read'
-				// ));
+				$s3 = AWS::get('s3');
+				if ($user->profile_picture)
+				{
+					$s3->deleteObject(array(
+						'Bucket' => 'studysquare',
+						'Key' => $user->profile_picture
+					));
+				}
 
-				// $image = new Image;
-				// $image->path = $filename;
-
-				// $post->images()->save($image);
+				$user->profile_picture = $filename;
+				$s3->putObject(array(
+					'Bucket' => 'studysquare',
+					'Key' => $filename,
+					'Body' => $image->encode('jpg'),
+					'ACL' => 'public-read'
+				));
 			}
 
 			$user->save();
