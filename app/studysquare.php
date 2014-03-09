@@ -20,3 +20,14 @@ Form::macro('ss_file', function($name, $attributes = array(), $color = 'green')
 			. '</button>'
 		. '</div>';
 });
+
+HTML::macro('profile_picture', function($user)
+{
+	if ($user->profile_picture)
+	{
+		return 'https://s3-us-west-2.amazonaws.com/studysquare/'
+			. $user->profile_picture;
+	}
+
+	return '/images/default_avatar.jpg';
+});

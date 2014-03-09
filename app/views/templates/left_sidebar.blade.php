@@ -2,7 +2,7 @@
 	<div class="ss-section">
 		<div class="center">
 			<div class="profile-picture big-profile-picture">
-				{{ HTML::image('images/default_avatar.jpg', 'Profile Picture', array('width' => 160)) }}
+				{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 160)) }}
 			</div>
 
 			<h1 class="user-name">{{{ Auth::user()->display_name }}}</h1>

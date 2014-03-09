@@ -47,8 +47,6 @@ class SettingsController extends BaseController {
 
 				if ($birthday_validator->passes())
 				{
-					$messages[] = 'Birthday saved!';
-
 					$user->birthday = array(
 						'y' => Input::get('b_year'),
 						'm' => Input::get('b_month'),
@@ -67,7 +65,6 @@ class SettingsController extends BaseController {
 				if ($password_validator->passes()
 					&& Hash::check(Input::get('old_password'), $user->password))
 				{
-					$messages[] = 'Password saved!';
 					$user->password = Hash::make(Input::get('password'));
 				}
 				else
