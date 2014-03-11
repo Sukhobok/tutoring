@@ -39,6 +39,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'PostController@postUserPost'
 	));
 
+	Route::get('user/{id}', array(
+		'as' => 'user.view',
+		'uses' => 'UserController@getUser'
+	));
+
 	Route::get('settings/profile', array(
 		'as' => 'settings.profile',
 		'uses' => 'SettingsController@getProfile'

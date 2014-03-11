@@ -26,7 +26,8 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('Alex-laptop'),
+	'local' => array('Alex-laptop', 'Alex-iMac.local', '*'),
+	'production' => array('*.com')
 
 ));
 

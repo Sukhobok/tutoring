@@ -69,4 +69,20 @@ class UserController extends BaseController {
 		return Redirect::to('/');
 	}
 
+	/**
+	 * Get User page
+	 */
+	public function getUser($id)
+	{
+		$user = User::find($id);
+		if (!$user)
+		{
+			App::abort('404');
+		}
+
+		$this->layout->content = View::make('user.view', array(
+			'user' => $user
+		));
+	}
+
 }

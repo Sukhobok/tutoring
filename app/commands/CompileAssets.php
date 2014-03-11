@@ -49,7 +49,9 @@ class CompileAssets extends Command {
 		$compiler->setSourceBaseDir('app/assets/js/');
 		$compiler->setTargetBaseDir('public/js/');
 		$compiler->setSourceFiles(array(
+			'plugins/jquery.tokeninput.js',
 			'core.js',
+			'time.js',
 			'right_sidebar.js',
 			'settings.js'
 		));
