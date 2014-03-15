@@ -30,7 +30,7 @@ function dateToString(date) {
 }
 
 function convert_time() {
-	$('.time_ago').each(function() {
+	$('.time-ago').each(function() {
 		if(this.getAttribute('data-time') == '')
 			return true;
 

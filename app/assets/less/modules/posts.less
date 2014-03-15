@@ -58,14 +58,32 @@ article {
 	.article-footer {
 		margin-top: 14px;
 
-		& .time_ago {
-			display: inline-block;
-			padding: 8px;
-			background: #999;
+		.article-share {
+			float: right;
+			margin-left: 5px;
+			cursor: pointer;
+		}
+
+		& .thumbs-container {
+			float: right;
+			border-radius: 5px;
+			overflow: hidden;
 			color: #fff;
-			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-			border-radius: 3px;
-			font-size: 12px;
+			font-weight: 700;
+
+			& .thumb-up {
+				float: left;
+				background: #a4c346;
+				padding: 0 5px;
+				height: 28px;
+			}
+
+			& .thumb-down {
+				float: left;
+				background: #c84848;
+				padding: 0 5px;
+				height: 28px;
+			}
 		}
 	}
 }
