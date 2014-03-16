@@ -50,32 +50,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 
 	/**
-	 * Change user data
-	 * @return string
-	 */
-	public static function change_user_data($what, $value)
-	{
-		$allowed = array('name', 'nickname', 'email');
-		if(in_array($what, $allowed))
-		{
-			$user = Auth::user();
-
-			$validator = Validator::make(
-				array($what => $value),
-				array($what => self::$signup_rules[$what])
-			);
-
-			if ($validator->passes()) {
-				$user->$what = $value;
-				$user->save();
-			}
-
-			return $user->$what;
-		}
-		return '';
-	}
-
-	/**
 	 * Get user posts
 	 * @return Post
 	 */
@@ -88,9 +62,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * Get profile posts for current user
 	 * @return Post
 	 */
-	public function profile_posts()
+	public function profilePosts()
 	{
 		return $this->morphMany('Post', 'postable');
+	}
+
+	/**
+	 * Get Images
+	 * @return Image
+	 */
+	public function images()
+	{
+		return $this->morphMany('Image', 'imageable');
 	}
 
 	/**

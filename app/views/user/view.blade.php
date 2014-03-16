@@ -29,11 +29,11 @@
 			</div>
 
 			<div class="page-tab-component page-tab-posts" style="display: block;">
-				@foreach($user->posts as $post)
+				@foreach($user->profilePosts as $post)
 					<article>
 						<div class="article-left">
 							<div class="profile-picture">
-								{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
+								{{ HTML::image(HTML::profile_picture($user), 'Profile Picture', array('width' => 50)) }}
 							</div>
 						</div>
 

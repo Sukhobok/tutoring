@@ -24,7 +24,7 @@ class PostController extends BaseController {
 
 			$user = Auth::user();
 			$post = $user->posts()->save($post);
-			$post = $user->profile_posts()->save($post);
+			$post = $user->profilePosts()->save($post);
 
 			if (Input::file('photos')[0])
 			{

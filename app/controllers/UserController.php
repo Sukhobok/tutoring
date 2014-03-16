@@ -85,4 +85,64 @@ class UserController extends BaseController {
 		));
 	}
 
+	/**
+	 * Ajax: Upload user photos
+	 */
+	public function ajaxUploadPhotos()
+	{
+		$uploaded = array();
+		if (Input::file('user_photos')[0])
+		{
+			foreach (Input::file('user_photos') as $photo)
+			{
+				$filename = 'user_pictures/' . time() . str_random(16) . '.jpg';
+				$image = GDImage::make($photo->getRealPath())
+					->resize(800, null, true, false); // Max width: 800
+				
+				$s3 = AWS::get('s3');
+				$result = $s3->putObject(array(
+					'Bucket' => 'studysquare',
+					'Key' => $filename,
+					'Body' => $image->encode('jpg'),
+					'ACL' => 'public-read'
+				));
+
+				$image = new Image;
+				$image->path = $filename;
+
+				Auth::user()->images()->save($image);
+				$uploaded[] = HTML::get_from_s3($filename);
+			}
+		}
+
+		return $uploaded;
+	}
+
+	/**
+	 * Ajax: Delete specific user photo
+	 */
+	public function ajaxDeletePhoto()
+	{
+		$id = (int) Input::get('id');
+		if ($id)
+		{
+			$image = Image::find($id);
+			if ($image && $image->imageable_id === Auth::user()->id
+				&& $image->imageable_type === 'User')
+			{
+				$s3 = AWS::get('s3');
+				$s3->deleteObject(array(
+					'Bucket' => 'studysquare',
+					'Key' => $image->path
+				));
+
+				$image->delete();
+				// TO DO: Delete associated comments
+				return array('error' => 0);
+			}
+		}
+
+		return array('error' => 1);
+	}
+
 }

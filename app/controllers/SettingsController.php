@@ -126,15 +126,4 @@ class SettingsController extends BaseController {
 		));
 	}
 
-	/**
-	 * Ajax: Change user data
-	 */
-	public function ajaxChange()
-	{
-		return User::change_user_data(
-			Input::get('what'),
-			Input::get('value')
-		);
-	}
-
 }

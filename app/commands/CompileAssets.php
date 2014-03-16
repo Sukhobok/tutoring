@@ -52,6 +52,8 @@ class CompileAssets extends Command {
 			'plugins/jquery.tokeninput.js',
 			'core.js',
 			'time.js',
+			'elements_behavior.js',
+			'photos.js',
 			'right_sidebar.js',
 			'settings.js'
 		));
