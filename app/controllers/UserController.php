@@ -74,14 +74,23 @@ class UserController extends BaseController {
 	 */
 	public function getUser($id)
 	{
-		$user = User::find($id);
+		$user = User::with(array('profilePosts' => function ($query)
+		{
+			$query->orderBy('created_at', 'DESC');
+		}, 'profilePosts.images'))->where('id', '=', $id)->take(1)->get(); // TO DO: Improve this
+		$user = $user[0];
 		if (!$user)
 		{
 			App::abort('404');
 		}
 
+		$posts = $user->profilePosts;
+		$images = $user->images;
+
 		$this->layout->content = View::make('user.view', array(
-			'user' => $user
+			'user' => $user,
+			'posts' => $posts,
+			'images' => $images
 		));
 	}
 

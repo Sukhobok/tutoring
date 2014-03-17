@@ -5,90 +5,53 @@
 		</div>
 
 		<div class="layout-main">
-			<div class="page-tabs-container">
-				<div data-ss-tab="posts" class="page-tab is-active">Posts</div>
-				<div data-ss-tab="photos" class="page-tab">Photos</div>
-				<div data-ss-tab="friends" class="page-tab">Friends</div>
-				<div data-ss-tab="more" class="page-tab">More</div>
-				<div class="clear"></div>
+			<div id="post_message">
+				{{ Form::open(array('route' => 'user.post', 'files' => true)) }}
+					<h2>POST A QUESTION or MESSAGE</h2>
+					{{ Form::textarea('post') }}
+					{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
+					{{ Form::ss_file('photos[]', array('multiple' => true)) }}
+					<div class="clear"></div>
+				{{ Form::close() }}
 			</div>
 
-			<div class="page-tab-component page-tab-posts" style="display: block;">
-				<div id="post_message">
-					{{ Form::open(array('route' => 'user.post', 'files' => true)) }}
-						<h2>POST A QUESTION or MESSAGE</h2>
-						{{ Form::textarea('post') }}
-						{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
-						{{ Form::ss_file('photos[]', array('multiple' => true)) }}
-						<div class="clear"></div>
-					{{ Form::close() }}
-				</div>
-
-				@foreach(Auth::user()->profilePosts as $post)
-					<article>
-						<div class="article-left">
-							<div class="profile-picture">
-								{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
-							</div>
+			@foreach(Auth::user()->profilePosts as $post)
+				<article>
+					<div class="article-left">
+						<div class="profile-picture">
+							{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
 						</div>
+					</div>
 
-						<div class="article-right">
-							<div class="ss-container">
-								<div class="article-content ss-section">
-									{{{ $post->post }}}
+					<div class="article-right">
+						<div class="ss-container">
+							<div class="article-content ss-section">
+								{{{ $post->post }}}
 
-									<div class="article-footer">
-										<div class="time-ago ss-highlight gray" data-time="{{ $post->created_at->timestamp }}"></div>
-										<div class="article-share ss-highlight green bold">Share</div>
-										<div class="thumbs-container">
-											<div class="thumb-up">
-												..
-											</div>
-											<div class="thumb-down">
-												..
-											</div>
+								<div class="article-footer">
+									<div class="time-ago ss-highlight gray" data-time="{{ $post->created_at->timestamp }}"></div>
+									<div class="article-share ss-highlight green bold">Share</div>
+									<div class="thumbs-container">
+										<div class="thumb-up">
+											..
 										</div>
-										<div class="clear"></div>
+										<div class="thumb-down">
+											..
+										</div>
 									</div>
+									<div class="clear"></div>
 								</div>
+							</div>
 
-								<div class="post-comment ss-section">
-									Post a comment ...
-								</div>
+							<div class="post-comment ss-section">
+								Post a comment ...
 							</div>
 						</div>
-
-						<div class="clear"></div>
-					</article>
-				@endforeach
-			</div>
-
-			<div class="page-tab-component page-tab-photos">
-				<div class="ss-container">
-					<div class="ss-section">
-						{{ Form::ss_file('user_photos[]', array('multiple' => true), 'blue', 'UPLOAD') }}
-						<div class="ss-drop-photo"></div>
 					</div>
 
-					<div class="ss-section photos-container">
-						@foreach(Auth::user()->images as $photo)
-							<div class="ss-photo">
-								{{ HTML::image(HTML::get_from_s3($photo->path), 'Photo') }}
-								<div class="ss-photo-hover"></div>
-								<div class="ss-photo-delete" data-ss-photo-id="{{{ $photo->id }}}"></div>
-							</div>
-						@endforeach
-					</div>
-				</div>
-			</div>
-
-			<div class="page-tab-component page-tab-friends">
-				friends
-			</div>
-
-			<div class="page-tab-component page-tab-more">
-				more
-			</div>
+					<div class="clear"></div>
+				</article>
+			@endforeach
 		</div>
 		
 		<div class="layout-sidebar layout-sidebar-right">

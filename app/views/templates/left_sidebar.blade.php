@@ -10,7 +10,11 @@
 	</div>
 
 	<div class="ss-section left-sidebar-section">
-		Home
+		My Profile
+	</div>
+
+	<div class="ss-section left-sidebar-section">
+		Dashboard
 	</div>
 
 	<div class="ss-section left-sidebar-section tutor-color">

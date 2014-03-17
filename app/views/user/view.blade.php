@@ -29,7 +29,19 @@
 			</div>
 
 			<div class="page-tab-component page-tab-posts" style="display: block;">
-				@foreach($user->profilePosts as $post)
+				@if(Auth::user()->id == $user->id)
+					<div id="post_message">
+						{{ Form::open(array('route' => 'user.post', 'files' => true)) }}
+							<h2>POST A QUESTION or MESSAGE</h2>
+							{{ Form::textarea('post') }}
+							{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
+							{{ Form::ss_file('photos[]', array('multiple' => true)) }}
+							<div class="clear"></div>
+						{{ Form::close() }}
+					</div>
+				@endif
+
+				@foreach($posts as $post)
 					<article>
 						<div class="article-left">
 							<div class="profile-picture">
@@ -41,6 +53,16 @@
 							<div class="ss-container">
 								<div class="article-content ss-section">
 									{{{ $post->post }}}
+
+									@if($post->images)
+										<div class="article-photos">
+											@foreach($post->images as $photo)
+												<div class="ss-photo">
+													{{ HTML::image(HTML::get_from_s3($photo->path), 'Photo') }}
+												</div>
+											@endforeach
+										</div>
+									@endif
 
 									<div class="article-footer">
 										<div class="time-ago ss-highlight gray" data-time="{{ $post->created_at->timestamp }}"></div>
@@ -69,7 +91,31 @@
 			</div>
 
 			<div class="page-tab-component page-tab-photos">
-				photos
+				<div class="ss-container">
+					@if(Auth::user()->id == $user->id)
+						<div class="ss-section">
+							{{ Form::ss_file('user_photos[]', array('multiple' => true), 'blue', 'UPLOAD') }}
+							<div class="ss-drop-photo"></div>
+						</div>
+					@endif
+
+					<div class="ss-section photos-container">
+						@foreach($images as $photo)
+							<div class="ss-photo">
+								{{ HTML::image(HTML::get_from_s3($photo->path), 'Photo') }}
+
+								@if(Auth::user()->id == $user->id)
+									<div class="ss-photo-hover"></div>
+									<div class="ss-photo-delete" data-ss-photo-id="{{{ $photo->id }}}"></div>
+								@endif
+							</div>
+						@endforeach
+
+						@if(count($user->images) == 0)
+							<span class="bold">This user has no photos</span>
+						@endif
+					</div>
+				</div>
 			</div>
 
 			<div class="page-tab-component page-tab-friends">
