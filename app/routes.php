@@ -64,4 +64,8 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('user/delete_photo', array(
 		'uses' => 'UserController@ajaxDeletePhoto'
 	));
+
+	Route::post('user/send_friend_request', array(
+		'uses' => 'UserController@ajaxSendFriendRequest'
+	));
 });

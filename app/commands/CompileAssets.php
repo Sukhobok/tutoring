@@ -39,12 +39,14 @@ class CompileAssets extends Command {
 	public function fire()
 	{
 		// LESS
+		$this->comment('Starting to compile LESS');
 		$less = new lessc;
 		$less->setFormatter('compressed');
 		$less->compileFile('app/assets/less/style.less', 'public/css/style.css');
-		$this->info('LESS compiled');
+		$this->info('Done!');
 
 		// JS
+		$this->comment('Starting to compile JS');
 		$compiler = new ClosureCompiler;
 		$compiler->setSourceBaseDir('app/assets/js/');
 		$compiler->setTargetBaseDir('public/js/');
@@ -59,7 +61,7 @@ class CompileAssets extends Command {
 		));
 		$compiler->setTargetFile('script.min.js');
 		$compiler->compile();
-		$this->info('JS compiled');
+		$this->info('Done!');
 	}
 
 	/**

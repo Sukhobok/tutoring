@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"aws/aws-sdk-php-laravel": "1.*",
-		"intervention/image": "1.5.*"
+		"intervention/image": "1.5.*",
+		"wisembly/elephant.io": "2.0.*"
 	},
 	"require-dev": {
 		"way/generators": "1.1",

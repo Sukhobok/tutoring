@@ -11,7 +11,7 @@
 						<h1 class="user-name">{{{ $user->display_name }}}</h1>
 					</div>
 
-					<button class="ss-button2 black bold">ADD FRIEND</button>
+					<button class="ss-button2 black bold add-friend-button" data-uid="{{{ $user->id }}}">ADD FRIEND</button>
 					<button class="ss-button2 green bold">HIRE</button>
 					<button class="ss-button2 blue bold">SEND A MESSAGE</button>
 					<button class="ss-button2 red bold">BLOCK</button>
