@@ -55,6 +55,7 @@ class CompileAssets extends Command {
 			'core.js',
 			'time.js',
 			'elements_behavior.js',
+			'posts.js',
 			'photos.js',
 			'right_sidebar.js',
 			'settings.js'

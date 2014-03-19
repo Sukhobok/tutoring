@@ -1,5 +1,4 @@
 $(document).on('change', '[name="user_photos[]"]', function () {
-	console.log('aaa');
 	var formdata = new FormData();
 	for(i = 0; i < this.files.length; i++) {
 		formdata.append('user_photos[]', this.files[i]);

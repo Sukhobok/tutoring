@@ -50,7 +50,24 @@ class PostController extends BaseController {
 			}
 		}
 
-		return Redirect::route('dashboard');
+		return Redirect::to(URL::previous());
+	}
+
+	public function ajaxSaveThumb()
+	{
+		$pid = (int) Input::get('id');
+		if (Input::get('type') == 'down')
+		{
+			$type = 'down';
+		}
+		else
+		{
+			$type = 'up';
+		}
+
+		$result = Thumb::saveThumb(Auth::user()->id, $pid, $type);
+
+		return array('error' => 0, 'result' => $result);
 	}
 
 }

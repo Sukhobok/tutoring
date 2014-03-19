@@ -50,7 +50,7 @@ class FriendshipRequest extends Eloquent {
 					->delete();
 
 				// ... and make them friends
-				$date = new \DateTime;
+				$date = new DateTime;
 				$insert = array();
 				$insert[] = array(
 					'user_id' => Auth::user()->id,

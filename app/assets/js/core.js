@@ -17,6 +17,8 @@ $(document).on('click', '.header-settings-icon', function () {
  */
 $(document).on('click', '.add-friend-button', function () {
 	var uid = this.getAttribute('data-uid');
+	$(this).hide();
+	
 	$.ajax({
 		url: '/ajax/user/send_friend_request',
 		method: 'POST',

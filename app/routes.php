@@ -68,4 +68,8 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('user/send_friend_request', array(
 		'uses' => 'UserController@ajaxSendFriendRequest'
 	));
+
+	Route::post('post/save_thumb', array(
+		'uses' => 'PostController@ajaxSaveThumb'
+	));
 });

@@ -13,4 +13,16 @@ class Friendship extends Eloquent {
 	 */
 	public function setUpdatedAtAttribute($value) {}
 
+	/**
+	 * Get friends of $uid
+	 * @param integer $uid
+	 * @return array Friend ids
+	 */
+	public static function getFriends($uid)
+	{
+		return DB::table('friendships')
+			->where('user_id', $uid)
+			->lists('friend_id');
+	}
+
 }
