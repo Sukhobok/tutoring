@@ -50,7 +50,7 @@ class PostController extends BaseController {
 			}
 		}
 
-		return Redirect::to(URL::previous());
+		return Redirect::back();
 	}
 
 	public function ajaxSaveThumb()

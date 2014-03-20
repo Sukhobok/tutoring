@@ -44,6 +44,43 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'UserController@getUser'
 	));
 
+	/**
+	 * Groups
+	 */
+	Route::get('group/create', array(
+		'as' => 'group.create',
+		'uses' => 'GroupController@getCreate'
+	));
+	
+	Route::post('group/create', array(
+		'uses' => 'GroupController@postCreate'
+	));
+
+	Route::get('group/{id}', array(
+		'as' => 'group.view',
+		'uses' => 'GroupController@getGroup'
+	));
+
+	/**
+	 * Classrooms
+	 */
+	Route::get('classroom/create', array(
+		'as' => 'classroom.create',
+		'uses' => 'ClassroomController@getCreate'
+	));
+	
+	Route::post('classroom/create', array(
+		'uses' => 'ClassroomController@postCreate'
+	));
+
+	Route::get('classroom/{id}', array(
+		'as' => 'classroom.view',
+		'uses' => 'ClassroomController@getClassroom'
+	));
+
+	/**
+	 * Settings
+	 */
 	Route::get('settings/profile', array(
 		'as' => 'settings.profile',
 		'uses' => 'SettingsController@getProfile'

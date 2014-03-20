@@ -1,7 +1,10 @@
 <header>
 	<div class="content">
 		<div class="header-logo">
-			{{ HTML::image('images/logo_beta.png', 'StudySquare') }}
+			{{ HTML::image('images/logo_beta.png', 'StudySquare', array(
+				'class' => 'ss-link',
+				'data-ss-link' => '/'
+			)) }}
 		</div>
 
 		<div class="header-right">
