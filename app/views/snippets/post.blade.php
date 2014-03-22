@@ -1,7 +1,7 @@
 <article>
 	<div class="article-left">
 		<div class="profile-picture">
-			{{ HTML::image(HTML::profile_picture($user), 'Profile Picture', array('width' => 50)) }}
+			{{ HTML::image($post->author['profile_picture'], 'Profile Picture', array('width' => 50)) }}
 		</div>
 	</div>
 

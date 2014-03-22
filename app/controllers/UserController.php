@@ -81,20 +81,6 @@ class UserController extends BaseController {
 		}
 
 		$posts = User::getUserPosts($id);
-		foreach ($posts as $post)
-		{
-			if ($post->images !== null)
-			{
-				$post->images = explode(',', $post->images);
-			}
-			else
-			{
-				$post->images = array();
-			}
-
-			$post->created_at = strtotime($post->created_at);
-			$post->post = e($post->post); // prevent XSS
-		}
 
 		$images = $user->images;
 

@@ -61,6 +61,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'GroupController@getGroup'
 	));
 
+	Route::post('group/post', array(
+		'as' => 'group.post',
+		'uses' => 'PostController@postGroupPost'
+	));
+
 	/**
 	 * Classrooms
 	 */
@@ -76,6 +81,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('classroom/{id}', array(
 		'as' => 'classroom.view',
 		'uses' => 'ClassroomController@getClassroom'
+	));
+
+	Route::post('classroom/post', array(
+		'as' => 'classroom.post',
+		'uses' => 'PostController@postClassroomPost'
 	));
 
 	/**

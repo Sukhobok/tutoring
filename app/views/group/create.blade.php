@@ -2,11 +2,11 @@
 	<div class="layout">
 		<div class="layout-main-ext page-cg-create">
 			<div class="ss-container">
-				{{ Form::open(array('route' => 'classroom.create')) }}
+				{{ Form::open(array('route' => 'group.create')) }}
 					<div class="ss-section">
-						<h1>Create a classroom</h1>
+						<h1>Create a group</h1>
 						<p>
-							Classrooms are a place where students can come together from all around the world and interact, socialize and collaborate about a specific class. Just enter the class name. Avoid names like Bio 121. For example, use Introduction to Biology.
+							Groups are an easy place for you to socialize with others that have the same interests. Just enter a name, description and upload an image that pertains to the group.
 						</p>
 
 						<table>
@@ -27,7 +27,7 @@
 					</div>
 
 					<div class="ss-section">
-						{{ Form::submit('CREATE CLASSROOM', array('class' => 'ss-button blue bold')) }}
+						{{ Form::submit('CREATE GROUP', array('class' => 'ss-button blue bold')) }}
 					</div>
 				{{ Form::close() }}
 			</div>

@@ -37,4 +37,54 @@ class Classroom extends Eloquent {
 		return DB::table('classrooms')->insertGetId($insert);
 	}
 
+	/**
+	 * Classroom posts
+	 * @return Post
+	 */
+	public function classroomPosts()
+	{
+		return $this->morphMany('Post', 'postable');
+	}
+
+	/**
+	 * Get the classroom info
+	 * @param integer $id
+	 * @return object Classroom info
+	 */
+	public static function getClassroomData($id)
+	{
+		$query = DB::select('SELECT classrooms.*,
+		(SELECT COUNT(*)
+			FROM classroom_users
+			WHERE classroom_users.user_id = classrooms.id) AS count_members
+		FROM classrooms
+		WHERE classrooms.id = ?
+		LIMIT 1', array($id));
+
+		if ($query)
+		{
+			return $query[0];
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	/**
+	 * Get the classroom posts
+	 * @param integer $id
+	 * @return array Posts
+	 */
+	public static function getClassroomPosts($id)
+	{
+		$query = DB::select(Post::$postsQuery . '
+		WHERE postable_type = "Classroom"
+		AND postable_id = ?
+		ORDER BY posts.created_at DESC', array($id));
+
+		$query = Post::processPostsResult($query);
+		return $query;
+	}
+
 }

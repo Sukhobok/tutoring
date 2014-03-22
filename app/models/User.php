@@ -118,30 +118,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
-	 * Get the user posts with additional data
+	 * Get the user posts
 	 * @param integer $id
 	 * @return array Posts
 	 */
 	public static function getUserPosts($id)
 	{
-		$query = DB::select('SELECT posts.*,
-		(SELECT GROUP_CONCAT(images.path)
-			FROM images
-			WHERE images.imageable_type = "Post"
-			AND images.imageable_id = posts.id) AS images,
-		(SELECT COUNT(*)
-			FROM thumbs
-			WHERE thumbs.post_id = posts.id
-			AND thumbs.thumb_type = "up") AS thumbs_up,
-		(SELECT COUNT(*)
-			FROM thumbs
-			WHERE thumbs.post_id = posts.id
-			AND thumbs.thumb_type = "down") AS thumbs_down
-		FROM posts
+		$query = DB::select(Post::$postsQuery . '
 		WHERE postable_type = "User"
 		AND postable_id = ?
 		ORDER BY posts.created_at DESC', array($id));
 
+		$query = Post::processPostsResult($query);
 		return $query;
 	}
 
