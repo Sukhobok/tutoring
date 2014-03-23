@@ -36,3 +36,8 @@ HTML::macro('get_from_s3', function($url)
 {
 	return 'https://s3-us-west-2.amazonaws.com/studysquare/' . $url;
 });
+
+Validator::extend('required_file', function($attribute, $value, $parameters)
+{
+	return Input::hasFile($attribute);
+});

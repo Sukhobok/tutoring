@@ -89,7 +89,7 @@
 									{{ Form::hidden('profile_y', '0') }}
 									{{ Form::hidden('profile_w', '0') }}
 									{{ Form::hidden('profile_h', '0') }}
-									<div id="ss-picture-preview"></div>
+									<div class="ss-picture-preview"></div>
 								</td>
 						</table>
 					{{ Form::close() }}

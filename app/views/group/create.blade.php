@@ -2,7 +2,7 @@
 	<div class="layout">
 		<div class="layout-main-ext page-cg-create">
 			<div class="ss-container">
-				{{ Form::open(array('route' => 'group.create')) }}
+				{{ Form::open(array('route' => 'group.create', 'files' => true)) }}
 					<div class="ss-section">
 						<h1>Create a group</h1>
 						<p>
@@ -21,6 +21,18 @@
 								<td>Description</td>
 								<td>
 									{{ Form::textarea('description', Input::old('description'), array('class' => $input_classes['description'])) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td>Profile Image</td>
+								<td>
+									{{ Form::ss_file('photo', array('class' => 'ss-picture-upload'), $input_classes['photo'] ?: 'blue') }}
+									{{ Form::hidden('profile_x', '0') }}
+									{{ Form::hidden('profile_y', '0') }}
+									{{ Form::hidden('profile_w', '0') }}
+									{{ Form::hidden('profile_h', '0') }}
+									<div class="ss-picture-preview"></div>
 								</td>
 							</tr>
 						</table>

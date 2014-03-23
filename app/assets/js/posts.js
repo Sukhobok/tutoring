@@ -37,7 +37,7 @@ $(document).on('click', '.thumb-down', function () {
 			thumbs_down_count.text(parseInt(thumbs_down_count.text()) + 1);
 			thumbs_up_count.text(parseInt(thumbs_up_count.text()) - 1);
 		} else if(data.result == 1) {
-			thumbs_down_count.text(parseInt(thumbs_up_count.text()) + 1);
+			thumbs_down_count.text(parseInt(thumbs_down_count.text()) + 1);
 		}
 	})
 });
