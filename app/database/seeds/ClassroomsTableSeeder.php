@@ -4,6 +4,8 @@ class ClassroomsTableSeeder extends Seeder {
 
 	public function run()
 	{
+		DB::disableQueryLog();
+		
 		$classrooms = array(
 			array(
 				'name' => 'Construction Drawings and Detailing',
@@ -13204,7 +13206,13 @@ class ClassroomsTableSeeder extends Seeder {
 		);
 
 		// Run the seeder
-		DB::table('classrooms')->insert($classrooms);
+		$c = count($classrooms);
+		foreach ($classrooms as $i => $classroom)
+		{
+			echo $i+1 . " / " . $c . " records inserted\r";
+			DB::table('classrooms')->insert($classroom);
+		}
+		echo "\nDone\r\n";
 	}
 
 }
