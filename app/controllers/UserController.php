@@ -81,14 +81,20 @@ class UserController extends BaseController {
 		}
 
 		$posts = User::getUserPosts($id);
-
 		$images = $user->images;
+		$isFriend = Friendship::isFriend(Auth::user()->id, $user->id);
+		$canSendFR = FriendshipRequest::canSendFriendshipRequest(
+			Auth::user()->id,
+			$user->id,
+			array(
+				'isFriend' => $isFriend
+			)
+		);
 
-		$this->layout->content = View::make('user.view', array(
-			'user' => $user,
-			'posts' => $posts,
-			'images' => $images
-		));
+		$this->layout->content = View::make(
+			'user.view',
+			compact('user', 'posts', 'images', 'isFriend', 'canSendFR')
+		);
 	}
 
 	/**

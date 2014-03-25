@@ -105,6 +105,14 @@ Route::group(array('before' => 'auth'), function()
 	));
 
 	/**
+	 * Messages : TO DO
+	 */
+	Route::get('messages/{id?}', array(
+		'as' => 'messages',
+		'uses' => 'MessageController@getIndex'
+	));
+
+	/**
 	 * Settings
 	 */
 	Route::get('settings/profile', array(

@@ -21,6 +21,18 @@ App::before(function($request)
 	});
 
 	Input::replace($new_input);
+
+	// Application data - NOT ready
+	App::singleton('globalData', function() {
+		Debugbar::info('called');
+		$data = new stdClass;
+		if (Auth::check())
+		{
+			$data->friends = Friendship::getFriends(Auth::user()->id);
+		}
+
+		return $data;
+	});
 });
 
 

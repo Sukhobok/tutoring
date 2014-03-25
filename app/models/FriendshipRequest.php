@@ -14,34 +14,56 @@ class FriendshipRequest extends Eloquent {
 	public function setUpdatedAtAttribute($value) {}
 
 	/**
+	 * Checks if $u1 can send a friend request to $u2
+	 * @param int $u1
+	 * @param int $u2
+	 * @return bool
+	 */
+	public static function canSendFriendshipRequest($u1, $u2, $previousData = array())
+	{
+		if (!isset($previousData['isFriend']))
+		{
+			// Check if they are already friends
+			$previousData['isFriend'] = Friendship::isFriend($u1, $u2);
+		}
+
+		if (!isset($previousData['friendRequestSent']))
+		{
+			// Check if he already sent a request
+			$previousData['friendRequestSent'] = (bool) DB::table('friendship_requests')
+				->where('from_id', '=', $u1)
+				->where('to_id', '=', $u2)
+				->count();
+		}
+
+		if ($previousData['isFriend'] || $previousData['friendRequestSent'])
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	/**
 	 * Save the friendship request
 	 * If it's the case it accepts the friend request 
 	 * @param integer $to
-	 * @return boolean TRUE if inserted, FALSE if not
+	 * @return boolean TRUE if saved, FALSE if not
 	 */
 	public static function saveRequest($to)
 	{
-		// Check if he already sent a request
-		$exists1 = DB::table('friendship_requests')
-			->where('from_id', '=', Auth::user()->id)
-			->where('to_id', '=', $to)
-			->count();
-
-		// Check if they are already friends
-		$exists2 = DB::table('friendships')
-			->where('user_id', '=', Auth::user()->id)
-			->where('friend_id', '=', $to)
-			->count();
-
-		if (!$exists1 && !$exists2)
+		$canSend = FriendshipRequest::canSendFriendshipRequest(Auth::user()->id, $to);
+		if ($canSend)
 		{
 			// Check if the other sent a friend request
-			$exists3 = DB::table('friendship_requests')
+			$otherSent = DB::table('friendship_requests')
 				->where('to_id', '=', Auth::user()->id)
 				->where('from_id', '=', $to)
 				->count();
 
-			if ($exists3)
+			if ($otherSent)
 			{
 				// Delete the friend request ...
 				DB::table('friendship_requests')
@@ -74,7 +96,7 @@ class FriendshipRequest extends Eloquent {
 			}
 		}
 
-		return !$exists1 && !$exists2;
+		return !$canSend;
 	}
 
 }
