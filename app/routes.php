@@ -89,6 +89,22 @@ Route::group(array('before' => 'auth'), function()
 	));
 
 	/**
+	 * Highschools
+	 */
+	Route::get('highschool/{id}', array(
+		'as' => 'highschool.view',
+		'uses' => 'HighschoolController@getHighschool'
+	));
+
+	/**
+	 * Universities
+	 */
+	Route::get('university/{id}', array(
+		'as' => 'university.view',
+		'uses' => 'UniversityController@getUniversity'
+	));
+
+	/**
 	 * Settings
 	 */
 	Route::get('settings/profile', array(

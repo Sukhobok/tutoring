@@ -10,6 +10,9 @@
 |
 */
 
+/**
+ * File wrapper with studysquare button
+ */
 Form::macro('ss_file', function($name, $attributes = array(), $color = 'green', $text = 'BROWSE')
 {
 	$file = Form::file($name, $attributes);
@@ -21,6 +24,9 @@ Form::macro('ss_file', function($name, $attributes = array(), $color = 'green', 
 		. '</div>';
 });
 
+/**
+ * Get link from S3
+ */
 HTML::macro('profile_picture', function($user)
 {
 	if ($user->profile_picture)
@@ -32,11 +38,25 @@ HTML::macro('profile_picture', function($user)
 	return '/images/default_avatar.jpg';
 });
 
+HTML::macro('school_profile_picture', function($school)
+{
+	/* if ($school->profile_picture)
+	{
+		return 'https://s3-us-west-2.amazonaws.com/studysquare/'
+			. $school->profile_picture;
+	} */
+
+	return '/images/default_school_avatar.jpg';
+});
+
 HTML::macro('get_from_s3', function($url)
 {
 	return 'https://s3-us-west-2.amazonaws.com/studysquare/' . $url;
 });
 
+/**
+ * Validation: Require a file
+ */
 Validator::extend('required_file', function($attribute, $value, $parameters)
 {
 	return Input::hasFile($attribute);
