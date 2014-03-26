@@ -56,7 +56,7 @@ class Classroom extends Eloquent {
 		$query = DB::select('SELECT classrooms.*,
 		(SELECT COUNT(*)
 			FROM classroom_users
-			WHERE classroom_users.user_id = classrooms.id) AS count_members
+			WHERE classroom_users.classroom_id = classrooms.id) AS count_members
 		FROM classrooms
 		WHERE classrooms.id = ?
 		LIMIT 1', array($id));
@@ -85,6 +85,60 @@ class Classroom extends Eloquent {
 
 		$query = Post::processPostsResult($query);
 		return $query;
+	}
+
+	/**
+	 * Get the user classrooms
+	 * @param $uid
+	 * @return array
+	 */
+	public static function getUserClassrooms($uid)
+	{
+		$query = DB::table('classroom_users')
+			->where('user_id', '=', $uid)
+			->join('classrooms', 'classrooms.id', '=', 'classroom_users.classroom_id')
+			->select('classrooms.id', 'classrooms.name')
+			->get();
+
+		return $query;
+	}
+
+	/**
+	 * Check if the user has joined the classroom
+	 * @param $uid
+	 * @param $cid
+	 * @return boolean TRUE if joined, FALSE if not
+	 */
+	public static function isJoined($uid, $cid)
+	{
+		return (bool) DB::table('classroom_users')
+			->where('user_id', '=', $uid)
+			->where('classroom_id', '=', $cid)
+			->count();
+	}
+
+	/**
+	 * Joines the user to a classroom
+	 * @param $uid
+	 * @param $cid
+	 * @return boolean Success
+	 */
+	public static function joinClassroom($uid, $cid)
+	{
+		if (!Classroom::isJoined($uid, $cid))
+		{
+			$date = new DateTime;
+			$insert = array(
+				'classroom_id' => $cid,
+				'user_id' => $uid,
+				'created_at' => $date
+			);
+
+			DB::table('classroom_users')->insert($insert);
+			return true;
+		}
+
+		return false;
 	}
 
 }

@@ -58,7 +58,7 @@ class Group extends Eloquent {
 		$query = DB::select('SELECT groups.*,
 		(SELECT COUNT(*)
 			FROM group_users
-			WHERE group_users.user_id = groups.id) AS count_members
+			WHERE group_users.group_id = groups.id) AS count_members
 		FROM groups
 		WHERE groups.id = ?
 		LIMIT 1', array($id));
@@ -87,6 +87,60 @@ class Group extends Eloquent {
 
 		$query = Post::processPostsResult($query);
 		return $query;
+	}
+
+	/**
+	 * Get the user groups
+	 * @param $uid
+	 * @return array
+	 */
+	public static function getUserGroups($uid)
+	{
+		$query = DB::table('group_users')
+			->where('user_id', '=', $uid)
+			->join('groups', 'groups.id', '=', 'group_users.group_id')
+			->select('groups.id', 'groups.name')
+			->get();
+
+		return $query;
+	}
+
+	/**
+	 * Check if the user has joined the group
+	 * @param $uid
+	 * @param $gid
+	 * @return boolean TRUE if joined, FALSE if not
+	 */
+	public static function isJoined($uid, $gid)
+	{
+		return (bool) DB::table('group_users')
+			->where('user_id', '=', $uid)
+			->where('group_id', '=', $gid)
+			->count();
+	}
+
+	/**
+	 * Joines the user to a group
+	 * @param $uid
+	 * @param $gid
+	 * @return boolean Success
+	 */
+	public static function joinGroup($uid, $gid)
+	{
+		if (!Group::isJoined($uid, $gid))
+		{
+			$date = new DateTime;
+			$insert = array(
+				'group_id' => $gid,
+				'user_id' => $uid,
+				'created_at' => $date
+			);
+
+			DB::table('group_users')->insert($insert);
+			return true;
+		}
+
+		return false;
 	}
 
 }

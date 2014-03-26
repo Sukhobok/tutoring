@@ -27,17 +27,23 @@
 
 	<div class="ss-section left-sidebar-section classroom-color">
 		Classrooms
-		<ul class="classroom_list">
-			<li>1</li>
-			<li>2</li>
-		</ul>
+		@if(count($classrooms) > 0)
+			<ul class="classroom_list">
+				@foreach($classrooms as $classroom)
+					<li>{{{ $classroom->name }}}</li>
+				@endforeach
+			</ul>
+		@endif
 	</div>
 
 	<div class="ss-section left-sidebar-section group-color">
 		Groups
-		<ul class="group_list">
-			<li>1</li>
-			<li>2</li>
-		</ul>
+		@if(count($groups) > 0)
+			<ul class="group_list">
+				@foreach($groups as $group)
+					<li>{{{ $group->name }}}</li>
+				@endforeach
+			</ul>
+		@endif
 	</div>
 </div>

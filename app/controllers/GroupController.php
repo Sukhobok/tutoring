@@ -108,11 +108,25 @@ class GroupController extends BaseController {
 		}
 
 		$posts = Group::getGroupPosts($id);
+		$isJoined = Group::isJoined(Auth::user()->id, $group->id);
 
-		$this->layout->content = View::make('group.view', array(
-			'group' => $group,
-			'posts' => $posts
-		));
+		$this->layout->content = View::make(
+			'group.view',
+			compact('group', 'posts', 'isJoined')
+		);
+	}
+
+	/**
+	 * Ajax: Join a group
+	 */
+	public function ajaxJoin()
+	{
+		$success = Group::joinGroup(
+			Auth::user()->id,
+			(int) Input::get('id')
+		);
+
+		return array('error' => (int) !$success);
 	}
 
 }

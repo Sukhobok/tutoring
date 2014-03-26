@@ -11,7 +11,9 @@
 						<h1 class="user-name">{{{ $group->name }}}</h1>
 					</div>
 
-					<button class="ss-button2 red bold">JOIN</button>
+					@if(!$isJoined)
+						<button class="ss-button2 red bold join-cg" data-what="group" data-id="{{{ $group->id }}}">JOIN</button>
+					@endif
 				</div>
 
 				<div class="ss-section">
@@ -28,16 +30,18 @@
 
 		<div class="layout-main">
 			<div class="page-tab-component page-tab-posts" style="display: block;">
-				<div id="post_message">
-					{{ Form::open(array('route' => 'group.post', 'files' => true)) }}
-						{{ Form::hidden('id', $group->id) }}
-						<h2>POST A QUESTION or MESSAGE</h2>
-						{{ Form::textarea('post') }}
-						{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
-						{{ Form::ss_file('photos[]', array('multiple' => true)) }}
-						<div class="clear"></div>
-					{{ Form::close() }}
-				</div>
+				@if($isJoined)
+					<div id="post_message">
+						{{ Form::open(array('route' => 'group.post', 'files' => true)) }}
+							{{ Form::hidden('id', $group->id) }}
+							<h2>POST A QUESTION or MESSAGE</h2>
+							{{ Form::textarea('post') }}
+							{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
+							{{ Form::ss_file('photos[]', array('multiple' => true)) }}
+							<div class="clear"></div>
+						{{ Form::close() }}
+					</div>
+				@endif
 
 				@foreach($posts as $post)
 					@include('snippets.post', array('post' => $post))

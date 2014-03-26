@@ -7,7 +7,9 @@
 						<h1 class="user-name">{{{ $classroom->name }}}</h1>
 					</div>
 
-					<button class="ss-button2 red bold">JOIN</button>
+					@if(!$isJoined)
+						<button class="ss-button2 red bold join-cg" data-what="classroom" data-id="{{{ $classroom->id }}}">JOIN</button>
+					@endif
 				</div>
 
 				<div class="ss-section">
@@ -24,16 +26,18 @@
 
 		<div class="layout-main">
 			<div class="page-tab-component page-tab-posts" style="display: block;">
-				<div id="post_message">
-					{{ Form::open(array('route' => 'classroom.post', 'files' => true)) }}
-						{{ Form::hidden('id', $classroom->id) }}
-						<h2>POST A QUESTION or MESSAGE</h2>
-						{{ Form::textarea('post') }}
-						{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
-						{{ Form::ss_file('photos[]', array('multiple' => true)) }}
-						<div class="clear"></div>
-					{{ Form::close() }}
-				</div>
+				@if($isJoined)
+					<div id="post_message">
+						{{ Form::open(array('route' => 'classroom.post', 'files' => true)) }}
+							{{ Form::hidden('id', $classroom->id) }}
+							<h2>POST A QUESTION or MESSAGE</h2>
+							{{ Form::textarea('post') }}
+							{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
+							{{ Form::ss_file('photos[]', array('multiple' => true)) }}
+							<div class="clear"></div>
+						{{ Form::close() }}
+					</div>
+				@endif
 
 				@foreach($posts as $post)
 					@include('snippets.post', array('post' => $post))

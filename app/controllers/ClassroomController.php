@@ -69,11 +69,25 @@ class ClassroomController extends BaseController {
 		}
 
 		$posts = Classroom::getClassroomPosts($id);
+		$isJoined = Classroom::isJoined(Auth::user()->id, $classroom->id);
 
-		$this->layout->content = View::make('classroom.view', array(
-			'classroom' => $classroom,
-			'posts' => $posts
-		));
+		$this->layout->content = View::make(
+			'classroom.view',
+			compact('classroom', 'posts', 'isJoined')
+		);
+	}
+
+	/**
+	 * Ajax: Join a classroom
+	 */
+	public function ajaxJoin()
+	{
+		$success = Classroom::joinClassroom(
+			Auth::user()->id,
+			(int) Input::get('id')
+		);
+
+		return array('error' => (int) !$success);
 	}
 
 }

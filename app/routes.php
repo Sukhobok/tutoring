@@ -143,4 +143,12 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('post/save_thumb', array(
 		'uses' => 'PostController@ajaxSaveThumb'
 	));
+
+	Route::post('group/join', array(
+		'uses' => 'GroupController@ajaxJoin'
+	));
+
+	Route::post('classroom/join', array(
+		'uses' => 'ClassroomController@ajaxJoin'
+	));
 });

@@ -58,7 +58,8 @@ class CompileAssets extends Command {
 			'posts.js',
 			'photos.js',
 			'right_sidebar.js',
-			'settings.js'
+			'settings.js',
+			'cg.js'
 		));
 		$compiler->setTargetFile('script.min.js');
 		$compiler->compile();
