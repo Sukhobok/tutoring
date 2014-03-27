@@ -115,7 +115,7 @@
 										<span class="bold">{{{ $_education->name }}}</span><br />
 										{{{ $_education->from }}}-{{{ $_education->to }}}
 										@if($_education->major)
-											Majored in <span class="bold">{{{ $_education->major }}}</span>
+											, Majored in <span class="bold">{{{ $_education->major }}}</span>
 										@endif
 										{{ Form::button('Delete', array('class' => 'ss-button red bold ss-delete', 'data-ss-id' => $_education->id)) }}
 									</td>

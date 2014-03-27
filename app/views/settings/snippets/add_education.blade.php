@@ -18,6 +18,6 @@ From: {{ Form::selectRange('from[]', date('Y')+5, date('Y')-100, '', array('clas
 &nbsp;
 To: {{ Form::selectRange('to[]', date('Y')+5, date('Y')-100, '', array('class' => 'ss-select')) }}
 &nbsp;
-Majored in: {{ Form::text('major[]', '', array('class' => 'ss-input1', 'placeholder' => '(Optional)', 'style' => 'width: 150px;')) }}
+Majored in: {{ Form::text('major[]', '', array('class' => 'ss-input1 major-autocomplete', 'placeholder' => '(Optional)', 'style' => 'width: 150px;')) }}
 {{ Form::hidden('major_id[]', '0') }}
 {{ Form::button('Delete', array('class' => 'ss-button red bold ss-delete')) }}

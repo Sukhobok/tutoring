@@ -165,6 +165,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'UniversityController@ajaxList'
 	));
 
+	Route::get('major/json', array(
+		'uses' => 'MajorController@ajaxList'
+	));
+
 	Route::post('settings/delete_education', array(
 		'uses' => 'SettingsController@ajaxDeleteEducation'
 	));

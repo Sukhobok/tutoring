@@ -96,4 +96,37 @@ function update_autocomplete_my_profile () {
 			.appendTo(ul);
 		};
 	}
+
+	/**
+	 * Autocomplete majors
+	 */
+	$('.major-autocomplete').autocomplete({
+		minLength: 1,
+
+		source: function (req, res) {
+			$.ajax({
+				url: '/ajax/major/json',
+				data: { search: req.term },
+				dataType: 'json',
+				type: 'GET',
+				success: function (data) {
+					res(data);
+				}
+			});
+		},
+
+		select: function (e, u) {
+			e.preventDefault();
+			$(this).val(u.item.title);
+			$(this).siblings('input[name="major_id[]"]').val(u.item.id);
+		}
+	});
+
+	for(i = 0; i < $('.major-autocomplete').length; i++) {
+		$($('.major-autocomplete')[i]).data('ui-autocomplete')._renderItem = function (ul, item) {
+			return $('<li>')
+			.append('<a>' + item.title + '</a>')
+			.appendTo(ul);
+		};
+	}
 }
