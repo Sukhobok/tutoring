@@ -8,6 +8,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $appends = array('display_name');
 
 	/**
+	 * The database table used by the model.
+	 * @var string
+	 */
+	protected $table = 'users';
+
+	/**
 	 * Validation rules
 	 * @var array
 	 */
@@ -36,12 +42,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'b_month' => 'required|numeric|min:1|max:12',
 		'b_day' => 'required|numeric|min:1|max:31'
 	);
-
-	/**
-	 * The database table used by the model.
-	 * @var string
-	 */
-	protected $table = 'users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.

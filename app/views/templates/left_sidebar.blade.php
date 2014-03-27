@@ -34,6 +34,12 @@
 				@endforeach
 			</ul>
 		@endif
+
+		{{ Form::text('search', '', array(
+			'placeholder' => 'Enter a classroom ...',
+			'class' => 'ss-search'
+		)) }}
+		<a href="#" class="create-classroom">Create</a>
 	</div>
 
 	<div class="ss-section left-sidebar-section group-color">
@@ -45,5 +51,11 @@
 				@endforeach
 			</ul>
 		@endif
+
+		{{ Form::text('search', '', array(
+			'placeholder' => 'Enter a group ...',
+			'class' => 'ss-search'
+		)) }}
+		<a href="#" class="create-group">Create</a>
 	</div>
 </div>

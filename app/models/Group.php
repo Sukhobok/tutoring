@@ -3,6 +3,12 @@
 class Group extends Eloquent {
 
 	/**
+	 * The database table used by the model.
+	 * @var string
+	 */
+	protected $table = 'groups';
+	
+	/**
 	 * Validation rules
 	 * @var array
 	 */
@@ -11,12 +17,6 @@ class Group extends Eloquent {
 		'description' => 'required',
 		'photo' => 'required_file|image'
 	);
-
-	/**
-	 * The database table used by the model.
-	 * @var string
-	 */
-	protected $table = 'groups';
 
 	/**
 	 * Saves the group to the database

@@ -3,18 +3,18 @@
 class Post extends Eloquent {
 
 	/**
+	 * The database table used by the model.
+	 * @var string
+	 */
+	protected $table = 'posts';
+
+	/**
 	 * Validation rules
 	 * @var array
 	 */
 	public static $rules = array(
 		'post' => 'required'
 	);
-
-	/**
-	 * The database table used by the model.
-	 * @var string
-	 */
-	protected $table = 'posts';
 
 	/**
 	 * The query for getting the posts with additional info

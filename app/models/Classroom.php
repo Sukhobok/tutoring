@@ -3,6 +3,12 @@
 class Classroom extends Eloquent {
 
 	/**
+	 * The database table used by the model.
+	 * @var string
+	 */
+	protected $table = 'classrooms';
+	
+	/**
 	 * Validation rules
 	 * @var array
 	 */
@@ -10,12 +16,6 @@ class Classroom extends Eloquent {
 		'name' => 'required|min:2|unique:classrooms',
 		'description' => 'required'
 	);
-
-	/**
-	 * The database table used by the model.
-	 * @var string
-	 */
-	protected $table = 'classrooms';
 
 	/**
 	 * Saves the classroom to the database
