@@ -11,7 +11,7 @@
 
 			<div class="ss-container">
 				<div class="ss-section">
-					{{ Form::open(array('name' => 'settings.profile', 'files' => true)) }}
+					{{ Form::open(array('route' => 'settings.profile', 'files' => true)) }}
 						{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
 						<h1>General information</h1>
 						<div class="clear"></div>
@@ -95,33 +95,34 @@
 					{{ Form::close() }}
 				</div>
 
+				{{-- Add education snippet --}}
+				<div class="hide snippet-add-education">
+					@include('settings.snippets.add_education')
+				</div>
+
 				<div class="ss-section">
-					{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
-					<h1 style="float: left;">Education</h1>
-					{{ Form::button('Add new', array('class' => 'ss-button blue bold ss-add-education')) }}
-					<div class="clear"></div>
+					{{ Form::open(array('route' => 'settings.save_education')) }}
+						{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
+						<h1 style="float: left;">Education</h1>
+						{{ Form::button('Add new', array('class' => 'ss-button blue bold ss-add-education')) }}
+						<div class="clear"></div>
 
-					<div class="hide snippet-add-education">
-						@include('settings.snippets.add_education')
-					</div>
-
-					<table class="ss-table-education">
-						<tr>
-							<td>
-								High School - N/A<br />
-								<span class="bold">School name here</span><br />
-								2005-2009, Majored in <span class="bold">asd</span>
-								{{ Form::button('Delete', array('class' => 'ss-button red bold ss-delete')) }}
-							</td>
-						</tr>
-						<?php for($i = 1; $i <= 2; $i++): ?>
-							<tr>
-								<td>
-									@include('settings.snippets.add_education')
-								</td>
-							</tr>
-						<?php endfor; ?>
-					</table>
+						<table class="ss-table-education">
+							@foreach($education as $_education)
+								<tr>
+									<td>
+										{{{ $_education->type }}} - {{{ $_education->degree }}}<br />
+										<span class="bold">{{{ $_education->name }}}</span><br />
+										{{{ $_education->from }}}-{{{ $_education->to }}}
+										@if($_education->major)
+											Majored in <span class="bold">{{{ $_education->major }}}</span>
+										@endif
+										{{ Form::button('Delete', array('class' => 'ss-button red bold ss-delete', 'data-ss-id' => $_education->id)) }}
+									</td>
+								</tr>
+							@endforeach
+						</table>
+					{{ Form::close() }}
 				</div>
 			</div>
 		</div>

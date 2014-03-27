@@ -124,6 +124,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@postProfile'
 	));
 
+	Route::post('settings/save_education', array(
+		'as' => 'settings.save_education',
+		'uses' => 'SettingsController@postSaveEducation'
+	));
+
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
@@ -150,5 +155,17 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 
 	Route::post('classroom/join', array(
 		'uses' => 'ClassroomController@ajaxJoin'
+	));
+
+	Route::get('highschool/json', array(
+		'uses' => 'HighschoolController@ajaxList'
+	));
+
+	Route::get('university/json', array(
+		'uses' => 'UniversityController@ajaxList'
+	));
+
+	Route::post('settings/delete_education', array(
+		'uses' => 'SettingsController@ajaxDeleteEducation'
 	));
 });

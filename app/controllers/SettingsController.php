@@ -8,18 +8,23 @@ class SettingsController extends BaseController {
 	protected $layout = 'layouts.default';
 
 	/**
-	 * My profile
+	 * My Profile
 	 */
 	public function getProfile()
 	{
 		$messages = array();
 		$user = Auth::user();
-		$this->layout->content = View::make('settings.profile', array(
-			'messages' => $messages,
-			'user' => $user
-		));
+		$education = UserEducation::getEducation($user->id);
+
+		$this->layout->content = View::make(
+			'settings.profile', 
+			compact('messages', 'user', 'education')
+		);
 	}
 
+	/**
+	 * POST process: Save user general info from "My Profile" page
+	 */
 	public function postProfile()
 	{
 		$messages = array();
@@ -124,6 +129,58 @@ class SettingsController extends BaseController {
 			'messages' => $messages,
 			'user' => $user
 		));
+	}
+
+	/**
+	 * POST process: Save user education from "My Profile" page
+	 */
+	public function postSaveEducation()
+	{
+		$_inputs = array();
+		for ($k = 0; $k < count(Input::get('type')); $k++)
+		{
+			$_inputs[] = array(
+				'type' => Input::get('type')[$k],
+				'degree' => Input::get('degree')[$k],
+				'education_id' => (int) Input::get('education_id')[$k],
+				'from' => (int) Input::get('from')[$k],
+				'to' => (int) Input::get('to')[$k],
+				'major_id' => (int) Input::get('major_id')[$k]
+			);
+		}
+
+		foreach ($_inputs as $_input)
+		{
+			$validator = Validator::make(
+				$_input,
+				UserEducation::$education_rules
+			);
+
+			if ($validator->passes()
+				&& $_input['from'] < $_input['to'])
+			{
+				$education = new UserEducation;
+				$education->user_id = Auth::user()->id;
+				$education->type = $_input['type'];
+				$education->degree = $_input['degree'];
+				$education->education_id = $_input['education_id'];
+				$education->from = $_input['from'];
+				$education->to = $_input['to'];
+				$education->major_id = $_input['major_id'];
+				$education->save();
+			}
+		}
+
+		return Redirect::back();
+	}
+
+	/**
+	 * Ajax: Delete Education ("My Profile" page)
+	 */
+	public function ajaxDeleteEducation()
+	{
+		UserEducation::deleteEducation(Input::get('id'));
+		return array('error' => 0);
 	}
 
 }

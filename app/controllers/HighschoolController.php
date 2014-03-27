@@ -26,4 +26,21 @@ class HighschoolController extends BaseController {
 		));
 	}
 
+	/**
+	 * Data for autocomplete
+	 */
+	public function ajaxList()
+	{
+		$search = Input::get('search');
+
+		if ($search)
+		{
+			return Highschool::ajaxList($search);
+		}
+		else
+		{
+			return array();
+		}
+	}
+
 }

@@ -64,4 +64,18 @@ class University extends Eloquent {
 		return $query;
 	}
 
+	/**
+	 * Get the list of universities for autocomplete
+	 * @param string $search
+	 * @return array
+	 */
+	public static function ajaxList($search)
+	{
+		return DB::table('universities')
+			->where('name', 'LIKE', '%' . $search . '%')
+			->select('id', 'name', 'address')
+			->take(5)
+			->get();
+	}
+
 }

@@ -26,4 +26,21 @@ class UniversityController extends BaseController {
 		));
 	}
 
+	/**
+	 * Data for autocomplete
+	 */
+	public function ajaxList()
+	{
+		$search = Input::get('search');
+
+		if ($search)
+		{
+			return University::ajaxList($search);
+		}
+		else
+		{
+			return array();
+		}
+	}
+
 }

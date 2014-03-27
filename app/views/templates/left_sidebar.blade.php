@@ -1,5 +1,5 @@
 <div class="ss-container">
-	<div class="ss-section">
+	<div class="ss-section ss-link" data-ss-link="{{{ URL::route('user.view', Auth::user()->id) }}}">
 		<div class="center">
 			<div class="profile-picture big-profile-picture">
 				{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 160)) }}
@@ -9,11 +9,11 @@
 		</div>
 	</div>
 
-	<div class="ss-section left-sidebar-section">
+	<div class="ss-section left-sidebar-section ss-link" data-ss-link="{{{ URL::route('user.view', Auth::user()->id) }}}">
 		My Profile
 	</div>
 
-	<div class="ss-section left-sidebar-section">
+	<div class="ss-section left-sidebar-section ss-link" data-ss-link="{{{ URL::route('dashboard') }}}">
 		Dashboard
 	</div>
 
@@ -30,7 +30,7 @@
 		@if(count($classrooms) > 0)
 			<ul class="classroom_list">
 				@foreach($classrooms as $classroom)
-					<li>{{{ $classroom->name }}}</li>
+					<li class="ss-link" data-ss-link="{{{ URL::route('classroom.view', $classroom->id) }}}">{{{ HTML::limit($classroom->name) }}}</li>
 				@endforeach
 			</ul>
 		@endif
@@ -41,7 +41,7 @@
 		@if(count($groups) > 0)
 			<ul class="group_list">
 				@foreach($groups as $group)
-					<li>{{{ $group->name }}}</li>
+					<li class="ss-link" data-ss-link="{{{ URL::route('group.view', $group->id) }}}">{{{ HTML::limit($group->name) }}}</li>
 				@endforeach
 			</ul>
 		@endif

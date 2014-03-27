@@ -1,21 +1,23 @@
-{{ Form::select('type', array(
-	'hs' => 'High School',
-	'c' => 'College',
-	'gs' => 'Graduation School'
-), isset($education_item->type) ? $education_item->type : 'hs', array('class' => 'ss-select')) }}
+{{ Form::select('type[]', array(
+	'highschool' => 'High School',
+	'college' => 'College',
+	'graduation' => 'Graduation School'
+), 'highschool', array('class' => 'ss-select')) }}
 
-{{ Form::select('degree', array(
-	'n' => 'N/A',
-	'b' => 'Bachelor Degree',
-	'm' => 'Master Degree',
-	'd' => 'Doctorate Degree'
-), isset($education_item->degree) ? $education_item->degree : 'n', array('class' => 'ss-select')) }}
+{{ Form::select('degree[]', array(
+	'n/a' => 'N/A',
+	'bachelor' => 'Bachelor Degree',
+	'master' => 'Master Degree',
+	'doctorate' => 'Doctorate Degree'
+), 'n/a', array('class' => 'ss-select')) }}
 
-{{ Form::text('name', isset($education_item->name) ? $education_item->name : '', array('class' => 'ss-input1', 'placeholder' => 'Enter the school name ...')) }}
+{{ Form::text('name[]', '', array('class' => 'ss-input1 highschool-autocomplete', 'placeholder' => 'Enter the school name ...')) }}
+{{ Form::hidden('education_id[]', '0') }}
 <br />
-From: {{ Form::selectRange('from', date('Y')+5, date('Y')-100, isset($education_item->from) ? $education_item->from : '', array('class' => 'ss-select')) }}
+From: {{ Form::selectRange('from[]', date('Y')+5, date('Y')-100, '', array('class' => 'ss-select')) }}
 &nbsp;
-To: {{ Form::selectRange('to', date('Y')+5, date('Y')-100, isset($education_item->to) ? $education_item->to : '', array('class' => 'ss-select')) }}
+To: {{ Form::selectRange('to[]', date('Y')+5, date('Y')-100, '', array('class' => 'ss-select')) }}
 &nbsp;
-Majored in: {{ Form::text('major', isset($education_item->major) ? $education_item->major : '', array('class' => 'ss-input1', 'placeholder' => '(Optional)', 'style' => 'width: 150px;')) }}
+Majored in: {{ Form::text('major[]', '', array('class' => 'ss-input1', 'placeholder' => '(Optional)', 'style' => 'width: 150px;')) }}
+{{ Form::hidden('major_id[]', '0') }}
 {{ Form::button('Delete', array('class' => 'ss-button red bold ss-delete')) }}
