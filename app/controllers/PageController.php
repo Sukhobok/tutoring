@@ -39,7 +39,11 @@ class PageController extends BaseController {
 	 */
 	public function getDashboard()
 	{
-		$this->layout->content = View::make('dashboard');
+		$posts = Post::getDashboardPosts();
+		$this->layout->content = View::make(
+			'dashboard',
+			compact('posts')
+		);
 	}
 
 }

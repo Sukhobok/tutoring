@@ -143,4 +143,18 @@ class Group extends Eloquent {
 		return false;
 	}
 
+	/**
+	 * Get the list of groups for autocomplete
+	 * @param string $search
+	 * @return array
+	 */
+	public static function ajaxList($search)
+	{
+		return DB::table('groups')
+			->where('name', 'LIKE', '%' . $search . '%')
+			->select('id', 'name')
+			->take(5)
+			->get();
+	}
+
 }

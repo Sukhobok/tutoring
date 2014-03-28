@@ -129,4 +129,21 @@ class GroupController extends BaseController {
 		return array('error' => (int) !$success);
 	}
 
+	/**
+	 * Data for autocomplete
+	 */
+	public function ajaxList()
+	{
+		$search = Input::get('search');
+
+		if ($search)
+		{
+			return Group::ajaxList($search);
+		}
+		else
+		{
+			return array();
+		}
+	}
+
 }

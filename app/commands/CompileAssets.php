@@ -51,6 +51,7 @@ class CompileAssets extends Command {
 		$compiler->setSourceBaseDir('app/assets/js/');
 		$compiler->setTargetBaseDir('public/js/');
 		$compiler->setSourceFiles(array(
+			'plugins/jquery-jcrop-0.9.12.js',
 			'plugins/jquery.tokeninput.js',
 			'core.js',
 			'time.js',
@@ -58,6 +59,7 @@ class CompileAssets extends Command {
 			'posts.js',
 			'photos.js',
 			'right_sidebar.js',
+			'left_sidebar.js',
 			'settings.my_profile.js',
 			'cg.js'
 		));

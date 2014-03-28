@@ -2,12 +2,42 @@
 	<div class="article-left">
 		<div class="profile-picture">
 			{{ HTML::image($post->author['profile_picture'], 'Profile Picture', array('width' => 50)) }}
+
+			@if($post->withContext)
+				@if($post->postable_type == "Classroom")
+					<div class="article-category classroom-category">
+						Classroom
+					</div>
+				@elseif($post->postable_type == "Group")
+					<div class="article-category group-category">
+						Group
+					</div>
+				@endif
+			@endif
 		</div>
 	</div>
 
 	<div class="article-right">
 		<div class="ss-container">
 			<div class="article-content ss-section">
+				<div class="article-title">
+					<span class="bold ss-link" data-ss-link="{{ URL::to('/user/' . $post->author['id']) }}">
+						{{{ $post->author['name'] }}}
+					</span>
+					
+					@if($post->withContext)
+						@if($post->postable_type == "Classroom")
+							- <span class="classroom-color bold ss-link" data-ss-link="{{ URL::to('/classroom/' . $post->postable_id) }}">
+								{{{ $post->postable_name }}}
+							</span>
+						@elseif($post->postable_type == "Group")
+							- <span class="group-color bold ss-link" data-ss-link="{{ URL::to('/group/' . $post->postable_id) }}">
+								{{{ $post->postable_name }}}
+							</span>
+						@endif
+					@endif
+				</div>
+
 				{{ $post->post }}
 
 				@if($post->images)

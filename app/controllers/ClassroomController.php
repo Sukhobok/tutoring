@@ -90,4 +90,21 @@ class ClassroomController extends BaseController {
 		return array('error' => (int) !$success);
 	}
 
+	/**
+	 * Data for autocomplete
+	 */
+	public function ajaxList()
+	{
+		$search = Input::get('search');
+
+		if ($search)
+		{
+			return Classroom::ajaxList($search);
+		}
+		else
+		{
+			return array();
+		}
+	}
+
 }

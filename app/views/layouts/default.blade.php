@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>StudySquare</title>
 	{{ HTML::style('//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700') }}
-	{{ HTML::style('//cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.12/css/jquery.Jcrop.min.css') }}
 	{{ HTML::style('css/style.css') }}
 	<link rel="shortcut icon" href="{{ URL::to('images/favicon_120x120.png') }}" />
 </head>
@@ -22,7 +21,6 @@
 
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
-	{{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js') }}
 	{{ HTML::script('js/script.min.js') }}
 </body>
 </html>

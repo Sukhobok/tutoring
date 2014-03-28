@@ -13,7 +13,7 @@
 							<tr>
 								<td>Name</td>
 								<td>
-									{{ Form::text('name', Input::old('name'), array('class' => $input_classes['name'])) }}
+									{{ Form::text('name', Input::old('name') ?: (Input::get('name') ?: ''), array('class' => $input_classes['name'])) }}
 								</td>
 							</tr>
 

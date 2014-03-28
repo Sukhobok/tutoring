@@ -37,7 +37,7 @@
 
 		{{ Form::text('search', '', array(
 			'placeholder' => 'Enter a classroom ...',
-			'class' => 'ss-search'
+			'class' => 'ss-search classroom-autocomplete'
 		)) }}
 		<a href="#" class="create-classroom">Create</a>
 	</div>
@@ -54,7 +54,7 @@
 
 		{{ Form::text('search', '', array(
 			'placeholder' => 'Enter a group ...',
-			'class' => 'ss-search'
+			'class' => 'ss-search group-autocomplete'
 		)) }}
 		<a href="#" class="create-group">Create</a>
 	</div>

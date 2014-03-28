@@ -43,7 +43,23 @@ class Post extends Eloquent {
 			WHERE users.id = posts.author_id),
 			
 			(SELECT "school stuff here")
-		) AS author
+		) AS author,
+
+		CASE posts.postable_type
+			WHEN "Classroom" THEN (
+				SELECT classrooms.name
+					FROM classrooms
+					WHERE classrooms.id = posts.postable_id
+			)
+
+			WHEN "Group" THEN (
+				SELECT groups.name
+					FROM groups
+					WHERE groups.id = posts.postable_id
+			)
+
+			ELSE ""
+		END AS postable_name
 		FROM posts';
 
 	/**
@@ -72,12 +88,43 @@ class Post extends Eloquent {
 	}
 
 	/**
-	 * Process query result for posts
+	 * Get dashboard posts
+	 * @return array Posts
 	 */
-	public static function processPostsResult($posts)
+	public static function getDashboardPosts()
+	{
+		$query = DB::select(self::$postsQuery . '
+		WHERE 
+			(posts.author_type="User"
+				AND posts.author_id IN (
+					SELECT friend_id
+						FROM friendships
+						WHERE user_id = ?
+				)
+			)
+			OR
+			(posts.author_type="User"
+				AND posts.author_id = ?
+			)
+		ORDER BY posts.created_at DESC', array(Auth::user()->id, Auth::user()->id));
+		
+		$query = self::processPostsResult($query, true);
+		return $query;
+	}
+
+	/**
+	 * Process query result for posts
+	 * @param array $posts - query result
+	 * @param boolean $withContext (if it will show the context of the post)
+	 *     (eg. Classroom, Group ...)
+	 *     It just appends the property to the object and we do the check in the view
+	 */
+	public static function processPostsResult($posts, $withContext = false)
 	{
 		foreach ($posts as $post)
 		{
+			$post->withContext = $withContext;
+
 			if ($post->images !== null)
 			{
 				$post->images = explode(',', $post->images);

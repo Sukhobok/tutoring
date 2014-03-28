@@ -45,6 +45,45 @@ article {
 	width: 75px;
 	margin-right: 8px;
 	text-align: center;
+
+	.article-category {
+		margin-top: 6px;
+		display: block;
+		position: relative;
+		border-radius: 4px;
+		padding: 10px 5px;
+		width: 60px;
+		text-align: center;
+		font-size: 12px;
+		color: #fff;
+
+		&:after {
+			position: absolute;
+			display: inline-block;
+			border-left: 5px solid transparent;
+			border-bottom: 5px solid #fff;
+			border-right: 5px solid transparent;
+			left: 30px;
+			top: -4px;
+			content: '';
+		}
+
+		&.classroom-category {
+			background: @classroom-color;
+
+			&:after {
+				border-bottom: 5px solid @classroom-color;
+			}
+		}
+
+		&.group-category {
+			background: @group-color;
+
+			&:after {
+				border-bottom: 5px solid @group-color;
+			}
+		}
+	}
 }
 
 .article-right {
@@ -58,6 +97,11 @@ article {
 
 	.article-photos {
 		margin-top: 10px;
+	}
+
+	.article-title {
+		margin-bottom: 6px;
+		color: #000;
 	}
 
 	.article-footer {

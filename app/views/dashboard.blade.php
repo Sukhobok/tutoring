@@ -15,42 +15,8 @@
 				{{ Form::close() }}
 			</div>
 
-			@foreach(Auth::user()->profilePosts as $post)
-				<article>
-					<div class="article-left">
-						<div class="profile-picture">
-							{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
-						</div>
-					</div>
-
-					<div class="article-right">
-						<div class="ss-container">
-							<div class="article-content ss-section">
-								{{{ $post->post }}}
-
-								<div class="article-footer">
-									<div class="time-ago ss-highlight gray" data-time="{{ $post->created_at->timestamp }}"></div>
-									<div class="article-share ss-highlight green bold">Share</div>
-									<div class="thumbs-container">
-										<div class="thumb-up">
-											..
-										</div>
-										<div class="thumb-down">
-											..
-										</div>
-									</div>
-									<div class="clear"></div>
-								</div>
-							</div>
-
-							<div class="post-comment ss-section">
-								Post a comment ...
-							</div>
-						</div>
-					</div>
-
-					<div class="clear"></div>
-				</article>
+			@foreach($posts as $post)
+				@include('snippets.post', array('post' => $post))
 			@endforeach
 		</div>
 		

@@ -141,4 +141,18 @@ class Classroom extends Eloquent {
 		return false;
 	}
 
+	/**
+	 * Get the list of classrooms for autocomplete
+	 * @param string $search
+	 * @return array
+	 */
+	public static function ajaxList($search)
+	{
+		return DB::table('classrooms')
+			->where('name', 'LIKE', '%' . $search . '%')
+			->select('id', 'name')
+			->take(5)
+			->get();
+	}
+
 }
