@@ -27,12 +27,13 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(function()
 {
 	$hosts = array(
-		'192.168.0.100' => 'local'
+		'192-168-0-100.rdsnet.ro' => 'local',
+		'Alex-laptop' => 'local'
 	);
 
-	if (isset($hosts[$_SERVER['SERVER_NAME']]))
+	if (gethostname() && isset($hosts[gethostname()]))
 	{
-		return $hosts[$_SERVER['SERVER_NAME']];
+		return $hosts[gethostname()];
 	}
 });
 
