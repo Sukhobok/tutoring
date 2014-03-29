@@ -24,12 +24,17 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
+$env = $app->detectEnvironment(function()
+{
+	$hosts = array(
+		'192.168.0.100' => 'local'
+	);
 
-	'local' => array('Alex-laptop', 'Alex-iMac.local', '*'),
-	'production' => array('*.com')
-
-));
+	if (isset($hosts[$_SERVER['SERVER_NAME']]))
+	{
+		return $hosts[$_SERVER['SERVER_NAME']];
+	}
+});
 
 /*
 |--------------------------------------------------------------------------
