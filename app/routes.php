@@ -177,6 +177,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'GroupController@ajaxList'
 	));
 
+	Route::get('search', array(
+		'uses' => 'PageController@ajaxSearchAnything'
+	));
+
 	Route::post('settings/delete_education', array(
 		'uses' => 'SettingsController@ajaxDeleteEducation'
 	));

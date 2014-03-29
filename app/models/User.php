@@ -134,6 +134,94 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Search anything
+	 * @param string $search
+	 * @return array Search result
+	 */
+	public static function searchAnything($search)
+	{
+		// Add "*" after every word to match partial words
+		$search = explode(' ', $search);
+		$search = array_map(function($n)
+		{
+			return $n . '*';
+		}, $search);
+		$search = implode(' ', $search);
+
+		// Queries
+		$query = array();
+		$query['users'] = 'SELECT users.name,
+		"User" AS type,
+		users.id,
+		users.profile_picture AS profile_picture,
+		"" AS data
+			FROM users
+			WHERE MATCH(users.name) AGAINST(? IN BOOLEAN MODE)
+			LIMIT 5';
+
+		$query['groups'] = 'SELECT groups.name,
+		"Group" AS type,
+		groups.id,
+		groups.profile_picture AS profile_picture,
+		(SELECT COUNT(*)
+			FROM group_users
+			WHERE group_users.group_id = groups.id
+		) AS data
+			FROM groups
+			WHERE MATCH(groups.name) AGAINST(? IN BOOLEAN MODE)
+			LIMIT 5';
+
+		$query['classrooms'] = 'SELECT classrooms.name,
+		"Classroom" AS type,
+		classrooms.id,
+		"" AS profile_picture,
+		(SELECT COUNT(*)
+			FROM classroom_users
+			WHERE classroom_users.classroom_id = classrooms.id
+		) AS data
+			FROM classrooms
+			WHERE MATCH(classrooms.name) AGAINST(? IN BOOLEAN MODE)
+			LIMIT 5';
+
+		$query['universities'] = 'SELECT universities.name,
+		"University" AS type,
+		universities.id,
+		"" AS profile_picture,
+		"" AS data
+			FROM universities
+			WHERE MATCH(universities.name) AGAINST(? IN BOOLEAN MODE)
+			OR MATCH(universities.acronym) AGAINST(? IN BOOLEAN MODE)
+			LIMIT 5';
+
+		$query['highschools'] = 'SELECT highschools.name,
+		"Highschool" AS type,
+		highschools.id,
+		"" AS profile_picture,
+		"" AS data
+			FROM highschools
+			WHERE MATCH(highschools.name) AGAINST(? IN BOOLEAN MODE)
+			LIMIT 5';
+
+		$query = array_map(function($n)
+		{
+			return ' (' . $n . ') ';
+		}, $query);
+		$query = implode('UNION ALL', $query);
+		$query = DB::select($query, array_fill(0, 6, $search));
+
+		foreach ($query as &$element)
+		{
+			// $element->test = 'test';
+			if ($element->profile_picture)
+			{
+				$element->profile_picture = HTML::get_from_s3($element->profile_picture);
+			}
+		}
+
+		return $query;
+	}
+
+	/**
 	 * Get the unique identifier for the user.
 	 * @return mixed
 	 */

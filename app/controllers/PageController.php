@@ -46,4 +46,21 @@ class PageController extends BaseController {
 		);
 	}
 
+	/**
+	 * Data for "search anything" autocomplete
+	 */
+	public function ajaxSearchAnything()
+	{
+		$search = Input::get('search');
+
+		if ($search)
+		{
+			return User::searchAnything($search);
+		}
+		else
+		{
+			return array();
+		}
+	}
+
 }

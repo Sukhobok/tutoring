@@ -3,7 +3,7 @@
 		<div class="center">
 			{{ Form::text('search', '', array(
 				'placeholder' => 'Search anything',
-				'class' => 'ss-search'
+				'class' => 'ss-search ss-search-anything'
 			)) }}
 		</div>
 	</div>
