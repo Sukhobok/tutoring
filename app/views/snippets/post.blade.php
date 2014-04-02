@@ -2,19 +2,19 @@
 	<div class="article-left">
 		<div class="profile-picture">
 			{{ HTML::image($post->author['profile_picture'], 'Profile Picture', array('width' => 50)) }}
-
-			@if($post->withContext)
-				@if($post->postable_type == "Classroom")
-					<div class="article-category classroom-category">
-						Classroom
-					</div>
-				@elseif($post->postable_type == "Group")
-					<div class="article-category group-category">
-						Group
-					</div>
-				@endif
-			@endif
 		</div>
+		
+		@if($post->withContext)
+			@if($post->postable_type == "Classroom")
+				<div class="article-category classroom-category">
+					Classroom
+				</div>
+			@elseif($post->postable_type == "Group")
+				<div class="article-category group-category">
+					Group
+				</div>
+			@endif
+		@endif
 	</div>
 
 	<div class="article-right">

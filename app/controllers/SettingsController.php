@@ -29,6 +29,7 @@ class SettingsController extends BaseController {
 	{
 		$messages = array();
 		$user = Auth::user();
+		$education = UserEducation::getEducation($user->id);
 
 		$validator = Validator::make(
 			Input::all(),
@@ -125,10 +126,10 @@ class SettingsController extends BaseController {
 			$user->save();
 		}
 
-		$this->layout->content = View::make('settings.profile', array(
-			'messages' => $messages,
-			'user' => $user
-		));
+		$this->layout->content = View::make(
+			'settings.profile', 
+			compact('messages', 'user', 'education')
+		);
 	}
 
 	/**

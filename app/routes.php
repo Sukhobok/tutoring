@@ -105,11 +105,11 @@ Route::group(array('before' => 'auth'), function()
 	));
 
 	/**
-	 * Messages : TO DO
+	 * Messages
 	 */
-	Route::get('messages/{id?}', array(
+	Route::get('messages/{uid?}', array(
 		'as' => 'messages',
-		'uses' => 'MessageController@getIndex'
+		'uses' => 'MessageController@getMessages'
 	));
 
 	/**
