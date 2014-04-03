@@ -7,7 +7,7 @@
 </div>
 
 <div class="message-content">
-	<p>{{{ $_selected_conversation->message or 'message' }}}</p>
+	<p>{{ isset($_selected_conversation->message) ? nl2br(e($_selected_conversation->message)) : 'message' }}</p>
 </div>
 <div class="clear"></div>
 

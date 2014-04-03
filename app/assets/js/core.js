@@ -27,3 +27,13 @@ $(document).on('click', '.add-friend-button', function () {
 		//
 	});
 });
+
+/**
+ * Set multiline value
+ * e.g. message page
+ */
+$.fn.text_multiline = function (text) {
+	this.text(text);
+	this.html(this.html().replace(/\n/g,'<br/>'));
+	return this;
+}

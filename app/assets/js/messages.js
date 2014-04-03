@@ -39,16 +39,16 @@ $('.layout-sidebar.message-page').on('click', '.conversation-item', function () 
 		$.each(data, function (k, v) {
 			var snippet_message = $('.snippet-message').clone().removeClass('snippet-message');
 			snippet_message.addClass(v.type + '-message');
-			$('.message-content p', snippet_message).text(v.message);
+			$('.message-content p', snippet_message).text_multiline(v.message);
 			$('.message-time', snippet_message)[0].setAttribute('data-time', v.created_at);
 			$('.message-picture img', snippet_message)[0].setAttribute('src', v.message_picture);
 			$('.message-container-main .mCSB_container').append(snippet_message);
 			snippet_message.removeClass('hide');
-
-			convert_time();
-			$('.layout-main .message-container-main').mCustomScrollbar('update');
-			$('.layout-main .message-container-main').mCustomScrollbar('scrollTo', 'bottom');
 		});
+
+		convert_time();
+		$('.layout-main .message-container-main').mCustomScrollbar('update');
+		$('.layout-main .message-container-main').mCustomScrollbar('scrollTo', 'bottom');
 	});
 });
 
@@ -63,7 +63,7 @@ $('.layout-main.message-page').on('click', '.message-send', function () {
 	if(message.val() != '') {
 		var snippet_message = $('.snippet-message').clone().removeClass('snippet-message');
 		snippet_message.addClass('sent-message');
-		$('.message-content p', snippet_message).text(message.val());
+		$('.message-content p', snippet_message).text_multiline(message.val());
 		$('.message-time', snippet_message)[0].setAttribute('data-time', Math.round(new Date()/1000));
 		$('.message-container-main .mCSB_container').append(snippet_message);
 		snippet_message.removeClass('hide');
@@ -79,7 +79,7 @@ $('.layout-main.message-page').on('click', '.message-send', function () {
 		}).done(function (data) {
 			// Done
 		});
-		
+
 		message.val('');
 	}
 });

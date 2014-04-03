@@ -2,7 +2,7 @@
 	<div class="layout">
 		<div class="layout-sidebar message-page">
 			<div class="message-container-left">
-				@if(!$conversation_before)
+				@if(!$conversation_before && $selected_user)
 					<div class="conversation-item is-selected">
 						<div class="conversation-left">
 							<div class="profile-picture">
