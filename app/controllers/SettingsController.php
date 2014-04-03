@@ -109,14 +109,14 @@ class SettingsController extends BaseController {
 				if ($user->profile_picture)
 				{
 					$s3->deleteObject(array(
-						'Bucket' => 'studysquare',
+						'Bucket' => Config::get('s3.bucket'),
 						'Key' => $user->profile_picture
 					));
 				}
 
 				$user->profile_picture = $filename;
 				$s3->putObject(array(
-					'Bucket' => 'studysquare',
+					'Bucket' => Config::get('s3.bucket'),
 					'Key' => $filename,
 					'Body' => $image->encode('jpg'),
 					'ACL' => 'public-read'

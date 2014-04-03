@@ -31,7 +31,7 @@ HTML::macro('profile_picture', function($user)
 {
 	if ($user->profile_picture)
 	{
-		return 'https://s3-us-west-2.amazonaws.com/studysquare/'
+		return Config::get('s3.url')
 			. $user->profile_picture;
 	}
 
@@ -45,7 +45,7 @@ HTML::macro('school_profile_picture', function($school)
 
 HTML::macro('get_from_s3', function($url)
 {
-	return 'https://s3-us-west-2.amazonaws.com/studysquare/' . $url;
+	return Config::get('s3.url') . $url;
 });
 
 /**

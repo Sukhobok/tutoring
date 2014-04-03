@@ -73,7 +73,7 @@ class GroupController extends BaseController {
 				
 				$s3 = AWS::get('s3');
 				$s3->putObject(array(
-					'Bucket' => 'studysquare',
+					'Bucket' => Config::get('s3.bucket'),
 					'Key' => $filename,
 					'Body' => $image->encode('jpg'),
 					'ACL' => 'public-read'

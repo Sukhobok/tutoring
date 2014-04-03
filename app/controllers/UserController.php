@@ -113,7 +113,7 @@ class UserController extends BaseController {
 				
 				$s3 = AWS::get('s3');
 				$result = $s3->putObject(array(
-					'Bucket' => 'studysquare',
+					'Bucket' => Config::get('s3.bucket'),
 					'Key' => $filename,
 					'Body' => $image->encode('jpg'),
 					'ACL' => 'public-read'
@@ -144,7 +144,7 @@ class UserController extends BaseController {
 			{
 				$s3 = AWS::get('s3');
 				$s3->deleteObject(array(
-					'Bucket' => 'studysquare',
+					'Bucket' => Config::get('s3.bucket'),
 					'Key' => $image->path
 				));
 
