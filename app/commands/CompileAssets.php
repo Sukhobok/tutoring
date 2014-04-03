@@ -52,7 +52,9 @@ class CompileAssets extends Command {
 		$compiler->setTargetBaseDir('public/js/');
 		$compiler->setSourceFiles(array(
 			'plugins/jquery-jcrop-0.9.12.js',
-			'plugins/jquery.tokeninput.js',
+			'plugins/jquery-tokeninput.js',
+			'plugins/jquery-mousewheel.js',
+			'plugins/jquery-mCustomScrollbar.js',
 			'core.js',
 			'time.js',
 			'elements_behavior.js',
@@ -61,7 +63,8 @@ class CompileAssets extends Command {
 			'right_sidebar.js',
 			'left_sidebar.js',
 			'settings.my_profile.js',
-			'cg.js'
+			'cg.js',
+			'messages.js'
 		));
 		$compiler->setTargetFile('script.min.js');
 		$compiler->compile();

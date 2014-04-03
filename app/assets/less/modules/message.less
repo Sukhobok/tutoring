@@ -8,6 +8,7 @@
 	}
 
 	.conversation-item {
+		cursor: pointer;
 		margin-left: 8px;
 		display: block;
 		padding: 15px 5px;
@@ -65,101 +66,130 @@
 		border-radius: 0 5px 5px 0;
 	}
 
-	.sent-message {
-		float: left;
-		margin: 15px;
-
-		.message-picture {
+	.message-container-main {
+		// Sent message style
+		.sent-message {
 			float: left;
-		}
+			margin: 15px;
 
-		.message-content {
-			float: left;
-			background: #fff;
-			width: 380px;
-			margin-left: 15px;
-			border: 1px solid #d0d0d0;
-			border-radius: 5px;
-			position: relative;
-			padding: 8px;
-			line-height: 15px;
-
-			&:after {
-				position: absolute;
-				display: inline-block;
-				border-top: 6px solid transparent;
-				border-right: 6px solid #fff;
-				border-bottom: 6px solid transparent;
-				left: -6px;
-				top: 11px;
-				content: '';
+			.message-picture {
+				float: left;
 			}
 
-			&:before {
-				position: absolute;
-				display: inline-block;
-				border-top: 7px solid transparent;
-				border-right: 7px solid #d0d0d0;
-				border-bottom: 7px solid transparent;
-				left: -7px;
-				top: 10px;
-				content: '';
+			.message-content {
+				float: left;
+				background: #fff;
+				width: 380px;
+				margin-left: 15px;
+				border: 1px solid #d0d0d0;
+				border-radius: 5px;
+				position: relative;
+				padding: 8px;
+				line-height: 15px;
+
+				&:after {
+					position: absolute;
+					display: inline-block;
+					border-top: 6px solid transparent;
+					border-right: 6px solid #fff;
+					border-bottom: 6px solid transparent;
+					left: -6px;
+					top: 11px;
+					content: '';
+				}
+
+				&:before {
+					position: absolute;
+					display: inline-block;
+					border-top: 7px solid transparent;
+					border-right: 7px solid #d0d0d0;
+					border-bottom: 7px solid transparent;
+					left: -7px;
+					top: 10px;
+					content: '';
+				}
+			}
+
+			.message-time {
+				margin-top: 4px;
+				color: #ccc;
+				float: right;
 			}
 		}
 
-		.message-time {
-			margin-top: 4px;
-			color: #ccc;
-			float: right;
+		// Received message style
+		.received-message {
+			float: left;
+			margin: 15px;
+
+			.message-picture {
+				float: right;
+			}
+
+			.message-content {
+				float: right;
+				background: #e7e9eb;
+				width: 380px;
+				margin-right: 15px;
+				border: 1px solid #d0d0d0;
+				border-radius: 5px;
+				position: relative;
+				padding: 8px;
+				line-height: 15px;
+
+				&:after {
+					position: absolute;
+					display: inline-block;
+					border-top: 6px solid transparent;
+					border-left: 6px solid #e7e9eb;
+					border-bottom: 6px solid transparent;
+					right: -6px;
+					top: 11px;
+					content: '';
+				}
+
+				&:before {
+					position: absolute;
+					display: inline-block;
+					border-top: 7px solid transparent;
+					border-left: 7px solid #d0d0d0;
+					border-bottom: 7px solid transparent;
+					right: -7px;
+					top: 10px;
+					content: '';
+				}
+			}
+
+			.message-time {
+				margin-top: 4px;
+				color: #ccc;
+				float: left;
+			}
 		}
 	}
 
-	.received-message {
-		float: left;
-		margin: 15px;
+	.message-new {
+		height: 100px - 1px - 5px; // remove border and padding
+		border-top: 1px solid #d3d3d3;
+		padding-top: 5px;
+		padding-left: 20px;
+		margin-top: 3px;
 
 		.message-picture {
-			float: right;
-		}
-
-		.message-content {
-			float: right;
-			background: #e7e9eb;
-			width: 380px;
-			margin-right: 15px;
-			border: 1px solid #d0d0d0;
-			border-radius: 5px;
-			position: relative;
-			padding: 8px;
-			line-height: 15px;
-
-			&:after {
-				position: absolute;
-				display: inline-block;
-				border-top: 6px solid transparent;
-				border-left: 6px solid #e7e9eb;
-				border-bottom: 6px solid transparent;
-				right: -6px;
-				top: 11px;
-				content: '';
-			}
-
-			&:before {
-				position: absolute;
-				display: inline-block;
-				border-top: 7px solid transparent;
-				border-left: 7px solid #d0d0d0;
-				border-bottom: 7px solid transparent;
-				right: -7px;
-				top: 10px;
-				content: '';
-			}
-		}
-
-		.message-time {
-			margin-top: 4px;
-			color: #ccc;
 			float: left;
+		}
+
+		textarea {
+			color: #727272;
+			margin-left: 8px;
+			margin-top: 4px;
+			margin-bottom: 6px;
+			border-radius: 4px;
+			border: 2px solid #e9eaec;
+			background: #f9f9f9;
+			width: 390px;
+			height: 35px;
+			resize: none;
 		}
 	}
 }

@@ -184,4 +184,12 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('settings/delete_education', array(
 		'uses' => 'SettingsController@ajaxDeleteEducation'
 	));
+
+	Route::get('messages/get_conversation', array(
+		'uses' => 'MessageController@ajaxGetConversation'
+	));
+
+	Route::post('messages/send_message', array(
+		'uses' => 'MessageController@ajaxSendMessage'
+	));
 });

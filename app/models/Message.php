@@ -104,6 +104,8 @@ class Message extends Eloquent {
 				$_query->type = 'received';
 				$_query->from_user = User::find($_query->from_id);
 			}
+
+			$_query->message_picture = HTML::profile_picture($_query->from_user);
 		}
 
 		return $query;
