@@ -16,7 +16,7 @@
 							<button class="ss-button2 black bold add-friend-button" data-uid="{{{ $user->id }}}">ADD FRIEND</button>
 						@endif
 						<button class="ss-button2 green bold">HIRE</button>
-						<button class="ss-button2 blue bold">SEND A MESSAGE</button>
+						<button class="ss-button2 blue bold ss-link" data-ss-link="{{ URL::route('messages', $user->id) }}">SEND A MESSAGE</button>
 						<button class="ss-button2 red bold">BLOCK</button>
 					@endif
 				</div>

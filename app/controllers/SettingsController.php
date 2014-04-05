@@ -184,4 +184,30 @@ class SettingsController extends BaseController {
 		return array('error' => 0);
 	}
 
+	/**
+	 * Groups Management
+	 */
+	public function getGroupsManagement()
+	{
+		$groups = Group::getUserGroups(Auth::user()->id);
+
+		$this->layout->content = View::make(
+			'settings.groups_management', 
+			compact('groups')
+		);
+	}
+
+	/**
+	 * Classrooms Management
+	 */
+	public function getClassroomsManagement()
+	{
+		$classrooms = Classroom::getUserClassrooms(Auth::user()->id);
+
+		$this->layout->content = View::make(
+			'settings.classrooms_management', 
+			compact('classrooms')
+		);
+	}
+
 }

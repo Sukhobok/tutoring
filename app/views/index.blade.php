@@ -337,7 +337,15 @@
 						<div id="ri-grid" class="ri-grid ri-grid-size-2">
 							<img class="ri-loading-image" src="/themes/university/img/loading.gif" alt="//"/>
 							<ul>
-								<li><a href="#"><img src="/themes/university/img/medium/1.jpg" alt="//" /></a></li>
+								@foreach (User::all()->take(50) as $user)
+									<li>
+										<a href="{{ URL::route('user.view', $user->id) }}">
+											<img src="{{ HTML::profile_picture($user) }}" alt="StudySquare User" />
+										</a>
+									</li>
+								@endforeach
+
+								<!-- <li><a href="#"><img src="/themes/university/img/medium/1.jpg" alt="//" /></a></li>
 								<li><a href="#"><img src="/themes/university/img/medium/2.jpg" alt="//" /></a></li>
 								<li><a href="#"><img src="/themes/university/img/medium/3.jpg" alt="//" /></a></li>
 								<li><a href="#"><img src="/themes/university/img/medium/4.jpg" alt="//" /></a></li>
@@ -390,7 +398,7 @@
 								<li><a href="#"><img src="/themes/university/img/medium/51.jpg" alt="//" /></a></li>
 								<li><a href="#"><img src="/themes/university/img/medium/52.jpg" alt="//" /></a></li>
 								<li><a href="#"><img src="/themes/university/img/medium/53.jpg" alt="//" /></a></li>
-								<li><a href="#"><img src="/themes/university/img/medium/54.jpg" alt="//" /></a></li>
+								<li><a href="#"><img src="/themes/university/img/medium/54.jpg" alt="//" /></a></li> -->
 							</ul>
 						</div>
 						
@@ -404,6 +412,7 @@
        
     
     <!--Pricing-->
+    <!--
     <section class="pricing text-center generic-section">
     	<div class="container">
 		  <h2 class="left">Online Exclusive plans</h2>
@@ -459,6 +468,7 @@
 	      </div>
       </div>
     </section>
+    -->
     <!-- end pricing --> 
     
     
@@ -496,7 +506,7 @@
 			<div class="row-fluid">	
             			
 	    		<div class="span3 item left">
-	    			<h3>About University</h3>
+	    			<h3>About StudySquare</h3>
 	    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet ligula vel diam 
 	    			congue semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus</p>
 	    			<p>Ligula vel diam congue semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus</p>
@@ -512,12 +522,12 @@
 	    		</div>  	
                 	
 	    		<div class="span3 item right">
-	    			<h3>Popular Courses</h3>
-					<p><a href="#">+ Graduate Certificate in TESOL</a></p>
-					<p><a href="#">+ Systems Management</a></p>
-					<p><a href="#">+ Business Administration</a></p>
-					<p><a href="#">+ Information Technology</a></p>
-					<p><a href="#">+ Systems Management</a></p>	
+	    			<h3>Popular Subjects</h3>
+					<p><a href="#">+ PHP</a></p>
+					<p><a href="#">+ Java</a></p>
+					<p><a href="#">+ HTML</a></p>
+					<p><a href="#">+ Javascript</a></p>
+					<p><a href="#">+ Algebra</a></p>	
 	    		</div>  
               
 	    		<div class="span3 item right">
@@ -540,7 +550,7 @@
     <!--Copyright-->
 	 <div class="copy">
      	<section class="container">
-			<p>© Copyright © 2013 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et justo nec arc.</p>
+			<p>© 2013 StudySquare, LLC. All Rights Reserved</p>
 		</section>
 	</div>
     <!--End Copyright-->

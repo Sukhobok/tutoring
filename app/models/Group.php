@@ -96,11 +96,18 @@ class Group extends Eloquent {
 	 */
 	public static function getUserGroups($uid)
 	{
-		$query = DB::table('group_users')
-			->where('user_id', '=', $uid)
-			->join('groups', 'groups.id', '=', 'group_users.group_id')
-			->select('groups.id', 'groups.name')
-			->get();
+		$query = DB::select('SELECT groups.id,
+		groups.name,
+		groups.profile_picture,
+		(SELECT COUNT(*)
+			FROM group_users
+			WHERE group_users.group_id = groups.id) AS count_members
+		FROM groups
+		WHERE groups.id IN (
+			SELECT group_users.group_id
+				FROM group_users
+				WHERE group_users.user_id = ?
+			)', array($uid));
 
 		return $query;
 	}

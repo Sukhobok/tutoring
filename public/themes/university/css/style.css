@@ -1187,3 +1187,7 @@ i[class^="icon-"] {
 #ss-joinForm .row-fluid [class*="span"] {
 	margin-bottom: 9px;
 }
+
+.ss-link {
+	cursor: pointer;
+}

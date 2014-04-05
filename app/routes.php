@@ -129,6 +129,16 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@postSaveEducation'
 	));
 
+	Route::get('settings/groups_management', array(
+		'as' => 'settings.groups_management',
+		'uses' => 'SettingsController@getGroupsManagement'
+	));
+
+	Route::get('settings/classrooms_management', array(
+		'as' => 'settings.classrooms_management',
+		'uses' => 'SettingsController@getClassroomsManagement'
+	));
+
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
