@@ -1,25 +1,28 @@
-/**
- * Set the height according to the user screen
- */
-$(window).resize(function () {
-	var new_height = $(window).height() - 200;
+// If we are on the message page
+if($('.message-page').length != 0) {
+	/**
+	 * Set the height according to the user screen
+	 */
+	$(window).resize(function () {
+		var new_height = $(window).height() - 200;
 
-	if($('.layout-sidebar-right .ss-container').height() >= new_height) {
-		new_height = $('.layout-sidebar-right .ss-container').height();
-	}
+		if($('.layout-sidebar-right .ss-container').height() >= new_height) {
+			new_height = $('.layout-sidebar-right .ss-container').height();
+		}
 
-	$('.message-container-left').height(new_height);
-	$('.message-container-main').height(new_height - 100);
-});
+		$('.message-container-left').height(new_height);
+		$('.message-container-main').height(new_height - 100);
+	});
 
-/**
- * On load
- */
-$(window).load(function () {
-	$(window).resize();
-	$('.message-container-main, .message-container-left').mCustomScrollbar();
-	$('.layout-main .message-container-main').mCustomScrollbar('scrollTo', 'bottom');
-});
+	/**
+	 * On load
+	 */
+	$(window).load(function () {
+		$(window).resize();
+		$('.message-container-main, .message-container-left').mCustomScrollbar();
+		$('.layout-main .message-container-main').mCustomScrollbar('scrollTo', 'bottom');
+	});
+}
 
 /**
  * Select a new conversation

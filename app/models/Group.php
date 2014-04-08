@@ -94,8 +94,10 @@ class Group extends Eloquent {
 	 * @param $uid
 	 * @return array
 	 */
-	public static function getUserGroups($uid)
+	public static function getUserGroups($uid = 0)
 	{
+		if (!$uid) $uid = Auth::user()->id;
+
 		$query = DB::select('SELECT groups.id,
 		groups.name,
 		groups.profile_picture,
@@ -108,6 +110,39 @@ class Group extends Eloquent {
 				FROM group_users
 				WHERE group_users.user_id = ?
 			)', array($uid));
+
+		return $query;
+	}
+
+	/**
+	 * Get suggested groups
+	 * @param $uid
+	 * @return array
+	 */
+	public static function getSuggestedGroups($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+
+		$query = DB::select('SELECT groups.*,
+		(SELECT COUNT(*)
+			FROM group_users
+			WHERE group_users.group_id = groups.id) AS count_members
+		FROM group_users, groups
+		WHERE
+			group_users.group_id = groups.id 
+			
+			AND group_users.user_id IN (
+				SELECT friendships.friend_id
+					FROM friendships
+					WHERE friendships.user_id = ?
+			)
+
+			AND groups.id NOT IN (
+				SELECT group_users.group_id
+					FROM group_users
+					WHERE group_users.user_id = ?
+			)
+		', array($uid, $uid));
 
 		return $query;
 	}

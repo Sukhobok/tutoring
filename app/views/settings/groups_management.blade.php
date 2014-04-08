@@ -1,7 +1,7 @@
 <div class="content">
 	<div class="layout">
 		<div class="layout-sidebar">
-			@include('templates.settings_left_sidebar')
+			@include('templates.settings_left_sidebar', array('selected' => 'Groups Management'))
 		</div>
 
 		<div class="layout-main page-settings">
@@ -24,7 +24,7 @@
 										<div>
 											{{{ $group->count_members }}} members
 										</div>
-										<button class="ss-button blue bold small-button">LEAVE</button>
+										<button class="ss-button blue bold small-button cg-leave-button" data-cg-id="{{{ $group->id }}}" data-cg-type="group">LEAVE</button>
 									</div>
 
 									<div class="clear"></div>
@@ -53,9 +53,47 @@
 					</div>
 				</div>
 
-				<!-- <div class="ss-section">
-					<h1>Suggested Groups</h1>
-				</div> -->
+				@if($suggested)
+					<div class="ss-section">
+						<h1>Suggested Groups</h1>
+
+						<table>
+							<tr>
+								@foreach($suggested as $i => $group)
+									<td>
+										<div class="settings-cg-avatar ss-link" data-ss-link="{{ URL::route('group.view', $group->id) }}">
+											<div class="profile-picture">
+												{{ HTML::image(HTML::get_from_s3($group->profile_picture), 'Group Picture', array('width' => 50)) }}
+											</div>
+										</div>
+
+										<div class="settings-cg-content">
+											<div class="group-color bold ss-link" data-ss-link="{{ URL::route('group.view', $group->id) }}">{{{ HTML::limit($group->name) }}}</div>
+											<div>
+												{{{ $group->count_members }}} members
+											</div>
+											<button class="ss-button blue bold small-button cg-join-button" data-cg-id="{{{ $group->id }}}" data-cg-type="group">JOIN</button>
+										</div>
+
+										<div class="clear"></div>
+									</td>
+
+									@if($i % 2 == 1)
+										</tr>
+
+										@if(count($suggested) != $i + 1)
+											<tr>
+										@endif
+									@endif
+								@endforeach
+
+								@if(count($suggested) % 2 == 1)
+									<td>&nbsp;</td>
+									</tr>
+								@endif
+						</table>
+					</div>
+				@endif
 			</div>
 		</div>
 

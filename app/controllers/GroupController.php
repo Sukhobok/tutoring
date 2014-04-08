@@ -130,6 +130,19 @@ class GroupController extends BaseController {
 	}
 
 	/**
+	 * Ajax: Quit a group
+	 */
+	public function ajaxQuit()
+	{
+		DB::table('group_users')
+			->where('user_id', '=', Auth::user()->id)
+			->where('group_id', '=', (int) Input::get('id'))
+			->delete();
+
+		return array('error' => 0);
+	}
+
+	/**
 	 * Data for autocomplete
 	 */
 	public function ajaxList()

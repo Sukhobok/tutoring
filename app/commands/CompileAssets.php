@@ -63,6 +63,7 @@ class CompileAssets extends Command {
 			'right_sidebar.js',
 			'left_sidebar.js',
 			'settings.my_profile.js',
+			'settings.cg_management.js',
 			'cg.js',
 			'messages.js'
 		));

@@ -163,8 +163,16 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'GroupController@ajaxJoin'
 	));
 
+	Route::post('group/quit', array(
+		'uses' => 'GroupController@ajaxQuit'
+	));
+
 	Route::post('classroom/join', array(
 		'uses' => 'ClassroomController@ajaxJoin'
+	));
+
+	Route::post('classroom/quit', array(
+		'uses' => 'ClassroomController@ajaxQuit'
 	));
 
 	Route::get('highschool/json', array(

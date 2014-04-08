@@ -189,11 +189,12 @@ class SettingsController extends BaseController {
 	 */
 	public function getGroupsManagement()
 	{
-		$groups = Group::getUserGroups(Auth::user()->id);
+		$groups = Group::getUserGroups();
+		$suggested = Group::getSuggestedGroups();
 
 		$this->layout->content = View::make(
 			'settings.groups_management', 
-			compact('groups')
+			compact('groups', 'suggested')
 		);
 	}
 
@@ -202,11 +203,12 @@ class SettingsController extends BaseController {
 	 */
 	public function getClassroomsManagement()
 	{
-		$classrooms = Classroom::getUserClassrooms(Auth::user()->id);
+		$classrooms = Classroom::getUserClassrooms();
+		$suggested = Classroom::getSuggestedClassrooms();
 
 		$this->layout->content = View::make(
 			'settings.classrooms_management', 
-			compact('classrooms')
+			compact('classrooms', 'suggested')
 		);
 	}
 

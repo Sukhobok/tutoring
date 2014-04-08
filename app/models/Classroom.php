@@ -92,13 +92,60 @@ class Classroom extends Eloquent {
 	 * @param $uid
 	 * @return array
 	 */
-	public static function getUserClassrooms($uid)
+	public static function getUserClassrooms($uid = 0)
 	{
+		if (!$uid) $uid = Auth::user()->id;
+
 		$query = DB::table('classroom_users')
 			->where('user_id', '=', $uid)
 			->join('classrooms', 'classrooms.id', '=', 'classroom_users.classroom_id')
 			->select('classrooms.id', 'classrooms.name')
 			->get();
+
+		$query = DB::select('SELECT classrooms.id,
+		classrooms.name,
+		(SELECT COUNT(*)
+			FROM classroom_users
+			WHERE classroom_users.classroom_id = classrooms.id) AS count_members
+		FROM classrooms
+		WHERE classrooms.id IN (
+			SELECT classroom_users.classroom_id
+				FROM classroom_users
+				WHERE classroom_users.user_id = ?
+			)', array($uid));
+
+		return $query;
+	}
+
+	/**
+	 * Get suggested classrooms
+	 * @param $uid
+	 * @return array
+	 */
+	public static function getSuggestedClassrooms($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+
+		$query = DB::select('SELECT classrooms.*,
+		(SELECT COUNT(*)
+			FROM classroom_users
+			WHERE classroom_users.classroom_id = classrooms.id) AS count_members
+		FROM classroom_users, classrooms
+		WHERE
+			classroom_users.classroom_id = classrooms.id 
+			
+			AND classroom_users.user_id IN (
+				SELECT friendships.friend_id
+					FROM friendships
+					WHERE friendships.user_id = ?
+			)
+
+			AND classrooms.id NOT IN (
+				SELECT classroom_users.classroom_id
+					FROM classroom_users
+					WHERE classroom_users.user_id = ?
+			)
+		', array($uid, $uid));
 
 		return $query;
 	}

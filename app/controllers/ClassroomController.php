@@ -91,6 +91,19 @@ class ClassroomController extends BaseController {
 	}
 
 	/**
+	 * Ajax: Quit a classroom
+	 */
+	public function ajaxQuit()
+	{
+		DB::table('classroom_users')
+			->where('user_id', '=', Auth::user()->id)
+			->where('classroom_id', '=', (int) Input::get('id'))
+			->delete();
+
+		return array('error' => 0);
+	}
+
+	/**
 	 * Data for autocomplete
 	 */
 	public function ajaxList()

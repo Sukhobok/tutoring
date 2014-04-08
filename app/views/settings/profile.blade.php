@@ -1,7 +1,7 @@
 <div class="content">
 	<div class="layout">
 		<div class="layout-sidebar">
-			@include('templates.settings_left_sidebar')
+			@include('templates.settings_left_sidebar', array('selected' => 'My Profile'))
 		</div>
 
 		<div class="layout-main page-settings">
