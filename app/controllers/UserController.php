@@ -81,6 +81,7 @@ class UserController extends BaseController {
 		}
 
 		$posts = User::getUserPosts($id);
+		$friends = Friendship::getFriends($id);
 		$images = $user->images;
 		$isFriend = Friendship::isFriend(Auth::user()->id, $user->id);
 		$canSendFR = FriendshipRequest::canSendFriendshipRequest(
@@ -93,7 +94,7 @@ class UserController extends BaseController {
 
 		$this->layout->content = View::make(
 			'user.view',
-			compact('user', 'posts', 'images', 'isFriend', 'canSendFR')
+			compact('user', 'posts', 'friends', 'images', 'isFriend', 'canSendFR')
 		);
 	}
 

@@ -59,7 +59,7 @@
 						</div>
 					@endif
 
-					<div class="ss-section photos-container">
+					<div class="ss-section photos-container with-padding">
 						@foreach($images as $photo)
 							<div class="ss-photo">
 								{{ HTML::image(HTML::get_from_s3($photo->path), 'Photo') }}
@@ -79,7 +79,19 @@
 			</div>
 
 			<div class="page-tab-component page-tab-friends">
-				friends
+				<div class="ss-container center with-padding"> 
+					@foreach($friends as $friend)
+						<div class="friend ss-link" data-ss-link="{{ URL::route('user.view', $friend->id) }}">
+							<div class="friend-hover"></div>
+							{{ HTML::image(HTML::profile_picture($friend), 'Profile Picture', array('width' => 160)) }}
+							<span>{{{ $friend->name }}}</span>
+						</div>
+					@endforeach
+
+					@if(count($friends) == 0)
+						<span class="bold">This user has no friends</span>
+					@endif
+				</div>
 			</div>
 
 			<div class="page-tab-component page-tab-more">
