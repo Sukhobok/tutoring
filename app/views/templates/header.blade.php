@@ -8,15 +8,15 @@
 		</div>
 
 		<div class="header-right">
-			<div class="header-icon">
+			<div class="header-icon header-friend-icon">
 				{{ HTML::image('images/header/friend.png') }}
 			</div>
 			
-			<div class="header-icon">
+			<div class="header-icon header-notif-icon">
 				{{ HTML::image('images/header/notification.png') }}
 			</div>
 
-			<div class="header-icon">
+			<div class="header-icon header-chat-icon">
 				{{ HTML::image('images/header/chat.png') }}
 			</div>
 
@@ -25,6 +25,82 @@
 			</div>
 		</div>
 		<div class="clear"></div>
+
+		<div class="header-extended header-friend-extended">
+			<div class="header-extended-in">
+				@foreach($friend_requests as $friend_request)
+					<div class="header-extended-item">
+						<div class="header-extended-img">
+							<div class="profile-picture">
+								{{ HTML::image(HTML::profile_picture($friend_request), 'Profile Picture', array('width' => 55)) }}
+							</div>
+						</div>
+
+						<div class="header-extended-content">
+							<p>
+								<span class="bold">{{{ $friend_request->name }}}</span> sent you a friend request
+							</p>
+							<p>
+								<button class="ss-button green bold small-button inline accept-friendship-request" data-uid="{{{ $friend_request->id }}}">Accept Request</button>
+								<button class="ss-button red bold small-button inline decline-friendship-request" data-uid="{{{ $friend_request->id }}}">Decline Request</button>
+							</p>
+							<p class="header-extended-date time-ago" data-time="{{ $friend_request->created_at }}"></p>
+						</div>
+						<div class="clear"></div>
+					</div>
+				@endforeach
+
+				@if(count($friend_requests) == 0)
+					<div class="header-extended-item bold no-new">
+						No new friend requests
+					</div>
+				@endif
+			</div>
+		</div>
+
+		<div class="header-extended header-notif-extended">
+			<div class="header-extended-in">
+				@for($i = 1; $i <= 2; $i++)
+					<div class="header-extended-item">
+						<div class="header-extended-img">
+							<div class="profile-picture">
+								{{ HTML::image(HTML::profile_picture(User::find($i)), 'Profile Picture', array('width' => 55)) }}
+							</div>
+						</div>
+
+						<div class="header-extended-content">
+							<p>
+								Demo: {{ User::find($i)->name }} sent you a message: How are you?
+							</p>
+							<span class="header-extended-date">13st February 1997, 12:43 PM</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+				@endfor
+			</div>
+		</div>
+
+		<div class="header-extended header-chat-extended">
+			<div class="header-extended-in">
+				@for($i = 1; $i <= 2; $i++)
+					<div class="header-extended-item">
+						<div class="header-extended-img">
+							<div class="profile-picture">
+								{{ HTML::image(HTML::profile_picture(User::find($i)), 'Profile Picture', array('width' => 55)) }}
+							</div>
+						</div>
+
+						<div class="header-extended-content">
+							<p>
+								Demo: {{ User::find($i)->name }} sent you a message: How are you?
+							</p>
+							<span class="header-extended-date">13st February 1997, 12:43 PM</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+				@endfor
+			</div>
+		</div>
 
 		<div class="header-settings-extended">
 			<div style="float: left; width: 200px;">

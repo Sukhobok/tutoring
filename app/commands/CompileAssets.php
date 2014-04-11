@@ -66,7 +66,8 @@ class CompileAssets extends Command {
 			'settings.cg_management.js',
 			'cg.js',
 			'messages.js',
-			'user.view.js'
+			'user.view.js',
+			'header_expand.js'
 		));
 		$compiler->setTargetFile('script.min.js');
 		$compiler->compile();

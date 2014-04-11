@@ -158,21 +158,4 @@ class UserController extends BaseController {
 		return array('error' => 1);
 	}
 
-	/**
-	 * Ajax: Send a friend request
-	 */
-	public function ajaxSendFriendRequest()
-	{
-		$request = FriendshipRequest::saveRequest(Input::get('id'));
-		
-		if ($request)
-		{
-			return array('error' => 0);
-		}
-		else
-		{
-			return array('error' => 1);
-		}
-	}
-
 }

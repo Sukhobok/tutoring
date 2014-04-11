@@ -151,8 +151,16 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'UserController@ajaxDeletePhoto'
 	));
 
-	Route::post('user/send_friend_request', array(
-		'uses' => 'UserController@ajaxSendFriendRequest'
+	Route::post('friendship/send_request', array(
+		'uses' => 'FriendshipController@ajaxSendRequest'
+	));
+
+	Route::post('friendship/accept_request', array(
+		'uses' => 'FriendshipController@ajaxAcceptRequest'
+	));
+
+	Route::post('friendship/decline_request', array(
+		'uses' => 'FriendshipController@ajaxDeclineRequest'
 	));
 
 	Route::post('post/save_thumb', array(

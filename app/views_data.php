@@ -9,6 +9,11 @@
 |
 */
 
+View::composer('templates.header', function($view)
+{
+	$view->with('friend_requests', FriendshipRequest::getUserRequests());
+});
+
 View::composer('templates.footer', function($view)
 {
 	// $view->with('', '');

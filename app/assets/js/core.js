@@ -6,29 +6,6 @@ $(document).on('click', '.ss-link', function () {
 });
 
 /**
- * Extend settings menu
- */
-$(document).on('click', '.header-settings-icon', function () {
-	$('.header-settings-extended').animate({ height: 'toggle' });
-});
-
-/**
- * Send friend request
- */
-$(document).on('click', '.add-friend-button', function () {
-	var uid = this.getAttribute('data-uid');
-	$(this).hide();
-	
-	$.ajax({
-		url: '/ajax/user/send_friend_request',
-		method: 'POST',
-		data: { id: uid }
-	}).done(function (data) {
-		//
-	});
-});
-
-/**
  * Set multiline value
  * e.g. message page
  */
