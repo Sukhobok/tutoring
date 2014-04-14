@@ -218,4 +218,8 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('messages/send_message', array(
 		'uses' => 'MessageController@ajaxSendMessage'
 	));
+
+	Route::post('messages/seen', array(
+		'uses' => 'MessageController@ajaxSeen'
+	));
 });

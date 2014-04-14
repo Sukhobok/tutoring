@@ -111,4 +111,44 @@ class Message extends Eloquent {
 		return $query;
 	}
 
+	/**
+	 * Make a conversation seen
+	 * @param integer $uid
+	 * @return boolean TRUE
+	 */
+	public static function seeConversation($uid)
+	{
+		DB::table('messages')
+			->where('from_id', '=', $uid)
+			->where('to_id', '=', Auth::user()->id)
+			->update(array(
+				'read' => 1
+			));
+
+		return true;
+	}
+
+	public static function unreadMessages()
+	{
+		$unread = DB::select('SELECT messages.message,
+		messages.created_at,
+		users.name,
+		users.profile_picture
+		FROM messages, users
+		WHERE messages.from_id = users.id
+		AND messages.id IN (
+			SELECT MAX(messages.id)
+			FROM messages
+			WHERE messages.to_id = ?
+			AND messages.read = 0
+			GROUP BY messages.from_id DESC
+		)', array_fill(0, 1, Auth::user()->id));
+
+		foreach ($unread as $_unread) {
+			$_unread->created_at = strtotime($_unread->created_at);
+		}
+		
+		return $unread;
+	}
+
 }

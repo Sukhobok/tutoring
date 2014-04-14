@@ -1,4 +1,67 @@
 /**
+ * Close any extended
+ */
+function header_close_extended () {
+	$('.header-extended').each(function () {
+		if($(this).css('display') != 'none') {
+			$(this).animate({ height: 'toggle' });
+		}
+	});
+
+	if($('.header-settings-extended').css('display') != 'none') {
+		$('.header-settings-extended').animate({ height: 'toggle' });
+	}
+}
+
+$(document).on('click', function () {
+	header_close_extended();
+});
+
+/**
+ * Extend settings menu
+ */
+$(document).on('click', '.header-settings-icon', function (e) {
+	if($('.header-settings-extended').css('display') == 'none')
+		header_close_extended();
+	$('.header-settings-extended').animate({ height: 'toggle' });
+
+	e.stopPropagation();
+});
+
+/**
+ * Extend friends menu
+ */
+$(document).on('click', '.header-friend-icon', function (e) {
+	if($('.header-friend-extended').css('display') == 'none')
+		header_close_extended();
+	$('.header-friend-extended').animate({ height: 'toggle' });
+
+	e.stopPropagation();
+});
+
+/**
+ * Extend notifications menu
+ */
+$(document).on('click', '.header-notif-icon', function (e) {
+	if($('.header-notif-extended').css('display') == 'none')
+		header_close_extended();
+	$('.header-notif-extended').animate({ height: 'toggle' });
+
+	e.stopPropagation();
+});
+
+/**
+ * Extend chat menu
+ */
+$(document).on('click', '.header-chat-icon', function (e) {
+	if($('.header-chat-extended').css('display') == 'none')
+		header_close_extended();
+	$('.header-chat-extended').animate({ height: 'toggle' });
+
+	e.stopPropagation();
+});
+
+/**
  * Friend requests
  */
 $(document).on('click', '.accept-friendship-request', function () {
@@ -25,52 +88,4 @@ $(document).on('click', '.decline-friendship-request', function () {
 	}).done(function (data) {
 		//
 	});
-});
-
-function header_close_extended () {
-	$('.header-extended').each(function () {
-		if($(this).css('display') != 'none') {
-			$(this).animate({ height: 'toggle' });
-		}
-	});
-
-	if($('.header-settings-extended').css('display') != 'none') {
-		$('.header-settings-extended').animate({ height: 'toggle' });
-	}
-}
-
-/**
- * Extend settings menu
- */
-$(document).on('click', '.header-settings-icon', function () {
-	if($('.header-settings-extended').css('display') == 'none')
-		header_close_extended();
-	$('.header-settings-extended').animate({ height: 'toggle' });
-});
-
-/**
- * Extend friends menu
- */
-$(document).on('click', '.header-friend-icon', function () {
-	if($('.header-friend-extended').css('display') == 'none')
-		header_close_extended();
-	$('.header-friend-extended').animate({ height: 'toggle' });
-});
-
-/**
- * Extend notifications menu
- */
-$(document).on('click', '.header-notif-icon', function () {
-	if($('.header-notif-extended').css('display') == 'none')
-		header_close_extended();
-	$('.header-notif-extended').animate({ height: 'toggle' });
-});
-
-/**
- * Extend chat menu
- */
-$(document).on('click', '.header-chat-icon', function () {
-	if($('.header-chat-extended').css('display') == 'none')
-		header_close_extended();
-	$('.header-chat-extended').animate({ height: 'toggle' });
 });

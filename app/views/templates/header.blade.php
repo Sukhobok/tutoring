@@ -60,45 +60,38 @@
 
 		<div class="header-extended header-notif-extended">
 			<div class="header-extended-in">
-				@for($i = 1; $i <= 2; $i++)
-					<div class="header-extended-item">
-						<div class="header-extended-img">
-							<div class="profile-picture">
-								{{ HTML::image(HTML::profile_picture(User::find($i)), 'Profile Picture', array('width' => 55)) }}
-							</div>
-						</div>
-
-						<div class="header-extended-content">
-							<p>
-								Demo: {{ User::find($i)->name }} sent you a message: How are you?
-							</p>
-							<span class="header-extended-date">13st February 1997, 12:43 PM</span>
-						</div>
-						<div class="clear"></div>
-					</div>
-				@endfor
+				<div class="header-extended-item bold no-new">
+					No new notifications
+				</div>
 			</div>
 		</div>
 
 		<div class="header-extended header-chat-extended">
 			<div class="header-extended-in">
-				@for($i = 1; $i <= 2; $i++)
+				@foreach($unread_messages as $unread_message)
 					<div class="header-extended-item">
 						<div class="header-extended-img">
 							<div class="profile-picture">
-								{{ HTML::image(HTML::profile_picture(User::find($i)), 'Profile Picture', array('width' => 55)) }}
+								{{ HTML::image(HTML::profile_picture($unread_message), 'Profile Picture', array('width' => 55)) }}
 							</div>
 						</div>
 
 						<div class="header-extended-content">
 							<p>
-								Demo: {{ User::find($i)->name }} sent you a message: How are you?
+								<span class="bold">{{{ $unread_message->name }}}</span> sent you a message:<br />
+								{{{ HTML::limit($unread_message->message, 55) }}}
 							</p>
-							<span class="header-extended-date">13st February 1997, 12:43 PM</span>
+							<p class="header-extended-date time-ago" data-time="{{ $unread_message->created_at }}"></p>
 						</div>
 						<div class="clear"></div>
 					</div>
-				@endfor
+				@endforeach
+
+				@if(count($unread_messages) == 0)
+					<div class="header-extended-item bold no-new">
+						No new messages
+					</div>
+				@endif
 			</div>
 		</div>
 

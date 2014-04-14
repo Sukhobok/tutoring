@@ -88,4 +88,14 @@ class MessageController extends BaseController {
 		return array('error' => 0);
 	}
 
+	/**
+	 * Ajax: Make a conversation seen
+	 */
+	public function ajaxSeen()
+	{
+		$uid = (int) Input::get('uid');
+		Message::seeConversation($uid);
+		return array('error' => 0);
+	}
+
 }
