@@ -24,7 +24,17 @@ $('.ss-search-anything').autocomplete({
 	if(item.profile_picture != '') {
 		to_append += '<div class="profile-picture ss-search-result-img"><img src="' + item.profile_picture + '" width="50" /></div>';
 	}
-	to_append += '<div class="ss-search-result-content">' + item.name + '<br /><span style="font-size: 12px;">' + item.data + '</span></div>';
+
+	to_append += '<div class="ss-search-result-content">';
+	to_append += item.name + '<br />';
+
+	if(item.type == 'Group' || item.type == 'Classroom')
+		to_append += '<span class="ss-search-result-data"><span class="bold">' + item.data + '</span> members</span>';
+
+	if((item.type == 'Highschool' || item.type == 'University' || item.type == 'User') && item.data)
+		to_append += '<span class="ss-search-result-data">' + item.data + '</span>';
+	
+	to_append += '</div>';
 	to_append += '<div class="clear"></div>';
 	to_append += '</a>';
 
@@ -32,3 +42,5 @@ $('.ss-search-anything').autocomplete({
 	.append(to_append)
 	.appendTo(ul);
 };
+
+$('.ss-search-anything').autocomplete('widget').addClass('ss-search-ul');

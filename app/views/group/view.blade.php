@@ -5,7 +5,7 @@
 				<div class="ss-section">
 					<div class="center">
 						<div class="profile-picture big-profile-picture">
-							{{ HTML::image(HTML::get_from_s3($group->profile_picture), 'Profile Picture', array('width' => 160)) }}
+							{{ HTML::image(HTML::profile_picture($group), 'Profile Picture', array('width' => 160)) }}
 						</div>
 
 						<h1 class="user-name">{{{ $group->name }}}</h1>

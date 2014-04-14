@@ -27,12 +27,12 @@ Form::macro('ss_file', function($name, $attributes = array(), $color = 'green', 
 /**
  * Get link from S3
  */
-HTML::macro('profile_picture', function($user)
+HTML::macro('profile_picture', function($object)
 {
-	if ($user->profile_picture)
+	if ($object->profile_picture)
 	{
 		return Config::get('s3.url')
-			. $user->profile_picture;
+			. $object->profile_picture;
 	}
 
 	return '/images/default_avatar.jpg';

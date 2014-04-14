@@ -154,7 +154,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		"User" AS type,
 		users.id,
 		users.profile_picture AS profile_picture,
-		"" AS data
+		(SELECT
+			CASE user_education.type
+				WHEN "highschool" THEN highschools.name
+				ELSE universities.name
+			END
+			FROM user_education
+			LEFT JOIN highschools ON (
+				user_education.type = "highschool"
+				AND user_education.education_id = highschools.id
+			)
+			LEFT JOIN universities ON (
+				user_education.type != "highschool"
+				AND user_education.education_id = universities.id
+			)
+			WHERE user_education.user_id = users.id
+			ORDER BY FIELD (user_education.type, "graduation", "college", "highschool"),
+				user_education.from DESC
+			LIMIT 1
+		) AS data
 			FROM users
 			WHERE MATCH(users.name) AGAINST(? IN BOOLEAN MODE)
 			LIMIT 5';
@@ -187,7 +205,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		"University" AS type,
 		universities.id,
 		"" AS profile_picture,
-		"" AS data
+		universities.address AS data
 			FROM universities
 			WHERE MATCH(universities.name) AGAINST(? IN BOOLEAN MODE)
 			OR MATCH(universities.acronym) AGAINST(? IN BOOLEAN MODE)
@@ -197,7 +215,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		"Highschool" AS type,
 		highschools.id,
 		"" AS profile_picture,
-		"" AS data
+		highschools.address AS data
 			FROM highschools
 			WHERE MATCH(highschools.name) AGAINST(? IN BOOLEAN MODE)
 			LIMIT 5';
@@ -209,12 +227,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$query = implode('UNION ALL', $query);
 		$query = DB::select($query, array_fill(0, 6, $search));
 
-		foreach ($query as &$element)
+		foreach ($query as $element)
 		{
-			// $element->test = 'test';
-			if ($element->profile_picture)
+			$element->name = HTML::limit($element->name, 30);
+
+			if ($element->data)
 			{
-				$element->profile_picture = HTML::get_from_s3($element->profile_picture);
+				$element->data = HTML::limit($element->data, 30);
+			}
+
+			if ($element->type == 'User'
+				|| $element->type == 'Group')
+			{
+				$element->profile_picture = HTML::profile_picture($element);
+			}
+			elseif ($element->type == 'Highschool'
+				|| $element->type == 'University')
+			{
+				$element->profile_picture = HTML::school_profile_picture($element);
 			}
 		}
 

@@ -20,16 +20,28 @@ input.ss-search {
 	margin-top: 15px;
 }
 
-.ss-search-result {
-	padding: 10px !important;
-	cursor: pointer;
+.ss-search-ul {
+	height: 400px;
+	width: 300px;
+	overflow-y: auto;
 
-	.ss-search-result-img {
-		float: left;
-	}
+	.ss-search-result {
+		padding: 7px !important;
+		border-bottom: 1px dashed #ccc;
+		font-size: 13px;
+		cursor: pointer;
 
-	.ss-search-result-content {
-		float: left;
-		margin-left: 10px;
+		.ss-search-result-img {
+			float: left;
+		}
+
+		.ss-search-result-content {
+			float: left;
+			margin-left: 10px;
+		}
+
+		.ss-search-result-data {
+			font-size: 12px;
+		}
 	}
 }
