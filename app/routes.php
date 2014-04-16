@@ -139,6 +139,10 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@getClassroomsManagement'
 	));
 
+	Route::get('settings/tutor_center', array(
+		'as' => 'settings.tutor_center',
+		'uses' => 'SettingsController@getTutorCenter'
+	));
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
@@ -209,6 +213,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 
 	Route::post('settings/delete_education', array(
 		'uses' => 'SettingsController@ajaxDeleteEducation'
+	));
+
+	Route::get('settings/subjects', array(
+		'uses' => 'SettingsController@ajaxSubjects'
 	));
 
 	Route::get('messages/get_conversation', array(

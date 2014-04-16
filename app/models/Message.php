@@ -128,6 +128,10 @@ class Message extends Eloquent {
 		return true;
 	}
 
+	/**
+	 * Return unread messages to display on the header
+	 * @return array
+	 */
 	public static function unreadMessages()
 	{
 		$unread = DB::select('SELECT messages.message,

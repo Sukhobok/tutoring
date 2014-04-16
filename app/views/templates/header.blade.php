@@ -106,7 +106,7 @@
 						<i class="ss-icon ss-file-manager"></i> File Manager
 					</li>
 
-					<li class="ss-link" data-ss-link="{{ URL::to('settings/tutor_center') }}">
+					<li class="ss-link" data-ss-link="{{ URL::route('settings.tutor_center') }}">
 						<i class="ss-icon ss-star"></i> Tutor Center
 					</li>
 

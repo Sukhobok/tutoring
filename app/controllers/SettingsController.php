@@ -212,4 +212,25 @@ class SettingsController extends BaseController {
 		);
 	}
 
+	/**
+	 * Tutor Center
+	 */
+	public function getTutorCenter()
+	{
+		//
+		$this->layout->content = View::make(
+			'settings.tutor_center',
+			array()
+		);
+	}
+
+	/**
+	 * Subjects autocomplete
+	 */
+	public function ajaxSubjects()
+	{
+		$search = Input::get('q');
+		return Subject::searchAutocomplete($search);
+	}
+
 }
