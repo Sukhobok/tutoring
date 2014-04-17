@@ -217,20 +217,77 @@ class SettingsController extends BaseController {
 	 */
 	public function getTutorCenter()
 	{
-		//
+		$current_user_subjects = Subject::getUserSubjects();
+
 		$this->layout->content = View::make(
 			'settings.tutor_center',
-			array()
+			compact('current_user_subjects')
 		);
 	}
 
 	/**
-	 * Subjects autocomplete
+	 * Ajax: Subjects autocomplete
 	 */
 	public function ajaxSubjects()
 	{
 		$search = Input::get('q');
 		return Subject::searchAutocomplete($search);
+	}
+
+	/**
+	 * Ajax: Assign a subject to a user
+	 */
+	public function ajaxAddSubject()
+	{
+		$sid = Input::get('id');
+		Subject::addUserSubject(Auth::user()->id, $sid);
+
+		return array('error' => 0);
+	}
+
+	/**
+	 * Ajax: Delete a subject from the user
+	 */
+	public function ajaxDeleteSubject()
+	{
+		$sid = Input::get('id');
+		Subject::deleteUserSubject(Auth::user()->id, $sid);
+
+		return array('error' => 0);
+	}
+
+	/**
+	 * Ajax: Change user data (bio, price, available)
+	 */
+	public function ajaxChangeUserData()
+	{
+		$user = Auth::user();
+		switch (Input::get('what'))
+		{
+			case 'bio':
+				$user->bio = Input::get('value');
+				$user->save();
+				break;
+
+			case 'price':
+				$new_price = (int) Input::get('value');
+				if ($new_price >= 20 && $new_price <= 99)
+				{
+					$user->price = $new_price;
+					$user->save();
+				}
+				break;
+
+			case 'available':
+				$available = (int) Input::get('value');
+				$available = (bool) $available;
+				$available = (int) $available;
+				$user->available = $available;
+				$user->save();
+				break;
+		}
+
+		return array('error' => 0);
 	}
 
 }

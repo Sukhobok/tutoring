@@ -5,7 +5,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected $appends = array('display_name');
+	protected $appends = array('display_name', 'net_price');
 
 	/**
 	 * The database table used by the model.
@@ -88,6 +88,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 		return $this->name;
+	}
+
+	/**
+	 * Get hourly net rate
+	 * @return float
+	 */
+	public function getNetPriceAttribute()
+	{
+		return $this->price - ($this->price / 10) - 1;
 	}
 
 	/**
