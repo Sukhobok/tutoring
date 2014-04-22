@@ -1,0 +1,46 @@
+.ss-modal-bg {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .85);
+	z-index: 100;
+}
+
+.ss-modal {
+	display: none;
+	position: fixed;
+	width: 600px;
+	height: auto;
+	min-height: 100px;
+	left: 50%;
+	margin-left: -300px;
+	top: 100px;
+	background: #fff;
+	border-radius: 10px;
+	text-align: center;
+	z-index: 101;
+
+	.ss-modal-top {
+		position: absolute;
+		top: -53px;
+		left: (600px-125px)/2;
+		width: 125px;
+		height: 107px;
+
+		&.ss-modal-type-exclam {
+			background: url(../images/ss_modals/exclam.png);
+		}
+
+		&.ss-modal-type-wait {
+			background: url(../images/ss_modals/wait.png);
+		}
+	}
+
+	.ss-modal-body {
+		padding: 35px 25px;
+		padding-top: 75px;
+	}
+}

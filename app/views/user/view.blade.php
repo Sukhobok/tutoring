@@ -104,3 +104,19 @@
 		</div>
 	</div>
 </div>
+
+<div class="ss-modal" id="ss-modal-hire">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			I want to hire <span class="bold">{{{ $user->name }}}</span> for
+			{{ Form::text('hire-hours', '1') }}
+			hour(s) @ ${{{ (int) $user->price }}}/hour = ${{{ (int) $user->price }}}
+		</p>
+
+		<!-- 1st Choice for Day/Time 2nd Choice for Day/Time 3rd Choice for Day/Time
+		Brief description of what you want to learn
+
+		Send req/hire now -->
+	</div>
+</div>

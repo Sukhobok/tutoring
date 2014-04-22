@@ -56,6 +56,7 @@ class CompileAssets extends Command {
 			'plugins/jquery-mousewheel.js',
 			'plugins/jquery-mCustomScrollbar.js',
 			'core.js',
+			'ss_modals.js',
 			'time.js',
 			'elements_behavior.js',
 			'posts.js',
