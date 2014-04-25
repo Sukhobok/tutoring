@@ -158,4 +158,103 @@ class UserController extends BaseController {
 		return array('error' => 1);
 	}
 
+	/**
+	 * Ajax: Send hire request
+	 */
+	public function ajaxHire()
+	{
+		// Start validation
+		if ((int) Input::get('hours') < 1 || (int) Input::get('hours') > 4)
+		{
+			return array('error' => 1, 'error_type' => 'hours');
+		}
+
+		if (Input::get('description') == '')
+		{
+			return array('error' => 1, 'error_type' => 'description');
+		}
+
+		$datetime_check = new DateTime('now + 3 hours');
+		$datetimes = array();
+
+		for ($i = 1; $i <= 3; $i++)
+		{
+			if ((int) Input::get('time' . $i . '_y') < (int) date('Y')
+				|| (int) Input::get('time' . $i . '_y') > (int) date('Y') + 1)
+			{
+				return array('error' => 1, 'error_type' => 'time_y');
+			}
+
+			if ((int) Input::get('time' . $i . '_m') < 1
+				|| (int) Input::get('time' . $i . '_m') > 12)
+			{
+				return array('error' => 1, 'error_type' => 'time_m');
+			}
+
+			if ((int) Input::get('time' . $i . '_d') < 1
+				|| (int) Input::get('time' . $i . '_d') > 31)
+			{
+				return array('error' => 1, 'error_type' => 'time_d');
+			}
+
+			if ((int) Input::get('time' . $i . '_h') < 0
+				|| (int) Input::get('time' . $i . '_h') > 23)
+			{
+				return array('error' => 1, 'error_type' => 'time_h');
+			}
+
+			if ((int) Input::get('time' . $i . '_min') != 0
+				&& (int) Input::get('time' . $i . '_min') != 15
+				&& (int) Input::get('time' . $i . '_min') != 30
+				&& (int) Input::get('time' . $i . '_min') != 45)
+			{
+				return array('error' => 1, 'error_type' => 'time_min');
+			}
+
+			$datetimes[$i] = new DateTime(
+				Input::get('time' . $i . '_y') . '-'
+					. Input::get('time' . $i . '_m') . '-'
+					. Input::get('time' . $i . '_d') . ' '
+					. Input::get('time' . $i . '_h') . ':'
+					. Input::get('time' . $i . '_min')
+			);
+
+			if ($datetime_check > $datetimes[$i])
+			{
+				return array('error' => 1, 'error_type' => 'time_check');
+			}
+		}
+
+		if ($datetimes[1] == $datetimes[2]
+			|| $datetimes[1] == $datetimes[3]
+			|| $datetimes[2] == $datetimes[3])
+		{
+			return array('error' => 1, 'error_type' => 'time_equal');
+		}
+
+		if (!Subject::isTutor(Input::get('tutor_id'))
+			|| (int) Input::get('tutor_id') == (int) Auth::user()->id)
+		{
+			return array('error' => 1, 'error_type' => 'tutor');
+		}
+
+		$price = User::find(Input::get('tutor_id'))->price;
+		// TO DO: Check if the user has money
+
+		// Validated, now save
+		$hr = new HireRequest;
+		$hr->student_id = Auth::user()->id;
+		$hr->tutor_id = Input::get('tutor_id');
+		$hr->hours = Input::get('hours');
+		$hr->price = $price;
+		$hr->last = 'student';
+		$hr->date1 = $datetimes[1];
+		$hr->date2 = $datetimes[2];
+		$hr->date3 = $datetimes[3];
+		// $hr->description = Input::get('description');
+		$hr->save();
+
+		return array('error' => 0);
+	}
+
 }

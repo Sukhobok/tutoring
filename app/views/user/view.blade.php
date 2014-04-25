@@ -110,13 +110,76 @@
 	<div class="ss-modal-body">
 		<p>
 			I want to hire <span class="bold">{{{ $user->name }}}</span> for
-			{{ Form::text('hire-hours', '1') }}
+			{{ Form::text('ss-hire-hours', '1', array('id' => 'ss-hire-hours')) }}
 			hour(s) @ ${{{ (int) $user->price }}}/hour = ${{{ (int) $user->price }}}
 		</p>
 
-		<!-- 1st Choice for Day/Time 2nd Choice for Day/Time 3rd Choice for Day/Time
-		Brief description of what you want to learn
+		<p>
+			<table id="ss-hire-time-table">
+				<tr>
+					<td>1st Choice for Day/Time</td>
+					<td>2nd Choice for Day/Time</td>
+					<td>3rd Choice for Day/Time</td>
+				</tr>
 
-		Send req/hire now -->
+				<tr>
+					@for($i = 1; $i <= 3; $i++)
+						<td><div id="ss-hire-date{{ $i }}"></div></td>
+					@endfor
+				</tr>
+
+				<tr>
+					@for($i = 1; $i <= 3; $i++)
+						<td>
+							{{ Form::select(
+								'hour' . $i,
+								array(
+									'12' => '12',
+									'1' => '01',
+									'2' => '02',
+									'3' => '03',
+									'4' => '04',
+									'5' => '05',
+									'6' => '06',
+									'7' => '07',
+									'8' => '08',
+									'9' => '09',
+									'10' => '10',
+									'11' => '11'
+								)
+							) }}
+
+							{{ Form::select(
+								'minute' . $i,
+								array(
+									'0' => '00',
+									'15' => '15',
+									'30' => '30',
+									'45' => '45'
+								)
+							) }}
+
+							{{ Form::select(
+								'ap' . $i,
+								array(
+									'0' => 'AM',
+									'1' => 'PM'
+								)
+							) }}
+						</td>
+					@endfor
+			</table>
+
+			<p id="ss-hire-desc">
+				Brief description of what you want to learn:
+				<textarea></textarea>
+			</p>
+
+			<button class="ss-button blue bold" id="ss-hire-send">Send request</button>
+		</p>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var user_view_id = '{{{ $user->id }}}';
+</script>

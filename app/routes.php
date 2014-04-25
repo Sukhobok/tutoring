@@ -155,6 +155,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'UserController@ajaxDeletePhoto'
 	));
 
+	Route::post('user/hire', array(
+		'uses' => 'UserController@ajaxHire'
+	));
+
 	Route::post('friendship/send_request', array(
 		'uses' => 'FriendshipController@ajaxSendRequest'
 	));

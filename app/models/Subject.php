@@ -34,16 +34,28 @@ class Subject extends Eloquent {
 	}
 
 	/**
-	 * Check if the user is tutoring a subject
+	 * Check if the user is tutoring a specific subject
 	 * @param integer $uid
 	 * @param integer $sid
 	 * @return boolean TRUE if tutoring, FALSE if not
 	 */
-	public static function isTutoring($uid, $sid)
+	public static function isTutoringSubject($uid, $sid)
 	{
 		return (bool) DB::table('user_subjects')
 			->where('user_id', '=', $uid)
 			->where('subject_id', '=', $sid)
+			->count();
+	}
+
+	/**
+	 * Check if the user is a tutor
+	 * @param integer $uid
+	 * @return boolean TRUE if tutor, FALSE if not
+	 */
+	public static function isTutor($uid)
+	{
+		return (bool) DB::table('user_subjects')
+			->where('user_id', '=', $uid)
 			->count();
 	}
 
