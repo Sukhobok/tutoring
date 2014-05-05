@@ -46,32 +46,44 @@ class CompileAssets extends Command {
 		$this->info('Done!');
 
 		// JS
-		$this->comment('Starting to compile JS');
+		// $this->comment('Starting to compile JS');
+		// $compiler = new ClosureCompiler;
+		// $compiler->setSourceBaseDir('app/assets/js/');
+		// $compiler->setTargetBaseDir('public/js/');
+		// $compiler->setSourceFiles(array(
+		// 	'plugins/jquery-jcrop-0.9.12.js',
+		// 	'plugins/jquery-tokeninput.js',
+		// 	'plugins/jquery-mousewheel.js',
+		// 	'plugins/jquery-mCustomScrollbar.js',
+		// 	'core.js',
+		// 	'ss_modals.js',
+		// 	'time.js',
+		// 	'elements_behavior.js',
+		// 	'posts.js',
+		// 	'photos.js',
+		// 	'right_sidebar.js',
+		// 	'left_sidebar.js',
+		// 	'settings.my_profile.js',
+		// 	'settings.cg_management.js',
+		// 	'settings.tutor_center.js',
+		// 	'cg.js',
+		// 	'messages.js',
+		// 	'user.view.js',
+		// 	'header_expand.js'
+		// ));
+		// $compiler->setTargetFile('script.min.js');
+		// $compiler->compile();
+		// $this->info('Done!');
+
+		// JS - Tutoring Session
+		$this->comment('Starting to compile JS - Tutoring Session');
 		$compiler = new ClosureCompiler;
-		$compiler->setSourceBaseDir('app/assets/js/');
+		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
 		$compiler->setTargetBaseDir('public/js/');
 		$compiler->setSourceFiles(array(
-			'plugins/jquery-jcrop-0.9.12.js',
-			'plugins/jquery-tokeninput.js',
-			'plugins/jquery-mousewheel.js',
-			'plugins/jquery-mCustomScrollbar.js',
-			'core.js',
-			'ss_modals.js',
-			'time.js',
-			'elements_behavior.js',
-			'posts.js',
-			'photos.js',
-			'right_sidebar.js',
-			'left_sidebar.js',
-			'settings.my_profile.js',
-			'settings.cg_management.js',
-			'settings.tutor_center.js',
-			'cg.js',
-			'messages.js',
-			'user.view.js',
-			'header_expand.js'
+			'whiteboard_core.js'
 		));
-		$compiler->setTargetFile('script.min.js');
+		$compiler->setTargetFile('tutoring_session.min.js');
 		$compiler->compile();
 		$this->info('Done!');
 	}

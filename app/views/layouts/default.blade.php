@@ -18,10 +18,16 @@
 	{{ $content }}
 
 	@include('templates.footer')
-	<div class="ss-modal-bg"><!-- Background for $.ssModal --></div>
+	<div class="ss-modal-bg">{{-- Background for $.ssModal --}}</div>
 
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
 	{{ HTML::script('js/script.min.js') }}
+	
+	{{-- Tutoring session scripts --}}
+	@if (Route::currentRouteName() == 'tutoring_session.start')
+		{{ HTML::script('js/plugins/paper-v0.9.18.min.js') }}
+		{{ HTML::script('js/tutoring_session.min.js', array('type' => 'text/paperscript', 'canvas' => 'ts-canvas')) }}
+	@endif
 </body>
 </html>

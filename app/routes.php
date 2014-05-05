@@ -143,6 +143,11 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'settings.tutor_center',
 		'uses' => 'SettingsController@getTutorCenter'
 	));
+
+	Route::get('session/{id}', array(
+		'as' => 'tutoring_session.start',
+		'uses' => 'TutoringSessionController@getStart'
+	));
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
