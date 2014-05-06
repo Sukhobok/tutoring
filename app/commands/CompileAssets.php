@@ -75,15 +75,22 @@ class CompileAssets extends Command {
 		// $compiler->compile();
 		// $this->info('Done!');
 
-		// JS - Tutoring Session
-		$this->comment('Starting to compile JS - Tutoring Session');
+		// JS - Whiteboard
+		$this->comment('Starting to compile JS - Whiteboard');
 		$compiler = new ClosureCompiler;
 		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
-		$compiler->setTargetBaseDir('public/js/');
+		$compiler->setTargetBaseDir('public/js/tutoring_session/');
 		$compiler->setSourceFiles(array(
-			'whiteboard_core.js'
+			'whiteboard_core.js',
+			'whiteboard_tools/pencil.js',
+			'whiteboard_tools/erase.js',
+			'whiteboard_tools/rectangle.js',
+			'whiteboard_tools/ellipse.js',
+			'whiteboard_tools/line.js',
+			'whiteboard_color_size.js',
+			'whiteboard_tabs.js'
 		));
-		$compiler->setTargetFile('tutoring_session.min.js');
+		$compiler->setTargetFile('whiteboard.min.js');
 		$compiler->compile();
 		$this->info('Done!');
 	}

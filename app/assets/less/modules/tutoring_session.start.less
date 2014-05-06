@@ -63,160 +63,195 @@
 }
 
 .ts-mode-whiteboard {
-	width: 730px;
-	height: 500px;
-	border-radius: 6px;
-	overflow: hidden;
+	.ts-whiteboard-holder {
+		width: 730px;
+		height: 500px;
+		border-radius: 6px;
+		overflow: hidden;
 
-	.ts-whiteboard-tools {
-		height: 100%;
-		width: 50px;
-		background: #1b1b1b;
-		float: left;
+		.ts-whiteboard-tools {
+			height: 100%;
+			width: 50px;
+			background: #1b1b1b;
+			float: left;
 
-		.ts-whiteboard-tool {
-			padding: 9px 8px;
-			border-bottom: 2px solid #000;
-			display: block;
-			width: 35px;
-			height: 35px;
-			background-repeat: no-repeat !important;
-			background-position: center !important;
-			cursor: pointer;
-		}
-
-		.ts-whiteboard-tools-draw {
-			background: url(../images/tutoring_session/buttons_filled/draw.png);
-
-			&:hover {
-				background: url(../images/tutoring_session/buttons_filled/draw_hover.png);
-			}
-
-			&.is-selected {
-				background: url(../images/tutoring_session/buttons_filled/draw_hover.png);
-			}
-		}
-
-		.ts-whiteboard-tools-erase {
-			background: url(../images/tutoring_session/buttons_filled/erase.png);
-
-			&:hover {
-				background: url(../images/tutoring_session/buttons_filled/erase_hover.png);
-			}
-
-			&.is-selected {
-				background: url(../images/tutoring_session/buttons_filled/erase_hover.png);
-			}
-		}
-
-		.ts-whiteboard-tools-rectangle {
-			background: url(../images/tutoring_session/buttons_filled/rectangle.png);
-
-			&:hover {
-				background: url(../images/tutoring_session/buttons_filled/rectangle_hover.png);
-			}
-
-			&.is-selected {
-				background: url(../images/tutoring_session/buttons_filled/rectangle_hover.png);
-			}
-		}
-
-		.ts-whiteboard-tools-circle {
-			background: url(../images/tutoring_session/buttons_filled/circle.png);
-
-			&:hover {
-				background: url(../images/tutoring_session/buttons_filled/circle_hover.png);
-			}
-
-			&.is-selected {
-				background: url(../images/tutoring_session/buttons_filled/circle_hover.png);
-			}
-		}
-
-		.ts-whiteboard-tools-line {
-			background: url(../images/tutoring_session/buttons_filled/line.png);
-
-			&:hover {
-				background: url(../images/tutoring_session/buttons_filled/line_hover.png);
-			}
-
-			&.is-selected {
-				background: url(../images/tutoring_session/buttons_filled/line_hover.png);
-			}
-		}
-
-		.ts-whiteboard-tools-change-color { padding: 9px 5px; width: 40px; height: 40px; }
-		.ts-whiteboard-tools-colors {
-			width: 36px;
-			height: 36px;
-			background: #fff;
-			border: 2px solid #ccc;
-			border-radius: 30px;
-			overflow: hidden;
-			position: relative;
-
-			.ts-whiteboard-tools-color {
-				height: 30px;
-				width: 30px;
-				display: inline-block;
-				border: 0;
-				margin: 3px;
+			.ts-whiteboard-tool {
+				padding: 9px 8px;
+				border-bottom: 2px solid #000;
+				display: block;
+				width: 35px;
+				height: 35px;
+				background-repeat: no-repeat !important;
+				background-position: center !important;
 				cursor: pointer;
-				border-radius: 25px;
-
-				&.ts-whiteboard-tools-color-red { background: #ed1c24; }
-				&.ts-whiteboard-tools-color-yellow { background: #fff200; }
-				&.ts-whiteboard-tools-color-green { background: #00a651; }
-				&.ts-whiteboard-tools-color-blue { background: #00aeef; }
-				&.ts-whiteboard-tools-color-purple { background: #2e3192; }
-				&.ts-whiteboard-tools-color-pink { background: #ec008c; }
-				&.ts-whiteboard-tools-color-gray { background: #898989; }
-				&.ts-whiteboard-tools-color-black { background: #000; }
 			}
-		}
-		
-		.ts-whiteboard-tools-change-size { padding: 9px 5px; width: 40px; height: 40px; }
-		.ts-whiteboard-tools-sizes {
-			width: 36px;
-			height: 36px;
-			background: #fff;
-			border: 2px solid #ccc;
-			border-radius: 30px;
-			overflow: hidden;
-			position: relative;
 
-			.ts-whiteboard-tools-size {
-				height: 30px;
-				width: 30px;
-				display: inline-block;
-				margin: 1px;
-				cursor: pointer;
-				border-radius: 30px;
+			.ts-whiteboard-tools-pencil {
+				background: url(../images/tutoring_session/buttons_filled/pencil.png);
+
+				&:hover {
+					background: url(../images/tutoring_session/buttons_filled/pencil_hover.png);
+				}
+
+				&.is-selected {
+					background: url(../images/tutoring_session/buttons_filled/pencil_hover.png);
+				}
+			}
+
+			.ts-whiteboard-tools-erase {
+				background: url(../images/tutoring_session/buttons_filled/erase.png);
+
+				&:hover {
+					background: url(../images/tutoring_session/buttons_filled/erase_hover.png);
+				}
+
+				&.is-selected {
+					background: url(../images/tutoring_session/buttons_filled/erase_hover.png);
+				}
+			}
+
+			.ts-whiteboard-tools-rectangle {
+				background: url(../images/tutoring_session/buttons_filled/rectangle.png);
+
+				&:hover {
+					background: url(../images/tutoring_session/buttons_filled/rectangle_hover.png);
+				}
+
+				&.is-selected {
+					background: url(../images/tutoring_session/buttons_filled/rectangle_hover.png);
+				}
+			}
+
+			.ts-whiteboard-tools-ellipse {
+				background: url(../images/tutoring_session/buttons_filled/ellipse.png);
+
+				&:hover {
+					background: url(../images/tutoring_session/buttons_filled/ellipse_hover.png);
+				}
+
+				&.is-selected {
+					background: url(../images/tutoring_session/buttons_filled/ellipse_hover.png);
+				}
+			}
+
+			.ts-whiteboard-tools-line {
+				background: url(../images/tutoring_session/buttons_filled/line.png);
+
+				&:hover {
+					background: url(../images/tutoring_session/buttons_filled/line_hover.png);
+				}
+
+				&.is-selected {
+					background: url(../images/tutoring_session/buttons_filled/line_hover.png);
+				}
+			}
+
+			.ts-whiteboard-tools-change-color { padding: 9px 5px; width: 40px; height: 40px; }
+			.ts-whiteboard-tools-colors {
+				width: 36px;
+				height: 36px;
 				background: #fff;
-				color: #000;
-				font-size: 11px;
-				text-align: center;
-				line-height: 30px;
 				border: 2px solid #ccc;
-				font-weight: 700;
+				border-radius: 30px;
+				overflow: hidden;
+				position: relative;
+				z-index: 1;
+
+				.ts-whiteboard-tools-color {
+					height: 30px;
+					width: 30px;
+					display: inline-block;
+					border: 0;
+					margin: 3px;
+					cursor: pointer;
+					border-radius: 25px;
+
+					&.ts-whiteboard-tools-color-red { background: #ed1c24; }
+					&.ts-whiteboard-tools-color-yellow { background: #fff200; }
+					&.ts-whiteboard-tools-color-green { background: #00a651; }
+					&.ts-whiteboard-tools-color-blue { background: #00aeef; }
+					&.ts-whiteboard-tools-color-purple { background: #2e3192; }
+					&.ts-whiteboard-tools-color-pink { background: #ec008c; }
+					&.ts-whiteboard-tools-color-gray { background: #898989; }
+					&.ts-whiteboard-tools-color-black { background: #000; }
+				}
+			}
+			
+			.ts-whiteboard-tools-change-size { padding: 9px 5px; width: 40px; height: 40px; }
+			.ts-whiteboard-tools-sizes {
+				width: 36px;
+				height: 36px;
+				background: #fff;
+				border: 2px solid #ccc;
+				border-radius: 30px;
+				overflow: hidden;
+				position: relative;
+				z-index: 1;
+
+				.ts-whiteboard-tools-size {
+					height: 30px;
+					width: 30px;
+					display: inline-block;
+					margin: 1px;
+					cursor: pointer;
+					border-radius: 30px;
+					background: #fff;
+					color: #000;
+					font-size: 11px;
+					text-align: center;
+					line-height: 30px;
+					border: 2px solid #ccc;
+					font-weight: 700;
+				}
+			}
+		}
+
+		.ts-whiteboard-canvas {
+			height: 100%;
+			width: 730-50px;
+			background: #fff;
+			float: left;
+			position: relative;
+
+			canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
 			}
 		}
 	}
 
-	.ts-whiteboard-canvas {
-		height: 100%;
-		width: 730-50px;
-		background: #fff;
-		float: left;
-		position: relative;
+	.ts-whiteboard-tabs-holder {
+		margin-left: 50px;
+		display: inline-block;
+	}
 
-		canvas {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+	.ts-whiteboard-tab,
+	#ts-whiteboard-tab-add {
+		background: #000;
+		color: #fff;
+		text-shadow: 0 1px #000;
+		margin-right: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		padding: 5px 10px;
+		width: 50px;
+		font-size: 12px;
+		text-align: center;
+		display: inline-block;
+		cursor: pointer;
+
+		&.is-selected {
+			background: #648a22;
+			color: #fff;
 		}
+	}
+
+	#ts-whiteboard-tab-add {
+		width: 10px;
 	}
 }
 
