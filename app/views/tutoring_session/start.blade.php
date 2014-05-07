@@ -2,6 +2,7 @@
 	<div class="layout page-tutoring-session">
 		<div class="layout-main-ext">
 			<div class="ts-top">
+				{{-- Top left buttons --}}
 				<div class="ts-mode-tools-top" data-ts-mode="whiteboard">
 					<div class="ts-button-unfilled ts-mode-tool-top ts-whiteboard-undo">
 						{{ HTML::image('images/tutoring_session/buttons_unfilled/remove.png', 'Undo') }}
@@ -16,16 +17,20 @@
 					</div>
 				</div>
 
+				<div class="ts-mode-tools-top hide" data-ts-mode="text"></div>
+				<div class="ts-mode-tools-top hide" data-ts-mode="coding"></div>
+
+				{{-- Top right buttons (select mode) --}}
 				<div class="ts-modes-select">
-					<div class="ts-button-unfilled ts-mode-select is-selected">
+					<div class="ts-button-unfilled ts-mode-select is-selected" data-ts-mode-select="whiteboard">
 						{{ HTML::image('images/tutoring_session/buttons_unfilled/modes/whiteboard.png', 'Whiteboard') }}
 					</div>
 
-					<div class="ts-button-unfilled ts-mode-select">
+					<div class="ts-button-unfilled ts-mode-select" data-ts-mode-select="text">
 						{{ HTML::image('images/tutoring_session/buttons_unfilled/modes/text_processor.png', 'Text Processor') }}
 					</div>
 
-					<div class="ts-button-unfilled ts-mode-select">
+					<div class="ts-button-unfilled ts-mode-select" data-ts-mode-select="coding">
 						{{ HTML::image('images/tutoring_session/buttons_unfilled/modes/coding.png', 'Coding') }}
 					</div>
 				</div>
@@ -86,6 +91,41 @@
 						</div>
 
 						<div id="ts-whiteboard-tab-add">+</div>
+					</div>
+				</div>
+
+				<div class="ts-modes ts-mode-text hide" data-ts-mode="text">
+					<textarea id="ts-text-textarea"></textarea>
+				</div>
+
+				<div class="ts-modes ts-mode-coding hide" data-ts-mode="coding">
+					<div class="ts-coding-holder">
+						<div class="ts-coding-sidebar">
+							<div class="ts-coding-sidebar-category">Lang.</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="javascript">JS</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="html">HTML</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="css">CSS</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="php">PHP</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="c_cpp">C/C++</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="csharp">C#</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="java">Java</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="perl">Perl</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="python">Python</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang" data-ts-coding-lang="xml">XML</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-lang is-selected" data-ts-coding-lang="text">Text</div>
+							<div class="ts-coding-sidebar-category">Template</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-template is-selected" data-ts-coding-template="monokai">Monokai</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-template" data-ts-coding-template="textmate">TextMate</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-template" data-ts-coding-template="tomorrow">Tomorrow</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-template" data-ts-coding-template="github">GitHub</div>
+							<div class="ts-coding-sidebar-category">Actions</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-action" data-ts-coding-action="undo">Undo</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-action" data-ts-coding-action="redo">Redo</div>
+							<div class="ts-coding-sidebar-item ts-coding-sidebar-action" data-ts-coding-action="save">Save</div>
+						</div>
+
+						<pre id="ts-coding-editor"></pre>
+						<div class="clear"></div>
 					</div>
 				</div>
 			</div>

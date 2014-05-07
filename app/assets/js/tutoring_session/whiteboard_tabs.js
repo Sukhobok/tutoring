@@ -55,7 +55,3 @@ var activateLayer = function (index) {
 	project.layers[index].activate();
 	project.view.update();
 }
-
-$(document).on('click', '#ts-whiteboard-tab-add', function () { tsAddTab(); });
-$(document).on('click', '.ts-whiteboard-tools-remove-tab', function () { tsRemoveTab(); });
-$(document).on('click', '.ts-whiteboard-tab', function () { tsFocusTab(this.getAttribute('data-ts-tab-id')); });

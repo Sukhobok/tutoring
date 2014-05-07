@@ -1,0 +1,56 @@
+.ts-coding-holder {
+	width: 730px;
+	height: 500px;
+	border-radius: 6px;
+	overflow: hidden;
+
+	.ts-coding-sidebar {
+		width: 730px-660px;
+		height: 100%;
+		background: #333;
+		font-size: 11px;
+		float: left;
+
+		.ts-coding-sidebar-category,
+		.ts-coding-sidebar-item {
+			padding: 5px 0;
+			color: #fff;
+			text-align: center;
+			display: block;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px #000;
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+			cursor: pointer;
+		}
+
+		.ts-coding-sidebar-category {
+			background: linear-gradient(#444, darken(#444, 15%));
+
+			&:hover {
+				background: linear-gradient(darken(#444, 22%), darken(#444, 15%));
+			}
+		}
+
+		.ts-coding-sidebar-item {
+			background: linear-gradient(#62c462, darken(#62c462, 15%));
+			font-weight: bold;
+
+			&:hover {
+				background: linear-gradient(darken(#62c462, 22%), darken(#62c462, 15%));
+			}
+
+			&.is-selected {
+				background: linear-gradient(#eea313, darken(#eea313, 15%));
+			}
+		}
+	}
+
+	#ts-coding-editor {
+		float: left;
+		padding: 0; margin: 0;
+		font-family: monospace;
+		font-size: 14px;
+		width: 660px;
+		height: 100%;
+		z-index: 0;
+	}
+}

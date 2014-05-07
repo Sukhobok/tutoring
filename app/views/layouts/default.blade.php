@@ -27,6 +27,9 @@
 	{{-- Tutoring session scripts --}}
 	@if (Route::currentRouteName() == 'tutoring_session.start')
 		{{ HTML::script('js/plugins/paper-v0.9.18.min.js') }}
+		{{ HTML::script('js/plugins/tinymce/tinymce-v4.0.26.min.js') }}
+		{{ HTML::script('js/plugins/ace/ace.js') }}
+		{{ HTML::script('js/tutoring_session/tutoring_session.min.js') }}
 		{{ HTML::script('js/tutoring_session/whiteboard.min.js', array('type' => 'text/paperscript', 'canvas' => 'ts-canvas')) }}
 	@endif
 </body>
