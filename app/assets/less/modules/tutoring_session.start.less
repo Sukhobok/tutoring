@@ -1,0 +1,81 @@
+.ts-top {
+	height: 35px;
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.ts-mode-tools-top {
+	float: left;
+
+	.ts-mode-tool-top {
+		display: inline-block;
+		margin-right: 3px;
+	}
+}
+
+.ts-modes-select {
+	float: right;
+
+	.ts-mode-select {
+		display: inline-block;
+		margin-left: 3px;
+	}
+}
+
+.ts-button-unfilled {
+	background: #fff;
+	height: 35px;
+	width: 35px;
+	border-radius: 35px;
+	cursor: pointer;
+	text-align: center;
+
+	&>img {
+		width: 20px;
+		height: 20px;
+		margin-top: floor((35px-20px)/2);
+	}
+
+	&.is-selected {
+		background: #7daf36 !important;
+	}
+
+	&:hover {
+		background: lighten(#7daf36, 10%);
+	}
+}
+
+
+.ts-cam-toggle {
+	float: left;
+
+	&>img {
+		display: inline-block;
+	}
+}
+
+.ts-mic-toggle {
+	float: right;
+
+	&>img {
+		display: inline-block;
+	}
+}
+
+#webrtc-source,
+#webrtc-remote {
+	width: 200px;
+	height: 160px;
+	padding: 10px;
+}
+
+.ts-video-buttons {
+	margin: 20px 0;
+
+	button {
+		width: 220px;
+		box-sizing: border-box;
+		margin-bottom: 13px;
+		margin-top: 13px;
+	}
+}
