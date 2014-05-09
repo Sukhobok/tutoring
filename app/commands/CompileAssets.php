@@ -124,7 +124,10 @@ class CompileAssets extends Command {
 			'coding_core.js',
 			'coding_interaction.js',
 			'select_mode.js',
-			'select_mode_interaction.js'
+			'select_mode_interaction.js',
+			'chat_core.js',
+			'chat_interaction.js',
+			'file_manager_interaction.js'
 		));
 		$compiler->setTargetFile('tutoring_session.min.js');
 		$compiler->compile();

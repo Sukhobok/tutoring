@@ -174,4 +174,71 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="layout-ts-bot">
+		<div class="ts-chat ts-module">
+			<div class="ts-module-container">
+				<div class="ts-module-toolbar">
+					<div class="ts-module-title">
+						Chat
+					</div>
+				</div>
+				<div class="ts-chat-messages"></div>
+				<textarea class="ts-chat-textarea"></textarea>
+			</div>
+
+			<div class="ts-chat-bot">
+				<button class="ss-button blue bold ts-chat-send">SEND MESSAGE</button>
+
+				<div class="ts-chat-pressing-enter">
+					{{ Form::checkbox('ts-chat-pressing-enter-cb', '1', true, array('id' => 'ts-chat-pressing-enter-cb')) }}
+					Send by pressing enter
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div class="ts-file-manager ts-module">
+			<div class="ts-module-container">
+				<div class="ts-module-toolbar">
+					<div class="ts-module-title">
+						File manager (<span class="ts-file-manager-count">0</span> files)
+					</div>
+				</div>
+
+				<div class="ts-file-manager-files">
+					@for ($i = 1; $i <= 10; $i++)
+						<div class="ts-file-manager-file">
+							<div class="ts-file-manager-file-actions">
+								<div class="ts-file-manager-file-action">
+									{{ HTML::image('images/tutoring_session/file_actions/remove_icon.png', 'Remove') }}
+									Remove
+								</div>
+
+								<div class="ts-file-manager-file-action">
+									{{ HTML::image('images/tutoring_session/file_actions/download_icon.png', 'Download') }}
+									Download
+								</div>
+
+								<div class="ts-file-manager-file-action">
+									{{ HTML::image('images/tutoring_session/file_actions/load_icon.png', 'Load') }}
+									Load
+								</div>
+							</div>
+
+							<div class="ts-file-manager-file-caption">
+								File #{{ $i }}
+							</div>
+
+							{{ HTML::image('images/tutoring_session/file_icons/ppt_icon.png', 'ppt') }}
+						</div>
+					@endfor
+				</div>
+			</div>
+
+			<div class="ts-file-manager-bot">
+				<button class="ss-button blue bold">BROWSE</button>
+			</div>
+		</div>
+	</div>
 </div>
