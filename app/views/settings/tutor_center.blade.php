@@ -51,6 +51,58 @@
 						</p>
 					</div>
 				</div>
+
+				@if (count($incomingRequests) > 0)
+					<div class="ss-section">
+						<h1>Incoming requests</h1>
+						<div class="page-settings-inner">
+							<p>Please review your incoming tutoring requests and choose which day and time works best for your schedule.</p>
+
+							<table class="settings-filled-table">
+								<tr>
+									<td>Person</td>
+									<td>User preferable dates</td>
+									<td>Learning Needs</td>
+									<td>Action</td>
+								</tr>
+
+								@foreach ($incomingRequests as $incomingRequest)
+									<tr>
+										<td style="width: 100px;">
+											<div class="profile-picture">
+												{{ HTML::image(HTML::profile_picture($incomingRequest), 'Profile Picture', array('width' => 60)) }}
+											</div>
+											<br /><br />
+											<div>
+												{{{ $incomingRequest->userName }}}
+											</div>
+										</td>
+
+										<td>
+											@foreach ($incomingRequest->availableDates as $date)
+												<div>
+													{{ Form::radio('ss-inc-req-date' . $incomingRequest->id, $date['id']) }}
+													<span class="time-ago" data-time="{{ $date['time'] }}"></span>
+												</div>
+											@endforeach
+										</td>
+										
+										<td style="width: 100px;">
+											{{{ $incomingRequest->description }}}
+										</td>
+										
+										<td>
+											<button data-hr-id="{{ $incomingRequest->id }}" class="ss-button green bold small-button ss-inc-req-approve">APPROVE</button>
+											<br />
+											<button data-hr-id="{{ $incomingRequest->id }}" class="ss-button red bold small-button ss-inc-req-decline">DECLINE</button>
+										</td>
+									</tr>
+								@endforeach
+								
+							</table>
+						</div>
+					</div>
+				@endif
 			</div>
 		</div>
 

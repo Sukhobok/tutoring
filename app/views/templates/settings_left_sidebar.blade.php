@@ -19,7 +19,7 @@
 		File Manager
 	</div>
 
-	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Tutor Center' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
+	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Tutor Center' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.tutor_center') }}">
 		Tutor Center
 	</div>
 

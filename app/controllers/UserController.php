@@ -91,10 +91,19 @@ class UserController extends BaseController {
 				'isFriend' => $isFriend
 			)
 		);
+		$isTutor = Subject::isTutor($user->id);
 
 		$this->layout->content = View::make(
 			'user.view',
-			compact('user', 'posts', 'friends', 'images', 'isFriend', 'canSendFR')
+			compact(
+				'user',
+				'posts',
+				'friends',
+				'images',
+				'isFriend',
+				'canSendFR',
+				'isTutor'
+			)
 		);
 	}
 
@@ -251,7 +260,7 @@ class UserController extends BaseController {
 		$hr->date1 = $datetimes[1];
 		$hr->date2 = $datetimes[2];
 		$hr->date3 = $datetimes[3];
-		// $hr->description = Input::get('description');
+		$hr->description = Input::get('description');
 		$hr->save();
 
 		return array('error' => 0);

@@ -240,6 +240,14 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'SettingsController@ajaxChangeUserData'
 	));
 
+	Route::post('settings/approve_hire_request', array(
+		'uses' => 'SettingsController@ajaxApproveHireRequest'
+	));
+
+	Route::post('settings/decline_hire_request', array(
+		'uses' => 'SettingsController@ajaxDeclineHireRequest'
+	));
+
 	Route::get('messages/get_conversation', array(
 		'uses' => 'MessageController@ajaxGetConversation'
 	));

@@ -28,6 +28,12 @@ $(document).on('click', '.add-friend-button', function () {
 /**
  * Modal: hire
  */
+$(document).on('click', '.hire-user-button', function () {
+	$.ssModal({
+		modalId: 'hire'
+	});
+});
+
 $('#ss-hire-date1').datepicker();
 $('#ss-hire-date2').datepicker();
 $('#ss-hire-date3').datepicker();

@@ -217,11 +217,13 @@ class SettingsController extends BaseController {
 	 */
 	public function getTutorCenter()
 	{
+		$user = Auth::user();
 		$current_user_subjects = Subject::getUserSubjects();
+		$incomingRequests = HireRequest::getIncomingRequests($user->id);
 
 		$this->layout->content = View::make(
 			'settings.tutor_center',
-			compact('current_user_subjects')
+			compact('current_user_subjects', 'incomingRequests')
 		);
 	}
 
@@ -288,6 +290,29 @@ class SettingsController extends BaseController {
 		}
 
 		return array('error' => 0);
+	}
+
+	/**
+	 * Ajax: Approve hire request
+	 */
+	public function ajaxApproveHireRequest()
+	{
+		$success = HireRequest::approveHireRequest(
+			(int) Input::get('hr_id'),
+			(int) Input::get('choice')
+		);
+		return array('error' => (int) !$success);
+	}
+
+	/**
+	 * Ajax: Decline hire request
+	 */
+	public function ajaxDeclineHireRequest()
+	{
+		$success = HireRequest::declineHireRequest(
+			(int) Input::get('hr_id')
+		);
+		return array('error' => (int) !$success);
 	}
 
 }

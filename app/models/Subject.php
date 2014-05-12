@@ -67,7 +67,7 @@ class Subject extends Eloquent {
 	 */
 	public static function addUserSubject($uid, $sid)
 	{
-		if (!Subject::isTutoring($uid, $sid))
+		if (!Subject::isTutoringSubject($uid, $sid))
 		{
 			$date = new DateTime;
 			$insert = array(

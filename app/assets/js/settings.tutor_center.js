@@ -63,3 +63,37 @@ $(document).on('change', '[name="tc-hourly-rate"]', function () {
 		//
 	});
 });
+
+/**
+ * Incoming Requests
+ */
+$(document).on('click', '.ss-inc-req-approve', function () {
+	var hr_id = this.getAttribute('data-hr-id');
+	var choice = $(this).parents('tr').find('input[name="ss-inc-req-date' + hr_id + '"]:checked').val();
+	if (choice != '1' && choice != '2' && choice != '3')
+		choice = '1';
+
+	$.ajax({
+		url: '/ajax/settings/approve_hire_request',
+		type: 'POST',
+		data: { hr_id: hr_id, choice: choice }
+	}).done(function (data) {
+		//
+	});
+
+	$(this).parents('tr').remove();
+});
+
+$(document).on('click', '.ss-inc-req-decline', function () {
+	var hr_id = this.getAttribute('data-hr-id');
+
+	$.ajax({
+		url: '/ajax/settings/decline_hire_request',
+		type: 'POST',
+		data: { hr_id: hr_id }
+	}).done(function (data) {
+		//
+	});
+
+	$(this).parents('tr').remove();
+});
