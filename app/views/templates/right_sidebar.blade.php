@@ -12,13 +12,13 @@
 		<div id="right-calendar"></div>
 
 		<script type="text/javascript">
-			var dates = new Array();
+			var futureSessionDates = new Array();
 		</script>
 		<div class="right-future-sessions">
 			@foreach ($futureSessions as $futureSession)
 				<div class="right-future-session">
 					<script type="text/javascript">
-						dates.push({{ $futureSession->session_date*1000 }});
+						futureSessionDates.push({{ $futureSession->session_date*1000 }});
 					</script>
 					<span class="ss-calendar-when time-ago" data-time="{{ $futureSession->session_date }}"></span>
 					<p class="ss-calendar-what">

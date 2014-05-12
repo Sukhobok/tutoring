@@ -1,6 +1,16 @@
+// If we have the default right sidebar
 if($('#right-calendar').length != 0) {
-	// If we have the default right sidebar
-	$('#right-calendar').datepicker();
+	$('#right-calendar').datepicker({
+		beforeShowDay: function (date) {
+			for(var i = 0; i < window.futureSessionDates.length; i++) {
+				if(new Date(window.futureSessionDates[i]).toDateString() == date.toDateString()) {
+					return [true, 'highlight'];
+				}
+			}
+
+			return [true, ''];
+		}
+	});
 
 	$('.ss-search-anything').autocomplete({
 		minLength: 1,
