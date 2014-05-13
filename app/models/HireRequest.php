@@ -9,7 +9,7 @@ class HireRequest extends Eloquent {
 	protected $table = 'hire_requests';
 
 	/**
-	 * Get all incoming request
+	 * Get all incoming requests
 	 * @param integer $uid
 	 * @return array
 	 */
@@ -60,6 +60,139 @@ class HireRequest extends Eloquent {
 		}
 		
 		return $query;
+	}
+
+	/**
+	 * Delete expired requests
+	 * @param integer $uid
+	 * @return boolean TRUE
+	 */
+	public static function deleteExpiredRequests($uid)
+	{
+		$query = 'SELECT hire_requests.date1,
+		hire_requests.date2,
+		hire_requests.date3,
+		hire_requests.hours,
+		hire_requests.id,
+		hire_requests.student_id,
+		hire_requests.tutor_id
+		FROM hire_requests
+		WHERE hire_requests.student_id = ?
+			OR hire_requests.tutor_id = ?';
+
+		$query = DB::select($query, array_fill(0, 2, $uid));
+
+		foreach ($query as &$_query)
+		{
+			if ($_query->student_id == $uid)
+			{
+				$_query->other_id = $_query->tutor_id;
+				$_query->other_what = 'tutor';
+				$_query->me_what = 'student';
+			}
+			else
+			{
+				$_query->other_id = $_query->student_id;
+				$_query->other_what = 'student';
+				$_query->me_what = 'tutor';
+			}
+
+			$_query->me_id = $uid;
+			$time = new DateTime('now + 3 hours');
+			$_query->availableDates = array();
+
+			if ($time < new DateTime($_query->date1))
+			{
+				$_query->availableDates[] = array(
+					'id' => 1,
+					'start_time' => strtotime($_query->date1),
+					'end_time' => strtotime($_query->date1) + ($_query->hours*3600),
+				);
+			}
+			
+			if ($time < new DateTime($_query->date2))
+			{
+				$_query->availableDates[] = array(
+					'id' => 2,
+					'start_time' => strtotime($_query->date2),
+					'end_time' => strtotime($_query->date2) + ($_query->hours*3600),
+				);
+			}
+
+			if ($time < new DateTime($_query->date3))
+			{
+				$_query->availableDates[] = array(
+					'id' => 3,
+					'start_time' => strtotime($_query->date3),
+					'end_time' => strtotime($_query->date3) + ($_query->hours*3600),
+				);
+			}
+
+			if (count($_query->availableDates) == 0)
+			{
+				HireRequest::destroy($_query->id);
+				HireRequest::_refundHireRequest($_query->id);
+				HireRequest::_sendCancelHireRequest($_query->id);
+			}
+			else
+			{
+				// Check for tutoring session conflicts
+				$query2 = DB::table('tutoring_sessions')
+					->where(
+						$_query->other_what . '_id',
+						'=',
+						$_query->other_id
+					)
+					->orWhere(
+						$_query->me_what . '_id',
+						'=',
+						$_query->me_id
+					)
+					->select('session_date', 'hours')
+					->get();
+
+
+				foreach ($query2 as $_query2) {
+					$_query2->session_start = strtotime($_query2->session_date);
+					$_query2->session_end = $_query2->session_start + ($_query2->hours*3600);
+
+					foreach ($_query->availableDates as $i => $availableDate) {
+						if (
+							// Hire request start date - in the session
+							(
+								$_query2->session_start <= $availableDate['start_time']
+								&& $availableDate['start_time'] <= $_query2->session_end
+							)
+							OR
+							// Hire request end date - in the session
+							(
+								$_query2->session_start <= $availableDate['end_time']
+								&& $availableDate['end_time'] <= $_query2->session_end
+							)
+						)
+						{
+							DB::table('hire_requests')
+								->where('id', '=', $_query->id)
+								->update(array(
+									'date' . $availableDate['id'] => new DateTime('now')
+								));
+
+							unset($_query->availableDates[$i]);
+							reset($_query->availableDates);
+						}
+					}
+				}
+
+				if (count($_query->availableDates) == 0)
+				{
+					HireRequest::destroy($_query->id);
+					HireRequest::_refundHireRequest($_query->id);
+					HireRequest::_sendCancelHireRequest($_query->id);
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	/**
@@ -135,9 +268,30 @@ class HireRequest extends Eloquent {
 		}
 
 		$hr->delete();
+		HireRequest::_refundHireRequest($hr_id);
+		HireRequest::_sendCancelHireRequest($hr_id, false);
+	}
 
-		// TO DO: Notif user
+	/**
+	 * Decline Hire Request
+	 * @param integer $hr_id
+	 * @return boolean Success
+	 */
+	public static function _refundHireRequest($hr_id)
+	{
 		// TO DO: Give money back
+	}
+
+	/**
+	 * Send Hire Request Cancel Notification
+	 * @param integer $hr_id
+	 * @param boolean $auto (TRUE if auto canceled, FALSE if canceled by user)
+	 * @param string $message
+	 * @return boolean Success
+	 */
+	public static function _sendCancelHireRequest($hr_id, $auto = true, $message = '')
+	{
+		// TO DO: Notif user
 	}
 
 }

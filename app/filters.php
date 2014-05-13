@@ -33,6 +33,12 @@ App::before(function($request)
 
 		return $data;
 	});
+
+	if (Auth::check())
+	{
+		// Delete expired hire requests
+		HireRequest::deleteExpiredRequests(Auth::user()->id);
+	}
 });
 
 
