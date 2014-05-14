@@ -129,6 +129,16 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@postSaveEducation'
 	));
 
+	Route::get('settings/my_wallet', array(
+		'as' => 'settings.my_wallet',
+		'uses' => 'SettingsController@getMyWallet'
+	));
+
+	Route::post('settings/add_funds', array(
+		'as' => 'settings.add_funds',
+		'uses' => 'SettingsController@postAddFunds'
+	));
+
 	Route::get('settings/groups_management', array(
 		'as' => 'settings.groups_management',
 		'uses' => 'SettingsController@getGroupsManagement'

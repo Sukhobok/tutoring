@@ -46,4 +46,17 @@ class TutoringSession extends Eloquent {
 		return $query;
 	}
 
+	/**
+	 * Check if the user can access a tutoring session
+	 * @param integer $ts_id
+	 * @param integer $uid
+	 * @return boolean TRUE if he can, FALSE if not
+	 */
+	public static function canAccess($ts_id, $uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+		
+		//
+	}
+
 }

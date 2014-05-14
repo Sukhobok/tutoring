@@ -11,7 +11,7 @@
 		Invite Friends
 	</div>
 
-	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'My Wallet' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
+	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'My Wallet' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.my_wallet') }}">
 		My Wallet
 	</div>
 

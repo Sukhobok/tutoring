@@ -185,6 +185,72 @@ class SettingsController extends BaseController {
 	}
 
 	/**
+	 * My Wallet
+	 */
+	public function getMyWallet()
+	{
+		$this->layout->content = View::make(
+			'settings.my_wallet',
+			array()
+		);
+	}
+
+	/**
+	 * POST process: Add Funds (from My Wallet)
+	 */
+	public function postAddFunds() {
+		if ((int) Input::get('ss-add-funds-amount') < 25)
+		{
+			return Redirect::back();
+		}
+
+		$expiration = str_pad(Input::get('ss-add-funds-exp-month'), 2, '0', STR_PAD_LEFT)
+			. Input::get('ss-add-funds-exp-year');
+
+		$data = http_build_query(array(
+			'username' => 'studysquare',
+			'password' => 'Study125!',
+			'firstname' => Input::get('ss-add-funds-first-name'),
+			'lastname' => Input::get('ss-add-funds-last-name'),
+			'ccnumber' => Input::get('ss-add-funds-card-number'),
+			'ccexp' => $expiration,
+			'cvv' => Input::get('ss-add-funds-cvv-code'),
+			'address1' => '',
+			'address2' => '',
+			'zip' => Input::get('ss-add-funds-zip-code'),
+			'city' => '',
+			'state' => '',
+			'amount' => (int) Input::get('ss-add-funds-amount')
+		));
+
+		// Execute request
+		$url = 'https://secure.payscapegateway.com/api/transact.php?' . $data;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+		// Process result
+		$result = explode('&', $result);
+		$results = array();
+		foreach ($result as $value) {
+			$value = explode('=', $value);
+			$results[$value[0]] = $value[1];
+		}
+
+		if ($results['response'] == 1)
+		{
+			Payment::addMoney(Auth::user()->id, (int) Input::get('ss-add-funds-amount'));
+		}
+
+		return Redirect::back();
+	}
+
+	/**
 	 * Groups Management
 	 */
 	public function getGroupsManagement()
