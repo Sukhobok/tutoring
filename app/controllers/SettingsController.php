@@ -189,9 +189,13 @@ class SettingsController extends BaseController {
 	 */
 	public function getMyWallet()
 	{
+		$money = Payment::getAvailableMoney();
+
 		$this->layout->content = View::make(
 			'settings.my_wallet',
-			array()
+			compact(
+				'money'
+			)
 		);
 	}
 

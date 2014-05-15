@@ -25,6 +25,7 @@ class Payment extends Eloquent {
 		$payment->type = 'funding';
 		$payment->type_id = 0;
 		$payment->award_date = $now;
+		$payment->save();
 
 		return true;
 	}
@@ -35,8 +36,10 @@ class Payment extends Eloquent {
 	 * @param integer $uid
 	 * @return float
 	 */
-	public static function getAvailableMoney($uid)
+	public static function getAvailableMoney($uid = 0)
 	{
+		if (!$uid) $uid = Auth::user()->id;
+
 		$payments = DB::select('SELECT COALESCE(SUM(payments.amount), 0) AS result
 		FROM payments
 		WHERE payments.to_id = ?
@@ -46,13 +49,14 @@ class Payment extends Eloquent {
 		
 		SELECT COALESCE(SUM(payments.amount), 0) AS result
 		FROM payments
-		WHERE payments.from_id = ?', array(
+		WHERE payments.from_id = ?
+		AND payments.type != "funding"', array(
 			$uid,
 			new DateTime,
 			$uid
 		));
 
-		return $payments['result'][0] - $payments['result'][1];
+		return $payments[0]->result - $payments[1]->result;
 	}
 
 }

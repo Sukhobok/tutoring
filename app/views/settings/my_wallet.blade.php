@@ -12,7 +12,7 @@
 						<div class="page-settings-inner">
 							<p>Deposit funds into your Wallet to hire tutors, buy books and much more. Here are your funds:</p>
 							<div class="ss-money-green">
-								0
+								{{{ $money }}}
 							</div>
 						</div>
 				</div>
