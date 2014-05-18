@@ -36,8 +36,8 @@ App::before(function($request)
 
 	if (Auth::check())
 	{
-		// Delete expired hire requests
-		HireRequest::deleteExpiredRequests(Auth::user()->id);
+		HireRequest::deleteExpiredRequests();
+		TutoringSession::deleteExpiredOrRedirect();
 	}
 });
 

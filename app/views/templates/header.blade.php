@@ -98,7 +98,7 @@
 		<div class="header-settings-extended">
 			<div style="float: left; width: 200px;">
 				<ul>
-					<li class="ss-link" data-ss-link="{{ URL::to('settings/wallet') }}">
+					<li class="ss-link" data-ss-link="{{ URL::route('settings.my_wallet') }}">
 						<i class="ss-icon ss-money"></i> My Wallet
 					</li>
 

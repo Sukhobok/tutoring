@@ -67,8 +67,10 @@ class HireRequest extends Eloquent {
 	 * @param integer $uid
 	 * @return boolean TRUE
 	 */
-	public static function deleteExpiredRequests($uid)
+	public static function deleteExpiredRequests($uid = 0)
 	{
+		if (!$uid) $uid = Auth::user()->id;
+
 		$query = 'SELECT hire_requests.date1,
 		hire_requests.date2,
 		hire_requests.date3,
@@ -243,6 +245,7 @@ class HireRequest extends Eloquent {
 		$ts->price = $hr->price;
 		$ts->session_date = new DateTime($_time);
 		$ts->description = $hr->description;
+		$ts->hr_id = $hr->id;
 		$ts->save();
 
 		$hr->delete();
@@ -273,13 +276,17 @@ class HireRequest extends Eloquent {
 	}
 
 	/**
-	 * Decline Hire Request
+	 * Refund Hire Request
 	 * @param integer $hr_id
-	 * @return boolean Success
+	 * @return boolean TRUE
 	 */
 	public static function _refundHireRequest($hr_id)
 	{
-		// TO DO: Give money back
+		Payment::where('type_id', '=', $hr_id)
+			->where('type', '=', 'ss_fee')
+			->delete();
+
+		return true;
 	}
 
 	/**

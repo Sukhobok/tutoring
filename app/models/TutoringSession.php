@@ -47,6 +47,48 @@ class TutoringSession extends Eloquent {
 	}
 
 	/**
+	 * This function does 2 things:
+	 * 1) Cancel expired tutoring sessions (> 5 min)
+	 * 2) Redirect to the session if in 5 min delay (student)
+	 *    or 15 min delay (tutor)
+	 * @param integer $uid
+	 * @return boolean FALSE or Redirect
+	 */
+	public static function deleteExpiredOrRedirect($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+		
+		$sessions = TutoringSession::where('tutor_id', '=', $uid)
+			->orWhere('student_id', '=', $uid)
+			->get();
+
+		foreach ($sessions as $session)
+		{
+			$session->session_date = new DateTime($session->session_date);
+			if (new DateTime('now - 5 minutes') > $session->session_date)
+			{
+				TutoringSession::destroy($session->id);
+				HireRequest::_refundHireRequest($session->hr_id);
+				HireRequest::_sendCancelHireRequest($session->hr_id);
+			}
+			else
+			{
+				if ($session->tutor_id == $uid
+					&& new DateTime('now + 15 minutes') > $session->session_date)
+				{
+					// Tutors have access 15 minutes early
+				}
+
+				if ($session->student_id == $uid
+					&& new DateTime('now + 5 minutes') > $session->session_date)
+				{
+					// Students have access 5 minutes early
+				}
+			}
+		}
+	}
+
+	/**
 	 * Check if the user can access a tutoring session
 	 * @param integer $ts_id
 	 * @param integer $uid

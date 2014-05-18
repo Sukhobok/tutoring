@@ -251,6 +251,7 @@ class SettingsController extends BaseController {
 			Payment::addMoney(Auth::user()->id, (int) Input::get('ss-add-funds-amount'));
 		}
 
+		// TO DO: Alert user
 		return Redirect::back();
 	}
 
@@ -371,6 +372,7 @@ class SettingsController extends BaseController {
 			(int) Input::get('hr_id'),
 			(int) Input::get('choice')
 		);
+
 		return array('error' => (int) !$success);
 	}
 
@@ -382,6 +384,7 @@ class SettingsController extends BaseController {
 		$success = HireRequest::declineHireRequest(
 			(int) Input::get('hr_id')
 		);
+		
 		return array('error' => (int) !$success);
 	}
 

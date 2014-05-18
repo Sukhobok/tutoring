@@ -247,14 +247,18 @@ class UserController extends BaseController {
 			return array('error' => 1, 'error_type' => 'tutor');
 		}
 
-		$price = User::find(Input::get('tutor_id'))->price;
-		// TO DO: Check if the user has money
+		$price = (int) User::find(Input::get('tutor_id'))->price * (int) Input::get('hours');
+		$userMoney = Payment::getAvailableMoney();
+		if ($userMoney < $price)
+		{
+			return array('error' => 1, 'error_type' => 'money');
+		}
 
 		// Validated, now save
 		$hr = new HireRequest;
 		$hr->student_id = Auth::user()->id;
-		$hr->tutor_id = Input::get('tutor_id');
-		$hr->hours = Input::get('hours');
+		$hr->tutor_id = (int) Input::get('tutor_id');
+		$hr->hours = (int) Input::get('hours');
 		$hr->price = $price;
 		$hr->last = 'student';
 		$hr->date1 = $datetimes[1];
@@ -262,6 +266,15 @@ class UserController extends BaseController {
 		$hr->date3 = $datetimes[3];
 		$hr->description = Input::get('description');
 		$hr->save();
+
+		$p = new Payment;
+		$p->from_id = Auth::user()->id;
+		$p->to_id = (int) Input::get('tutor_id');
+		$p->type = 'ss_fee';
+		$p->type_id = $hr->id;
+		$p->award_date = new DateTime('now + 2 years');
+		$p->amount = $price;
+		$p->save();
 
 		return array('error' => 0);
 	}
