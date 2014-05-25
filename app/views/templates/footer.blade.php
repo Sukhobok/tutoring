@@ -101,3 +101,9 @@
 		</div>
 	</div>
 </footer>
+
+{{-- For testing only: --}}
+<script src="/js/plugins/socket.io-v0.9.16.min.js"></script>
+<script type="text/javascript">
+	var socket = io.connect('http://192.168.0.100:53101');
+</script>

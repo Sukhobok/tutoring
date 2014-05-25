@@ -283,7 +283,7 @@ class HireRequest extends Eloquent {
 	public static function _refundHireRequest($hr_id)
 	{
 		Payment::where('type_id', '=', $hr_id)
-			->where('type', '=', 'ss_fee')
+			->where('type', '=', 'pending_for_ts')
 			->delete();
 
 		return true;

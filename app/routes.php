@@ -154,7 +154,7 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@getTutorCenter'
 	));
 
-	Route::get('session/{id}', array(
+	Route::get('session/start', array(
 		'as' => 'tutoring_session.start',
 		'uses' => 'TutoringSessionController@getStart'
 	));
@@ -268,5 +268,16 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 
 	Route::post('messages/seen', array(
 		'uses' => 'MessageController@ajaxSeen'
+	));
+});
+
+Route::group(array('before' => 'api', 'prefix' => 'api'), function ()
+{
+	Route::get('get_user_by_session', array(
+		'uses' => 'ApiController@getUserBySession'
+	));
+
+	Route::get('get_tutoring_session', array(
+		'uses' => 'ApiController@getTutoringSession'
 	));
 });

@@ -270,7 +270,7 @@ class UserController extends BaseController {
 		$p = new Payment;
 		$p->from_id = Auth::user()->id;
 		$p->to_id = (int) Input::get('tutor_id');
-		$p->type = 'ss_fee';
+		$p->type = 'pending_for_ts';
 		$p->type_id = $hr->id;
 		$p->award_date = new DateTime('now + 2 years');
 		$p->amount = $price;

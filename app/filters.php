@@ -37,7 +37,10 @@ App::before(function($request)
 	if (Auth::check())
 	{
 		HireRequest::deleteExpiredRequests();
-		TutoringSession::deleteExpiredOrRedirect();
+		if (TutoringSession::deleteExpiredAndGetSession())
+		{
+			return Redirect::route('tutoring_session.start');
+		}
 	}
 });
 
@@ -120,3 +123,22 @@ Route::filter('ajax', function ()
 		App::abort(403, 'Unauthorized');
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| API Filter
+|--------------------------------------------------------------------------
+|
+| Check if the current request has access to the private
+| StudySquare API (match the signature)
+|
+*/
+
+Route::filter('api', function ()
+{
+	if (Input::get('signature') != '008ae19bff7861eeec0ecdf80f8915b842cd34e1')
+	{
+		App::abort(403, 'Unauthorized');
+	}
+});
+

@@ -49,23 +49,31 @@ class TutoringSession extends Eloquent {
 	/**
 	 * This function does 2 things:
 	 * 1) Cancel expired tutoring sessions (> 5 min)
-	 * 2) Redirect to the session if in 5 min delay (student)
+	 * 2) Return the session id if in 5 min delay (student)
 	 *    or 15 min delay (tutor)
 	 * @param integer $uid
-	 * @return boolean FALSE or Redirect
+	 * @return integer (Tutoring Session ID or 0)
 	 */
-	public static function deleteExpiredOrRedirect($uid = 0)
+	public static function deleteExpiredAndGetSession($uid = 0)
 	{
 		if (!$uid) $uid = Auth::user()->id;
+		$ts_id = 0;
 		
 		$sessions = TutoringSession::where('tutor_id', '=', $uid)
 			->orWhere('student_id', '=', $uid)
+			->leftJoin(
+				'tutoring_sessions_info',
+				'tutoring_sessions_info.ts_id', '=', 'tutoring_sessions.id'
+			)
 			->get();
+
+		Debugbar::info($sessions);
 
 		foreach ($sessions as $session)
 		{
 			$session->session_date = new DateTime($session->session_date);
-			if (new DateTime('now - 5 minutes') > $session->session_date)
+			if (new DateTime('now - 5 minutes') > $session->session_date
+				&& $session->started_at == null)
 			{
 				TutoringSession::destroy($session->id);
 				HireRequest::_refundHireRequest($session->hr_id);
@@ -77,28 +85,20 @@ class TutoringSession extends Eloquent {
 					&& new DateTime('now + 15 minutes') > $session->session_date)
 				{
 					// Tutors have access 15 minutes early
+					$ts_id = $session->id;
 				}
 
 				if ($session->student_id == $uid
 					&& new DateTime('now + 5 minutes') > $session->session_date)
 				{
 					// Students have access 5 minutes early
+					$ts_id = $session->id;
 				}
 			}
 		}
+
+		return $ts_id;
 	}
 
-	/**
-	 * Check if the user can access a tutoring session
-	 * @param integer $ts_id
-	 * @param integer $uid
-	 * @return boolean TRUE if he can, FALSE if not
-	 */
-	public static function canAccess($ts_id, $uid = 0)
-	{
-		if (!$uid) $uid = Auth::user()->id;
-		
-		//
-	}
 
 }
