@@ -119,6 +119,7 @@ class CompileAssets extends Command {
 		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
 		$compiler->setTargetBaseDir('public/js/tutoring_session/');
 		$compiler->setSourceFiles(array(
+			'core.js',
 			'text_core.js',
 			'text_interaction.js',
 			'coding_core.js',

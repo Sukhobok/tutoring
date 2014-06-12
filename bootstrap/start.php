@@ -28,7 +28,8 @@ $env = $app->detectEnvironment(function()
 {
 	$hosts = array(
 		'192-168-0-100.rdsnet.ro' => 'local',
-		'Alex-laptop' => 'local'
+		'Alex-laptop' => 'local',
+		'Alex-iMac.local' => 'local'
 	);
 
 	if (gethostname() && isset($hosts[gethostname()]))

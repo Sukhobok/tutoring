@@ -37,7 +37,8 @@ App::before(function($request)
 	if (Auth::check())
 	{
 		HireRequest::deleteExpiredRequests();
-		if (TutoringSession::deleteExpiredAndGetSession())
+		if (TutoringSession::deleteExpiredAndGetSession()
+			&& $request->path() != 'session/start') // TO DO: search by route name
 		{
 			return Redirect::route('tutoring_session.start');
 		}

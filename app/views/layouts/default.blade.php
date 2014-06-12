@@ -26,6 +26,11 @@
 	
 	{{-- Tutoring session scripts --}}
 	@if (Route::currentRouteName() == 'tutoring_session.start')
+		{{ HTML::script('js/plugins/socket.io-v0.9.16.min.js') }}
+		<script type="text/javascript">
+			var environment = '{{{ App::environment() }}}';
+		</script>
+
 		{{ HTML::script('js/plugins/paper-v0.9.18.min.js') }}
 		{{ HTML::script('js/plugins/tinymce/tinymce-v4.0.26.min.js') }}
 		{{ HTML::script('js/plugins/ace/ace.js') }}
