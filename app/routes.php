@@ -280,4 +280,12 @@ Route::group(array('before' => 'api', 'prefix' => 'api'), function ()
 	Route::get('get_tutoring_session', array(
 		'uses' => 'ApiController@getTutoringSession'
 	));
+
+	Route::get('start_tutoring_session', array(
+		'uses' => 'ApiController@getStartTutoringSession'
+	));
+
+	Route::get('finish_tutoring_session', array(
+		'uses' => 'ApiController@getFinishTutoringSession'
+	));
 });

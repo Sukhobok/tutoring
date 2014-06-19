@@ -26,7 +26,13 @@
 	
 	{{-- Tutoring session scripts --}}
 	@if (Route::currentRouteName() == 'tutoring_session.start')
-		{{ HTML::script('js/plugins/socket.io-v0.9.16.min.js') }}
+		@if (App::environment() == 'local')
+			{{ HTML::script('http://studysquare.lh:53101/socket.io/socket.io.js') }}
+		@else
+			{{ HTML::script('http://studysquare.com:53101/socket.io/socket.io.js') }}
+		@endif
+		{{-- HTML::script('js/plugins/socket.io-v0.9.16.min.js') --}}
+
 		<script type="text/javascript">
 			var environment = '{{{ App::environment() }}}';
 		</script>

@@ -37,7 +37,19 @@ class ApiController extends BaseController {
 			$id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
 			if ($id)
 			{
-				return array('error' => 0, 'result' => $id);
+				$session = TutoringSession::find($id);
+				if (!$session)
+				{
+					return array('error' => 1);
+				}
+
+				$cancel_time = new DateTime($session->session_date . ' + 5 minutes');
+
+				return array(
+					'error' => 0, 
+					'result' => $id, 
+					'cancel_time' => $cancel_time->getTimestamp()
+				);
 			}
 			else
 			{
@@ -48,6 +60,79 @@ class ApiController extends BaseController {
 		{
 			return array('error' => 1);
 		}
+	}
+
+	/**
+	 * Start tutoring session
+	 */
+	public function getStartTutoringSession()
+	{
+		$ts = TutoringSession::findOrFail((int) Input::get('ts_id'));
+		$finish_time = new DateTime('now + ' . $ts->hours . ' hours');
+
+		$ts_info = TutoringSessionInfo::firstOrNew(array('ts_id' => (int) Input::get('ts_id')));
+		$ts_info->started_at = new DateTime('now');
+		$ts_info->started_by = (int) Input::get('uid');
+		$ts_info->save();
+
+
+		return array('error' => 0, 'finish_time' => $finish_time->getTimestamp());
+	}
+
+	/**
+	 * Finish tutoring session
+	 * Note: Input::get('uid') is the online user
+	 */
+	public function getFinishTutoringSession()
+	{
+		if ((int) Input::get('uid'))
+		{
+			// Unexpected ending
+			$role = TutoringSession::getUserRole(
+				(int) Input::get('ts_id'),
+				(int) Input::get('uid')
+			);
+
+			if ($role === 'student')
+			{
+				// The tutor is out => Cancel the session
+				$session = TutoringSession::findOrFail((int) Input::get('ts_id'));
+				TutoringSession::destroy($session->id);
+				HireRequest::_refundHireRequest($session->hr_id);
+				HireRequest::_sendCancelHireRequest($session->hr_id);
+			}
+			elseif ($role === 'tutor')
+			{
+				// The student is out => End the session
+				$ts_info = TutoringSessionInfo::find((int) Input::get('ts_id'));
+				if (!$ts_info)
+				{
+					$ts_info = new TutoringSessionInfo;
+					$ts_info->ts_id = (int) Input::get('ts_id');
+					$ts_info->started_at = new DateTime;
+					$ts_info->started_by = (int) Input::get('uid');
+					$ts_info->save();
+				}
+
+				TutoringSession::finishTutoringSession((int) Input::get('ts_id'));
+			}
+			else
+			{
+				Log::error(
+					'User '
+					. (int) Input::get('uid')
+					. ' doesn\'t have permission to access tutoring session '
+					. (int) Input::get('ts_id')
+				);
+			}
+		}
+		else
+		{
+			// Session completed successfully
+			TutoringSession::finishTutoringSession((int) Input::get('ts_id'));
+		}
+
+		return array('error' => 0);
 	}
 
 }

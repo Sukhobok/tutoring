@@ -22,20 +22,20 @@ App::before(function($request)
 
 	Input::replace($new_input);
 
-	// Application data - NOT ready
-	App::singleton('globalData', function() {
-		Debugbar::info('called');
-		$data = new stdClass;
-		if (Auth::check())
-		{
-			$data->friends = Friendship::getFriends(Auth::user()->id);
-		}
-
-		return $data;
-	});
-
 	if (Auth::check())
 	{
+		// Global application data - NOT ready
+		App::singleton('globalData', function() {
+			Debugbar::info('called');
+			$data = new stdClass;
+			if (Auth::check())
+			{
+				$data->friends = Friendship::getFriends(Auth::user()->id);
+			}
+
+			return $data;
+		});
+
 		HireRequest::deleteExpiredRequests();
 		if (TutoringSession::deleteExpiredAndGetSession()
 			&& $request->path() != 'session/start') // TO DO: search by route name
@@ -137,6 +137,11 @@ Route::filter('ajax', function ()
 
 Route::filter('api', function ()
 {
+	if (App::environment() == 'local')
+	{
+		Debugbar::disable();
+	}
+
 	if (Input::get('signature') != '008ae19bff7861eeec0ecdf80f8915b842cd34e1')
 	{
 		App::abort(403, 'Unauthorized');

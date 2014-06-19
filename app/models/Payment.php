@@ -44,6 +44,7 @@ class Payment extends Eloquent {
 		FROM payments
 		WHERE payments.to_id = ?
 		AND payments.award_date < ?
+		AND payments.type != "ss_fee"
 
 		UNION ALL
 		
