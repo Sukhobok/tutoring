@@ -1,3 +1,5 @@
+var session_finished = false;
+
 if(environment === 'local') {
 	var ts_socket = io.connect('http://studysquare.lh:53101');
 } else {
@@ -9,7 +11,13 @@ ts_socket.on('waiting', function (data) {
 });
 
 ts_socket.on('canceled', function () {
+	session_finished = true;
 	console.log('canceled');
+});
+
+ts_socket.on('finished', function () {
+	session_finished = true;
+	console.log('finished');
 });
 
 ts_socket.on('started', function () {

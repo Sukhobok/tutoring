@@ -5,7 +5,12 @@ styles[0] = {
 	strokeColor: '#ed1c24',
 	strokeWidth: 2
 };
-styles[1] = styles[0];
+
+styles[1] = {
+	strokeColor: '#ed1c24',
+	strokeWidth: 2
+};
+
 project.layers[0].redoChildren = [];
 
 var tsUndo = function () {

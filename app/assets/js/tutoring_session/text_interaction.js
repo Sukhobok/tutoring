@@ -1,6 +1,14 @@
 var tsTextSend = function (text) {
-	// Send text
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'text',
+			value: text
+		}
+	);
 };
+
+var tsTextReceive;
 
 tsInitText(function (editor) {
 	editor.addMenuItem('save_file', {
@@ -18,6 +26,7 @@ tsInitText(function (editor) {
 		tsTextSend(editor.getContent());
 	});
 
-	// On receive text:
-	// editor.setContent(text);
+	tsTextReceive = function (text) {
+		editor.setContent(text);
+	}
 });

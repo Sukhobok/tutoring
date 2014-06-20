@@ -33,6 +33,14 @@ $(document).on('click', '.ts-whiteboard-tools-color', function () {
 	$(this)[0].setAttribute('data-ts-color', _orig_color);
 
 	styles[0].strokeColor = _color;
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_style',
+			type: 'color',
+			value: _color
+		}
+	);
 });
 
 /**
@@ -61,4 +69,12 @@ $(document).on('click', '.ts-whiteboard-tools-size', function () {
 	$(this).text(_orig_size + 'px');
 
 	styles[0].strokeWidth = _size;
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_style',
+			type: 'size',
+			value: _size
+		}
+	);
 });

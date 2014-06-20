@@ -36,13 +36,72 @@ $(document).on('click', '.ts-whiteboard-tools-line', function () { selectTool('l
 /**
  * Undo / Redo / Clear
  */
-$(document).on('click', '.ts-whiteboard-undo', function () { tsUndo(); });
-$(document).on('click', '.ts-whiteboard-redo', function () { tsRedo(); });
-$(document).on('click', '.ts-whiteboard-clear', function () { tsClear(); });
+$(document).on('click', '.ts-whiteboard-undo', function () {
+	tsUndo();
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_actions',
+			action: 'undo'
+		}
+	);
+});
+
+$(document).on('click', '.ts-whiteboard-redo', function () {
+	tsRedo();
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_actions',
+			action: 'redo'
+		}
+	);
+});
+
+$(document).on('click', '.ts-whiteboard-clear', function () {
+	tsClear();
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_actions',
+			action: 'clear'
+		}
+	);
+});
 
 /**
  * Tabs
  */
-$(document).on('click', '#ts-whiteboard-tab-add', function () { tsAddTab(); });
-$(document).on('click', '.ts-whiteboard-tools-remove-tab', function () { tsRemoveTab(); });
-$(document).on('click', '.ts-whiteboard-tab', function () { tsFocusTab(this.getAttribute('data-ts-tab-id')); });
+$(document).on('click', '#ts-whiteboard-tab-add', function () {
+	tsAddTab();
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_tabs',
+			action: 'add'
+		}
+	);
+});
+
+$(document).on('click', '.ts-whiteboard-tools-remove-tab', function () {
+	tsRemoveTab();
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_tabs',
+			action: 'remove'
+		}
+	);
+});
+
+$(document).on('click', '.ts-whiteboard-tab', function () {
+	tsFocusTab(this.getAttribute('data-ts-tab-id'));
+	ts_socket.emit(
+		'tutoring_session_data',
+		{
+			what: 'wb_tabs',
+			action: 'focus',
+			tab_id: this.getAttribute('data-ts-tab-id')
+		}
+	);
+});

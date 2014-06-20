@@ -7,6 +7,8 @@ lineTool.onMouseDown = function (e, path_index) {
 	paths[path_index] = new Path();
 	paths[path_index].style = styles[path_index];
 	paths[path_index].startingPoint = e.point;
+
+	if (path_index == 0 && typeof ts_socket !== 'undefined') mouseCatch(e, 'lineTool');
 };
 
 lineTool.onMouseDrag = function (e, path_index) {
@@ -18,4 +20,6 @@ lineTool.onMouseDrag = function (e, path_index) {
 	paths[path_index] = new Path.Line(temp.startingPoint, e.point);
 	paths[path_index].style = styles[path_index];
 	paths[path_index].startingPoint = temp.startingPoint;
+
+	if (path_index == 0 && typeof ts_socket !== 'undefined') mouseCatch(e, 'lineTool');
 };

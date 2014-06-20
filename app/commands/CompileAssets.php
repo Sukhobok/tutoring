@@ -119,7 +119,8 @@ class CompileAssets extends Command {
 		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
 		$compiler->setTargetBaseDir('public/js/tutoring_session/');
 		$compiler->setSourceFiles(array(
-			'core.js',
+			'socket_core.js',
+			'webrtc.js',
 			'text_core.js',
 			'text_interaction.js',
 			'coding_core.js',
@@ -128,7 +129,7 @@ class CompileAssets extends Command {
 			'select_mode_interaction.js',
 			'chat_core.js',
 			'chat_interaction.js',
-			'file_manager_interaction.js'
+			'file_manager_interaction.js',
 		));
 		$compiler->setTargetFile('tutoring_session.min.js');
 		$compiler->compile();
@@ -143,6 +144,7 @@ class CompileAssets extends Command {
 		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
 		$compiler->setTargetBaseDir('public/js/tutoring_session/');
 		$compiler->setSourceFiles(array(
+			'whiteboard_socket_send.js',
 			'whiteboard_core.js',
 			'whiteboard_tools/pencil.js',
 			'whiteboard_tools/erase.js',
@@ -151,7 +153,8 @@ class CompileAssets extends Command {
 			'whiteboard_tools/line.js',
 			'whiteboard_tabs.js',
 			'whiteboard_interaction.js',
-			'whiteboard_color_size.js'
+			'whiteboard_color_size.js',
+			'socket_receive.js',
 		));
 		$compiler->setTargetFile('whiteboard.min.js');
 		$compiler->compile();
