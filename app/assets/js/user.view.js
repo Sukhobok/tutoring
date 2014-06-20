@@ -87,18 +87,20 @@ $(document).on('click', '#ss-hire-send', function () {
 	}).done(function (data) {
 		if(data.error === 1) {
 			if (data.error_type === 'hours') {
-				console.log('1-4 hours');
+				$.ssModal({ modalId: 'hire-hours-limit' });
 			} else if (data.error_type === 'description') {
-				console.log('provide description');
+				$.ssModal({ modalId: 'hire-description' });
 			} else if (data.error_type === 'time_check') {
-				console.log('+ 3 hours');
+				$.ssModal({ modalId: 'hire-3-hours' });
 			} else if (data.error_type === 'time_equal') {
-				console.log('different time');
+				$.ssModal({ modalId: 'hire-time-equal' });
+			} else if (data.error_type === 'money') {
+				$.ssModal({ modalId: 'hire-money' });
 			} else {
-				console.log('other');
+				$.ssModal({ modalId: 'hire-other' });
 			}
 		} else {
-			console.log('everything ok');
+			// Everything OK
 		}
 	});
 });

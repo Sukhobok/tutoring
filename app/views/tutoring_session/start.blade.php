@@ -166,7 +166,11 @@
 
 			<div class="ts-video-buttons">
 				<button class="ss-button blue bold">TAKE A SCREENSHOT</button>
-				<button class="ss-button blue bold">CLOSE THE SESSION</button>
+				@if ($role == 'student')
+					<button class="ss-button blue bold">CLOSE THE SESSION</button>
+				@else
+					<button class="ss-button blue bold" style="visibility: hidden;">CLOSE THE SESSION</button>
+				@endif
 			</div>
 
 			<div class="ss-container">
@@ -240,5 +244,18 @@
 				<button class="ss-button blue bold">BROWSE</button>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="ss-modal" id="ss-modal-ts-started">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			The tutoring session has started! Please allow camera/microphone access!
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
 	</div>
 </div>

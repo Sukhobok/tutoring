@@ -125,7 +125,8 @@ io.configure(function ()
 												}, (parseInt(resp3.body.finish_time, 10) - Math.round(Date.now() / 1000))*1000, handshakeData.ts_id, _base_url);
 											}
 
-											io.sockets.in('ts_' + handshakeData.ts_id).emit('started');
+											io.sockets.in('ts_' + handshakeData.ts_id).emit('started', { finish_time: parseInt(resp3.body.finish_time, 10) });
+											handshakeData.finish_time = parseInt(resp3.body.finish_time, 10);
 											callback(null, true);
 										}
 										else
@@ -198,7 +199,7 @@ io.sockets.on('connection', function (socket)
 		else
 		{
 			// Both should be connected now
-			socket.emit('started');
+			socket.emit('started', { finish_time: hs.finish_time });
 		}
 	}
 

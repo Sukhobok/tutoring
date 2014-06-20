@@ -7,6 +7,10 @@
 			)) }}
 		</div>
 
+		<div class="header-notice">
+			{{-- Notice, if any, here --}}
+		</div>
+
 		<div class="header-right">
 			<div class="header-icon header-friend-icon">
 				{{ HTML::image('images/header/friend.png') }}

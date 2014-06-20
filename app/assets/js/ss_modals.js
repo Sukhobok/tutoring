@@ -15,6 +15,12 @@ $(document).on('keyup', function (e) {
 	}
 });
 
+$(document).on('click', '.ss-modal-close', function () {
+	$.ssModal({
+		action: 'close'
+	});
+});
+
 /**
  * $.ssModal plugin
  */

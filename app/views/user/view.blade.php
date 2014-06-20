@@ -182,6 +182,84 @@
 	</div>
 </div>
 
+<div class="ss-modal" id="ss-modal-hire-3-hours">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			You have to enter a date that is at least 3 hours later.
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
+	</div>
+</div>
+
+<div class="ss-modal" id="ss-modal-hire-hours-limit">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			You can't take more than 4 hours!
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
+	</div>
+</div>
+
+<div class="ss-modal" id="ss-modal-hire-description">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			Please provide a description!
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
+	</div>
+</div>
+
+<div class="ss-modal" id="ss-modal-hire-time-equal">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			The times can't be identical! Please choose 3 different times!
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
+	</div>
+</div>
+
+<div class="ss-modal" id="ss-modal-hire-money">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			You don't have enough money to send this hire request!
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
+	</div>
+</div>
+
+<div class="ss-modal" id="ss-modal-hire-other">
+	<div class="ss-modal-top ss-modal-type-exclam"></div>
+	<div class="ss-modal-body">
+		<p>
+			Sorry! We couldn't send the hire request! Please try again!
+		</p>
+
+		<p style="margin-top: 25px;">
+			<button class="ss-button blue bold ss-modal-close" style="margin: 0 auto;">Got it!</button>
+		</p>
+	</div>
+</div>
+
 <script type="text/javascript">
 	var user_view_id = '{{{ $user->id }}}';
 </script>

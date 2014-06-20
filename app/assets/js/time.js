@@ -71,3 +71,10 @@ function convert_time() {
 
 convert_time();
 var convert_time_internval = setInterval(convert_time, 60000);
+
+function convert_seconds (sec)
+{
+	var m = parseInt(sec / 60, 10);
+	var s = sec % 60;
+	return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+}
