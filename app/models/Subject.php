@@ -115,4 +115,73 @@ class Subject extends Eloquent {
 			->get();
 	}
 
+	/**
+	 * Get users that teach a subject
+	 * @param integer $sid
+	 * @return array (count, data)
+	 */
+	public static function getSubjectUsers($sid, $offset, $filters)
+	{
+		$query = DB::table('user_subjects')
+			->where('subject_id', '=', $sid)
+			->where(function ($query) use ($filters)
+			{
+				foreach ($filters as $filter)
+				{
+					switch ($filter)
+					{
+						case 'filter_20_30':
+							$query->orWhere(function ($query)
+							{
+								$query->where('users.price', '>=', 20)
+									->where('users.price', '<=', 30);
+							});
+							break;
+
+						case 'filter_31_40':
+							$query->orWhere(function ($query)
+							{
+								$query->where('users.price', '>=', 31)
+									->where('users.price', '<=', 40);
+							});
+							break;
+
+						case 'filter_41_50':
+							$query->orWhere(function ($query)
+							{
+								$query->where('users.price', '>=', 41)
+									->where('users.price', '<=', 50);
+							});
+							break;
+
+						case 'filter_51':
+							$query->orWhere(function ($query)
+							{
+								$query->where('users.price', '>=', 51);
+							});
+							break;
+					}
+				}
+			})
+			->join('users', 'user_subjects.user_id', '=', 'users.id')
+			->select(
+				'users.id',
+				'users.name',
+				'users.bio',
+				'users.price',
+				'users.profile_picture',
+				'users.created_at'
+			);
+
+		if (in_array('available_now', $filters))
+		{
+			$query = $query->where('users.available', '=', 1);
+		}
+
+		$count = $query->count();
+		$data = $query->skip($offset)->take(4)->get();
+
+		return compact('count', 'data');
+	}
+
 }

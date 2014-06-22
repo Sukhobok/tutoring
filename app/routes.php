@@ -160,6 +160,15 @@ Route::group(array('before' => 'auth'), function()
 	));
 });
 
+Route::group(array(), function()
+{
+	Route::get('subject/{id}', array(
+		'as' => 'subject.view',
+		'uses' => 'SubjectController@getSubject'
+	))
+	->where('id', '[0-9]+');
+});
+
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 {
 	Route::post('user/upload_photos', array(
@@ -288,4 +297,16 @@ Route::group(array('before' => 'api', 'prefix' => 'api'), function ()
 	Route::get('finish_tutoring_session', array(
 		'uses' => 'ApiController@getFinishTutoringSession'
 	));
+});
+
+Route::get('{alias}', function ($alias)
+{
+	$alias = Alias::where('alias', '=', $alias)->first();
+	if (!$alias)
+	{
+		App::abort('404');
+	}
+
+	$request = Request::create('/' . strtolower($alias->type) . '/' . $alias->resource_id, 'GET');
+	return Route::dispatch($request)->getContent();
 });
