@@ -261,6 +261,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Get user tutors
+	 * @param integer $uid (optional)
+	 * @return array
+	 */
+	public static function getUserTutors($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+
+		return DB::table('tutoring_sessions')
+			->where('student_id', '=', $uid)
+			->join('users', 'tutoring_sessions.tutor_id', '=', 'users.id')
+			->select('users.name', 'users.id')
+			->get();
+	}
+
+	/**
 	 * Get the unique identifier for the user.
 	 * @return mixed
 	 */

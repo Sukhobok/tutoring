@@ -157,6 +157,17 @@ class Post extends Eloquent {
 					$post->author['profile_picture']
 				);
 			}
+
+			$post->comments = DB::table('post_comments')
+				->where('post_id', '=', $post->id)
+				->join('users', 'post_comments.user_id', '=', 'users.id')
+				->select(
+					'users.name',
+					'users.profile_picture',
+					'post_comments.comment'
+				)
+				->orderBy('post_comments.created_at', 'desc')
+				->get();
 		}
 
 		return $posts;

@@ -199,6 +199,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'PostController@ajaxSaveThumb'
 	));
 
+	Route::post('post/post_comment', array(
+		'uses' => 'PostController@ajaxPostComment'
+	));
+
 	Route::post('group/join', array(
 		'uses' => 'GroupController@ajaxJoin'
 	));

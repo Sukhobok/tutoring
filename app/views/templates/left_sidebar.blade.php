@@ -19,10 +19,13 @@
 
 	<div class="ss-section left-sidebar-section tutor-color">
 		Tutors
-		<ul class="tutor_list">
-			<li>1</li>
-			<li>2</li>
-		</ul>
+		@if(count($tutors) > 0)
+			<ul class="tutor_list">
+				@foreach($tutors as $tutor)
+					<li class="ss-link" data-ss-link="{{{ Alias::getURL('User', $tutor->id) }}}">{{{ HTML::limit($tutor->name) }}}</li>
+				@endforeach
+			</ul>
+		@endif
 	</div>
 
 	<div class="ss-section left-sidebar-section classroom-color">
@@ -30,7 +33,7 @@
 		@if(count($classrooms) > 0)
 			<ul class="classroom_list">
 				@foreach($classrooms as $classroom)
-					<li class="ss-link" data-ss-link="{{{ URL::route('classroom.view', $classroom->id) }}}">{{{ HTML::limit($classroom->name) }}}</li>
+					<li class="ss-link" data-ss-link="{{{ Alias::getURL('Classroom', $classroom->id) }}}">{{{ HTML::limit($classroom->name) }}}</li>
 				@endforeach
 			</ul>
 		@endif
@@ -47,7 +50,7 @@
 		@if(count($groups) > 0)
 			<ul class="group_list">
 				@foreach($groups as $group)
-					<li class="ss-link" data-ss-link="{{{ URL::route('group.view', $group->id) }}}">{{{ HTML::limit($group->name) }}}</li>
+					<li class="ss-link" data-ss-link="{{{ Alias::getURL('Group', $group->id) }}}">{{{ HTML::limit($group->name) }}}</li>
 				@endforeach
 			</ul>
 		@endif

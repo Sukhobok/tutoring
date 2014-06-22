@@ -19,6 +19,7 @@ View::composer('templates.left_sidebar', function($view)
 {
 	$view->with('classrooms', Classroom::getUserClassrooms(Auth::user()->id));
 	$view->with('groups', Group::getUserGroups(Auth::user()->id));
+	$view->with('tutors', User::GetUserTutors(Auth::user()->id));
 });
 
 View::composer('templates.right_sidebar', function($view)

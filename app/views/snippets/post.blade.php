@@ -21,17 +21,17 @@
 		<div class="ss-container">
 			<div class="article-content ss-section">
 				<div class="article-title">
-					<span class="bold ss-link" data-ss-link="{{ URL::to('/user/' . $post->author['id']) }}">
+					<span class="bold ss-link" data-ss-link="{{ Alias::getURL('User', $post->author['id']) }}">
 						{{{ $post->author['name'] }}}
 					</span>
 					
 					@if($post->withContext)
 						@if($post->postable_type == "Classroom")
-							- <span class="classroom-color bold ss-link" data-ss-link="{{ URL::to('/classroom/' . $post->postable_id) }}">
+							- <span class="classroom-color bold ss-link" data-ss-link="{{ Alias::getURL('Classroom', $post->postable_id) }}">
 								{{{ $post->postable_name }}}
 							</span>
 						@elseif($post->postable_type == "Group")
-							- <span class="group-color bold ss-link" data-ss-link="{{ URL::to('/group/' . $post->postable_id) }}">
+							- <span class="group-color bold ss-link" data-ss-link="{{ Alias::getURL('Group', $post->postable_id) }}">
 								{{{ $post->postable_name }}}
 							</span>
 						@endif
@@ -68,7 +68,37 @@
 			</div>
 
 			<div class="post-comment ss-section">
-				Post a comment ...
+				<div class="profile-picture"> 
+					{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
+				</div>
+
+				<textarea class="post-comment-textarea" placeholder="Write a comment ..." data-ss-pid="{{ $post->id }}"></textarea>
+
+				<div class="post-comment-bottom">
+					<div class="post-comment-pressing-enter">
+						{{ Form::checkbox('post-comment-pressing-enter-cb', '1', true, array('class' => 'post-comment-pressing-enter-cb')) }}
+						Send by pressing enter
+					</div>
+					<button class="ss-button blue bold small-button inline post-comment-button" data-ss-pid="{{ $post->id }}">POST</button>
+				</div>
+			</div>
+
+			<div class="posted-comments">
+				@foreach($post->comments as $comment)
+					<div class="posted-comment ss-section">
+						<div class="profile-picture"> 
+							{{ HTML::image(HTML::profile_picture($comment), 'Profile Picture', array('width' => 50)) }}
+						</div>
+
+						{{{ $comment->comment }}}
+					</div>
+				@endforeach
+
+				@if (count($post->comments) > 2)
+					<div class="center">
+						<button class="ss-button blue bold inline show-more">Show more</button>
+					</div>
+				@endif
 			</div>
 		</div>
 	</div>

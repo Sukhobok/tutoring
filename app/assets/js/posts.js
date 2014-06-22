@@ -41,3 +41,43 @@ $(document).on('click', '.thumb-down', function () {
 		}
 	})
 });
+
+/**
+ * Post a comment
+ */
+function post_comment (pid, comment) {
+	$.ajax({
+		url: '/ajax/post/post_comment',
+		method: 'POST',
+		data: { pid: pid, comment: comment }
+	}).done(function (data) {
+		//
+	});
+}
+
+$(document).on('click', '.post-comment-button', function () {
+	var message = $.trim($(this).parents('.post-comment').children('.post-comment-textarea').val());
+	var pid = $(this).data('ss-pid');
+
+	if(message !== '') {
+		post_comment(pid, message);
+		$(this).parents('.post-comment').children('.post-comment-textarea').val('');
+	}
+});
+
+$(document).on('keyup', '.post-comment-textarea', function (e) {
+	var message = $.trim($(this).val());
+	var pid = $(this).data('ss-pid');
+
+	if(e.keyCode === 13
+	&& $(this).siblings('.post-comment-bottom').children('.post-comment-pressing-enter').children('.post-comment-pressing-enter-cb').is(':checked')
+	&& message !== '') {
+		post_comment(pid, message);
+		$(this).val('');
+	}
+});
+
+$(document).on('click', '.posted-comments .show-more', function () {
+	$(this).parents('.posted-comments').children('.posted-comment').css({ 'display': 'block' });
+	$(this).remove();
+});

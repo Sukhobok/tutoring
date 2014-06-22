@@ -177,4 +177,18 @@ class PostController extends BaseController {
 		return array('error' => 0, 'result' => $result);
 	}
 
+	/**
+	 * Ajax: Post a comment
+	 */
+	public function ajaxPostComment()
+	{
+		$comment = new PostComment;
+		$comment->post_id = (int) Input::get('pid');
+		$comment->user_id = (int) Auth::user()->id;
+		$comment->comment = Input::get('comment');
+		$comment->save();
+
+		return array('error' => 0);
+	}
+
 }

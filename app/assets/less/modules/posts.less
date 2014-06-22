@@ -140,4 +140,42 @@ article {
 			}
 		}
 	}
+
+	.post-comment {
+		textarea.post-comment-textarea {
+			font-size: 13px;
+			width: 300px;
+			max-width: 300px;
+			color: #727272;
+			margin-left: 20px;
+			border-radius: 4px;
+			border: 1px solid #e9eaec;
+			background: #f9f9f9;
+		}
+
+		.post-comment-bottom {
+			text-align: right;
+			padding-right: 8px;
+
+			.post-comment-pressing-enter {
+				font-size: 11px;
+				display: inline-block;
+				margin-right: 10px;
+			}
+		}
+	}
+
+	.posted-comments {
+		.posted-comment {
+			display: none;
+
+			&:nth-child(-n+2) {
+				display: block;
+			}
+		}
+
+		.show-more {
+			margin: 15px auto;
+		}
+	}
 }
