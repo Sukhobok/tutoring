@@ -26,7 +26,6 @@ App::before(function($request)
 	{
 		// Global application data - NOT ready
 		App::singleton('globalData', function() {
-			Debugbar::info('called');
 			$data = new stdClass;
 			if (Auth::check())
 			{
@@ -147,4 +146,3 @@ Route::filter('api', function ()
 		App::abort(403, 'Unauthorized');
 	}
 });
-
