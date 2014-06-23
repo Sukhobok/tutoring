@@ -56,6 +56,16 @@ class SubjectController extends BaseController {
 			$user->created_at = new DateTime($user->created_at);
 			$user->created_at = $user->created_at->format('M. Y');
 			$user->short_name = explode(' ', $user->name)[0];
+			
+			$user->education = UserEducation::getEducation($user->id);
+			if ($user->education)
+			{
+				$user->education = $user->education[0]->name;
+			}
+			else
+			{
+				$user->education = '';
+			}
 		}
 
 		$this->layout->content = View::make(

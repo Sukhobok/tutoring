@@ -56,7 +56,9 @@ class UserEducation extends Eloquent {
 			(SELECT "")
 		) AS major
 		FROM user_education
-		WHERE user_education.user_id = ?', array($uid));
+		WHERE user_education.user_id = ?
+		ORDER BY FIELD(user_education.type, "graduation", "college", "highschool"),
+			user_education.to DESC', array($uid));
 
 		foreach ($result as &$_result)
 		{

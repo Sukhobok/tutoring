@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('MajorsTableSeeder');
 		$this->call('MainSubjectsTableSeeder');
 		$this->call('SubjectsTableSeeder');
+		$this->call('AliasesTableSeeder');
 	}
 
 }

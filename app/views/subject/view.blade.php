@@ -32,15 +32,14 @@
 				@foreach($users as $user)
 					<div class="subject-user">
 						<div class="subject-user-profile-picture">
-							<div class="profile-picture">
+							<div class="profile-picture ss-link" data-ss-link="{{{ Alias::getURL('User', $user->id) }}}">
 								{{ HTML::image(HTML::profile_picture($user), 'Profile Picture', array('width' => 100)) }}
 							</div>
 						</div>
 
 						<div class="subject-user-info">
-							<h1>{{{ strtoupper($user->name) }}}</h1>
-							<h2>Southwestern College</h2>
-																			
+							<h1 class="ss-link" data-ss-link="{{{ Alias::getURL('User', $user->id) }}}">{{{ strtoupper($user->name) }}}</h1>
+							<h2>{{{ $user->education }}}</h2>
 							<p>{{ nl2br(e(HTML::limit($user->bio, 120))) }}</p>
 							<!--<h4>TUTORS ALGEBRA, EMERGENCY MEDICINE</h4>-->
 							<h5>${{{ $user->price }}}/hour</h5>

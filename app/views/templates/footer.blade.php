@@ -49,50 +49,50 @@
 		<div style="float: left; width: 160px;">
 			<p><b>Math Tutors</b></p><br />
 
-			<a href="link-to(1, 6)">Algebra Tutors</a><br />
-			<a href="link-to(2, 6)">Calculus Tutors</a><br />
-			<a href="link-to(3, 6)">Statistics Tutors</a><br />
-			<a href="link-to(4, 6)">Geometry Tutors</a>
+			<a href="{{ Alias::getURL('Subject', 1) }}">Algebra Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 2) }}">Calculus Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 3) }}">Statistics Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 4) }}">Geometry Tutors</a>
 		</div>
 		<div style="float: left; width: 160px;">
 			<p><b>Computer Tutors</b></p><br />
 
-			<a href="link-to(102, 6)">HTML Tutors</a><br />
-			<a href="link-to(118, 6)">PHP Tutors</a><br />
-			<a href="link-to(1, 6)">Objective C Tutors</a><br />
-			<a href="link-to(110, 6)">Javascript Tutors</a>
+			<a href="{{ Alias::getURL('Subject', 102) }}">HTML Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 118) }}">PHP Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 1) }}">Objective C Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 110) }}">Javascript Tutors</a>
 		</div>
 		<div style="float: left; width: 160px;">
 			<p><b>Science Tutors</b></p><br />
 
-			<a href="link-to(32, 6)">Biology Tutors</a><br />
-			<a href="link-to(29, 6)">Chemistry Tutors</a><br />
-			<a href="link-to(30, 6)">Physics Tutors</a><br />
-			<a href="link-to(40, 6)">Psychology Tutors</a>
+			<a href="{{ Alias::getURL('Subject', 32) }}">Biology Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 29) }}">Chemistry Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 30) }}">Physics Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 40) }}">Psychology Tutors</a>
 		</div>
 		<div style="float: left; width: 160px;">
 			<p><b>Language Tutors</b></p><br />
 
-			<a href="link-to(50, 6)">Spanish Tutors</a><br />
-			<a href="link-to(53, 6)">German Tutors</a><br />
-			<a href="link-to(52, 6)">French Tutors</a><br />
-			<a href="link-to(56, 6)">Chinese Tutors</a>
+			<a href="{{ Alias::getURL('Subject', 50) }}">Spanish Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 53) }}">German Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 52) }}">French Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 56) }}">Chinese Tutors</a>
 		</div>
 		<div style="float: left; width: 160px;">
 			<p><b>English Tutors</b></p><br />
 
-			<a href="link-to(17, 6)">Writing Tutors</a><br />
-			<a href="link-to(16, 6)">Reading Tutors</a><br />
-			<a href="link-to(20, 6)">Essay Tutors</a><br />
-			<a href="link-to(19, 6)">Grammar Tutors</a>
+			<a href="{{ Alias::getURL('Subject', 17) }}">Writing Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 16) }}">Reading Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 20) }}">Essay Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 19) }}">Grammar Tutors</a>
 		</div>
 		<div style="float: left; width: 160px;">
 			<p><b>Business Tutors</b></p><br />
 
-			<a href="link-to(84, 6)">Economics Tutors</a><br />
-			<a href="link-to(81, 6)">Accounting Tutors</a><br />
-			<a href="link-to(87, 6)">Marketing Tutors</a><br />
-			<a href="link-to(93, 6)">Human Resources Tutors</a>
+			<a href="{{ Alias::getURL('Subject', 84) }}">Economics Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 81) }}">Accounting Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 87) }}">Marketing Tutors</a><br />
+			<a href="{{ Alias::getURL('Subject', 93) }}">Human Resources Tutors</a>
 		</div>
 		<div class="clear"></div>
 

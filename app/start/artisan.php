@@ -12,3 +12,4 @@
 */
 
 Artisan::add(new CompileAssets);
+Artisan::add(new MakeOldAliases);
