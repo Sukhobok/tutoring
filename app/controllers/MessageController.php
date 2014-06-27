@@ -1,5 +1,7 @@
 <?php
 
+use ElephantIO\Client as Elephant;
+
 class MessageController extends BaseController {
 
 	/**
@@ -36,6 +38,7 @@ class MessageController extends BaseController {
 				if ($conversation->id == $selected_user->id)
 				{
 					$conversation_before = true;
+					Message::seeConversation($selected_user->id);
 				}
 			}
 
@@ -64,6 +67,11 @@ class MessageController extends BaseController {
 	public function ajaxGetConversation()
 	{
 		$uid = (int) Input::get('uid') ?: 0;
+		if ($uid !== 0)
+		{
+			Message::seeConversation($uid);
+		}
+
 		return Message::getConversation($uid);
 	}
 
@@ -84,6 +92,30 @@ class MessageController extends BaseController {
 		$message->to_id = $user->id;
 		$message->message = (string) Input::get('message');
 		$message->save();
+
+		// Send to socket.io
+		if (App::environment() == 'local')
+		{
+			$elephant_domain = 'http://studysquare.lh:53100';
+		}
+		else
+		{
+			$elephant_domain = 'http://studysquare.com:53100';
+		}
+
+		$elephant = new Elephant($elephant_domain);
+		$elephant->setHandshakeQuery(array(
+			'signature' => '008ae19bff7861eeec0ecdf80f8915b842cd34e1'
+		));
+
+		$elephant->init();
+		$elephant->emit('new_message', array(
+			'from_id' => Auth::user()->id,
+			'from_name' => Auth::user()->name,
+			'to_id' => $user->id,
+			'message' => (string) Input::get('message')
+		));
+		$elephant->close();
 
 		return array('error' => 0);
 	}

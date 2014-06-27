@@ -73,7 +73,7 @@
 		<div class="header-extended header-chat-extended">
 			<div class="header-extended-in">
 				@foreach($unread_messages as $unread_message)
-					<div class="header-extended-item">
+					<div class="header-extended-item ss-link" data-ss-link="{{{ URL::route('messages', $unread_message->user_id) }}}">
 						<div class="header-extended-img">
 							<div class="profile-picture">
 								{{ HTML::image(HTML::profile_picture($unread_message), 'Profile Picture', array('width' => 55)) }}

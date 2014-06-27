@@ -14,3 +14,11 @@ $.fn.text_multiline = function (text) {
 	this.html(this.html().replace(/\n/g,'<br/>'));
 	return this;
 }
+
+/**
+ * Audio Alert
+ */
+var audio_alert = function ()
+{
+	$('#ss-audio-alert')[0].play();
+}

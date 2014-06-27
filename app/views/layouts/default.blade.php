@@ -23,23 +23,29 @@
 		@include('snippets.comment') {{-- Include the comment snippet --}}
 	</div>
 
+	{{-- Audio Alert --}}
+	<audio id="ss-audio-alert">
+		<source src="{{ URL::to('alert.ogg') }}" type="audio/ogg">
+		<source src="{{ URL::to('alert.mp3') }}" type="audio/mpeg">
+	</audio>
+
+	{{-- Javascript --}}
+	<script type="text/javascript">
+		var environment = '{{{ App::environment() }}}';
+	</script>
+
+	@if (App::environment() == 'local')
+		{{ HTML::script('http://studysquare.lh:53100/socket.io/socket.io.js') }}
+	@else
+		{{ HTML::script('http://studysquare.com:53100/socket.io/socket.io.js') }}
+	@endif
+
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
 	{{ HTML::script('js/script.min.js') }}
-	
-	{{-- Tutoring session scripts --}}
+
+	{{-- Tutoring Session --}}
 	@if (Route::currentRouteName() == 'tutoring_session.start')
-		@if (App::environment() == 'local')
-			{{ HTML::script('http://studysquare.lh:53101/socket.io/socket.io.js') }}
-		@else
-			{{ HTML::script('http://studysquare.com:53101/socket.io/socket.io.js') }}
-		@endif
-		{{-- HTML::script('js/plugins/socket.io-v0.9.16.min.js') --}}
-
-		<script type="text/javascript">
-			var environment = '{{{ App::environment() }}}';
-		</script>
-
 		{{ HTML::script('js/plugins/paper-v0.9.18.min.js') }}
 		{{ HTML::script('js/plugins/tinymce/tinymce-v4.0.26.min.js') }}
 		{{ HTML::script('js/plugins/ace/ace.js') }}

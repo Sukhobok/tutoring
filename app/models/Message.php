@@ -136,6 +136,7 @@ class Message extends Eloquent {
 	{
 		$unread = DB::select('SELECT messages.message,
 		messages.created_at,
+		users.id as user_id,
 		users.name,
 		users.profile_picture
 		FROM messages, users
