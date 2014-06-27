@@ -284,6 +284,16 @@ class SettingsController extends BaseController {
 	}
 
 	/**
+	 * Notifications & Security
+	 */
+	public function getNotificationsSecurity()
+	{
+		$this->layout->content = View::make(
+			'settings.notifications_security'
+		);
+	}
+
+	/**
 	 * Tutor Center
 	 */
 	public function getTutorCenter()
@@ -330,7 +340,7 @@ class SettingsController extends BaseController {
 	}
 
 	/**
-	 * Ajax: Change user data (bio, price, available)
+	 * Ajax: Change user data (bio, price, available, ...)
 	 */
 	public function ajaxChangeUserData()
 	{
@@ -356,6 +366,16 @@ class SettingsController extends BaseController {
 				$available = (bool) $available;
 				$available = (int) $available;
 				$user->available = $available;
+				$user->save();
+				break;
+
+			case 'notifications_friend_requests':
+			case 'notifications_messages':
+			case 'notifications_hours_early':
+			case 'security_see_profile':
+			case 'security_search_engine':
+				$what = Input::get('what');
+				$user->$what = Input::get('value');
 				$user->save();
 				break;
 		}

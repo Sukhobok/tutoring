@@ -19,6 +19,9 @@
 
 	@include('templates.footer')
 	<div class="ss-modal-bg">{{-- Background for $.ssModal --}}</div>
+	<div class="hide snippet-comment ss-section">
+		@include('snippets.comment') {{-- Include the comment snippet --}}
+	</div>
 
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}

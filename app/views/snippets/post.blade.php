@@ -83,14 +83,10 @@
 				</div>
 			</div>
 
-			<div class="posted-comments">
+			<div class="posted-comments" data-ss-pid="{{ $post->id }}">
 				@foreach($post->comments as $comment)
-					<div class="posted-comment ss-section">
-						<div class="profile-picture"> 
-							{{ HTML::image(HTML::profile_picture($comment), 'Profile Picture', array('width' => 50)) }}
-						</div>
-
-						{{{ $comment->comment }}}
+					<div class="posted-comment ss-section"> 
+						@include('snippets.comment', array('comment' => $comment))
 					</div>
 				@endforeach
 

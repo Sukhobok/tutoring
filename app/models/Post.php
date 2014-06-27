@@ -164,10 +164,17 @@ class Post extends Eloquent {
 				->select(
 					'users.name',
 					'users.profile_picture',
-					'post_comments.comment'
+					'users.id as author_id',
+					'post_comments.comment',
+					'post_comments.created_at'
 				)
 				->orderBy('post_comments.created_at', 'desc')
 				->get();
+
+			foreach ($post->comments as $comment)
+			{
+				$comment->created_at = strtotime($comment->created_at);
+			}
 		}
 
 		return $posts;

@@ -149,6 +149,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@getClassroomsManagement'
 	));
 
+	Route::get('settings/notifications_security', array(
+		'as' => 'settings.notifications_security',
+		'uses' => 'SettingsController@getNotificationsSecurity'
+	));
+
 	Route::get('settings/tutor_center', array(
 		'as' => 'settings.tutor_center',
 		'uses' => 'SettingsController@getTutorCenter'

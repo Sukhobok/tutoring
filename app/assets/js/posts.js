@@ -46,6 +46,7 @@ $(document).on('click', '.thumb-down', function () {
  * Post a comment
  */
 function post_comment (pid, comment) {
+	show_comment (pid, comment);
 	$.ajax({
 		url: '/ajax/post/post_comment',
 		method: 'POST',
@@ -53,6 +54,16 @@ function post_comment (pid, comment) {
 	}).done(function (data) {
 		//
 	});
+}
+
+function show_comment (pid, comment) {
+	var snippet = $('.snippet-comment').clone().removeClass('snippet-comment');
+	snippet.addClass('posted-comment');
+	$('.posted-comment-message', snippet).text_multiline(comment);
+	$('.posted-comment-time', snippet)[0].setAttribute('data-time', Math.round(new Date() / 1000));
+	$('.posted-comments[data-ss-pid="' + pid + '"]').prepend(snippet);
+	snippet.removeClass('hide');
+	convert_time();
 }
 
 $(document).on('click', '.post-comment-button', function () {
@@ -77,6 +88,9 @@ $(document).on('keyup', '.post-comment-textarea', function (e) {
 	}
 });
 
+/**
+ * Show more
+ */
 $(document).on('click', '.posted-comments .show-more', function () {
 	$(this).parents('.posted-comments').children('.posted-comment').css({ 'display': 'block' });
 	$(this).remove();

@@ -36,5 +36,22 @@
 			<span class="bold">FIND A TUTOR</span><br />
 			Search for the perfect tutor
 		</button>
+
+		<h1>New members</h1>
+		@foreach($new_members as $new_member)
+			<div class="profile-picture ss-new-member ss-link" data-ss-link="{{{ Alias::getURL('User', $new_member->id) }}}">
+				{{ HTML::image(HTML::profile_picture($new_member), 'Profile Picture', array('width' => 56)) }}
+			</div>
+		@endforeach
+		<div class="ss-invite-friends">
+			<a href="{{ URL::route('settings.profile') }}">Invite Friends</a>
+		</div>
+
+		<h1>New groups</h1>
+		@foreach($new_groups as $new_group)
+			<div class="profile-picture ss-new-group ss-link" data-ss-link="{{{ Alias::getURL('Group', $new_group->id) }}}">
+				{{ HTML::image(HTML::profile_picture($new_group), 'Profile Picture', array('width' => 56)) }}
+			</div>
+		@endforeach
 	</div>
 </div>

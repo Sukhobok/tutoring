@@ -3,7 +3,7 @@
 		My Profile
 	</div>
 
-	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Notifications &amp; Security' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
+	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Notifications &amp; Security' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.notifications_security') }}">
 		Notifications &amp; Security
 	</div>
 

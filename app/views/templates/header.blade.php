@@ -130,7 +130,7 @@
 						<i class="ss-icon ss-person"></i> My Profile
 					</li>
 
-					<li class="ss-link" data-ss-link="{{ URL::to('settings/notifications_security') }}">
+					<li class="ss-link" data-ss-link="{{ URL::route('settings.notifications_security') }}">
 						<i class="ss-icon ss-notifications"></i> Notifications &amp; Security
 					</li>
 
