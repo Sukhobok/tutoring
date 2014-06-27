@@ -100,7 +100,7 @@ class MessageController extends BaseController {
 		}
 		else
 		{
-			$elephant_domain = 'http://studysquare.com:53100';
+			$elephant_domain = 'http://test232.studysquare.com:53100';
 		}
 
 		$elephant = new Elephant($elephant_domain);
