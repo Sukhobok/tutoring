@@ -154,6 +154,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@getNotificationsSecurity'
 	));
 
+	Route::get('settings/invite', array(
+		'as' => 'settings.invite',
+		'uses' => 'SettingsController@getInviteFriends'
+	));
+
 	Route::get('settings/tutor_center', array(
 		'as' => 'settings.tutor_center',
 		'uses' => 'SettingsController@getTutorCenter'

@@ -7,7 +7,7 @@
 		Notifications &amp; Security
 	</div>
 
-	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Invite Friends' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
+	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Invite Friends' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.invite') }}">
 		Invite Friends
 	</div>
 

@@ -294,6 +294,16 @@ class SettingsController extends BaseController {
 	}
 
 	/**
+	 * Invite Friends
+	 */
+	public function getInviteFriends()
+	{
+		$this->layout->content = View::make(
+			'settings.invite'
+		);
+	}
+
+	/**
 	 * Tutor Center
 	 */
 	public function getTutorCenter()

@@ -134,7 +134,7 @@
 						<i class="ss-icon ss-notifications"></i> Notifications &amp; Security
 					</li>
 
-					<li class="ss-link" data-ss-link="{{ URL::to('settings/invite') }}">
+					<li class="ss-link" data-ss-link="{{ URL::route('settings.invite') }}">
 						<i class="ss-icon ss-person"></i> Invite Friends
 					</li>
 
