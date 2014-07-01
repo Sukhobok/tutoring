@@ -304,6 +304,26 @@ class SettingsController extends BaseController {
 	}
 
 	/**
+	 * Financial Center
+	 */
+	public function getFinancial()
+	{
+		$this->layout->content = View::make(
+			'settings.financial'
+		);
+	}
+
+	/**
+	 * Identity Verification
+	 */
+	public function getVerification()
+	{
+		$this->layout->content = View::make(
+			'settings.verification'
+		);
+	}
+
+	/**
 	 * Tutor Center
 	 */
 	public function getTutorCenter()

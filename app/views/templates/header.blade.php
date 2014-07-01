@@ -114,12 +114,12 @@
 						<i class="ss-icon ss-star"></i> Tutor Center
 					</li>
 
-					<li class="ss-link" data-ss-link="{{ URL::to('settings/my_accounts') }}">
+					<li class="ss-link" data-ss-link="{{ URL::route('settings.financial') }}">
 						<i class="ss-icon ss-money"></i> Financial Center
 					</li>
 
-					<li class="ss-link" data-ss-link="{{ URL::to('settings/verification') }}">
-						<i class="ss-icon ss-person"></i> Identity verification
+					<li class="ss-link" data-ss-link="{{ URL::route('settings.verification') }}">
+						<i class="ss-icon ss-person"></i> Identity Verification
 					</li>
 				</ul>
 			</div>

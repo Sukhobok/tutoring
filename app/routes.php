@@ -159,6 +159,16 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@getInviteFriends'
 	));
 
+	Route::get('settings/financial', array(
+		'as' => 'settings.financial',
+		'uses' => 'SettingsController@getFinancial'
+	));
+
+	Route::get('settings/verification', array(
+		'as' => 'settings.verification',
+		'uses' => 'SettingsController@getVerification'
+	));
+
 	Route::get('settings/tutor_center', array(
 		'as' => 'settings.tutor_center',
 		'uses' => 'SettingsController@getTutorCenter'

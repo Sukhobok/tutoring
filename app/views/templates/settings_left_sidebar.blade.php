@@ -23,7 +23,7 @@
 		Tutor Center
 	</div>
 
-	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Financial Center' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
+	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Financial Center' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.financial') }}">
 		Financial Center
 	</div>
 
@@ -35,7 +35,7 @@
 		Classrooms Management
 	</div>
 
-	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Identity verification' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
-		Identity verification
+	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Identity Verification' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.verification') }}">
+		Identity Verification
 	</div>
 </div>
