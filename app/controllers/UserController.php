@@ -108,6 +108,96 @@ class UserController extends BaseController {
 	}
 
 	/**
+	 * Search a tutor
+	 */
+	public function getTutorSearch()
+	{
+		$main_subjects = DB::table('main_subjects')->get();
+
+		// Group subjects by main subject id
+		$_subjects = Subject::orderBy('main_subject_id', 'asc')
+			->get();
+		$subjects = array();
+		foreach ($_subjects as $subject)
+		{
+			$subjects[$subject->main_subject_id][] = $subject;
+		}
+
+		$this->layout->content = View::make(
+			'user.tutor_search',
+			compact('main_subjects', 'subjects')
+		);
+	}
+
+	/**
+	 * Ajax: Search a tutor
+	 */
+	public function ajaxTutorSearch()
+	{
+		if (!Input::get('name') && !Input::get('subjects'))
+		{
+			return '';
+		}
+
+		$users = DB::table('users')
+			->select(
+				'users.id',
+				'users.name',
+				'users.bio',
+				'users.price',
+				'users.profile_picture',
+				DB::raw('group_concat(subjects.name separator "|=|") as subjects')
+			)
+			->groupBy('users.id');
+
+		if (Input::get('name'))
+		{
+			$users = $users->where(function ($query)
+			{
+				$query->where('users.name', 'LIKE', Input::get('name') . '%');
+				$query->orWhere('users.name', 'LIKE', '% ' . Input::get('name') . '%');
+			})
+			->whereRaw('exists (select null from user_subjects where users.id = user_subjects.user_id)');
+		}
+
+		if (Input::get('subjects'))
+		{
+			$users = $users->whereIn(
+				'user_subjects.subject_id',
+				explode(',', Input::get('subjects'))
+			);
+		}
+
+		if (Input::get('available') == '1')
+		{
+			$users = $users->where('users.available', '=', 1);
+		}
+
+		$users = $users->where('users.price', '<=', (int) Input::get('price'))
+			->join('user_subjects', 'users.id', '=', 'user_subjects.user_id')
+			->join('subjects', 'user_subjects.subject_id', '=', 'subjects.id')
+			->get();
+
+		if (count($users) == 0)
+		{
+			return '';
+		}
+
+		$result = '';
+		foreach ($users as $user)
+		{
+			$user->subjects = explode('|=|', $user->subjects);
+
+			$result .= View::make(
+				'user.snippets.tutor_search_result',
+				compact('user')
+			);
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Ajax: Upload user photos
 	 */
 	public function ajaxUploadPhotos()

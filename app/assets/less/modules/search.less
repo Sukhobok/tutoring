@@ -1,0 +1,169 @@
+.ss-search-name {
+	font-size: 12px;
+	background: #fff;
+	box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.2);
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+.ss-search-filters {
+	font-size: 12px;
+	background: #fff;
+	box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.2);
+	margin-bottom: 20px;
+	
+	.ss-search-filters-in {
+		padding: 20px;
+	}
+
+	.ss-search-left {
+		float: left;
+		width: 250px;
+	}
+
+	.ss-search-right {
+		float: right;
+	}
+
+	.ss-search-main-subjects {
+		padding: 20px 0;
+		padding-left: 10px;
+		background: #333;
+		color: #fff;
+
+		.ss-search-main-subject {
+			display: inline-block;
+			padding: 0 10px;
+			cursor: pointer;
+
+			&.is-selected {
+				color: #7bb21b;
+			}
+		}
+	}
+
+	.ss-search-subject {
+		display: inline-block;
+		padding: 2px 8px;
+	}
+}
+
+.ss-search-name,
+.ss-search-filters {
+	.ss-search-title {
+		font-size: 14px;
+		font-weight: 700;
+	}
+
+	.ss-search {
+		display: inline-block;
+		margin: 2px 0;
+		margin-left: 20px;
+		width: 460px;
+	}
+}
+
+.ss-search-no-results {
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	margin-top: 30px;
+}
+
+/**
+ * Tutoring Session Result
+ */
+
+.ss-search-result {
+	margin-top: 30px;
+
+	.ss-search-result-left {
+		float: left;
+		width: 80px;
+	}
+
+	.ss-search-result-right {
+		float: left;
+		width: 650px;
+		background: #fff;
+		border-radius: 5px;
+		border: 1px solid #e9eaec;
+		box-sizing: border-box;
+		overflow: hidden;
+
+		.ss-search-result-name {
+			font-size: 18px;
+			font-weight: 700;
+			width: 100%;
+			padding: 20px;
+			border-bottom: 1px solid #e9eaec;
+			box-sizing: border-box;
+
+			&.is-featured {
+				background: #7bb21b;
+				color: #fff;
+			}
+		}
+
+		.ss-search-result-bio,
+		.ss-search-result-teaches,
+		.ss-search-result-hire {
+			font-size: 12px;
+			font-weight: 400;
+			padding: 15px;
+			color: #727272;
+			border-bottom: 1px solid #e9eaec;
+		}
+
+		.ss-search-result-teaches li {
+			font-size: 13px;
+			display: inline-block;
+			margin-right: 25px;
+
+			&:before {
+				position: relative;
+				margin-right: 6px;
+				content: url('../images/background_icons/check.png');
+			}
+		}
+
+		.ss-search-result-other {
+			font-size: 12px;
+			font-weight: 400;
+			color: #727272;
+			border-bottom: 1px solid #e9eaec;
+
+			.ss-search-result-rating,
+			.ss-search-result-reviews {
+				width: 33%;
+				float: left;
+				padding: 20px;
+				box-sizing: border-box;
+				text-align: center;
+			}
+
+			.ss-search-result-price {
+				font-size: 18px;
+				width: 34%;
+				border-left: 1px solid #e9eaec;
+				border-right: 1px solid #e9eaec;
+				float: left;
+				padding: 20px;
+				box-sizing: border-box;
+				text-align: center;
+			}
+		}
+
+		.ss-search-result-hire button {
+			font-size: 15px;
+			padding: 13px 60px;
+		}
+
+		.ss-search-result-section-title {
+			font-size: 14px;
+			font-weight: 700;
+			color: #232323;
+			margin-bottom: 10px;
+		}
+	}
+}

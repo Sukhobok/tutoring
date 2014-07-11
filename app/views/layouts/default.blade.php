@@ -18,16 +18,22 @@
 	{{ $content }}
 
 	@include('templates.footer')
-	<div class="ss-modal-bg">{{-- Background for $.ssModal --}}</div>
-	<div class="hide snippet-comment ss-section">
-		@include('snippets.comment') {{-- Include the comment snippet --}}
-	</div>
-
+	
 	{{-- Audio Alert --}}
 	<audio id="ss-audio-alert">
 		<source src="{{ URL::to('alert.ogg') }}" type="audio/ogg">
 		<source src="{{ URL::to('alert.mp3') }}" type="audio/mpeg">
 	</audio>
+
+	{{-- Background for $.ssModal --}}
+	<div class="ss-modal-bg"></div>
+
+	@if (Auth::check())
+		{{-- Include the comment snippet --}}
+		<div class="hide snippet-comment ss-section">
+			@include('snippets.comment')
+		</div>
+	@endif
 
 	{{-- Javascript --}}
 	<script type="text/javascript">

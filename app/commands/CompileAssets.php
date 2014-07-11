@@ -107,7 +107,8 @@ class CompileAssets extends Command {
 			'cg.js',
 			'messages.js',
 			'user.view.js',
-			'header_expand.js'
+			'header_expand.js',
+			'search.js'
 		));
 		$compiler->setTargetFile('script.min.js');
 		$compiler->compile();

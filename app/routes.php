@@ -43,10 +43,7 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'user.view',
 		'uses' => 'UserController@getUser'
 	));
-
-	/**
-	 * Groups
-	 */
+	
 	Route::get('group/create', array(
 		'as' => 'group.create',
 		'uses' => 'GroupController@getCreate'
@@ -66,9 +63,6 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'PostController@postGroupPost'
 	));
 
-	/**
-	 * Classrooms
-	 */
 	Route::get('classroom/create', array(
 		'as' => 'classroom.create',
 		'uses' => 'ClassroomController@getCreate'
@@ -88,33 +82,21 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'PostController@postClassroomPost'
 	));
 
-	/**
-	 * Highschools
-	 */
 	Route::get('highschool/{id}', array(
 		'as' => 'highschool.view',
 		'uses' => 'HighschoolController@getHighschool'
 	));
 
-	/**
-	 * Universities
-	 */
 	Route::get('university/{id}', array(
 		'as' => 'university.view',
 		'uses' => 'UniversityController@getUniversity'
 	));
 
-	/**
-	 * Messages
-	 */
 	Route::get('messages/{uid?}', array(
 		'as' => 'messages',
 		'uses' => 'MessageController@getMessages'
 	));
 
-	/**
-	 * Settings
-	 */
 	Route::get('settings/profile', array(
 		'as' => 'settings.profile',
 		'uses' => 'SettingsController@getProfile'
@@ -178,15 +160,6 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'tutoring_session.start',
 		'uses' => 'TutoringSessionController@getStart'
 	));
-});
-
-Route::group(array(), function()
-{
-	Route::get('subject/{id}', array(
-		'as' => 'subject.view',
-		'uses' => 'SubjectController@getSubject'
-	))
-	->where('id', '[0-9]+');
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
@@ -304,6 +277,33 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	));
 });
 
+/**
+ * Public Pages
+ */
+Route::group(array(), function()
+{
+	Route::get('subject/{id}', array(
+		'as' => 'subject.view',
+		'uses' => 'SubjectController@getSubject'
+	))
+	->where('id', '[0-9]+');
+
+	Route::get('tutor/search', array(
+		'as' => 'tutor.search',
+		'uses' => 'UserController@getTutorSearch'
+	));
+});
+
+Route::group(array('before' => 'ajax', 'prefix' => 'ajax'), function ()
+{
+	Route::post('tutor/search', array(
+		'uses' => 'UserController@ajaxTutorSearch'
+	));
+});
+
+/**
+ * API
+ */
 Route::group(array('before' => 'api', 'prefix' => 'api'), function ()
 {
 	Route::get('get_user_by_session', array(
@@ -323,6 +323,9 @@ Route::group(array('before' => 'api', 'prefix' => 'api'), function ()
 	));
 });
 
+/**
+ * Aliases
+ */
 Route::get('{alias}', function ($alias)
 {
 	$alias = Alias::where('alias', '=', $alias)->first();

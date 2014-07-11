@@ -32,7 +32,7 @@
 			@endforeach
 		</div>
 
-		<button class="ss-button green find-tutor-button">
+		<button class="ss-button green find-tutor-button ss-link" data-ss-link="{{{ URL::route('tutor.search') }}}">
 			<span class="bold">FIND A TUTOR</span><br />
 			Search for the perfect tutor
 		</button>
