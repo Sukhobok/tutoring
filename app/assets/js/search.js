@@ -35,13 +35,13 @@ var ss_get_search_results = function ()
 	{
 		if (data === '')
 		{
-			$('.ss-search-result').hide();
+			$('.ss-tutor-search-result').hide();
 			$('.ss-search-no-results').show();
 		}
 		else
 		{
-			$('.ss-search-result').html(data);
-			$('.ss-search-result').show();
+			$('.ss-tutor-search-result').html(data);
+			$('.ss-tutor-search-result').show();
 			$('.ss-search-no-results').hide();
 		}
 	});

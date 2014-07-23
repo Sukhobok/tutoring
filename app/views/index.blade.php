@@ -337,7 +337,7 @@
 						<div id="ri-grid" class="ri-grid ri-grid-size-2">
 							<img class="ri-loading-image" src="/themes/university/img/loading.gif" alt="//"/>
 							<ul>
-								@foreach (User::all()->take(50) as $user)
+								@foreach (DB::table('users')->take(50)->get() as $user)
 									<li>
 										<a href="{{ URL::route('user.view', $user->id) }}">
 											<img src="{{ HTML::profile_picture($user) }}" alt="StudySquare User" />

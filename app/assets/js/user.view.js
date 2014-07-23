@@ -104,3 +104,35 @@ $(document).on('click', '#ss-hire-send', function () {
 		}
 	});
 });
+
+$(document).on('click', '#ss-hire-now', function () {
+	// Close hire form
+	$.ssModal({
+		action: 'close'
+	});
+
+	// Send request
+	$.ajax({
+		url: '/ajax/user/hire_now',
+		type: 'POST',
+		data: {
+			hours: $('#ss-hire-hours').val(),
+			tutor_id: user_view_id,
+			description: $('#ss-hire-desc textarea').val()
+		}
+	}).done(function (data) {
+		if(data.error === 1) {
+			if (data.error_type === 'hours') {
+				$.ssModal({ modalId: 'hire-hours-limit' });
+			} else if (data.error_type === 'description') {
+				$.ssModal({ modalId: 'hire-description' });
+			} else if (data.error_type === 'money') {
+				$.ssModal({ modalId: 'hire-money' });
+			} else {
+				$.ssModal({ modalId: 'hire-other' });
+			}
+		} else {
+			// Everything OK
+		}
+	});
+});

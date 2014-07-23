@@ -109,6 +109,17 @@ io.sockets.on('connection', function (socket)
 		}
 	});
 
+	socket.on('hire_now', function (data)
+	{
+		if (hs.client_type === 'server')
+		{
+			if (clients.hasOwnProperty(data.tutor_id))
+			{
+				clients[data.tutor_id].emit('hire_now', data);
+			}
+		}
+	});
+
 	socket.on('disconnect', function ()
 	{
 		if (hs.client_type === 'user')

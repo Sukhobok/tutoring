@@ -94,18 +94,9 @@ class MessageController extends BaseController {
 		$message->save();
 
 		// Send to socket.io
-		if (App::environment() == 'local')
-		{
-			$elephant_domain = 'http://studysquare.lh:53100';
-		}
-		else
-		{
-			$elephant_domain = 'http://test232.studysquare.com:53100';
-		}
-
-		$elephant = new Elephant($elephant_domain);
+		$elephant = new Elephant(Config::get('elephant.domain'));
 		$elephant->setHandshakeQuery(array(
-			'signature' => '008ae19bff7861eeec0ecdf80f8915b842cd34e1'
+			'signature' => Config::get('elephant.signature')
 		));
 
 		$elephant->init();

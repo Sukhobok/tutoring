@@ -369,4 +369,64 @@ class UserController extends BaseController {
 		return array('error' => 0);
 	}
 
+	/**
+	 * Ajax: Send hire now request
+	 */
+	public function ajaxHireNow()
+	{
+		// Start validation
+		if ((int) Input::get('hours') < 1 || (int) Input::get('hours') > 4)
+		{
+			return array('error' => 1, 'error_type' => 'hours');
+		}
+
+		if (Input::get('description') == '')
+		{
+			return array('error' => 1, 'error_type' => 'description');
+		}
+
+		if (!Subject::isTutor(Input::get('tutor_id'))
+			|| (int) Input::get('tutor_id') == (int) Auth::user()->id)
+		{
+			return array('error' => 1, 'error_type' => 'tutor');
+		}
+
+		$price = (int) User::find(Input::get('tutor_id'))->price * (int) Input::get('hours');
+		$userMoney = Payment::getAvailableMoney();
+		if ($userMoney < $price)
+		{
+			return array('error' => 1, 'error_type' => 'money');
+		}
+
+		$expire = new DateTime('now + 1 minute');
+
+		// Validated, now save
+		$hr = new HireNowRequest;
+		$hr->student_id = Auth::user()->id;
+		$hr->tutor_id = (int) Input::get('tutor_id');
+		$hr->hours = (int) Input::get('hours');
+		$hr->price = $price;
+		$hr->description = Input::get('description');
+		$hr->save();
+
+		// Send to socket.io
+		$elephant = new Elephant(Config::get('elephant.domain'));
+		$elephant->setHandshakeQuery(array(
+			'signature' => Config::get('elephant.signature')
+		));
+
+		$elephant->init();
+		$elephant->emit('hire_now', array(
+			'student_id' => Auth::user()->id,
+			'student_name' => Auth::user()->name,
+			'tutor_id' => (int) Input::get('tutor_id'),
+			'hours' => (int) Input::get('hours'),
+			'description' => Input::get('description'),
+			'expire' => $expire->getTimestamp()
+		));
+		$elephant->close();
+
+		return array('error' => 0);
+	}
+
 }

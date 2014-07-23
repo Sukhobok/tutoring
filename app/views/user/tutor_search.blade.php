@@ -55,7 +55,7 @@
 				</div>
 			</div>
 
-			<div class="ss-search-result" style="display: none;">
+			<div class="ss-tutor-search-result" style="display: none;">
 				&nbsp;
 			</div>
 

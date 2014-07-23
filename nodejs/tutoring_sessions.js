@@ -1,5 +1,6 @@
 var io = require('socket.io').listen(53101);
 var needle = require('needle');
+var fs = require('fs');
 var clients = {};
 var _signature = '008ae19bff7861eeec0ecdf80f8915b842cd34e1';
 var timeouts = {};
@@ -206,7 +207,7 @@ io.sockets.on('connection', function (socket)
 	socket.on('tutoring_session_data', function (data)
 	{
 		socket.broadcast.to('ts_' + hs.ts_id).emit('tutoring_session_data', data);
-		// Store them for the recording
+		fs.writeFile('../app/storage/tutoring_sessions/' + hs.ts_id + '/data/' + Date.now() + '.' + hs.user_id + '.tsdp', JSON.stringify(data), function (err) {});
 	});
 
 	socket.on('message', function (data)

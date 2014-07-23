@@ -176,6 +176,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'UserController@ajaxHire'
 	));
 
+	Route::post('user/hire_now', array(
+		'uses' => 'UserController@ajaxHireNow'
+	));
+
 	Route::post('friendship/send_request', array(
 		'uses' => 'FriendshipController@ajaxSendRequest'
 	));
@@ -274,6 +278,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 
 	Route::post('messages/seen', array(
 		'uses' => 'MessageController@ajaxSeen'
+	));
+
+	Route::post('session/receive_audio', array(
+		'uses' => 'TutoringSessionController@ajaxReceiveAudio'
 	));
 });
 

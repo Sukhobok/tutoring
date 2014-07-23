@@ -177,7 +177,9 @@
 				<textarea></textarea>
 			</p>
 
-			<button class="ss-button blue bold" id="ss-hire-send">Send request</button>
+			<button class="ss-button blue bold inline" id="ss-hire-send">Send Request</button>
+			<span class="bold" style="margin: 0 25px;"> OR </span>
+			<button class="ss-button blue bold inline" id="ss-hire-now">Hire Now</button>
 		</p>
 	</div>
 </div>
