@@ -33,6 +33,7 @@ class UserEducation extends Eloquent {
 	public static function getEducation($uid)
 	{
 		$result = DB::select('SELECT user_education.id,
+		user_education.education_id,
 		user_education.degree,
 		user_education.from,
 		user_education.to,
@@ -65,6 +66,9 @@ class UserEducation extends Eloquent {
 			if ($_result->type == 'highschool') $_result->type = 'Highschool';
 			elseif ($_result->type == 'college') $_result->type = 'College';
 			else $_result->type = 'Graduation School';
+
+			if ($_result->type === 'Highschool') $_result->page_type = 'Highschool';
+			else $_result->page_type = 'University';
 
 			if ($_result->degree == 'n/a') $_result->degree = 'N/A';
 			elseif ($_result->degree == 'bachelor') $_result->degree = 'Bachelor Degree';

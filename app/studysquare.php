@@ -64,6 +64,15 @@ HTML::macro('limit', function($str, $limit = 20)
 });
 
 /**
+ * Format date
+ */
+HTML::macro('format_date', function($date, $format = 'F d Y')
+{
+	$date = mktime(0, 0, 0, $date['m'], $date['d'], $date['y']);
+	return date($format, $date);
+});
+
+/**
  * Validation: Require a file
  */
 Validator::extend('required_file', function($attribute, $value, $parameters)

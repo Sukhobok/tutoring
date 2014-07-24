@@ -80,10 +80,21 @@ class UserController extends BaseController {
 			App::abort('404');
 		}
 
+		$_userSubjects = Subject::getUserSubjects($user->id);
+		$userSubjects = array();
+		foreach ($_userSubjects as $subject)
+		{
+			$userSubjects[] = $subject->name;
+		}
+		$userSubjects = implode(', ', $userSubjects);
+
+		$userEducation = UserEducation::getEducation($user->id);
+
 		$posts = User::getUserPosts($id);
 		$friends = Friendship::getFriends($id);
 		$images = $user->images;
 		$isFriend = Friendship::isFriend(Auth::user()->id, $user->id);
+		$isTutor = (bool) count($_userSubjects);
 		$canSendFR = FriendshipRequest::canSendFriendshipRequest(
 			Auth::user()->id,
 			$user->id,
@@ -91,12 +102,13 @@ class UserController extends BaseController {
 				'isFriend' => $isFriend
 			)
 		);
-		$isTutor = Subject::isTutor($user->id);
 
 		$this->layout->content = View::make(
 			'user.view',
 			compact(
 				'user',
+				'userSubjects',
+				'userEducation',
 				'posts',
 				'friends',
 				'images',

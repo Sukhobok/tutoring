@@ -74,12 +74,14 @@
 								</td>
 							</tr>
 
+							{{--
 							<tr>
 								<td>Languages</td>
 								<td>
 									{{ Form::text('languages', '', array('class' => 'ss-input1')) }}
 								</td>
 							</tr>
+							--}}
 
 							<tr>
 								<td>Profile Picture</td>

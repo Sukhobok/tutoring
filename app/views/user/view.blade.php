@@ -22,6 +22,38 @@
 						<button class="ss-button2 red bold">BLOCK</button>
 					@endif
 				</div>
+
+				<div class="ss-section">
+					<div class="ss-user-info">
+						<div class="ss-user-info-title">General Information</div>
+
+						@if ($user->birthday['m'] !== 0)
+							<i class="ss-icon ss-birthday"></i> <div class="ss-user-info-subtitle">Birthday: </div> {{{ HTML::format_date($user->birthday) }}}<br />
+						@endif
+
+						<i class="ss-icon ss-gender"></i> <div class="ss-user-info-subtitle">Gender: </div> {{{ ucfirst($user->gender) }}}<br />
+						{{-- <i class="ss-icon ss-languages"></i> <div class="ss-user-info-subtitle">Languages: </div> ..<br /> --}}
+						
+						@if ($isTutor)
+							<div class="ss-user-info-subtitle">Tutors: </div> {{{ $userSubjects }}}<br />
+							<div class="ss-user-info-subtitle">Hourly Rate: </div> ${{{ $user->price }}}<br />
+						@endif
+					</div>
+				</div>
+
+				@if ($userEducation)
+					<div class="ss-section">
+						<div class="ss-user-info">
+							<i class="ss-icon ss-graduation-cap"></i> <div class="ss-user-info-title inline">Education</div><br />
+
+							@foreach ($userEducation as $_userEducation)
+								<div class="ss-link" data-ss-link="{{{ Alias::getURL($_userEducation->page_type, $_userEducation->education_id) }}}">
+									- {{{ $_userEducation->name }}} ({{{ $_userEducation->from }}}-{{{ $_userEducation->to }}})
+								</div>
+							@endforeach
+						</div>
+					</div>
+				@endif
 			</div>
 		</div>
 
