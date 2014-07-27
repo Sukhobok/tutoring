@@ -11,7 +11,7 @@
 						<h1 class="user-name">{{{ $group->name }}}</h1>
 					</div>
 
-					@if(!$isJoined)
+					@if(Auth::check() && !$isJoined)
 						<button class="ss-button2 red bold join-cg" data-what="group" data-id="{{{ $group->id }}}">JOIN</button>
 					@endif
 				</div>
@@ -30,7 +30,7 @@
 
 		<div class="layout-main">
 			<div class="page-tab-component page-tab-posts" style="display: block;">
-				@if($isJoined)
+				@if(Auth::check() && $isJoined)
 					<div id="post_message">
 						{{ Form::open(array('route' => 'group.post', 'files' => true)) }}
 							{{ Form::hidden('id', $group->id) }}

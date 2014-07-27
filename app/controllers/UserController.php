@@ -93,15 +93,19 @@ class UserController extends BaseController {
 		$posts = User::getUserPosts($id);
 		$friends = Friendship::getFriends($id);
 		$images = $user->images;
-		$isFriend = Friendship::isFriend(Auth::user()->id, $user->id);
 		$isTutor = (bool) count($_userSubjects);
-		$canSendFR = FriendshipRequest::canSendFriendshipRequest(
-			Auth::user()->id,
-			$user->id,
-			array(
-				'isFriend' => $isFriend
-			)
-		);
+
+		if (Auth::check())
+		{
+			$isFriend = Friendship::isFriend(Auth::user()->id, $user->id);
+			$canSendFR = FriendshipRequest::canSendFriendshipRequest(
+				Auth::user()->id,
+				$user->id,
+				array(
+					'isFriend' => $isFriend
+				)
+			);
+		}
 
 		$this->layout->content = View::make(
 			'user.view',
@@ -429,16 +433,35 @@ class UserController extends BaseController {
 
 		$elephant->init();
 		$elephant->emit('hire_now', array(
+			'request_id' => $hr->id,
 			'student_id' => Auth::user()->id,
 			'student_name' => Auth::user()->name,
+			'student_profile_picture' => HTML::profile_picture(Auth::user()),
 			'tutor_id' => (int) Input::get('tutor_id'),
 			'hours' => (int) Input::get('hours'),
+			'price' => $price,
 			'description' => Input::get('description'),
 			'expire' => $expire->getTimestamp()
 		));
 		$elephant->close();
 
 		return array('error' => 0);
+	}
+
+	/**
+	 *
+	 */
+	public function ajaxHireNowApprove()
+	{
+		//
+	}
+
+	/**
+	 *
+	 */
+	public function ajaxHireNowDecline()
+	{
+		//
 	}
 
 }

@@ -67,21 +67,23 @@
 				</div>
 			</div>
 
-			<div class="post-comment ss-section">
-				<div class="profile-picture"> 
-					{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
-				</div>
-
-				<textarea class="post-comment-textarea" placeholder="Write a comment ..." data-ss-pid="{{ $post->id }}"></textarea>
-
-				<div class="post-comment-bottom">
-					<div class="post-comment-pressing-enter">
-						{{ Form::checkbox('post-comment-pressing-enter-cb', '1', true, array('class' => 'post-comment-pressing-enter-cb')) }}
-						Send by pressing enter
+			@if (Auth::check())
+				<div class="post-comment ss-section">
+					<div class="profile-picture"> 
+						{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 50)) }}
 					</div>
-					<button class="ss-button blue bold small-button inline post-comment-button" data-ss-pid="{{ $post->id }}">POST</button>
+
+					<textarea class="post-comment-textarea" placeholder="Write a comment ..." data-ss-pid="{{ $post->id }}"></textarea>
+
+					<div class="post-comment-bottom">
+						<div class="post-comment-pressing-enter">
+							{{ Form::checkbox('post-comment-pressing-enter-cb', '1', true, array('class' => 'post-comment-pressing-enter-cb')) }}
+							Send by pressing enter
+						</div>
+						<button class="ss-button blue bold small-button inline post-comment-button" data-ss-pid="{{ $post->id }}">POST</button>
+					</div>
 				</div>
-			</div>
+			@endif
 
 			<div class="posted-comments" data-ss-pid="{{ $post->id }}">
 				@foreach($post->comments as $comment)

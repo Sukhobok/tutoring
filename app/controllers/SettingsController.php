@@ -318,9 +318,52 @@ class SettingsController extends BaseController {
 	 */
 	public function getVerification()
 	{
+		if (Auth::user()->verified == 'pending')
+		{
+			$verification_id = Image::where('imageable_type', '=', '_UserVerification')
+				->where('imageable_id', '=', Auth::user()->id)
+				->firstOrFail();
+		}
+
 		$this->layout->content = View::make(
-			'settings.verification'
+			'settings.verification',
+			compact('verification_id')
 		);
+	}
+
+	/**
+	 * Identity Verification (POST)
+	 */
+	public function postVerification()
+	{
+		if (Input::hasFile('photo')
+			&& Input::file('photo')->getSize() < 4000000
+			&& Auth::user()->verified == 'not sent')
+		{
+			$filename = 'verification/' . time() . str_random(16) . '.jpg';
+			$image = GDImage::make(Input::file('photo')->getRealPath())
+				->resize(450, null, true, false); // Max width: 450
+			
+			$s3 = AWS::get('s3');
+			$result = $s3->putObject(array(
+				'Bucket' => Config::get('s3.bucket'),
+				'Key' => $filename,
+				'Body' => $image->encode('jpg'),
+				'ACL' => 'public-read'
+			));
+
+			$image = new Image;
+			$image->path = $filename;
+			$image->imageable_type = '_UserVerification';
+			$image->imageable_id = Auth::user()->id;
+			$image->save();
+
+			$user = Auth::user();
+			$user->verified = 'pending';
+			$user->save();
+		}
+
+		return Redirect::route('settings.verification');
 	}
 
 	/**

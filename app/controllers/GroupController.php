@@ -108,7 +108,11 @@ class GroupController extends BaseController {
 		}
 
 		$posts = Group::getGroupPosts($id);
-		$isJoined = Group::isJoined(Auth::user()->id, $group->id);
+
+		if (Auth::check())
+		{
+			$isJoined = Group::isJoined(Auth::user()->id, $group->id);
+		}
 
 		$this->layout->content = View::make(
 			'group.view',

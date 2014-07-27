@@ -69,7 +69,11 @@ class ClassroomController extends BaseController {
 		}
 
 		$posts = Classroom::getClassroomPosts($id);
-		$isJoined = Classroom::isJoined(Auth::user()->id, $classroom->id);
+
+		if (Auth::check())
+		{
+			$isJoined = Classroom::isJoined(Auth::user()->id, $classroom->id);
+		}
 
 		$this->layout->content = View::make(
 			'classroom.view',

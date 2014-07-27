@@ -33,6 +33,39 @@
 		<div class="hide snippet-comment ss-section">
 			@include('snippets.comment')
 		</div>
+
+		{{-- Hire Now Notify modal --}}
+		<div class="hide ss-modal" id="ss-modal-hire-now-notify">
+			<div class="ss-modal-top ss-modal-type-exclam"></div>
+			<div class="ss-modal-body">
+				<h1>Tutoring Request</h1>
+				<div id="ss-modal-hire-now-notify-person">
+					<div class="profile-picture">
+						{{ HTML::image('image', 'Profile Picture', array('width' => 100, 'height' => 100)) }}
+					</div>
+					<h2>Name</h2>
+				</div>
+
+				<div id="ss-modal-hire-now-notify-buttons" data-ss-request-id="0">
+					<button class="ss-button green bold inline" id="ss-modal-hire-now-notify-accept">ACCEPT</button>
+					<button class="ss-button red bold inline" id="ss-modal-hire-now-notify-decline">DECLINE</button>
+				</div>
+
+				<p>
+					Duration requested:
+					<span class="bold"><span id="ss-modal-hire-now-hours">1</span> hour/s</span>
+					@ $<span id="ss-modal-hire-now-price">20.00</span>/hour
+				</p>
+
+				<p id="ss-modal-hire-now-description">
+					Description here
+				</p>
+
+				<p id="ss-modal-hire-now-expire">
+					The request will expire in <span class="bold">01:00</span> minutes!
+				</p>
+			</div>
+		</div>
 	@endif
 
 	{{-- Javascript --}}

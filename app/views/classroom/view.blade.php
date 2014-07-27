@@ -7,7 +7,7 @@
 						<h1 class="user-name">{{{ $classroom->name }}}</h1>
 					</div>
 
-					@if(!$isJoined)
+					@if(Auth::check() && !$isJoined)
 						<button class="ss-button2 red bold join-cg" data-what="classroom" data-id="{{{ $classroom->id }}}">JOIN</button>
 					@endif
 				</div>
@@ -26,7 +26,7 @@
 
 		<div class="layout-main">
 			<div class="page-tab-component page-tab-posts" style="display: block;">
-				@if($isJoined)
+				@if(Auth::check() && $isJoined)
 					<div id="post_message">
 						{{ Form::open(array('route' => 'classroom.post', 'files' => true)) }}
 							{{ Form::hidden('id', $classroom->id) }}

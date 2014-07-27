@@ -38,11 +38,6 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'user.post',
 		'uses' => 'PostController@postUserPost'
 	));
-
-	Route::get('user/{id}', array(
-		'as' => 'user.view',
-		'uses' => 'UserController@getUser'
-	));
 	
 	Route::get('group/create', array(
 		'as' => 'group.create',
@@ -51,11 +46,6 @@ Route::group(array('before' => 'auth'), function()
 	
 	Route::post('group/create', array(
 		'uses' => 'GroupController@postCreate'
-	));
-
-	Route::get('group/{id}', array(
-		'as' => 'group.view',
-		'uses' => 'GroupController@getGroup'
 	));
 
 	Route::post('group/post', array(
@@ -72,24 +62,9 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'ClassroomController@postCreate'
 	));
 
-	Route::get('classroom/{id}', array(
-		'as' => 'classroom.view',
-		'uses' => 'ClassroomController@getClassroom'
-	));
-
 	Route::post('classroom/post', array(
 		'as' => 'classroom.post',
 		'uses' => 'PostController@postClassroomPost'
-	));
-
-	Route::get('highschool/{id}', array(
-		'as' => 'highschool.view',
-		'uses' => 'HighschoolController@getHighschool'
-	));
-
-	Route::get('university/{id}', array(
-		'as' => 'university.view',
-		'uses' => 'UniversityController@getUniversity'
 	));
 
 	Route::get('messages/{uid?}', array(
@@ -151,6 +126,10 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@getVerification'
 	));
 
+	Route::post('settings/verification', array(
+		'uses' => 'SettingsController@postVerification'
+	));
+
 	Route::get('settings/tutor_center', array(
 		'as' => 'settings.tutor_center',
 		'uses' => 'SettingsController@getTutorCenter'
@@ -178,6 +157,14 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 
 	Route::post('user/hire_now', array(
 		'uses' => 'UserController@ajaxHireNow'
+	));
+
+	Route::post('user/hire_now_approve', array(
+		'uses' => 'UserController@ajaxHireNowApprove'
+	));
+
+	Route::post('user/hire_now_decline', array(
+		'uses' => 'UserController@ajaxHireNowDecline'
 	));
 
 	Route::post('friendship/send_request', array(
@@ -236,10 +223,6 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'GroupController@ajaxList'
 	));
 
-	Route::get('search', array(
-		'uses' => 'PageController@ajaxSearchAnything'
-	));
-
 	Route::post('settings/delete_education', array(
 		'uses' => 'SettingsController@ajaxDeleteEducation'
 	));
@@ -290,6 +273,36 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
  */
 Route::group(array(), function()
 {
+	Route::get('user/{id}', array(
+		'as' => 'user.view',
+		'uses' => 'UserController@getUser'
+	))
+	->where('id', '[0-9]+');
+
+	Route::get('group/{id}', array(
+		'as' => 'group.view',
+		'uses' => 'GroupController@getGroup'
+	))
+	->where('id', '[0-9]+');
+
+	Route::get('classroom/{id}', array(
+		'as' => 'classroom.view',
+		'uses' => 'ClassroomController@getClassroom'
+	))
+	->where('id', '[0-9]+');
+
+	Route::get('highschool/{id}', array(
+		'as' => 'highschool.view',
+		'uses' => 'HighschoolController@getHighschool'
+	))
+	->where('id', '[0-9]+');
+
+	Route::get('university/{id}', array(
+		'as' => 'university.view',
+		'uses' => 'UniversityController@getUniversity'
+	))
+	->where('id', '[0-9]+');
+
 	Route::get('subject/{id}', array(
 		'as' => 'subject.view',
 		'uses' => 'SubjectController@getSubject'
@@ -304,6 +317,10 @@ Route::group(array(), function()
 
 Route::group(array('before' => 'ajax', 'prefix' => 'ajax'), function ()
 {
+	Route::get('search', array(
+		'uses' => 'PageController@ajaxSearchAnything'
+	));
+
 	Route::post('tutor/search', array(
 		'uses' => 'UserController@ajaxTutorSearch'
 	));
