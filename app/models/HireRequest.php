@@ -245,8 +245,14 @@ class HireRequest extends Eloquent {
 		$ts->price = $hr->price;
 		$ts->session_date = new DateTime($_time);
 		$ts->description = $hr->description;
-		$ts->hr_id = $hr->id;
 		$ts->save();
+
+		Payment::where('type', '=', 'pending_hire')
+			->where('type_id', '=', $hr->id)
+			->update(array(
+				'type' => 'pending_tutoring_session',
+				'type_id' => $ts->id
+			));
 
 		$hr->delete();
 		return true;
@@ -282,8 +288,8 @@ class HireRequest extends Eloquent {
 	 */
 	public static function _refundHireRequest($hr_id)
 	{
-		Payment::where('type_id', '=', $hr_id)
-			->where('type', '=', 'pending_for_ts')
+		Payment::where('type', '=', 'pending_hire')
+			->where('type_id', '=', $hr_id)
 			->delete();
 
 		return true;

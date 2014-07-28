@@ -82,8 +82,8 @@ class TutoringSession extends Eloquent {
 				&& $session->started_at == null)
 			{
 				TutoringSession::destroy($session->id);
-				HireRequest::_refundHireRequest($session->hr_id);
-				HireRequest::_sendCancelHireRequest($session->hr_id);
+				TutoringSession::_refundTutoringSession($session->id);
+				TutoringSession::_sendCancelTutoringSession($session->id);
 			}
 			else
 			{
@@ -150,8 +150,8 @@ class TutoringSession extends Eloquent {
 		$ts_info->save();
 
 		// Get pending payment
-		$payment = Payment::where('type_id', '=', $ts->hr_id)
-			->where('type', '=', 'pending_for_ts')
+		$payment = Payment::where('type_id', '=', $ts->id)
+			->where('type', '=', 'pending_tutoring_session')
 			->first();
 
 		// Calculate StudySquare fee
@@ -169,12 +169,37 @@ class TutoringSession extends Eloquent {
 		$payment = new Payment;
 		$payment->from_id = $ts->student_id;
 		$payment->to_id = $ts->tutor_id;
-		$payment->type = 'ss_fee';
+		$payment->type = 'studysquare_fee';
 		$payment->amount = $ss_fee;
 		$payment->save();
 
 		return true;
 	}
 
+	/**
+	 * Refund Tutoring Session
+	 * @param integer $ts_id
+	 * @return boolean TRUE
+	 */
+	public static function _refundTutoringSession($ts_id)
+	{
+		Payment::where('type', '=', 'pending_tutoring_session')
+			->where('type_id', '=', $ts_id)
+			->delete();
+
+		return true;
+	}
+
+	/**
+	 * Send Tutoring Session Cancel Notification
+	 * @param integer $ts_id
+	 * @param boolean $auto (TRUE if auto canceled, FALSE if canceled by user)
+	 * @param string $message
+	 * @return boolean Success
+	 */
+	public static function _sendCancelTutoringSession($ts_id, $auto = true, $message = '')
+	{
+		// TO DO: Notif user
+	}
 
 }

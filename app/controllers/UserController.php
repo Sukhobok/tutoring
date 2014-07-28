@@ -376,7 +376,7 @@ class UserController extends BaseController {
 		$p = new Payment;
 		$p->from_id = Auth::user()->id;
 		$p->to_id = (int) Input::get('tutor_id');
-		$p->type = 'pending_for_ts';
+		$p->type = 'pending_hire';
 		$p->type_id = $hr->id;
 		$p->award_date = new DateTime('now + 2 years');
 		$p->amount = $price;
@@ -424,6 +424,15 @@ class UserController extends BaseController {
 		$hr->price = $price;
 		$hr->description = Input::get('description');
 		$hr->save();
+
+		$p = new Payment;
+		$p->from_id = Auth::user()->id;
+		$p->to_id = (int) Input::get('tutor_id');
+		$p->type = 'pending_hire_now';
+		$p->type_id = $hr->id;
+		$p->award_date = new DateTime('now + 2 years');
+		$p->amount = $price;
+		$p->save();
 
 		// Send to socket.io
 		$elephant = new Elephant(Config::get('elephant.domain'));
