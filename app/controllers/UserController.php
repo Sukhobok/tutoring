@@ -1,5 +1,7 @@
 <?php
 
+use ElephantIO\Client as Elephant;
+
 class UserController extends BaseController {
 
 	/**
@@ -458,19 +460,59 @@ class UserController extends BaseController {
 	}
 
 	/**
-	 *
+	 * Ajax: Approve Hire Now Request
 	 */
 	public function ajaxHireNowApprove()
 	{
-		//
+		$student_id = HireNowRequest::approveHireNowRequest(
+			(int) Input::get('hnr_id')
+		);
+
+		if ($student_id)
+		{
+			// Send to socket.io
+			$elephant = new Elephant(Config::get('elephant.domain'));
+			$elephant->setHandshakeQuery(array(
+				'signature' => Config::get('elephant.signature')
+			));
+
+			$elephant->init();
+			$elephant->emit('hire_now_response', array(
+				'response' => 'approve',
+				'student_id' => $student_id
+			));
+			$elephant->close();
+		}
+
+		return array('error' => (int) !$student_id);
 	}
 
 	/**
-	 *
+	 * Ajax: Decline Hire Now Request
 	 */
 	public function ajaxHireNowDecline()
 	{
-		//
+		$student_id = HireNowRequest::declineHireNowRequest(
+			(int) Input::get('hnr_id')
+		);
+
+		if ($student_id)
+		{
+			// Send to socket.io
+			$elephant = new Elephant(Config::get('elephant.domain'));
+			$elephant->setHandshakeQuery(array(
+				'signature' => Config::get('elephant.signature')
+			));
+
+			$elephant->init();
+			$elephant->emit('hire_now_response', array(
+				'response' => 'decline',
+				'student_id' => $student_id
+			));
+			$elephant->close();
+		}
+		
+		return array('error' => (int) !$student_id);
 	}
 
 }

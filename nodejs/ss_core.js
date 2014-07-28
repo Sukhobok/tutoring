@@ -120,6 +120,17 @@ io.sockets.on('connection', function (socket)
 		}
 	});
 
+	socket.on('hire_now_response', function (data)
+	{
+		if (hs.client_type === 'server')
+		{
+			if (clients.hasOwnProperty(data.student_id))
+			{
+				clients[data.student_id].emit('hire_now_response', data);
+			}
+		}
+	});
+
 	socket.on('disconnect', function ()
 	{
 		if (hs.client_type === 'user')

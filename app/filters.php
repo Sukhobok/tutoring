@@ -36,6 +36,7 @@ App::before(function($request)
 		});
 
 		HireRequest::deleteExpiredRequests();
+		HireNowRequest::deleteExpiredHireNowRequests();
 		if (TutoringSession::deleteExpiredAndGetSession()
 			&& $request->path() != 'session/start') // TO DO: search by route name
 		{

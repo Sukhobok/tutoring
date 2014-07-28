@@ -3,7 +3,7 @@ socket.on('hire_now', function (data)
 	$('#ss-modal-hire-now-notify-person img').attr('src', data.student_profile_picture);
 	$('#ss-modal-hire-now-notify-person h2').text(data.student_name);
 	$('#ss-modal-hire-now-hours').text(data.hours);
-	$('#ss-modal-hire-now-price').text(data.price);
+	$('#ss-modal-hire-now-price').text(parseInt(data.price / data.hours, 10));
 	$('#ss-modal-hire-now-description').text(data.description);
 	$('#ss-modal-hire-now-notify-buttons')[0].setAttribute('data-ss-request-id', data.request_id);
 
@@ -41,10 +41,10 @@ socket.on('hire_now', function (data)
 
 $('#ss-modal-hire-now-notify-buttons').on('click', '#ss-modal-hire-now-notify-accept', function ()
 {
-	//
+	var _hnr_id = $(this).parent()[0].getAttribute('data-ss-request-id');
 });
 
 $('#ss-modal-hire-now-notify-buttons').on('click', '#ss-modal-hire-now-notify-decline', function ()
 {
-	//
+	var _hnr_id = $(this).parent()[0].getAttribute('data-ss-request-id');
 });

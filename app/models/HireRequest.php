@@ -279,6 +279,7 @@ class HireRequest extends Eloquent {
 		$hr->delete();
 		HireRequest::_refundHireRequest($hr_id);
 		HireRequest::_sendCancelHireRequest($hr_id, false);
+		return true;
 	}
 
 	/**
