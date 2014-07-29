@@ -456,7 +456,7 @@ class UserController extends BaseController {
 		));
 		$elephant->close();
 
-		return array('error' => 0);
+		return array('error' => 0, 'expire' => $expire->getTimestamp());
 	}
 
 	/**

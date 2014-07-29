@@ -1,3 +1,14 @@
+socket.on('new_message', function (data)
+{
+	audio_alert();
+
+	$.growl({
+		title: "New message!",
+		message: '<span class="bold">' + data.from_name + '</span> sent you a message!',
+		ss_redirect: '/messages/' + data.from_id
+	});
+});
+
 // If we are on the message page
 if($('.message-page').length != 0) {
 	/**

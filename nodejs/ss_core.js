@@ -90,7 +90,15 @@ io.sockets.on('connection', function (socket)
 	var hs = socket.handshake;
 	if (hs.client_type === 'user')
 	{
-		clients[hs.user_id] = socket;
+		if (clients.hasOwnProperty(hs.user_id))
+		{
+			socket.emit('duplicate_session');
+			socket.disconnect();
+		}
+		else
+		{
+			clients[hs.user_id] = socket;
+		}
 	}
 
 	socket.on('new_comment', function (data)
