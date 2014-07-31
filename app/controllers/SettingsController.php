@@ -318,6 +318,8 @@ class SettingsController extends BaseController {
 	 */
 	public function getVerification()
 	{
+		$validator_errors = Session::get('validator_errors');
+
 		if (Auth::user()->verified == 'pending')
 		{
 			$verification_id = Image::where('imageable_type', '=', '_UserVerification')
@@ -325,9 +327,15 @@ class SettingsController extends BaseController {
 				->firstOrFail();
 		}
 
+		if (Auth::user()->w9 == 'complete')
+		{
+			$old_w9 = W9::where('user_id', '=', Auth::user()->id)
+				->firstOrFail();
+		}
+
 		$this->layout->content = View::make(
 			'settings.verification',
-			compact('verification_id')
+			compact('validator_errors', 'verification_id', 'old_w9')
 		);
 	}
 
@@ -364,6 +372,45 @@ class SettingsController extends BaseController {
 		}
 
 		return Redirect::route('settings.verification');
+	}
+
+	/**
+	 * POST: Send W9 form
+	 */
+	public function postSendW9()
+	{
+		$validator = Validator::make(
+			Input::all(),
+			User::$w9_rules
+		);
+
+		if ($validator->passes())
+		{
+			$w9 = W9::firstOrNew(array(
+				'user_id' => Auth::user()->id
+			));
+			$w9->name = Input::get('name');
+			$w9->address = Input::get('address');
+			$w9->city = Input::get('city');
+			$w9->state = Input::get('state');
+			$w9->zip = Input::get('zip');
+			$w9->tax_status = Input::get('tax_status');
+			$w9->tin_type = Input::get('tin_type');
+			$w9->tin = Input::get('tin');
+			$w9->save();
+
+			$user = Auth::user();
+			$user->w9 = 'complete';
+			$user->save();
+
+			return Redirect::route('settings.verification');
+		}
+		else
+		{
+			return Redirect::route('settings.verification')
+				->withInput()
+				->with('validator_errors', array_keys($validator->failed()));
+		}
 	}
 
 	/**

@@ -43,6 +43,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'b_day' => 'required|numeric|min:1|max:31'
 	);
 
+	public static $w9_rules = array(
+		'name' => 'required',
+		'address' => 'required',
+		'city' => 'required',
+		'state' => 'required',
+		'zip' => 'required',
+		'tax_status' => 'required|in:1,2,3,4,5,6,7',
+		'tin_type' => 'required|in:1,2',
+		'tin' => 'required',
+		'correct_tin' => 'required|accepted',
+		'backup_witholding' => 'required|accepted',
+		'us_citizen' => 'required|accepted'
+	);
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 * @var array

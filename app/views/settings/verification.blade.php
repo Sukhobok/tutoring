@@ -10,7 +10,12 @@
 					<h1>Identity verification</h1>
 
 					<div class="page-settings-inner">
+						@if ($validator_errors)
+							<div style="margin-bottom: 15px;" class="ss-highlight red">The form was not saved! All fields are required!</div>
+						@endif
+
 						@if (Auth::user()->verified == 'not sent')
+							{{-- Ask for the ID --}}
 							<p>
 								Verify your identity in order to make withdrawals
 							</p>
@@ -32,16 +37,31 @@
 								{{ Form::close() }}
 							</div>
 						@elseif (Auth::user()->verified == 'pending')
+							{{-- Tell the user that he needs to wait for the confirmation --}}
 							<p style="margin-bottom: 15px;">You have uploaded the following document: </p>
 							{{ HTML::image(HTML::get_from_s3($verification_id->path), 'Verification Id', array('width' => 450)) }}
 
 							<p class="bold" style="margin-top: 15px;">Your ID is pending verification.</p>
 							<p>
 								As soon as you are verified, you will receive a notification with further instructions.
+								<br />
 								Please allow up to 24 hours.
 							</p>
 						@else
-							Complete, check W9
+							{{-- He is verified, we need to check for W9 --}}
+							@if (Auth::user()->w9 == 'required')
+								<p class="bold">Your account is verified! You just need to complete the following W-9 form!</p>
+								@include('settings.w9_form')
+							@elseif (Auth::user()->w9 == 'complete')
+								<p class="bold">Your account is verified! You can change your W-9 form below!</p>
+								@include('settings.w9_form', compact('old_w9'))
+							@else
+								<p class="bold">
+									Your account has been verified and we don't need any additional information!
+									<br />
+									Thank you for using StudySquare!
+								</p>
+							@endif
 						@endif
 					</div>
 				</div>

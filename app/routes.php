@@ -130,6 +130,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'SettingsController@postVerification'
 	));
 
+	Route::post('settings/send_w9', array(
+		'as' => 'settings.send_w9',
+		'uses' => 'SettingsController@postSendW9'
+	));
+
 	Route::get('settings/tutor_center', array(
 		'as' => 'settings.tutor_center',
 		'uses' => 'SettingsController@getTutorCenter'
