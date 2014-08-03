@@ -26,6 +26,34 @@ ts_socket.on('canceled', function () {
 	{
 		clearInterval(waiting_interval); $('.header-notice').html('');
 	}
+
+	$('.ss-modal-ts-finished-cases').hide();
+	$('.ss-modal-ts-finished-case2').show();
+	$.ssModal(
+	{
+		modalId: 'ts-finished',
+		canBeClosed: 0
+	});
+
+	if ($('.ss-modal-ts-finished-complaint'))
+	{
+		var _complaint_remaining = 5*60;
+		var _complaint_timer = setInterval(function ()
+		{
+			_complaint_remaining--;
+
+			if (_complaint_remaining <= 0)
+			{
+				clearInterval(_complaint_timer);
+				$('.ss-modal-ts-finished-complaint-send').remove();
+				$('.ss-modal-ts-finished-save').remove();
+			}
+			else
+			{
+				$('.ss-modal-ts-finished-complaint').text(convert_seconds(_complaint_remaining));
+			}
+		}, 1000);
+	}
 });
 
 ts_socket.on('finished', function () {
@@ -33,6 +61,34 @@ ts_socket.on('finished', function () {
 	if (waiting_interval !== false)
 	{
 		clearInterval(waiting_interval); $('.header-notice').html('');
+	}
+
+	$('.ss-modal-ts-finished-cases').hide();
+	$('.ss-modal-ts-finished-case1').show();
+	$.ssModal(
+	{
+		modalId: 'ts-finished',
+		canBeClosed: 0
+	});
+
+	if ($('.ss-modal-ts-finished-complaint'))
+	{
+		var _complaint_remaining = 5*60;
+		var _complaint_timer = setInterval(function ()
+		{
+			_complaint_remaining--;
+
+			if (_complaint_remaining <= 0)
+			{
+				clearInterval(_complaint_timer);
+				$('.ss-modal-ts-finished-complaint-send').remove();
+				$('.ss-modal-ts-finished-save').remove();
+			}
+			else
+			{
+				$('.ss-modal-ts-finished-complaint').text(convert_seconds(_complaint_remaining));
+			}
+		}, 1000);
 	}
 });
 

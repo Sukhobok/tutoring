@@ -135,6 +135,7 @@ class CompileAssets extends Command {
 			'chat_core.js',
 			'chat_interaction.js',
 			'file_manager_interaction.js',
+			'finish.js'
 		));
 		$compiler->setTargetFile('tutoring_session.min.js');
 		$compiler->compile();

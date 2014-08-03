@@ -271,6 +271,18 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('session/receive_audio', array(
 		'uses' => 'TutoringSessionController@ajaxReceiveAudio'
 	));
+
+	Route::post('session/leave_feedback', array(
+		'uses' => 'TutoringSessionController@ajaxLeaveFeedback'
+	));
+
+	Route::post('session/send_complaint', array(
+		'uses' => 'TutoringSessionController@ajaxSendComplaint'
+	));
+
+	Route::post('session/save', array(
+		'uses' => 'TutoringSessionController@ajaxSave'
+	));
 });
 
 /**

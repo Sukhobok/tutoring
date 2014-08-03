@@ -259,3 +259,75 @@
 		</p>
 	</div>
 </div>
+
+@if ($role == 'student')
+	<div class="ss-modal" id="ss-modal-ts-finished">
+		<div class="ss-modal-top ss-modal-type-exclam"></div>
+		<div class="ss-modal-body">
+			<p class="ss-modal-ts-finished-cases ss-modal-ts-finished-case1">
+				Woohoo! You've finished your session!
+			</p>
+
+			<p class="ss-modal-ts-finished-cases ss-modal-ts-finished-case2">
+				Seems like the tutor left! Your tutoring session has been refunded!
+			</p>
+
+			<p style="margin-top: 20px;">
+				We hope that everything went well and we would like you to provide feedback for the tutor to let other people know how they did! 
+			</p>
+
+			<div id="ss-modal-ts-finished-stars" data-ss-stars-amount="0">
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('class' => 'ss-modal-ts-finished-star')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('class' => 'ss-modal-ts-finished-star')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('class' => 'ss-modal-ts-finished-star')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('class' => 'ss-modal-ts-finished-star')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('class' => 'ss-modal-ts-finished-star')) }}
+			</div>
+
+			<div id="ss-modal-ts-finished-feedback">
+				<textarea></textarea>
+			</div>
+
+			<div class="ss-modal-ts-finished-cases ss-modal-ts-finished-case1" style="margin-top: 25px; text-align: center;">
+				<button class="ss-button green bold inline ss-modal-ts-finished-save" style="margin-right: 30px;">
+					SAVE SESSION (<span class="ss-modal-ts-finished-complaint">05:00</span>) - $5.00
+				</button>
+
+				<button class="ss-button green bold inline ss-modal-ts-finished-complaint-send" style="margin-right: 30px;">
+					SEND A COMPLAINT (<span class="ss-modal-ts-finished-complaint">05:00</span>)
+				</button>
+			</div>
+
+			<div style="margin-top: 15px; text-align: center;">
+				<button class="ss-button green bold inline ss-modal-ts-finished-rate-tutor">
+					RATE TUTOR AND FINISH SESSION
+				</button>
+			</div>
+		</div>
+	</div>
+@else
+	<div class="ss-modal" id="ss-modal-ts-finished">
+		<div class="ss-modal-top ss-modal-type-exclam"></div>
+		<div class="ss-modal-body">
+			<p class="ss-modal-ts-finished-cases ss-modal-ts-finished-case1">
+				Woohoo! You've finished your session!
+			</p>
+
+			<p class="ss-modal-ts-finished-cases ss-modal-ts-finished-case2">
+				Seems like the student left!
+			</p>
+
+			<p style="margin-top: 20px;">
+				You earned $<span class="ss-modal-ts-finished-price">{{{ 0.9 * ((int) $ts->price) - 1 }}}</span>!
+			</p>
+
+			<p style="margin-top: 25px;">
+				<button class="ss-button green bold ss-link" data-ss-link="/" style="margin: 0 auto;">Got it! Take me to the Dashboard!</button>
+			</p>
+		</div>
+	</div>
+@endif
+
+<script>
+	var global_ts_id = '{{{ $ts_id }}}';
+</script>

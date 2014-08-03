@@ -45,7 +45,7 @@ $(document).on('click', '#ss-hire-now', function () {
 				}
 				else
 				{
-					$('#ss-modal-hire-now-send-expire span').text('00:' + ((_s < 10) ? '0' + _s : _s));
+					$('#ss-modal-hire-now-send-expire span').text(convert_seconds(_s));
 				}
 			}, 1000);
 		}
@@ -81,7 +81,7 @@ socket.on('hire_now', function (data)
 		}
 		else
 		{	
-			$('#ss-modal-hire-now-notify-expire span').text('00:' + ((_s < 10) ? '0' + _s : _s));
+			$('#ss-modal-hire-now-notify-expire span').text(convert_seconds(_s));
 		}
 	}, 1000);
 });

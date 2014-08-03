@@ -29,9 +29,11 @@ class TutoringSessionController extends BaseController {
 		}
 
 		$role = TutoringSession::getUserRole($ts_id, Auth::user()->id);
+		$ts = TutoringSession::find($ts_id);
+
 		$this->layout->content = View::make(
 			'tutoring_session.start',
-			compact('ts_id', 'role')
+			compact('ts_id', 'role', 'ts')
 		);
 	}
 
@@ -62,6 +64,136 @@ class TutoringSessionController extends BaseController {
 			unlink($filename . '.wav');
 			return array('error' => 0);
 		}
+	}
+
+	/**
+	 * Ajax: Leave Feedback
+	 */
+	public function ajaxLeaveFeedback()
+	{
+		$tutor_id = TutoringSession::canLeaveFeedback((int) Input::get('ts_id'));
+		if (!$tutor_id
+			|| (int) Input::get('stars') > 5
+			|| (int) Input::get('stars') < 0)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		$f = new Feedback;
+		$f->student_id = Auth::user()->id;
+		$f->tutor_id = $tutor_id;
+		$f->stars = (int) Input::get('stars');
+		$f->message = Input::get('message');
+		$f->ts_id = (int) Input::get('ts_id');
+		$f->save();
+		return '';
+	}
+
+	/**
+	 * Ajax: Send Complaint
+	 */
+	public function ajaxSendComplaint()
+	{
+		$tutor_id = TutoringSession::canSendComplaint((int) Input::get('ts_id'));
+		if (!$tutor_id)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		$tsi = TutoringSessionInfo::find((int) Input::get('ts_id'));
+		if ($tsi->saved != 'yes')
+		{
+			$tsi->saved = 'only_for_complaint';
+			$tsi->save();
+
+			$files = File::allFiles(
+				storage_path('tutoring_sessions/' . (int) Input::get('ts_id'))
+			);
+
+			foreach ($files as $file)
+			{
+				$_file = File::get((string) $file);
+				$_filename = 'tutoring_sessions/'
+					. (int) Input::get('ts_id')
+					. str_replace(
+						'\\', '/', $file->getRelativePathname()
+					);
+
+				$s3 = AWS::get('s3');
+				$result = $s3->putObject(array(
+					'Bucket' => Config::get('s3.bucket'),
+					'Key' => $_filename,
+					'Body' => $_file,
+					'ACL' => 'public-read'
+				));
+			}
+		}
+		// TO DO: Set unsaved pending to no
+
+		$c = new Complaint;
+		$c->student_id = Auth::user()->id;
+		$c->ts_id = (int) Input::get('ts_id');
+		$c->save();
+
+		// Hold money
+		$p = Payment::where('type', '=', 'tutoring_session')
+			->where('type_id', '=', (int) Input::get('ts_id'))
+			->first();
+		$p->award_date = new DateTime('now + 2 years');
+		$p->save();
+		return '';
+	}
+
+	/**
+	 * Ajax: Save Session
+	 */
+	public function ajaxSave()
+	{
+		$can_save = TutoringSession::canSaveSession((int) Input::get('ts_id'));
+		if (!$can_save)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		$p = new Payment;
+		$p->from_id = Auth::user()->id;
+		$p->to_id = 0;
+		$p->type = 'saved_session';
+		$p->type_id = (int) Input::get('ts_id');
+		$p->award_date = new DateTime('now');
+		$p->amount = 5;
+		$p->save();
+
+		$tsi = TutoringSessionInfo::find((int) Input::get('ts_id'));
+
+		if ($tsi->saved != 'only_for_complaint')
+		{
+			$files = File::allFiles(
+				storage_path('tutoring_sessions/' . (int) Input::get('ts_id'))
+			);
+
+			foreach ($files as $file)
+			{
+				$_file = File::get((string) $file);
+				$_filename = 'tutoring_sessions/'
+					. (int) Input::get('ts_id')
+					. str_replace(
+						'\\', '/', $file->getRelativePathname()
+					);
+
+				$s3 = AWS::get('s3');
+				$result = $s3->putObject(array(
+					'Bucket' => Config::get('s3.bucket'),
+					'Key' => $_filename,
+					'Body' => $_file,
+					'ACL' => 'public-read'
+				));
+			}
+		}
+		
+		$tsi->saved = 'yes';
+		$tsi->save();
+		return '';
 	}
 
 }
