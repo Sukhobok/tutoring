@@ -287,6 +287,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			->where('student_id', '=', $uid)
 			->join('users', 'tutoring_sessions.tutor_id', '=', 'users.id')
 			->select('users.name', 'users.id')
+			->groupBy('users.id')
 			->get();
 	}
 
