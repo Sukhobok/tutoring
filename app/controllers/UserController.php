@@ -109,6 +109,21 @@ class UserController extends BaseController {
 			);
 		}
 
+		$rating = User::get_user_rating($user->id);
+		if ($rating['count'])
+		{
+			$tutor_info = User::get_tutor_info($user->id);
+			$feedback = Feedback::where('tutor_id', '=', $user->id)
+				->join('users', 'users.id', '=', 'feedback.student_id')
+				->select(
+					'feedback.message',
+					'feedback.stars',
+					'users.profile_picture',
+					'users.name'
+				)
+				->get();
+		}
+
 		$this->layout->content = View::make(
 			'user.view',
 			compact(
@@ -120,7 +135,10 @@ class UserController extends BaseController {
 				'images',
 				'isFriend',
 				'canSendFR',
-				'isTutor'
+				'isTutor',
+				'rating',
+				'tutor_info',
+				'feedback'
 			)
 		);
 	}

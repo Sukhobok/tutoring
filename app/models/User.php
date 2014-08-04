@@ -292,6 +292,91 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Get user rating
+	 * @param integer $uid
+	 * @return array('1_stars', ..., '5_stars', 'count', 'sum', 'average')
+	 */
+	public static function get_user_rating($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+
+		$_1_stars = Feedback::where('stars', '=', '1')
+			->where('tutor_id', '=', $uid)
+			->count();
+		$_2_stars = Feedback::where('stars', '=', '2')
+			->where('tutor_id', '=', $uid)
+			->count();
+		$_3_stars = Feedback::where('stars', '=', '3')
+			->where('tutor_id', '=', $uid)
+			->count();
+		$_4_stars = Feedback::where('stars', '=', '4')
+			->where('tutor_id', '=', $uid)
+			->count();
+		$_5_stars = Feedback::where('stars', '=', '5')
+			->where('tutor_id', '=', $uid)
+			->count();
+
+		$ratings = array();
+		$ratings['1_stars'] = $_1_stars;
+		$ratings['2_stars'] = $_2_stars;
+		$ratings['3_stars'] = $_3_stars;
+		$ratings['4_stars'] = $_4_stars;
+		$ratings['5_stars'] = $_5_stars;
+		$ratings['count'] = $_1_stars + $_2_stars + $_3_stars + $_4_stars + $_5_stars;
+		$ratings['sum'] = ($_1_stars * 1)
+			+ ($_2_stars * 2)
+			+ ($_3_stars * 3)
+			+ ($_4_stars * 4)
+			+ ($_5_stars * 5);
+
+		if ($ratings['count'] == 0)
+		{
+			$ratings['average'] = 0;
+		}
+		else
+		{
+			$ratings['average'] = round($ratings['sum'] / $ratings['count']);
+		}
+
+		return $ratings;
+	}
+
+	/**
+	 * Get tutor info
+	 * @param integer $uid
+	 * @return array('subjects', 'sessions', 'hours', 'earnings', 'per_session')
+	 */
+	public static function get_tutor_info($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+		$result = array();
+
+		$subjects = DB::table('user_subjects')
+			->where('user_id', '=', $uid)
+			->count();
+
+		$sessions = TutoringSession::where('tutor_id', '=', $uid)
+			->where('session_date', '<', new DateTime('now'))
+			->count();
+
+		$hours = TutoringSession::where('tutor_id', '=', $uid)
+			->where('session_date', '<', new DateTime('now'))
+			->sum('hours');
+
+		$earnings = Payment::where('type', '=', 'tutoring_session')
+			->where('to_id', '=', $uid)
+			->where('award_date', '<', new DateTime('now'))
+			->sum('amount');
+
+		$result['subjects'] = $subjects;
+		$result['sessions'] = $sessions;
+		$result['hours'] = $hours;
+		$result['earnings'] = round($earnings);
+		$result['per_session'] = round($earnings / $sessions);
+		return $result;
+	}
+
+	/**
 	 * Get the unique identifier for the user.
 	 * @return mixed
 	 */

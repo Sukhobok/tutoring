@@ -62,7 +62,7 @@
 				<div data-ss-tab="posts" class="page-tab is-active">Posts</div>
 				<div data-ss-tab="photos" class="page-tab">Photos</div>
 				<div data-ss-tab="friends" class="page-tab">Friends</div>
-				<div data-ss-tab="more" class="page-tab">More</div>
+				<div data-ss-tab="tutor" class="page-tab">Tutor Info</div>
 				<div class="clear"></div>
 			</div>
 
@@ -113,7 +113,7 @@
 			</div>
 
 			<div class="page-tab-component page-tab-friends">
-				<div class="ss-container center with-padding"> 
+				<div class="ss-container center with-padding">
 					@foreach($friends as $friend)
 						<div class="friend ss-link" data-ss-link="{{ URL::route('user.view', $friend->id) }}">
 							<div class="friend-hover"></div>
@@ -128,8 +128,125 @@
 				</div>
 			</div>
 
-			<div class="page-tab-component page-tab-more">
-				more
+			<div class="page-tab-component page-tab-tutor">
+				@if ($rating['count'] == 0)
+					<div class="ss-container center with-padding">
+						<span class="bold">This user haven't received any feedback</span>
+					</div>
+				@else
+					<div class="ss-container">
+						<table class="tutor-info-table">
+							<tr>
+								<td>
+									<h1>Tutor Info</h1>
+									
+									<p>
+										<span class="tutor-info-green-text">{{{ $tutor_info['subjects'] }}}</span> subjects
+									</p>
+
+									<p>
+										<span class="tutor-info-green-text">{{{ $tutor_info['sessions'] }}}</span> sessions
+									</p>
+
+									<p>
+										<span class="tutor-info-green-text">{{{ $tutor_info['hours'] }}}</span> hours
+									</p>
+								</td>
+
+								<td>
+									<h1>Overall Rating</h1>
+
+									<p>
+										@for ($i = 1; $i <= $rating['average']; $i++)
+											{{ HTML::image(URL::to('images/rating_full.png'), 'Rating', array('width' => '22')) }}
+										@endfor
+
+										@for ($i = 5; $i > $rating['average']; $i--)
+											{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+										@endfor
+									</p>
+
+									<p class="center">
+										<span class="tutor-info-green-text">{{{ $rating['count'] }}}</span> reviews
+									</p>
+								</td>
+
+								<td>
+									@for ($i = 1; $i <= 5; $i++)
+										<p>
+											<span class="bold">{{{ $rating[$i . '_stars'] }}}</span>
+
+											<?php
+												// We use plain PHP here because we don't need spaces between stars
+												for ($j = 1; $j <= $i; $j++):
+													echo HTML::image(URL::to('images/rating_full.png'), 'Rating', array('width' => '15'));
+												endfor;
+												
+												for ($j = 5; $j > $i; $j--):
+													echo HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '15'));
+												endfor;
+											?>
+										</p>
+									@endfor
+								</td>
+
+								<td>
+									<h1>Earnings Info</h1>
+
+									<p>
+										<span class="tutor-info-green-text">${{{ $tutor_info['earnings'] }}}</span> earnings
+									</p>
+
+									<p>
+										<span class="tutor-info-green-text">${{{ $tutor_info['per_session'] }}}</span> per session
+									</p>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="ss-container with-full-padding" style="margin-top: 20px;">
+						<span class="bold">Bio: </span>
+						{{ nl2br(e($user->bio)) }}
+					</div>
+
+					<div style="text-align: right; font-weight: 700; font-size: 16px; margin-top: 20px;">
+						Tutor Feedback
+					</div>
+
+					@foreach ($feedback as $_feedback)
+						<div class="ss-container with-padding feedback-tab-item">
+							<div class="feedback-tab-item-left">
+								<div class="profile-picture">
+									{{ HTML::image(HTML::profile_picture($_feedback), 'Profile Picture', array('width' => 100)) }}
+								</div>
+
+								<div style="font-size: 16px; padding: 15px 0 7px 0; text-align: center;">
+									Session Rating:
+								</div>
+
+								<div>
+									@for ($i = 1; $i <= $_feedback['stars']; $i++)
+										{{ HTML::image(URL::to('images/rating_full.png'), 'Rating', array()) }}
+									@endfor
+
+									@for ($i = 5; $i > $_feedback['stars']; $i--)
+										{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array()) }}
+									@endfor
+								</div>
+							</div>
+
+							<div class="feedback-tab-item-right">
+								<span class="bold">{{{ $_feedback->name }}}</span>
+								<p style="padding-top: 10px;">
+									{{ nl2br(e($_feedback->message)) }}
+								</p>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+					@endforeach
+				@endif
 			</div>
 		</div>
 		
