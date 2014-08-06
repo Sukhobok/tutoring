@@ -128,7 +128,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @param  string $value 
 	 * @return array
 	 */
-	public function getBirthdayAttribute($value)
+	public static function getBirthdayAttribute($value)
 	{
 		$arr = explode('-', $value);
 		$return = array(

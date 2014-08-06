@@ -370,6 +370,31 @@ Route::group(array('before' => 'api', 'prefix' => 'api'), function ()
 });
 
 /**
+ * Admin
+ */
+Route::group(array('before' => 'admin', 'prefix' => 'admin'), function ()
+{
+	Route::get('/', array(
+		'as' => 'admin.dashboard',
+		'uses' => 'AdminController@getDashboard'
+	));
+});
+
+/**
+ * Admin Ajax
+ */
+Route::group(array('before' => 'admin|ajax', 'prefix' => 'admin/ajax'), function ()
+{
+	Route::post('verification/approve', array(
+		'uses' => 'AdminController@postApproveVerification'
+	));
+
+	Route::post('verification/decline', array(
+		'uses' => 'AdminController@postDeclineVerification'
+	));
+});
+
+/**
  * Aliases
  */
 Route::get('{alias}', function ($alias)

@@ -147,3 +147,20 @@ Route::filter('api', function ()
 		App::abort(403, 'Unauthorized');
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Admin Filter
+|--------------------------------------------------------------------------
+|
+| Check if the current user has access to the admin panel
+|
+*/
+
+Route::filter('admin', function ()
+{
+	if (Auth::guest() || Auth::user()->type != 'admin')
+	{
+		return Redirect::guest('/');
+	}
+});
