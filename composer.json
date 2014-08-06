@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
 		"aws/aws-sdk-php-laravel": "1.*",
 		"intervention/image": "1.5.*",
-		"wisembly/elephant.io": "2.0.*"
+		"wisembly/elephant.io": "2.0.*",
+		"dwolla/dwolla-php": "1.6.6"
 	},
 	"require-dev": {
 		"way/generators": "1.1",

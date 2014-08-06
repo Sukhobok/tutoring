@@ -308,8 +308,15 @@ class SettingsController extends BaseController {
 	 */
 	public function getFinancial()
 	{
+		$withdrawal_available = Payment::getWithdrawalAvailableMoney();
+		$all_time_income = Payment::getAllTimeIncome();
+
 		$this->layout->content = View::make(
-			'settings.financial'
+			'settings.financial',
+			compact(
+				'withdrawal_available',
+				'all_time_income'
+			)
 		);
 	}
 
@@ -526,6 +533,44 @@ class SettingsController extends BaseController {
 		);
 		
 		return array('error' => (int) !$success);
+	}
+
+	/**
+	 * Ajax: Withdrawal
+	 */
+	public function ajaxWithdrawal()
+	{
+		$can_withdrawal = Withdrawal::canWithdrawal(
+			Auth::user(),
+			(int) Input::get('amount')
+		);
+
+		if ($can_withdrawal)
+		{
+			$transaction_id = Withdrawal::sendDwolla(
+				Auth::user()->email,
+				(int) Input::get('amount')
+			);
+
+			if ($transaction_id)
+			{
+				$w = new Withdrawal;
+				$w->user_id = Auth::user()->id;
+				$w->amount = (int) Input::get('amount');
+				$w->transaction_id = $transaction_id;
+				$w->save();
+
+				return array('error' => 0);
+			}
+			else
+			{
+				return array('error' => 1);
+			}
+		}
+		else
+		{
+			return array('error' => 1);
+		}
 	}
 
 }

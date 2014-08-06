@@ -168,7 +168,7 @@ class TutoringSession extends Eloquent {
 		// Save StudySquare fee
 		$payment = new Payment;
 		$payment->from_id = $ts->student_id;
-		$payment->to_id = $ts->tutor_id;
+		$payment->to_id = 0;
 		$payment->type = 'studysquare_fee';
 		$payment->amount = $ss_fee;
 		$payment->save();

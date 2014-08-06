@@ -106,9 +106,11 @@
 						<i class="ss-icon ss-money"></i> My Wallet
 					</li>
 
+					<!--
 					<li class="ss-link" data-ss-link="{{ URL::to('file_manager') }}">
 						<i class="ss-icon ss-file-manager"></i> File Manager
 					</li>
+					-->
 
 					<li class="ss-link" data-ss-link="{{ URL::route('settings.tutor_center') }}">
 						<i class="ss-icon ss-star"></i> Tutor Center

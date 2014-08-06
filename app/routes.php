@@ -256,6 +256,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'SettingsController@ajaxDeclineHireRequest'
 	));
 
+	Route::post('settings/withdrawal', array(
+		'uses' => 'SettingsController@ajaxWithdrawal'
+	));
+
 	Route::get('messages/get_conversation', array(
 		'uses' => 'MessageController@ajaxGetConversation'
 	));

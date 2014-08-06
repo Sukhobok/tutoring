@@ -15,9 +15,11 @@
 		My Wallet
 	</div>
 
+	<!--
 	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'File Manager' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.profile') }}">
 		File Manager
 	</div>
+	-->
 
 	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Tutor Center' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.tutor_center') }}">
 		Tutor Center

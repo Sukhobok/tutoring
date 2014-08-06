@@ -104,6 +104,7 @@ class CompileAssets extends Command {
 			'settings.cg_management.js',
 			'settings.tutor_center.js',
 			'settings.notifications_security.js',
+			'settings.financial.js',
 			'cg.js',
 			'messages.js',
 			'user.view.js',
