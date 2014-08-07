@@ -378,6 +378,11 @@ Route::group(array('before' => 'admin', 'prefix' => 'admin'), function ()
 		'as' => 'admin.dashboard',
 		'uses' => 'AdminController@getDashboard'
 	));
+
+	Route::get('verification', array(
+		'as' => 'admin.verification',
+		'uses' => 'AdminController@getVerification'
+	));
 });
 
 /**

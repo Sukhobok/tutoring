@@ -57,13 +57,13 @@
 					<!-- Full Top Style -->
 					<ul class="topnav pull-left">
 						<li class="">
-							<a href="/" class="glyphicons home"><i></i>Go to StudySquare</a>
+							<a href="{{ URL::route('dashboard') }}" class="glyphicons home"><i></i>Go to StudySquare</a>
 						</li>
 						<li class="{{ $page == 'dashboard' ? 'active' : '' }}">
-							<a href="/test" class="glyphicons dashboard"><i></i>Dashboard</a>
+							<a href="{{ URL::route('admin.dashboard') }}" class="glyphicons dashboard"><i></i>Dashboard</a>
 						</li>
 						<li class="{{ $page == 'verification' ? 'active' : '' }}">
-							<a href="/" class="glyphicons user"><i></i>Verification Requests</a>
+							<a href="{{ URL::route('admin.verification') }}" class="glyphicons user"><i></i>Verification Requests</a>
 						</li>
 						<li class="{{ $page == 'withdrawal' ? 'active' : '' }}">
 							<a href="/" class="glyphicons money"><i></i>Withdrawal Center</a>

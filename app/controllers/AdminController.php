@@ -50,6 +50,30 @@ class AdminController extends BaseController {
 	}
 
 	/**
+	 * Verification page
+	 */
+	public function getVerification()
+	{
+		$verification_requests = Image::where('imageable_type', '=', '_UserVerification')
+			->join('users', 'users.id', '=', 'images.imageable_id')
+			->select('users.*', 'path')
+			->get();
+
+		foreach ($verification_requests as $verification_request)
+		{
+			$verification_request->birthday = User::getBirthdayAttribute($verification_request->birthday);
+		}
+
+		$this->layout->page = 'verification';
+		$this->layout->content = View::make(
+			'admin.verification',
+			compact(
+				'verification_requests'
+			)
+		);
+	}
+
+	/**
 	 * Ajax: Approve Verification Request
 	 */
 	public function postApproveVerification()
