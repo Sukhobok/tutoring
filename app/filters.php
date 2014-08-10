@@ -38,7 +38,9 @@ App::before(function($request)
 		HireRequest::deleteExpiredRequests();
 		HireNowRequest::deleteExpiredHireNowRequests();
 		if (TutoringSession::deleteExpiredAndGetSession()
-			&& $request->path() != 'session/start') // TO DO: search by route name
+			&& $request->path() != 'session/start' 
+			&& substr($request->path(), 0, 4) != 'ajax'
+			&& substr($request->path(), 0, 5) != 'admin')
 		{
 			return Redirect::route('tutoring_session.start');
 		}
@@ -121,7 +123,9 @@ Route::filter('ajax', function ()
 {
 	if (!Request::ajax())
 	{
-		App::abort(403, 'Unauthorized');
+		// App::abort(403, 'Unauthorized');
+		// Note: we assume everything's ok ... because we need to handle
+		// non-ajax call for saving audio from tutoring session
 	}
 });
 

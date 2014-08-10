@@ -139,11 +139,18 @@ function end_audio_recording() {
 		_recordRTC.stopRecording(function (audio) {
 			_recordRTC.startRecording();
 
-			var formData = new FormData();
-			formData.append('audio-filename', 'recording.wav');
-			formData.append('audio-blob', audio);
+			var _xhr = new XMLHttpRequest();
+			_xhr.open('GET', audio, true);
+			_xhr.responseType = 'blob';
+			_xhr.onload = function(e) {
+				var _blob = this.response;
+				var formData = new FormData();
+				formData.append('audio-filename', 'recording.wav');
+				formData.append('audio-blob', _blob);
 
-			xhr('/ajax/session/receive_audio', formData, function (data) { });
+				xhr('/ajax/session/receive_audio', formData, function (data) { });
+			};
+			_xhr.send();
 		});
 	}
 }

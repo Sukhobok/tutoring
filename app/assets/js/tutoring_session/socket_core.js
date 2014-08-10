@@ -94,6 +94,7 @@ ts_socket.on('finished', function () {
 
 ts_socket.on('started', function (data) {
 	$.ssModal({ modalId: 'ts-started' });
+	startVideo();
 	if (waiting_interval !== false)
 	{
 		clearInterval(waiting_interval); $('.header-notice').html('');

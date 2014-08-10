@@ -99,7 +99,7 @@ class ApiController extends BaseController {
 				$session = TutoringSession::findOrFail((int) Input::get('ts_id'));
 				TutoringSession::_refundTutoringSession($session->id);
 				TutoringSession::_sendCancelTutoringSession($session->id);
-				TutoringSession::destroy_for_student($session->id);
+				TutoringSession::destroyForStudent($session->id, (int) Input::get('uid'));
 			}
 			elseif ($role === 'tutor')
 			{

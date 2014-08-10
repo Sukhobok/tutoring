@@ -54,6 +54,8 @@ class TutoringSessionController extends BaseController {
 		$filename .= $time->getTimestamp() . '.' . Auth::user()->id;
 		unset($time);
 
+		// Log::info($_FILES['audio-blob']);
+
 		if (!move_uploaded_file($_FILES['audio-blob']['tmp_name'], $filename . '.wav'))
 		{
 			App::abort(500);
@@ -106,27 +108,7 @@ class TutoringSessionController extends BaseController {
 			$tsi->saved = 'only_for_complaint';
 			$tsi->save();
 
-			$files = File::allFiles(
-				storage_path('tutoring_sessions/' . (int) Input::get('ts_id'))
-			);
-
-			foreach ($files as $file)
-			{
-				$_file = File::get((string) $file);
-				$_filename = 'tutoring_sessions/'
-					. (int) Input::get('ts_id')
-					. str_replace(
-						'\\', '/', $file->getRelativePathname()
-					);
-
-				$s3 = AWS::get('s3');
-				$result = $s3->putObject(array(
-					'Bucket' => Config::get('s3.bucket'),
-					'Key' => $_filename,
-					'Body' => $_file,
-					'ACL' => 'public-read'
-				));
-			}
+			TutoringSession::compressAndSaveSession((int) Input::get('ts_id'));
 		}
 		// TO DO: Set unsaved pending to no
 
@@ -168,27 +150,7 @@ class TutoringSessionController extends BaseController {
 
 		if ($tsi->saved != 'only_for_complaint')
 		{
-			$files = File::allFiles(
-				storage_path('tutoring_sessions/' . (int) Input::get('ts_id'))
-			);
-
-			foreach ($files as $file)
-			{
-				$_file = File::get((string) $file);
-				$_filename = 'tutoring_sessions/'
-					. (int) Input::get('ts_id')
-					. str_replace(
-						'\\', '/', $file->getRelativePathname()
-					);
-
-				$s3 = AWS::get('s3');
-				$result = $s3->putObject(array(
-					'Bucket' => Config::get('s3.bucket'),
-					'Key' => $_filename,
-					'Body' => $_file,
-					'ACL' => 'public-read'
-				));
-			}
+			TutoringSession::compressAndSaveSession((int) Input::get('ts_id'));
 		}
 		
 		$tsi->saved = 'yes';

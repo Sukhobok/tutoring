@@ -129,7 +129,7 @@
 			</div>
 
 			<div class="page-tab-component page-tab-tutor">
-				@if ($rating['count'] == 0)
+				@if ($rating['count'] == 0 || $tutor_info['sessions'] == 0)
 					<div class="ss-container center with-padding">
 						<span class="bold">This user haven't received any feedback</span>
 					</div>

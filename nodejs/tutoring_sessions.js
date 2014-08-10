@@ -58,14 +58,11 @@ io.configure(function ()
 							handshakeData.client_type = 'user';
 							handshakeData.user_id = parseInt(resp.body.result, 10);
 							handshakeData.ts_id = parseInt(resp2.body.result, 10);
-							handshakeData.first_online = false;
 							handshakeData.ts_cancel_time = parseInt(resp2.body.cancel_time, 10);
 
 							var _in_room = io.sockets.clients('ts_' + handshakeData.ts_id);
 							if (_in_room.length === 0)
 							{
-								handshakeData.first_online = true;
-
 								setTimeout(function (ts_id, _base_url)
 								{
 									var _in_room = io.sockets.clients('ts_' + ts_id);
@@ -126,7 +123,7 @@ io.configure(function ()
 												}, (parseInt(resp3.body.finish_time, 10) - Math.round(Date.now() / 1000))*1000, handshakeData.ts_id, _base_url);
 											}
 
-											io.sockets.in('ts_' + handshakeData.ts_id).emit('started', { finish_time: parseInt(resp3.body.finish_time, 10) });
+											_in_room[0].handshake.finish_time = parseInt(resp3.body.finish_time, 10);
 											handshakeData.finish_time = parseInt(resp3.body.finish_time, 10);
 											callback(null, true);
 										}
@@ -192,15 +189,17 @@ io.sockets.on('connection', function (socket)
 	if (hs.client_type === 'user')
 	{
 		socket.join('ts_' + hs.ts_id);
-		if (hs.first_online)
+		var _in_room = io.sockets.clients('ts_' + hs.ts_id);
+
+		if (_in_room.length === 1)
 		{
 			// Notify user that the other person is not online yet
-			socket.emit('waiting', { time: hs.ts_cancel_time });
+			io.sockets.in('ts_' + hs.ts_id).emit('waiting', { time: hs.ts_cancel_time });
 		}
 		else
 		{
 			// Both should be connected now
-			socket.emit('started', { finish_time: hs.finish_time });
+			io.sockets.in('ts_' + hs.ts_id).emit('started', { finish_time: hs.finish_time });
 		}
 	}
 

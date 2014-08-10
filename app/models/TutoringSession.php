@@ -89,7 +89,7 @@ class TutoringSession extends Eloquent {
 			{
 				if ($session->tutor_id == $uid
 					&& new DateTime('now + 15 minutes') > $session->session_date
-					&& $session->started_at == null)
+					&& $session->ended_by == 0)
 				{
 					// Tutors have access 15 minutes early
 					$ts_id = $session->id;
@@ -97,7 +97,7 @@ class TutoringSession extends Eloquent {
 
 				if ($session->student_id == $uid
 					&& new DateTime('now + 5 minutes') > $session->session_date
-					&& $session->started_at == null)
+					&& $session->ended_by == 0)
 				{
 					// Students have access 5 minutes early
 					$ts_id = $session->id;
@@ -146,7 +146,8 @@ class TutoringSession extends Eloquent {
 
 		$ts_info = TutoringSessionInfo::findOrFail($ts_id);
 		$ts_info->ended_at = new DateTime('now');
-		$ts_info->ended_by = 0;
+		$ts_info->ended_by = 1;
+		// TO DO: Migration to set auto-increment to 2
 		$ts_info->save();
 
 		// Get pending payment
@@ -297,9 +298,10 @@ class TutoringSession extends Eloquent {
 	 * Destroy session for the student
 	 * (tutor is out, student is refunded)
 	 * @param integer $ts_id
+	 * @param integer $uid - Student ID
 	 * @return boolean TRUE
 	 */
-	public function destroy_for_student($ts_id)
+	public static function destroyForStudent($ts_id, $uid)
 	{
 		$now = new DateTime('now');
 
@@ -313,6 +315,73 @@ class TutoringSession extends Eloquent {
 		$tsi->save();
 
 		return true;
+	}
+
+	/**
+	 * Compress and Save Session
+	 * @param integer $ts_id
+	 * @return boolean TRUE
+	 */
+	public static function compressAndSaveSession($ts_id)
+	{
+		// 1) Merge data files
+		$_data_files = File::allFiles(
+			storage_path('tutoring_sessions/' . $ts_id . '/data')
+		);
+
+		$_data = array();
+		foreach ($_data_files as $file)
+		{
+			$filename = explode('.', $file->getFilename());
+
+			$_data[] = array(
+				't' => $filename[0],
+				'u' => $filename[1],
+				'd' => File::get((string) $file)
+			);
+		}
+
+		$_data = json_encode($_data);
+		$s3 = AWS::get('s3');
+		$result = $s3->putObject(array(
+			'Bucket' => Config::get('s3.bucket'),
+			'Key' => 'tutoring_sessions/' . $ts_id . '/data.tsd',
+			'Body' => $_data,
+			'ACL' => 'public-read'
+		));
+		unset($_data_files);
+		unset($_data);
+
+		// 2) Merge audio files
+		$_audio_files = File::allFiles(
+			storage_path('tutoring_sessions/' . $ts_id . '/video')
+		);
+
+		$_audio_files_array = array();
+
+		foreach ($_audio_files as $file)
+		{
+			$filename = explode('.', $file->getFilename());
+			$_audio_files_array[$filename[1]][] = $file->getFilename;
+		}
+
+		foreach ($_audio_files_array as $k => $v)
+		{
+			$exec = 'ffmpeg -i "concat:'
+				. implode('|', $v)
+				. '" -c copy '
+				. storage_path('tutoring_sessions/' . $ts_id . '/audio.' . $k . '.mp3');
+			exec($exec);
+
+			$result = $s3->putObject(array(
+				'Bucket' => Config::get('s3.bucket'),
+				'Key' => 'tutoring_sessions/' . $ts_id . '/audio' . $k . '.mp3',
+				'Body' => File::get(storage_path('tutoring_sessions/' . $ts_id . '/audio.' . $k . '.mp3')),
+				'ACL' => 'public-read'
+			));
+		}
+		unset($_audio_files);
+		unset($_audio_files_array);
 	}
 
 }

@@ -75,7 +75,7 @@
 							<a href="/" class="glyphicons wallet"><i></i>Wallet</a>
 						</li>
 						<li class="{{ $page == 'complaints' ? 'active' : '' }}">
-							<a href="/" class="glyphicons notes_2"><i></i>Complaints</a>
+							<a href="{{ URL::route('admin.complaints') }}" class="glyphicons notes_2"><i></i>Complaints</a>
 						</li>
 					</ul>
 					<div class="clearfix"></div>

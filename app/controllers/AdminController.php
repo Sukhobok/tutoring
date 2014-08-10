@@ -74,6 +74,36 @@ class AdminController extends BaseController {
 	}
 
 	/**
+	 * Complaints page
+	 */
+	public function getComplaints()
+	{
+		$complaints = DB::table('complaints')
+			->join('users', 'users.id', '=', 'complaints.student_id')
+			->where('complaints.solved', '=', 'no')
+			->select(
+				'users.*',
+				'complaints.id as complaint_id',
+				'complaints.created_at as complaint_created_at',
+				'complaints.ts_id'
+			)
+			->get();
+
+		foreach ($complaints as $complaint)
+		{
+			$complaint->complaint_created_at = new DateTime($complaint->complaint_created_at);
+		}
+
+		$this->layout->page = 'complaints';
+		$this->layout->content = View::make(
+			'admin.complaints',
+			compact(
+				'complaints'
+			)
+		);
+	}
+
+	/**
 	 * Ajax: Approve Verification Request
 	 */
 	public function postApproveVerification()

@@ -383,6 +383,11 @@ Route::group(array('before' => 'admin', 'prefix' => 'admin'), function ()
 		'as' => 'admin.verification',
 		'uses' => 'AdminController@getVerification'
 	));
+
+	Route::get('complaints', array(
+		'as' => 'admin.complaints',
+		'uses' => 'AdminController@getComplaints'
+	));
 });
 
 /**

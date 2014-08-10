@@ -372,7 +372,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$result['sessions'] = $sessions;
 		$result['hours'] = $hours;
 		$result['earnings'] = round($earnings);
-		$result['per_session'] = round($earnings / $sessions);
+		if ($sessions)
+		{
+			$result['per_session'] = round($earnings / $sessions);
+		}
+		
 		return $result;
 	}
 
