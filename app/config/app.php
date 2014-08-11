@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://test232.studysquare.com',
+	'url' => 'http://beta.studysquare.com',
 
 	/*
 	|--------------------------------------------------------------------------

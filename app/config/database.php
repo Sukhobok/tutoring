@@ -57,7 +57,7 @@ return array(
 			'host'      => '127.0.0.1',
 			'database'  => 'studysquare2',
 			'username'  => 'root',
-			'password'  => 'stdy!23',
+			'password'  => 'Study123!',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
