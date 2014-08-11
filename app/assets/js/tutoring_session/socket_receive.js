@@ -71,7 +71,7 @@ ts_socket.on('tutoring_session_data', function (data)
 			break;
 
 			case 'chat':
-				tsChatAdd(data.message);
+				tsChatAdd(data.message, 1);
 			break;
 
 			case 'mode':

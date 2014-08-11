@@ -330,4 +330,6 @@
 
 <script>
 	var global_ts_id = '{{{ $ts_id }}}';
+	var partner_name = '{{{ $partner->name }}}';
+	var current_name = '{{{ Auth::user()->name }}}';
 </script>

@@ -30,10 +30,18 @@ class TutoringSessionController extends BaseController {
 
 		$role = TutoringSession::getUserRole($ts_id, Auth::user()->id);
 		$ts = TutoringSession::find($ts_id);
+		if ($role === 'student')
+		{
+			$partner = User::find($ts->tutor_id);
+		}
+		else
+		{
+			$partner = User::find($ts->student_id);
+		}
 
 		$this->layout->content = View::make(
 			'tutoring_session.start',
-			compact('ts_id', 'role', 'ts')
+			compact('ts_id', 'role', 'ts', 'partner')
 		);
 	}
 

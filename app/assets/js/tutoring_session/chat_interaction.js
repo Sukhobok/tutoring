@@ -3,7 +3,6 @@ $(document).on('keyup', '.ts-chat-textarea', function (e) {
 	&& $('#ts-chat-pressing-enter-cb').is(':checked')
 	&& $.trim($('.ts-chat-textarea').val()) !== '') {
 		tsChatAdd($.trim($('.ts-chat-textarea').val()));
-		$('.ts-chat-textarea').val('');
 		ts_socket.emit(
 			'tutoring_session_data',
 			{
@@ -11,13 +10,13 @@ $(document).on('keyup', '.ts-chat-textarea', function (e) {
 				message: $.trim($('.ts-chat-textarea').val())
 			}
 		);
+		$('.ts-chat-textarea').val('');
 	}
 });
 
 $(document).on('click', '.ts-chat-send', function () {
 	if($.trim($('.ts-chat-textarea').val()) !== '') {
 		tsChatAdd($.trim($('.ts-chat-textarea').val()));
-		$('.ts-chat-textarea').val('');
 		ts_socket.emit(
 			'tutoring_session_data',
 			{
@@ -25,5 +24,6 @@ $(document).on('click', '.ts-chat-send', function () {
 				message: $.trim($('.ts-chat-textarea').val())
 			}
 		);
+		$('.ts-chat-textarea').val('');
 	}
 });
