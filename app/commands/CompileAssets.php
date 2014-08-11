@@ -52,6 +52,20 @@ class CompileAssets extends Command {
 			$this->info('Done!');
 		}
 
+		if (in_array('js-r', $this->option('file')))
+		{
+			$this->comment('Starting to compile JS - Replay');
+			$this->compileJsReplay();
+			$this->info('Done!');
+		}
+
+		if (in_array('js-r-wb', $this->option('file')))
+		{
+			$this->comment('Starting to compile JS - Replay - Whiteboard');
+			$this->compileJsReplayWhiteboard();
+			$this->info('Done!');
+		}
+
 		if (in_array('js-ts', $this->option('file')))
 		{
 			$this->comment('Starting to compile JS - Tutoring Session');
@@ -113,6 +127,48 @@ class CompileAssets extends Command {
 			'hire_now.js'
 		));
 		$compiler->setTargetFile('script.min.js');
+		$compiler->compile();
+	}
+
+	/**
+	 * Compile JS - Replay
+	 */
+	public function compileJsReplay()
+	{
+		$compiler = new ClosureCompiler;
+		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
+		$compiler->setTargetBaseDir('public/js/tutoring_session/');
+		$compiler->setSourceFiles(array(
+			'text_core.js',
+			'text_replay.js',
+			'coding_core.js',
+			'select_mode.js',
+			'chat_core.js',
+		));
+		$compiler->setTargetFile('replay.min.js');
+		$compiler->compile();
+	}
+
+	/**
+	 * Compile JS - Replay - Whiteboard
+	 */
+	public function compileJsReplayWhiteboard()
+	{
+		$compiler = new ClosureCompiler;
+		$compiler->setSourceBaseDir('app/assets/js/tutoring_session/');
+		$compiler->setTargetBaseDir('public/js/tutoring_session/');
+		$compiler->setSourceFiles(array(
+			'whiteboard_core.js',
+			'whiteboard_tools/pencil.js',
+			'whiteboard_tools/erase.js',
+			'whiteboard_tools/rectangle.js',
+			'whiteboard_tools/ellipse.js',
+			'whiteboard_tools/line.js',
+			'whiteboard_tabs.js',
+			'whiteboard_color_size.js',
+			'replay_core.js'
+		));
+		$compiler->setTargetFile('replay_whiteboard.min.js');
 		$compiler->compile();
 	}
 
@@ -190,7 +246,7 @@ class CompileAssets extends Command {
 				'f',
 				InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
 				'Compile a certain file',
-				array('less', 'js', 'js-ts', 'js-wb')
+				array('less', 'js', 'js-r', 'js-r-wb', 'js-ts', 'js-wb')
 			)
 		);
 	}

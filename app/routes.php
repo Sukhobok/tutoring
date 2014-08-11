@@ -144,6 +144,11 @@ Route::group(array('before' => 'auth'), function()
 		'as' => 'tutoring_session.start',
 		'uses' => 'TutoringSessionController@getStart'
 	));
+
+	Route::get('session/replay/{id}', array(
+		'as' => 'tutoring_session.replay',
+		'uses' => 'TutoringSessionController@getReplay'
+	));
 });
 
 Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()

@@ -7,11 +7,10 @@
 		<!-- Table heading -->
 		<thead>
 			<tr>
-				<th>User Profile</th>
-				<th>Date</th>
 				<th>Name</th>
 				<th>E-mail</th>
 				<th>Session</th>
+				<th>Date</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -22,14 +21,15 @@
 			@foreach ($complaints as $complaint)
 				<!-- Table row -->
 				<tr>
-					<td>--</td>
-					<td>{{{ $complaint->complaint_created_at->format('Y m D') }}}</td>
 					<td>{{{ $complaint->name }}}</td>
 					<td>{{{ $complaint->email }}}</td>
-					<td>--</td>
+					<td>
+						<span class="btn btn-block btn-info">View Session</span>
+					</td>
+					<td>{{{ $complaint->complaint_created_at->format('M d, Y \a\t H:i:s') }}}</td>
 					<td class="center">
-						<span data-ss-uid="{{{ $complaint->id }}}" class="btn btn-block ss-c-approve btn-success">Refund Student</span>
-						<span data-ss-uid="{{{ $complaint->id }}}" class="btn btn-block ss-c-decline btn-danger">Release To Tutor</span>
+						<span data-ss-id="{{{ $complaint->id }}}" class="btn btn-block ss-c-approve btn-success">Refund Student</span>
+						<span data-ss-id="{{{ $complaint->id }}}" class="btn btn-block ss-c-decline btn-danger">Release To Tutor</span>
 					</td>
 				</tr>
 				<!-- // Table row END -->

@@ -38,6 +38,43 @@ class TutoringSessionController extends BaseController {
 	}
 
 	/**
+	 * Replayer Page
+	 */
+	public function getReplay($id)
+	{
+		$id = (int) $id;
+		$s3 = AWS::get('s3');
+		$_ts = TutoringSession::where('id', '=', $id)
+			->leftJoin(
+				'tutoring_sessions_info',
+				'tutoring_sessions_info.ts_id', '=', 'tutoring_sessions.id'
+			)
+			->select(
+				'tutoring_sessions_info.started_at',
+				'tutoring_sessions_info.ended_at'
+			)
+			->get();
+
+		if (!$_ts)
+		{
+			App::abort('404');
+		}
+
+		$_ts[0]->started_at = new DateTime($_ts[0]->started_at);
+		$_ts[0]->ended_at = new DateTime($_ts[0]->ended_at);
+		$_data = $s3->getObject(array(
+			'Bucket' => Config::get('s3.bucket'),
+			'Key' => 'tutoring_sessions/' . $id . '/data.tsd'
+		));
+		$_data = $_data['Body'];
+
+		$this->layout->content = View::make(
+			'tutoring_session.replay',
+			compact('_data', '_ts')
+		);
+	}
+
+	/**
 	 * Ajax: Receive Audio
 	 */
 	public function ajaxReceiveAudio()
