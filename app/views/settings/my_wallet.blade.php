@@ -17,6 +17,45 @@
 						</div>
 				</div>
 
+				@if ($transaction_history)
+					<div class="ss-section">
+						<h1>Transaction History</h1>
+
+						<div class="page-settings-inner">
+							<p>See your history of tutoring sessions, deposits, and book purchases.</p>
+							<table>
+								<tr class="bold">
+									<td>Transaction</td>
+									<td>Date</td>
+									<td>Amount</td>
+								</tr>
+
+								@foreach($transaction_history as $_transaction_history)
+									<tr>
+										<td>
+											{{ HTML::image('images/' . $_transaction_history->display_icon . '.png', 'Payment') }}
+											{{{ $_transaction_history->display_message }}}
+											<span style="color: red;">
+												{{{ !$_transaction_history->awarded ? '*' : '' }}}
+											</span>
+										</td>
+
+										<td>
+											<div class="time-ago" data-time="{{{ $_transaction_history->updated_at->timestamp }}}"></div>
+										</td>
+
+										<td>
+											${{{ $_transaction_history->amount }}}
+										</td>
+									</tr>
+								@endforeach
+							</table>
+
+							<span style="color: red;">*</span> Note: Payments marked with an asterisk are not awarded yet!
+						</div>
+					</div>
+				@endif
+
 				<div class="ss-section">
 					{{ Form::open(array('route' => 'settings.add_funds')) }}
 						<h1>Add Funds</h1>

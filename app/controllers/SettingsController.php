@@ -190,11 +190,67 @@ class SettingsController extends BaseController {
 	public function getMyWallet()
 	{
 		$money = Payment::getAvailableMoney();
+		$transaction_history = Payment::getTransactionHistory();
+		foreach ($transaction_history as $_transaction_history)
+		{
+			if ($_transaction_history->from_id == Auth::user()->id)
+			{
+				$_transaction_history->display_icon = 'minus';
+			}
+			else
+			{
+				$_transaction_history->display_icon = 'plus';
+			}
+
+			switch ($_transaction_history->type)
+			{
+				case 'funding':
+					$_transaction_history->display_message = 'Funds added';
+					break;
+
+				case 'studysquare_fee':
+					$_transaction_history->display_message = 'StudySquare Fee';
+					break;
+
+				case 'tutoring_session':
+					$_transaction_history->display_message = 'Tutoring Session #' . $_transaction_history->type_id;
+					break;
+
+				case 'pending_hire':
+					$_transaction_history->display_message = 'Pending for Hire Request #' . $_transaction_history->type_id;
+					break;
+
+				case 'pending_hire_now':
+					$_transaction_history->display_message = 'Pending for Hire Now Request';
+					break;
+
+				case 'pending_tutoring_session':
+					$_transaction_history->display_message = 'Pending for Tutoring Session #' . $_transaction_history->type_id;
+					break;
+
+				case 'saved_session':
+					$_transaction_history->display_message = 'Saved Tutoring Session #' . $_transaction_history->type_id;
+					break;
+
+				default:
+					$_transaction_history->display_message = 'Unknown';
+					break;
+			}
+
+			if (new DateTime($_transaction_history->award_date) < new DateTime)
+			{
+				$_transaction_history->awarded = true;
+			}
+			else
+			{
+				$_transaction_history->awarded = false;
+			}
+		}
 
 		$this->layout->content = View::make(
 			'settings.my_wallet',
 			compact(
-				'money'
+				'money', 'transaction_history'
 			)
 		);
 	}

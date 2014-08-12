@@ -122,4 +122,18 @@ class Payment extends Eloquent {
 		return floor($payments[0]->result);
 	}
 
+	/**
+	 * Get Transaction History
+	 * @param integer $uid (optional)
+	 * @return array
+	 */
+	public static function getTransactionHistory($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+
+		return Payment::where('from_id', '=', $uid)
+			->orWhere('to_id', '=', $uid)
+			->get();
+	}
+
 }
