@@ -1,5 +1,7 @@
 <?php
 
+use ElephantIO\Client as Elephant;
+
 class TutoringSessionController extends BaseController {
 
 	/**
@@ -59,7 +61,9 @@ class TutoringSessionController extends BaseController {
 			)
 			->select(
 				'tutoring_sessions_info.started_at',
-				'tutoring_sessions_info.ended_at'
+				'tutoring_sessions_info.ended_at',
+				'tutoring_sessions.student_id',
+				'tutoring_sessions.tutor_id'
 			)
 			->get();
 
@@ -70,6 +74,9 @@ class TutoringSessionController extends BaseController {
 
 		$_ts[0]->started_at = new DateTime($_ts[0]->started_at);
 		$_ts[0]->ended_at = new DateTime($_ts[0]->ended_at);
+		$_ts[0]->student = User::find($_ts[0]->student_id);
+		$_ts[0]->tutor = User::find($_ts[0]->tutor_id);
+
 		$_data = $s3->getObject(array(
 			'Bucket' => Config::get('s3.bucket'),
 			'Key' => 'tutoring_sessions/' . $id . '/data.tsd'
@@ -111,6 +118,137 @@ class TutoringSessionController extends BaseController {
 			unlink($filename . '.wav');
 			return array('error' => 0);
 		}
+	}
+
+	/**
+	 * Ajax: Receive File
+	 */
+	public function ajaxReceiveFile()
+	{
+		// Checking access
+		$ts_id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
+		if (!$ts_id)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		$file = Input::file('ts-file');
+		$size = 0;
+		foreach (File::allFiles(storage_path('tutoring_sessions/' . $ts_id . '/files')) as $_file)
+		{
+			$size += $_file->getSize();
+		}
+		$size += $file->getSize();
+		
+		if ($size > 100*1000*1000)
+		{
+			return array('error' => 1, 'error_type' => 'size');
+		}
+
+		$time = new DateTime('now');
+		$dir = storage_path() . '/tutoring_sessions/' . $ts_id . '/files/';
+		$filename = preg_replace(
+			"/[^A-Za-z0-9]/", '',
+			pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+		);
+		$filename .= '.' . str_random(3) . time() . str_random(3);
+		$filename .= '.' . $file->getClientOriginalExtension();
+		unset($time);
+
+		switch ($file->getClientOriginalExtension())
+		{
+			case 'xls':
+			case 'xlsx':
+				$icon = '/images/tutoring_session/file_icons/excel_icon.png';
+				break;
+
+			case 'pdf':
+				$icon = '/images/tutoring_session/file_icons/pdf_icon.png';
+				break;
+
+			case 'ppt':
+			case 'pptx':
+				$icon = '/images/tutoring_session/file_icons/ppt_icon.png';
+				break;
+
+			case 'doc':
+			case 'docx':
+				$icon = '/images/tutoring_session/file_icons/word_icon.png';
+				break;
+			
+			default:
+				$icon = '/images/tutoring_session/file_icons/programming_icon.png';
+				break;
+		}
+
+		if (in_array($file->guessExtension(), array('jpeg', 'png', 'gif', 'bmp')))
+		{
+			$icon = URL::to('ajax/session/download_file?file=' . $filename);
+		}
+
+		$file->move($dir, $filename);
+
+		// Send to socket.io
+		$elephant = new Elephant(Config::get('elephant.ts_domain'));
+		$elephant->setHandshakeQuery(array(
+			'signature' => Config::get('elephant.signature')
+		));
+
+		$elephant->init();
+		$elephant->emit('new_file', array(
+			'what' => 'new_file',
+			'from_id' => Auth::user()->id,
+			'ts_id' => $ts_id,
+			'filename' => $filename,
+			'icon' => $icon
+		));
+		$elephant->close();
+
+		return array(
+			'error' => 0,
+			'filename' => $filename,
+			'icon' => $icon
+		);
+	}
+
+	/**
+	 * Ajax: Download file
+	 */
+	public function ajaxDownloadFile()
+	{
+		// Checking access
+		$ts_id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
+		if (!$ts_id)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		return Response::download(
+			storage_path(
+				'tutoring_sessions/' . $ts_id . '/files/' . Input::get('file')
+			)
+		);
+	}
+
+	/**
+	 * Ajax: Remove file
+	 */
+	public function ajaxRemoveFile()
+	{
+		// Checking access
+		$ts_id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
+		if (!$ts_id)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		File::delete(
+			storage_path(
+				'tutoring_sessions/' . $ts_id . '/files/' . Input::get('file')
+			)
+		);
+
+		return array('error' => 0);
 	}
 
 	/**

@@ -281,6 +281,18 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'TutoringSessionController@ajaxReceiveAudio'
 	));
 
+	Route::post('session/receive_file', array(
+		'uses' => 'TutoringSessionController@ajaxReceiveFile'
+	));
+
+	Route::get('session/download_file', array(
+		'uses' => 'TutoringSessionController@ajaxDownloadFile'
+	));
+
+	Route::post('session/remove_file', array(
+		'uses' => 'TutoringSessionController@ajaxRemoveFile'
+	));
+
 	Route::post('session/leave_feedback', array(
 		'uses' => 'TutoringSessionController@ajaxLeaveFeedback'
 	));

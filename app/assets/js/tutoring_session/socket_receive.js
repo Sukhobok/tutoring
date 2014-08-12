@@ -137,6 +137,10 @@ ts_socket.on('tutoring_session_data', function (data)
 			case 'text':
 				tsTextReceive(data.value);
 			break;
+
+			case 'new_file':
+				tsNewFile(data);
+			break;
 		}
 	}
 });

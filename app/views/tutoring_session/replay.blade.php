@@ -178,5 +178,6 @@
 <script type="text/javascript">
 	var _data = {{ $_data }};
 	var _started_at = {{{ $_ts[0]->started_at->getTimestamp()*1000 }}};
-	var _ended_at = {{{ $_ts[0]->ended_at->getTimestamp()*1000 }}};
+	var partner_name = '{{{ $_ts[0]->tutor->name }}}';
+	var current_name = '{{{ $_ts[0]->student->name }}}';
 </script>

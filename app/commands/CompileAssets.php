@@ -144,6 +144,7 @@ class CompileAssets extends Command {
 			'coding_core.js',
 			'select_mode.js',
 			'chat_core.js',
+			'file_manager_core.js',
 		));
 		$compiler->setTargetFile('replay.min.js');
 		$compiler->compile();
@@ -191,6 +192,7 @@ class CompileAssets extends Command {
 			'select_mode_interaction.js',
 			'chat_core.js',
 			'chat_interaction.js',
+			'file_manager_core.js',
 			'file_manager_interaction.js',
 			'finish.js'
 		));

@@ -211,37 +211,35 @@
 				</div>
 
 				<div class="ts-file-manager-files">
-					@for ($i = 1; $i <= 10; $i++)
-						<div class="ts-file-manager-file">
-							<div class="ts-file-manager-file-actions">
-								<div class="ts-file-manager-file-action">
-									{{ HTML::image('images/tutoring_session/file_actions/remove_icon.png', 'Remove') }}
-									Remove
-								</div>
-
-								<div class="ts-file-manager-file-action">
-									{{ HTML::image('images/tutoring_session/file_actions/download_icon.png', 'Download') }}
-									Download
-								</div>
-
-								<div class="ts-file-manager-file-action">
-									{{ HTML::image('images/tutoring_session/file_actions/load_icon.png', 'Load') }}
-									Load
-								</div>
+					<div class="ts-file-manager-file snippet-ts-file-manager-file hide">
+						<div class="ts-file-manager-file-actions" data-ss-file="">
+							<div class="ts-file-manager-file-action" data-ss-action="remove">
+								{{ HTML::image('images/tutoring_session/file_actions/remove_icon.png', 'Remove') }}
+								Remove
 							</div>
 
-							<div class="ts-file-manager-file-caption">
-								File #{{ $i }}
+							<div class="ts-file-manager-file-action" data-ss-action="download">
+								{{ HTML::image('images/tutoring_session/file_actions/download_icon.png', 'Download') }}
+								Download
 							</div>
 
-							{{ HTML::image('images/tutoring_session/file_icons/ppt_icon.png', 'ppt') }}
+							<div class="ts-file-manager-file-action" data-ss-action="download">
+								{{ HTML::image('images/tutoring_session/file_actions/load_icon.png', 'Load') }}
+								Load
+							</div>
 						</div>
-					@endfor
+
+						<div class="ts-file-manager-file-caption" title="">
+							File
+						</div>
+
+						{{ HTML::image('images/tutoring_session/file_icons/ppt_icon.png', '', array('class' => 'ts-file-manager-file-icon')) }}
+					</div>
 				</div>
 			</div>
 
 			<div class="ts-file-manager-bot">
-				<button class="ss-button blue bold">BROWSE</button>
+				{{ Form::ss_file('ts-file-upload') }}
 			</div>
 		</div>
 	</div>
