@@ -12,13 +12,15 @@
 					</div>
 
 					@if(Auth::check() && Auth::user()->id != $user->id)
-						@if($canSendFR)
+						@if ($canSendFR)
 							<button class="ss-button2 black bold add-friend-button" data-uid="{{{ $user->id }}}">ADD FRIEND</button>
 						@endif
-						@if($isTutor)
+						@if ($isTutor)
 							<button class="ss-button2 green bold hire-user-button">HIRE</button>
 						@endif
-						<button class="ss-button2 blue bold ss-link" data-ss-link="{{ URL::route('messages', $user->id) }}">SEND A MESSAGE</button>
+						@if ($canSendMessage)
+							<button class="ss-button2 blue bold ss-link" data-ss-link="{{ URL::route('messages', $user->id) }}">SEND A MESSAGE</button>
+						@endif
 						<button class="ss-button2 red bold">BLOCK</button>
 					@endif
 				</div>
@@ -337,7 +339,7 @@
 	<div class="ss-modal-top ss-modal-type-exclam"></div>
 	<div class="ss-modal-body">
 		<p>
-			You have to enter a date that is at least 3 hours later.
+			You have to enter a date that is at least {{{ $user->notifications_hours_early }}} hours later.
 		</p>
 
 		<p style="margin-top: 25px;">

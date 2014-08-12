@@ -37,25 +37,28 @@ class FriendshipRequest extends Eloquent {
 	}
 
 	/**
-	 * Checks if $u1 can send a friend request to $u2
-	 * @param integer $u1
-	 * @param integer $u2
-	 * @return bool
+	 * Checks if authentificated user can send a friend request to $user
+	 * @param integer $auid = Authentificated User ID
+	 * @param User $user
+	 * @param array $previousData (optional)
+	 * @return boolean
 	 */
-	public static function canSendFriendshipRequest($u1, $u2, $previousData = array())
+	public static function canSendFriendshipRequest($auid, $user, $previousData = array())
 	{
 		if (!isset($previousData['isFriend']))
 		{
-			// Check if they are already friends
-			$previousData['isFriend'] = Friendship::isFriend($u1, $u2);
+			$previousData['isFriend'] = Friendship::isFriend(
+				$auid,
+				$user->id
+			);
 		}
 
 		if (!isset($previousData['friendRequestSent']))
 		{
 			// Check if he already sent a request
 			$previousData['friendRequestSent'] = (bool) DB::table('friendship_requests')
-				->where('from_id', '=', $u1)
-				->where('to_id', '=', $u2)
+				->where('from_id', '=', $auid)
+				->where('to_id', '=', $user->id)
 				->count();
 		}
 
@@ -65,8 +68,31 @@ class FriendshipRequest extends Eloquent {
 		}
 		else
 		{
-			return true;
+			if (!isset($previousData['isFriendOfFriend']))
+			{
+				$previousData['isFriendOfFriend'] = Friendship::isFriendOfFriend(
+					$auid,
+					$user->id
+				);
+			}
+
+			switch ($user->notifications_friend_requests)
+			{
+				case 'Everybody':
+					return true;
+					break;
+
+				case 'Friends of Friends':
+					return $previousData['isFriendOfFriend'];
+					break;
+
+				case 'Nobody':
+					return false;
+					break;
+			}
 		}
+
+		return false;
 	}
 
 	/**
@@ -77,7 +103,7 @@ class FriendshipRequest extends Eloquent {
 	 */
 	public static function saveRequest($to)
 	{
-		$canSend = FriendshipRequest::canSendFriendshipRequest(Auth::user()->id, $to);
+		$canSend = FriendshipRequest::canSendFriendshipRequest(Auth::user()->id, User::find($to));
 		if ($canSend)
 		{
 			// Check if the other sent a friend request

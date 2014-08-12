@@ -408,6 +408,41 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Can see profile (Privacy)
+	 * @param User $user
+	 * @return boolean
+	 */
+	public static function canSeeProfile($user)
+	{
+		if ($user->security_see_profile == 'Everybody')
+		{
+			return true;
+		}
+
+		if (Auth::check())
+		{
+			switch ($user->security_see_profile)
+			{
+				case 'Friends of Friends':
+					return Friendship::isFriendOfFriend(
+						Auth::user()->id,
+						$user->id
+					);
+					break;
+
+				case 'Only Friends':
+					return Friendship::isFriend(
+						Auth::user()->id,
+						$user->id
+					);
+					break;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Laravel Update
 	 * http://laravel.com/docs/upgrade
 	 */

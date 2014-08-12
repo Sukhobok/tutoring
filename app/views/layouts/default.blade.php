@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>StudySquare</title>
+	@if (isset($meta))
+		@foreach($meta as $_meta)
+			<meta name="{{{ $_meta['name'] }}}" content="{{{ $_meta['content'] }}}">
+		@endforeach
+	@endif
+	<title>{{{ isset($title) ? $title : 'StudySquare' }}}</title>
 	{{ HTML::style('//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700') }}
 	{{ HTML::style('css/style.css') }}
 	<link rel="shortcut icon" href="{{ URL::to('images/favicon_120x120.png') }}" />

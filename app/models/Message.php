@@ -156,4 +156,47 @@ class Message extends Eloquent {
 		return $unread;
 	}
 
+	/**
+	 * Can Send Message (Privacy)
+	 * @param integer $auid = Authentificated User ID
+	 * @param User $user
+	 * @param array $previousData (optional)
+	 * @return boolean
+	 */
+	public static function canSendMessage($auid, $user, $previousData = array())
+	{
+		if (!isset($previousData['isFriend']))
+		{
+			$previousData['isFriend'] = Friendship::isFriend(
+				$auid,
+				$user->id
+			);
+		}
+
+		if (!isset($previousData['isFriendOfFriend']))
+		{
+			$previousData['isFriendOfFriend'] = Friendship::isFriendOfFriend(
+				$auid,
+				$user->id
+			);
+		}
+
+		switch ($user->notifications_messages)
+		{
+			case 'Everybody':
+				return true;
+				break;
+
+			case 'Friends of Friends':
+				return $previousData['isFriendOfFriend'];
+				break;
+
+			case 'Only Friends':
+				return $previousData['isFriend'];
+				break;
+		}
+
+		return false;
+	}
+
 }

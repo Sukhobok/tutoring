@@ -82,6 +82,20 @@ class UserController extends BaseController {
 			App::abort('404');
 		}
 
+		// Privacy Settings
+		if ($user->security_search_engine == 'No')
+		{
+			$this->layout->meta[] = array(
+				'name' => 'robots',
+				'content' => 'noindex, nofollow'
+			);
+		}
+
+		if (!User::canSeeProfile($user))
+		{
+			App::abort('404');
+		}
+
 		$_userSubjects = Subject::getUserSubjects($user->id);
 		$userSubjects = array();
 		foreach ($_userSubjects as $subject)
@@ -91,7 +105,6 @@ class UserController extends BaseController {
 		$userSubjects = implode(', ', $userSubjects);
 
 		$userEducation = UserEducation::getEducation($user->id);
-
 		$posts = User::getUserPosts($id);
 		$friends = Friendship::getFriends($id);
 		$images = $user->images;
@@ -100,11 +113,21 @@ class UserController extends BaseController {
 		if (Auth::check())
 		{
 			$isFriend = Friendship::isFriend(Auth::user()->id, $user->id);
+			$isFriendOfFriend = Friendship::isFriendOfFriend(Auth::user()->id, $user->id);
 			$canSendFR = FriendshipRequest::canSendFriendshipRequest(
 				Auth::user()->id,
-				$user->id,
+				$user,
 				array(
-					'isFriend' => $isFriend
+					'isFriend' => $isFriend,
+					'isFriendOfFriend' => $isFriendOfFriend
+				)
+			);
+			$canSendMessage = Message::canSendMessage(
+				Auth::user()->id,
+				$user,
+				array(
+					'isFriend' => $isFriend,
+					'isFriendOfFriend' => $isFriendOfFriend
 				)
 			);
 		}
@@ -135,6 +158,7 @@ class UserController extends BaseController {
 				'images',
 				'isFriend',
 				'canSendFR',
+				'canSendMessage',
 				'isTutor',
 				'rating',
 				'tutor_info',
@@ -309,7 +333,9 @@ class UserController extends BaseController {
 			return array('error' => 1, 'error_type' => 'description');
 		}
 
-		$datetime_check = new DateTime('now + 3 hours');
+		$datetime_check = new DateTime(
+			'now + ' . User::find((int) Input::get('tutor_id'))->notifications_hours_early . ' hours'
+		);
 		$datetimes = array();
 
 		for ($i = 1; $i <= 3; $i++)
