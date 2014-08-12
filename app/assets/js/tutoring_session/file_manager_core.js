@@ -17,6 +17,8 @@ var tsNewFile = function (data)
 	$('.ts-file-manager-file-icon', file).attr('alt', data.filename);
 	$('.ts-file-manager-files').append(file);
 	file.removeClass('hide');
+
+	$('.ts-file-manager-count').text(parseInt($('.ts-file-manager-count').text(), 10) + 1);
 }
 
 var tsDownloadFile = function (file)
@@ -26,5 +28,9 @@ var tsDownloadFile = function (file)
 
 var tsRemoveFile = function (file)
 {
-	$('.ts-file-manager-file-actions[data-ss-file="' + file + '"]').parents('.ts-file-manager-file').remove();
+	if ($('.ts-file-manager-file-actions[data-ss-file="' + file + '"]'))
+	{
+		$('.ts-file-manager-file-actions[data-ss-file="' + file + '"]').parents('.ts-file-manager-file').remove();
+		$('.ts-file-manager-count').text(parseInt($('.ts-file-manager-count').text(), 10) - 1);
+	}
 }

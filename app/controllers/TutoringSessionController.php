@@ -195,9 +195,9 @@ class TutoringSessionController extends BaseController {
 		));
 
 		$elephant->init();
-		$elephant->emit('new_file', array(
+		$elephant->emit('server_tutoring_session_data', array(
 			'what' => 'new_file',
-			'from_id' => Auth::user()->id,
+			'user_id' => Auth::user()->id,
 			'ts_id' => $ts_id,
 			'filename' => $filename,
 			'icon' => $icon
@@ -247,6 +247,21 @@ class TutoringSessionController extends BaseController {
 				'tutoring_sessions/' . $ts_id . '/files/' . Input::get('file')
 			)
 		);
+
+		// Send to socket.io
+		$elephant = new Elephant(Config::get('elephant.ts_domain'));
+		$elephant->setHandshakeQuery(array(
+			'signature' => Config::get('elephant.signature')
+		));
+
+		$elephant->init();
+		$elephant->emit('server_tutoring_session_data', array(
+			'what' => 'remove_file',
+			'user_id' => Auth::user()->id,
+			'ts_id' => $ts_id,
+			'filename' => Input::get('file')
+		));
+		$elephant->close();
 
 		return array('error' => 0);
 	}

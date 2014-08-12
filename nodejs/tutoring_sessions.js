@@ -209,12 +209,12 @@ io.sockets.on('connection', function (socket)
 		fs.writeFile('../app/storage/tutoring_sessions/' + hs.ts_id + '/data/' + Date.now() + '.' + hs.user_id + '.tsdp', JSON.stringify(data), function (err) {});
 	});
 
-	socket.on('new_file', function (data)
+	socket.on('server_tutoring_session_data', function (data)
 	{
 		if (hs.client_type === 'server')
 		{
 			io.sockets.in('ts_' + data.ts_id).emit('tutoring_session_data', data);
-			fs.writeFile('../app/storage/tutoring_sessions/' + data.ts_id + '/data/' + Date.now() + '.' + data.from_id + '.tsdp', JSON.stringify(data), function (err) {});
+			fs.writeFile('../app/storage/tutoring_sessions/' + data.ts_id + '/data/' + Date.now() + '.' + data.user_id + '.tsdp', JSON.stringify(data), function (err) {});
 		}
 	});
 

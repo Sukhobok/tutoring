@@ -146,8 +146,7 @@ class TutoringSession extends Eloquent {
 
 		$ts_info = TutoringSessionInfo::findOrFail($ts_id);
 		$ts_info->ended_at = new DateTime('now');
-		$ts_info->ended_by = 1;
-		// TO DO: Migration to set auto-increment to 2
+		$ts_info->ended_by = $ts->tutor_id;
 		$ts_info->save();
 
 		// Get pending payment
@@ -303,16 +302,13 @@ class TutoringSession extends Eloquent {
 	 */
 	public static function destroyForStudent($ts_id, $uid)
 	{
-		$now = new DateTime('now');
-
-		$tsi = new TutoringSessionInfo;
-		$tsi->ts_id = $ts_id;
-		$tsi->started_at = $now;
-		$tsi->started_by = Auth::user()->id;
-		$tsi->ended_at = $now;
-		$tsi->ended_by = Auth::user()->id;
+		$tsi = TutoringSessionInfo::findOrFail($ts_id);
+		$tsi->ended_at = new DateTime('now');
+		$tsi->ended_by = $uid;
 		$tsi->saved = 'no';
 		$tsi->save();
+
+		// TO DO: Remove session files
 
 		return true;
 	}

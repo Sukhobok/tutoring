@@ -141,6 +141,10 @@ ts_socket.on('tutoring_session_data', function (data)
 			case 'new_file':
 				tsNewFile(data);
 			break;
+
+			case 'remove_file':
+				tsRemoveFile(data.filename);
+			break;
 		}
 	}
 });

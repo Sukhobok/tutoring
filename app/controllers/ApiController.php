@@ -97,6 +97,17 @@ class ApiController extends BaseController {
 			{
 				// The tutor is out => Cancel the session
 				$session = TutoringSession::findOrFail((int) Input::get('ts_id'));
+				
+				$ts_info = TutoringSessionInfo::find((int) Input::get('ts_id'));
+				if (!$ts_info)
+				{
+					$ts_info = new TutoringSessionInfo;
+					$ts_info->ts_id = (int) Input::get('ts_id');
+					$ts_info->started_at = new DateTime;
+					$ts_info->started_by = (int) Input::get('uid');
+					$ts_info->save();
+				}
+
 				TutoringSession::_refundTutoringSession($session->id);
 				TutoringSession::_sendCancelTutoringSession($session->id);
 				TutoringSession::destroyForStudent($session->id, (int) Input::get('uid'));

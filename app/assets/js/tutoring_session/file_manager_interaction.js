@@ -15,8 +15,6 @@ $(document).on('click', '.ts-file-manager-file-action', function ()
 	}
 	else if (action == 'remove')
 	{
-		tsRemoveFile(file);
-
 		$.ajax(
 		{
 			url: '/ajax/session/remove_file',
