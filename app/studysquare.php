@@ -89,3 +89,20 @@ Validator::extend('year_range', function($attribute, $value, $parameters)
 	$max = (int) date('Y') + (int) $parameters[1];
 	return ($value <= $max && $value >= $min);
 });
+
+/**
+ * Error Pages
+ */
+App::error(function($exception, $code)
+{
+	switch ($code) {
+		case 404:
+		case 403:
+			return View::make('layouts.default',
+				array(
+					'dark_body' => true,
+					'content' => View::make('errors.404')
+				));
+			break;
+	}
+});

@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" href="{{ URL::to('images/favicon_120x120.png') }}" />
 </head>
 
-<body>
+<body {{ isset($dark_body) ? 'class="is-dark"' : '' }}>
 	@if ($logged_in)
 		@include('templates.header')
 	@else
