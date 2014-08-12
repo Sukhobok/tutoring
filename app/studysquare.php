@@ -97,7 +97,6 @@ App::error(function($exception, $code)
 {
 	switch ($code) {
 		case 404:
-		case 403:
 			return View::make('layouts.default',
 				array(
 					'dark_body' => true,
