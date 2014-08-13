@@ -63,13 +63,12 @@ $('.ss-chat').on('click', '.ss-chat-item', function ()
 		else
 			$('.chat-conversation-container').addClass('is-green');
 
-		$('.ss-chat-conversation').fadeIn(250);
-		convert_time();
-		$('.ss-chat').mCustomScrollbar('update');
-		setTimeout(function ()
+		$('.ss-chat-conversation').fadeIn(250, function ()
 		{
+			$('.ss-chat').mCustomScrollbar('update');
 			$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
-		}, 500);
+		});
+		convert_time();
 	});
 }).on('click', '.ss-chat-conversation-back', function ()
 {
