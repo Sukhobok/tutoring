@@ -66,7 +66,10 @@ $('.ss-chat').on('click', '.ss-chat-item', function ()
 		$('.ss-chat-conversation').fadeIn(250);
 		convert_time();
 		$('.ss-chat').mCustomScrollbar('update');
-		$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
+		setTimeout(function ()
+		{
+			$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
+		}, 500);
 	});
 }).on('click', '.ss-chat-conversation-back', function ()
 {
