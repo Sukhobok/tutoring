@@ -119,9 +119,13 @@ class Subject extends Eloquent {
 	 * Get users that teach a subject
 	 * @param integer $sid
 	 * @param integer $offset
+	 * @param array $filters
+	 * @param boolean $return_current: If the function
+	 * is allowed to return the current logged in user
+	 * (optional, default: true)
 	 * @return array (count, data)
 	 */
-	public static function getSubjectUsers($sid, $offset = 0, $filters = array())
+	public static function getSubjectUsers($sid, $offset = 0, $filters = array(), $return_current = true)
 	{
 		$query = DB::table('user_subjects')
 			->where('subject_id', '=', $sid)
@@ -179,6 +183,11 @@ class Subject extends Eloquent {
 			$query = $query->where('users.available', '=', 1);
 		}
 
+		if (!$return_current && Auth::check())
+		{
+			$query = $query->where('users.id', '!=', Auth::user()->id);
+		}
+
 		$count = $query->count();
 		$data = $query->skip($offset)->take(4)->get();
 
@@ -202,9 +211,19 @@ class Subject extends Eloquent {
 			->take(6)
 			->get();
 
-		foreach ($subjects as $subject)
+		foreach ($subjects as $i => $subject)
 		{
-			$subject->users = Subject::getSubjectUsers($subject->subject_id);
+			$subject->users = Subject::getSubjectUsers(
+				$subject->subject_id,
+				0,
+				array(),
+				false
+			);
+
+			if ($subject->users['count'] == 0)
+			{
+				unset($subjects[$i]);
+			}
 		}
 
 		return $subjects;

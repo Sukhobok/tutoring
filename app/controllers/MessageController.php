@@ -87,6 +87,11 @@ class MessageController extends BaseController {
 			App::abort('404');
 		}
 
+		if ($uid == Auth::user()->id)
+		{
+			return array('error' => 1);
+		}
+
 		$message = new Message;
 		$message->from_id = Auth::user()->id;
 		$message->to_id = $user->id;
