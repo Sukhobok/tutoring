@@ -51,6 +51,8 @@
 			</div>
 		</div>
 
+		{{-- StudySquare Chat --}}
+		@include('snippets.chat')
 	@endif
 
 	{{-- Javascript --}}

@@ -22,6 +22,13 @@ View::composer('templates.left_sidebar', function($view)
 	$view->with('tutors', User::getUserTutors(Auth::user()->id));
 });
 
+View::composer('snippets.chat', function($view)
+{
+	$view->with('chat_friends', Friendship::getFriends(Auth::user()->id));
+	$view->with('chat_tutors', Subject::getPopularSubjects());
+	$view->with('chat_conversations', Message::getConversations());
+});
+
 View::composer('templates.right_sidebar', function($view)
 {
 	if (Auth::check())

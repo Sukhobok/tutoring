@@ -118,9 +118,10 @@ class Subject extends Eloquent {
 	/**
 	 * Get users that teach a subject
 	 * @param integer $sid
+	 * @param integer $offset
 	 * @return array (count, data)
 	 */
-	public static function getSubjectUsers($sid, $offset, $filters)
+	public static function getSubjectUsers($sid, $offset = 0, $filters = array())
 	{
 		$query = DB::table('user_subjects')
 			->where('subject_id', '=', $sid)
@@ -182,6 +183,31 @@ class Subject extends Eloquent {
 		$data = $query->skip($offset)->take(4)->get();
 
 		return compact('count', 'data');
+	}
+
+	/**
+	 * Get Popular Subjects
+	 */
+	public static function getPopularSubjects()
+	{
+		$subjects = DB::table('user_subjects')
+			->select(
+				'user_subjects.subject_id',
+				'subjects.name',
+				DB::raw('COUNT(user_subjects.subject_id) as c')
+			)
+			->join('subjects', 'subjects.id', '=', 'user_subjects.subject_id')
+			->groupBy('subject_id')
+			->orderBy('c', 'desc')
+			->take(6)
+			->get();
+
+		foreach ($subjects as $subject)
+		{
+			$subject->users = Subject::getSubjectUsers($subject->subject_id);
+		}
+
+		return $subjects;
 	}
 
 }

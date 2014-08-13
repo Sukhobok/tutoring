@@ -105,6 +105,7 @@ class CompileAssets extends Command {
 			'plugins/jquery-mousewheel.js',
 			'plugins/jquery-mCustomScrollbar.js',
 			'plugins/jquery-growl.js',
+			'plugins/jquery-pageslide-ss.js',
 			'core.js',
 			'socket.io.js',
 			'ss_modals.js',
@@ -124,7 +125,8 @@ class CompileAssets extends Command {
 			'user.view.js',
 			'header_expand.js',
 			'search.js',
-			'hire_now.js'
+			'hire_now.js',
+			'ss_chat.js'
 		));
 		$compiler->setTargetFile('script.min.js');
 		$compiler->compile();

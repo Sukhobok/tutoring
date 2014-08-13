@@ -23,7 +23,30 @@ class Friendship extends Eloquent {
 		return DB::table('friendships')
 			->where('user_id', '=', $uid)
 			->join('users', 'users.id', '=', 'friendships.friend_id')
-			->select('users.id', 'users.name', 'users.profile_picture')
+			->select(
+				'users.id',
+				'users.name',
+				'users.profile_picture',
+				DB::raw('(SELECT
+				CASE user_education.type
+					WHEN "highschool" THEN highschools.name
+					ELSE universities.name
+				END
+				FROM user_education
+				LEFT JOIN highschools ON (
+					user_education.type = "highschool"
+					AND user_education.education_id = highschools.id
+				)
+				LEFT JOIN universities ON (
+					user_education.type != "highschool"
+					AND user_education.education_id = universities.id
+				)
+				WHERE user_education.user_id = users.id
+				ORDER BY FIELD (user_education.type, "graduation", "college", "highschool"),
+					user_education.from DESC
+				LIMIT 1
+				) AS education')
+			)
 			->get();
 	}
 
