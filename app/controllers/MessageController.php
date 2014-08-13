@@ -104,7 +104,8 @@ class MessageController extends BaseController {
 			'from_id' => Auth::user()->id,
 			'from_name' => Auth::user()->name,
 			'to_id' => $user->id,
-			'message' => (string) Input::get('message')
+			'message' => (string) Input::get('message'),
+			'profile_picture' => HTML::profile_picture(Auth::user())
 		));
 		$elephant->close();
 

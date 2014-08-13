@@ -27,11 +27,27 @@ $('.ss-chat').on('click', '.ss-chat-category', function ()
 	});
 });
 
+var add_ss_chat_message = function (_type, _message, _time, _picture)
+{
+	var snippet_message = $('.ss-chat .ss-chat-conversation-write').clone().removeClass('ss-chat-conversation-write');
+	snippet_message.removeClass('sent-message');
+	snippet_message.addClass(_type + '-message');
+	$('.message-content p', snippet_message).text_multiline(_message);
+	$('.message-time', snippet_message)[0].setAttribute('data-time', _time);
+	$('.message-time', snippet_message).show();
+	if (_picture !== false)
+	{
+		$('.message-picture img', snippet_message)[0].setAttribute('src', _picture);
+	}
+	$('.ss-chat-conversation-write').before(snippet_message);
+}
+
 // User click
 $('.ss-chat').on('click', '.ss-chat-item', function ()
 {
 	var selected_uid = this.getAttribute('data-ss-uid');
 	$('.ss-chat-main').fadeOut(250);
+	$('.ss-chat-conversation')[0].setAttribute('data-ss-uid', selected_uid);
 
 	$.ajax({
 		url: '/ajax/messages/get_conversation',
@@ -41,14 +57,7 @@ $('.ss-chat').on('click', '.ss-chat-item', function ()
 		$('.ss-chat .sent-message, .ss-chat .received-message').not('.ss-chat-conversation-write').remove();
 
 		$.each(data, function (k, v) {
-			var snippet_message = $('.ss-chat .ss-chat-conversation-write').clone().removeClass('ss-chat-conversation-write');
-			snippet_message.removeClass('sent-message');
-			snippet_message.addClass(v.type + '-message');
-			$('.message-content p', snippet_message).text_multiline(v.message);
-			$('.message-time', snippet_message)[0].setAttribute('data-time', v.created_at);
-			$('.message-time', snippet_message).show();
-			$('.message-picture img', snippet_message)[0].setAttribute('src', v.message_picture);
-			$('.ss-chat-conversation-write').before(snippet_message);
+			add_ss_chat_message(v.type, v.message, v.created_at, v.message_picture);
 		});
 
 		// Get the color
@@ -93,6 +102,20 @@ $('.ss-chat').on('keyup', '.sent-message textarea', function (e)
 
 	if (e.keyCode === 13 && $.trim($(this).val()) !== '')
 	{
+		var _uid = $('.ss-chat-conversation')[0].getAttribute('data-ss-uid');
+		add_ss_chat_message('sent', $.trim($(this).val()), Math.round(new Date()/1000), false);
+		$('.ss-chat').mCustomScrollbar('update');
+		$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
+		convert_time();
+		
+		$.ajax({
+			url: '/ajax/messages/send_message',
+			type: 'POST',
+			data: { message: $.trim($(this).val()), uid: _uid }
+		}).done(function (data) {
+			// Done
+		});
+
 		$(this).val('');
 		$(this).height(30);
 	}
@@ -100,4 +123,16 @@ $('.ss-chat').on('keyup', '.sent-message textarea', function (e)
 {
 	// Bugfix that caused scroll to top
 	$('.ss-chat').mCustomScrollbar('scrollTo', this);
+});
+
+// On receive
+socket.on('new_message', function (data)
+{
+	if (data.from_id == $('.ss-chat-conversation')[0].getAttribute('data-ss-uid'))
+	{
+		add_ss_chat_message('received', data.message, Math.round(new Date()/1000), false);
+		$('.ss-chat').mCustomScrollbar('update');
+		$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
+		convert_time();
+	}
 });

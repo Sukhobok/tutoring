@@ -98,7 +98,7 @@
 	</div>
 
 	{{-- One conversation --}}
-	<div class="ss-chat-conversation" style="display: none;">
+	<div class="ss-chat-conversation" style="display: none;" data-ss-uid="">
 		<button class="ss-button2 black bold ss-chat-conversation-back">BACK</button>
 		<div class="chat-conversation-container is-red">
 			<!-- Content here -->
