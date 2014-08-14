@@ -453,6 +453,11 @@ class UserController extends BaseController {
 			return array('error' => 1, 'error_type' => 'tutor');
 		}
 
+		if (User::isBusy((int) Input::get('tutor_id'), (int) Input::get('hours')))
+		{
+			return array('error' => 1, 'error_type' => 'busy');
+		}
+
 		$price = (int) User::find(Input::get('tutor_id'))->price * (int) Input::get('hours');
 		$userMoney = Payment::getAvailableMoney();
 		if ($userMoney < $price)

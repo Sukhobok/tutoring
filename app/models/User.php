@@ -443,6 +443,51 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Check if the user is Busy
+	 * @param integer $uid
+	 * @param integer $hours
+	 * @return boolean
+	 */
+	public static function isBusy($uid, $hours = 0)
+	{
+		HireNowRequest::deleteExpiredHireNowRequests($uid);
+		$hnr = HireNowRequest::where('student_id', '=', $uid)
+			->orWhere('tutor_id', '=', $uid)
+			->count();
+
+		if ($hnr) return true;
+
+		$ts = DB::table('tutoring_sessions')
+			->where('student_id', '=', $uid)
+			->orWhere('tutor_id', '=', $uid)
+			->select('session_date', 'hours')
+			->get();
+
+		foreach ($ts as $_ts)
+		{
+			$_ts->session_start = strtotime($_ts->session_date);
+			$_ts->session_end = $_ts->session_start + ($_ts->hours*3600) + 6*60;
+
+			$_now = new DateTime('now');
+			$_end = new DateTime('now + ' . $hours . ' hours');
+
+			if ($_ts->session_start <= $_now->getTimestamp()
+				&& $_now->getTimestamp() <= $_ts->session_end)
+			{
+				return true;
+			}
+
+			if ($_ts->session_start <= $_end->getTimestamp()
+				&& $_end->getTimestamp() <= $_ts->session_end)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Laravel Update
 	 * http://laravel.com/docs/upgrade
 	 */
