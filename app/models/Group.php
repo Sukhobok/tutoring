@@ -15,7 +15,7 @@ class Group extends Eloquent {
 	public static $create_rules = array(
 		'name' => 'required|min:2|unique:groups',
 		'description' => 'required',
-		'photo' => 'required_file|image'
+		'photo' => 'required_file'
 	);
 
 	/**
@@ -32,6 +32,7 @@ class Group extends Eloquent {
 			'name' => $name,
 			'description' => $desc,
 			'profile_picture' => $filename,
+			'creator_id' => Auth::user()->id,
 			'created_at' => $date,
 			'updated_at' => $date
 		);
