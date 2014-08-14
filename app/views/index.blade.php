@@ -72,6 +72,19 @@
                     <li><a href=""><img src="/themes/university/img/flags/fi.png" alt="" />Finland</a></li>
 				  </ul>
 				</div>
+
+				<div class="btn-login pull-right" style="margin-left: 20px;">
+	            	<a href="#"><span class="toggle"></span><span class="toggleText">Forgot Pass</span></a>
+	            	{{ Form::open(array('route' => 'user.send_token_login', 'class' => 'form-inline', 'method' => 'get')) }}
+	            	
+		            	<div class="input-prepend">
+						  <span class="add-on"><i class="icon-user"></i></span>
+						  {{ Form::text('email', '', array('placeholder' => 'Email', 'class' => 'span2')) }}
+						</div>
+		            	
+		   			    <button type="submit" class="btn">Forgot Password</button>
+					{{ Form::close() }}
+	            </div>
 	            
 	            <div class="btn-login pull-right">
 	            	<a href="#"><span class="toggle"></span><span class="toggleText">Member Login</span></a>

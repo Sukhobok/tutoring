@@ -45,6 +45,47 @@ class UserController extends BaseController {
 	}
 
 	/**
+	 * Send Token Login
+	 */
+	public function getSendTokenLogin()
+	{
+		$login = User::where('email', '=', Input::get('email'))
+			->firstOrFail();
+
+		$login->remember_token = str_random(60);
+		$login->save();
+
+		// Send email
+		$email_data = array();
+		$email_data['token_link'] = URL::route('user.token_login');
+		$email_data['token_link'] .= '?token=' . $login->remember_token;
+		$email_data['token_link'] .= '&id=' . $login->id;
+		Mail::send('emails.send_token', $email_data, function($message) use ($login)
+		{
+			$message->to($login->email, $login->name)
+				->subject('StudySquare Password Reset');
+		});
+
+		return Redirect::to('/');
+	}
+
+	/**
+	 * Token Login Page
+	 */
+	public function getTokenLogin()
+	{
+		$login = User::where('remember_token', '=', Input::get('token'))
+			->where('id', '=', Input::get('id'))
+			->firstOrFail();
+
+		$login->remember_token = str_random(60);
+		$login->save();
+
+		Auth::loginUsingId($login->id);
+		return Redirect::route('settings.profile');
+	}
+
+	/**
 	 * Log In
 	 */
 	public function postLogIn()

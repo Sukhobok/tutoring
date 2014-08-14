@@ -20,6 +20,16 @@ Route::group(array('before' => 'guest'), function()
 
 	Route::post('signup', 'UserController@postSignUp');
 	Route::post('login', 'UserController@postLogIn');
+
+	Route::get('send_token_login', array(
+		'as' => 'user.send_token_login',
+		'uses' => 'UserController@getSendTokenLogin'
+	));
+
+	Route::get('token_login', array(
+		'as' => 'user.token_login',
+		'uses' => 'UserController@getTokenLogin'
+	));
 });
 
 Route::group(array('before' => 'auth'), function()
