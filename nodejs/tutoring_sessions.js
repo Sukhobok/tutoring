@@ -123,7 +123,10 @@ io.configure(function ()
 												}, (parseInt(resp3.body.finish_time, 10) - Math.round(Date.now() / 1000))*1000, handshakeData.ts_id, _base_url);
 											}
 
-											_in_room[0].handshake.finish_time = parseInt(resp3.body.finish_time, 10);
+											_in_room.forEach(function (item) {
+												item.handshake.finish_time = parseInt(resp3.body.finish_time, 10);
+											});
+											
 											handshakeData.finish_time = parseInt(resp3.body.finish_time, 10);
 											callback(null, true);
 										}
