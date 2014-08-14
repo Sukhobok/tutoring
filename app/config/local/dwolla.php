@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * Current Dwolla Sandbox Account:
+ *
+ * Email: dwolla_test@studysquare.com
+ * Password: My$ecur3pw!
+ * PIN: 1234
+ */
+
 return array(
 
 	'sandbox' => true,
-	'key' => 'XRhkICTlhwPPw6LvFNT+Cd5NmQEEYM+zqLYxd/KEVDbvAXySr6',
-	'secret' => 'UocwZmoa/QgMW8B/5Oc1/PJIA68X05xv2trnwFjpN6ED7U6PXW',
-	'token' => 'Gqphi0Md9vgm9Z/c7eOD8RG8ziBrpkAZzjuMtwGWFDB3QfPjlo',
+	'key' => '4Efdc5PNfExGwqe5j0RDanZeSj0LMSkmAwR8kTdIleO7rXeqX5',
+	'secret' => 'YiOvnWhUqhVF4DAIO4dzCJt055SRPQkwK/JkP0Hkxvw1CaVs6y',
+	'token' => 'A4lfgZV3vwjBc1QLeAJlPvIfD+h4JLKfZCaJJnaYmBZMLZYcJG',
 	'pin' => '1234'
 
 );

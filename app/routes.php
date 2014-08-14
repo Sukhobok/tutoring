@@ -261,6 +261,14 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'SettingsController@ajaxDeclineHireRequest'
 	));
 
+	Route::post('settings/add_dwolla', array(
+		'uses' => 'SettingsController@ajaxAddDwolla'
+	));
+
+	Route::post('settings/delete_dwolla', array(
+		'uses' => 'SettingsController@ajaxDeleteDwolla'
+	));
+
 	Route::post('settings/withdrawal', array(
 		'uses' => 'SettingsController@ajaxWithdrawal'
 	));

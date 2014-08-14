@@ -366,12 +366,15 @@ class SettingsController extends BaseController {
 	{
 		$withdrawal_available = Payment::getWithdrawalAvailableMoney();
 		$all_time_income = Payment::getAllTimeIncome();
+		$dwolla_accounts = DwollaAccount::where('user_id', '=', Auth::user()->id)
+			->get();
 
 		$this->layout->content = View::make(
 			'settings.financial',
 			compact(
 				'withdrawal_available',
-				'all_time_income'
+				'all_time_income',
+				'dwolla_accounts'
 			)
 		);
 	}
@@ -592,6 +595,40 @@ class SettingsController extends BaseController {
 	}
 
 	/**
+	 * Ajax: Add Dwolla Account
+	 */
+	public function ajaxAddDwolla()
+	{
+		$before = DwollaAccount::where('user_id', '=', Auth::user()->id)
+			->where('email', '=', Input::get('email'))
+			->count();
+
+		if (!$before)
+		{
+			$da = new DwollaAccount;
+			$da->user_id = Auth::user()->id;
+			$da->email = Input::get('email');
+			$da->save();
+
+			return array('error' => 0);
+		}
+
+		return array('error' => 1);
+	}
+
+	/**
+	 * Ajax: Delete Dwolla Account
+	 */
+	public function ajaxDeleteDwolla()
+	{
+		$before = DwollaAccount::where('user_id', '=', Auth::user()->id)
+			->where('id', '=', (int) Input::get('id'))
+			->delete();
+
+		return array('error' => 0);
+	}
+
+	/**
 	 * Ajax: Withdrawal
 	 */
 	public function ajaxWithdrawal()
@@ -603,8 +640,17 @@ class SettingsController extends BaseController {
 
 		if ($can_withdrawal)
 		{
+			$dwolla_account = DwollaAccount::where('id', '=', (int) Input::get('method_id'))
+				->where('user_id', '=', Auth::user()->id)
+				->first();
+
+			if (!$dwolla_account)
+			{
+				return array('error' => 1);
+			}
+
 			$transaction_id = Withdrawal::sendDwolla(
-				Auth::user()->email,
+				$dwolla_account->email,
 				(int) Input::get('amount')
 			);
 

@@ -54,7 +54,7 @@ class Withdrawal extends Eloquent {
 			'StudySquare Withdrawal'
 		);
 
-		Debugbar::info($dwolla->getError());
+		// Debugbar::info($dwolla->getError());
 
 		return $transaction_id;
 	}
