@@ -47,10 +47,82 @@ App::before(function($request)
 	}
 });
 
-
+// NOTE: Executed twice because of $response->setContent!
 App::after(function($request, $response)
 {
-	//
+	$content = $response->getContent();
+	$pattern = '/\[alias type=([a-zA-Z]+) id=([0-9]+)\]/';
+
+	preg_match_all($pattern, $content, $matches);
+	$aliases = array();
+	
+	foreach ($matches[1] as $k => $type)
+	{
+		if (!isset($aliases[$type]))
+			$aliases[$type] = array();
+		
+		if (!in_array($matches[2][$k], $aliases[$type]))
+			$aliases[$type][] = $matches[2][$k];
+	}
+
+	if ($aliases)
+	{
+		$alias_results = DB::table('aliases');
+		$first_type = true;
+		foreach ($aliases as $type => $ids)
+		{
+			if ($first_type)
+			{
+				$alias_results->where(function ($q) use ($type, $ids)
+				{
+					$q->where('type', '=', $type);
+					$q->whereIn('resource_id', $ids);
+				});
+
+				$first_type = false;
+			}
+			else
+			{
+				$alias_results->orWhere(function ($q) use ($type, $ids)
+				{
+					$q->where('type', '=', $type);
+					$q->whereIn('resource_id', $ids);
+				});
+			}
+		}
+		
+		$alias_results->select('alias', 'type', 'resource_id');
+		$alias_results = $alias_results->get();
+	}
+	else
+	{
+		$alias_results = array();
+	}
+
+	$found = array();
+	foreach ($alias_results as $alias_result)
+	{
+		$found[] = '[alias type=' . $alias_result->type . ' id=' . $alias_result->resource_id . ']';
+		$content = str_replace(
+			'[alias type=' . $alias_result->type . ' id=' . $alias_result->resource_id . ']',
+			URL::to($alias_result->alias),
+			$content
+		);
+	}
+
+	$not_found = ss_array_diff($matches[0], $found);
+	foreach ($not_found as $_not_found)
+	{
+		preg_match($pattern, $_not_found, $_match);
+		
+		$content = str_replace(
+			$_match[0],
+			URL::route(strtolower($_match[1]) . '.view', $_match[2]),
+			$content
+		);
+	}
+
+	$response->setContent($content);
 });
 
 /*

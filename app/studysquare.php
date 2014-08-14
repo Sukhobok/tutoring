@@ -105,3 +105,17 @@ App::error(function($exception, $code)
 			break;
 	}
 });
+
+/**
+ * StudySquare array_diff (faster)
+ */
+function ss_array_diff($a, $b)
+{
+	$map = array();
+	foreach ($a as $val)
+		$map[$val] = 1;
+	foreach ($b as $val)
+		unset($map[$val]);
+
+	return array_keys($map);
+}
