@@ -26,18 +26,15 @@ class Group extends Eloquent {
 	 */
 	public static function saveGroup($name, $desc, $filename)
 	{
-		$date = new DateTime;
+		$group = new Group;
+		$group->name = $name;
+		$group->description = $desc;
+		$group->profile_picture = $filename;
+		$group->creator_id = Auth::user()->id;
+		$group->save();
 
-		$insert = array(
-			'name' => $name,
-			'description' => $desc,
-			'profile_picture' => $filename,
-			'creator_id' => Auth::user()->id,
-			'created_at' => $date,
-			'updated_at' => $date
-		);
-
-		return DB::table('groups')->insertGetId($insert);
+		Alias::makeAlias($group->name, 'Group', $group->id);
+		return $group->id;
 	}
 
 	/**

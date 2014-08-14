@@ -25,16 +25,13 @@ class Classroom extends Eloquent {
 	 */
 	public static function saveClassroom($name, $desc)
 	{
-		$date = new DateTime;
+		$classroom = new Classroom;
+		$classroom->name = $name;
+		$classroom->description = $desc;
+		$classroom->save();
 
-		$insert = array(
-			'name' => $name,
-			'description' => $desc,
-			'created_at' => $date,
-			'updated_at' => $date
-		);
-
-		return DB::table('classrooms')->insertGetId($insert);
+		Alias::makeAlias($classroom->name, 'Classroom', $classroom->id);
+		return $classroom->id;
 	}
 
 	/**

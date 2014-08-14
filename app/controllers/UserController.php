@@ -28,6 +28,7 @@ class UserController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
+			Alias::makeAlias($user->name, 'User', $user->id);
 			Auth::attempt(array(
 				'email' => Input::get('email'),
 				'password' => Input::get('password')
