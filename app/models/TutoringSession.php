@@ -325,6 +325,16 @@ class TutoringSession extends Eloquent {
 			storage_path('tutoring_sessions/' . $ts_id . '/data')
 		);
 
+		usort($_data_files, function ($a, $b)
+		{
+			$filename_a = explode('.', $a->getFilename());
+			$filename_b = explode('.', $b->getFilename());
+
+			if ($filename_a[0] == $filename_b[0])
+				return 0;
+			return ($filename_a[0] < $filename_b[0]) ? -1 : 1;
+		});
+
 		$_data = array();
 		foreach ($_data_files as $file)
 		{
