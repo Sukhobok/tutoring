@@ -102,7 +102,9 @@ io.configure(function ()
 											// Tutoring Session ending Timeout
 											if (typeof timeouts['ts_' + handshakeData.ts_id] === 'undefined')
 											{
-												timeouts['ts_' + handshakeData.ts_id] = setTimeout(function (ts_id, _base_url)
+												timeouts['ts_' + handshakeData.ts_id] = parseInt(resp3.body.finish_time, 10);
+
+												setTimeout(function (ts_id, _base_url)
 												{
 													var _in_room = io.sockets.clients('ts_' + ts_id);
 													if (_in_room.length === 2)
@@ -113,6 +115,7 @@ io.configure(function ()
 														{
 															ss_debug('TS Finished Normal');
 															io.sockets.in('ts_' + ts_id).emit('finished');
+															delete timeouts['ts_' + handshakeData.ts_id];
 
 															_in_room.forEach(function (item) {
 																item.disconnect_by_sever = true;
@@ -123,11 +126,6 @@ io.configure(function ()
 												}, (parseInt(resp3.body.finish_time, 10) - Math.round(Date.now() / 1000))*1000, handshakeData.ts_id, _base_url);
 											}
 
-											_in_room.forEach(function (item) {
-												item.handshake.finish_time = parseInt(resp3.body.finish_time, 10);
-											});
-											
-											handshakeData.finish_time = parseInt(resp3.body.finish_time, 10);
 											callback(null, true);
 										}
 										else
@@ -202,7 +200,7 @@ io.sockets.on('connection', function (socket)
 		else
 		{
 			// Both should be connected now
-			io.sockets.in('ts_' + hs.ts_id).emit('started', { finish_time: hs.finish_time });
+			io.sockets.in('ts_' + hs.ts_id).emit('started', { finish_time: timeouts['ts_' + hs.ts_id] });
 		}
 	}
 
@@ -243,6 +241,7 @@ io.sockets.on('connection', function (socket)
 				{
 					ss_debug('TS Finished');
 					io.sockets.in('ts_' + hs.ts_id).emit('canceled');
+					delete timeouts['ts_' + handshakeData.ts_id];
 
 					_in_room.forEach(function (item) {
 						item.disconnect_by_sever = true;
