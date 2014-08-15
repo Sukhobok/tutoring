@@ -167,30 +167,22 @@
 				</div>
 
 				<div class="ts-file-manager-files">
-					<div class="ts-file-manager-file snippet-ts-file-manager-file hide">
-						<div class="ts-file-manager-file-actions" data-ss-file="">
-							<div class="ts-file-manager-file-action" data-ss-action="remove">
-								{{ HTML::image('images/tutoring_session/file_actions/remove_icon.png', 'Remove') }}
-								Remove
+					@foreach ($_files as $_file)
+						<div class="ts-file-manager-file">
+							<div class="ts-file-manager-file-actions ss-link" data-ss-link="{{{ HTML::get_from_s3($_file['Key']) }}}">
+								<div class="ts-file-manager-file-action" data-ss-action="download">
+									{{ HTML::image('images/tutoring_session/file_actions/download_icon.png', 'Download') }}
+									Download
+								</div>
 							</div>
 
-							<div class="ts-file-manager-file-action" data-ss-action="download">
-								{{ HTML::image('images/tutoring_session/file_actions/download_icon.png', 'Download') }}
-								Download
+							<div class="ts-file-manager-file-caption" title="{{{ pathinfo($_file['Key'], PATHINFO_FILENAME) }}}">
+								{{{ HTML::limit(pathinfo($_file['Key'], PATHINFO_FILENAME), 12) }}}
 							</div>
 
-							<div class="ts-file-manager-file-action" data-ss-action="download">
-								{{ HTML::image('images/tutoring_session/file_actions/load_icon.png', 'Load') }}
-								Load
-							</div>
+							{{ HTML::image($_file['icon'], '', array('class' => 'ts-file-manager-file-icon')) }}
 						</div>
-
-						<div class="ts-file-manager-file-caption" title="">
-							File
-						</div>
-
-						{{ HTML::image('images/tutoring_session/file_icons/ppt_icon.png', '', array('class' => 'ts-file-manager-file-icon')) }}
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>

@@ -67,7 +67,7 @@ class TutoringSessionController extends BaseController {
 			)
 			->get();
 
-		if (!$_ts)
+		if (!count($_ts))
 		{
 			App::abort('404');
 		}
@@ -83,9 +83,69 @@ class TutoringSessionController extends BaseController {
 		));
 		$_data = $_data['Body'];
 
+		$_files = $s3->listObjects(array(
+		    'Bucket' => Config::get('s3.bucket'),
+		    'Prefix' => 'tutoring_sessions/' . $id . '/files'
+		));
+		$_files = $_files['Contents'];
+
+		/* Local:
+		$_ts = array();
+		$_ts[0] = new stdClass();
+		$_ts[0]->started_at = new DateTime('@1408100582');
+		$_ts[0]->ended_at = new DateTime('@1408104182');
+		$_ts[0]->student = new stdClass();
+		$_ts[0]->student->name = 'Student';
+		$_ts[0]->student->profile_picture = '';
+		$_ts[0]->tutor = new stdClass();
+		$_ts[0]->tutor->name = 'Tutor';
+		$_ts[0]->tutor->profile_picture = '';
+
+		$s3 = AWS::get('s3');
+		$_data = $s3->getObject(array(
+			'Bucket' => 'studysquare',
+			'Key' => 'tutoring_sessions/8/data.tsd'
+		));
+		$_data = $_data['Body'];
+
+		$_files = $s3->listObjects(array(
+		    "Bucket" => 'studysquare',
+		    "Prefix" => "tutoring_sessions/8/files"
+		));
+		$_files = $_files['Contents']; */
+
+		foreach ($_files as &$_file)
+		{
+			switch (pathinfo($_file['Key'], PATHINFO_EXTENSION))
+			{
+				case 'xls':
+				case 'xlsx':
+					$_file['icon'] = '/images/tutoring_session/file_icons/excel_icon.png';
+					break;
+
+				case 'pdf':
+					$_file['icon'] = '/images/tutoring_session/file_icons/pdf_icon.png';
+					break;
+
+				case 'ppt':
+				case 'pptx':
+					$_file['icon'] = '/images/tutoring_session/file_icons/ppt_icon.png';
+					break;
+
+				case 'doc':
+				case 'docx':
+					$_file['icon'] = '/images/tutoring_session/file_icons/word_icon.png';
+					break;
+				
+				default:
+					$_file['icon'] = '/images/tutoring_session/file_icons/programming_icon.png';
+					break;
+			}
+		}
+
 		$this->layout->content = View::make(
 			'tutoring_session.replay',
-			compact('_data', '_ts')
+			compact('_data', '_ts', '_files')
 		);
 	}
 

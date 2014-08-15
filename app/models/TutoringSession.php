@@ -404,7 +404,9 @@ class TutoringSession extends Eloquent {
 				'Bucket' => Config::get('s3.bucket'),
 				'Key' => $filename,
 				'Body' => File::get((string) $file),
-				'ACL' => 'public-read'
+				'ACL' => 'public-read',
+				'ContentType' => 'application/octet-stream',
+				'ContentDisposition' => 'attachment'
 			));
 		}
 		unset($_files);

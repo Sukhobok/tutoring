@@ -1,4 +1,3 @@
-console.log('test');
 var Player = (function (start_position, end_position, audio1_length, audio2_length) {
 	var player = this;
 	player.start_position = start_position;
@@ -33,7 +32,7 @@ var Player = (function (start_position, end_position, audio1_length, audio2_leng
 					if (_data[player.last_item].t == i)
 					{
 						var _current = JSON.parse(_data[player.last_item].d);
-						console.log(_current);
+						
 						if (typeof _current === 'object')
 						{
 							switch (_current.what)
@@ -45,45 +44,45 @@ var Player = (function (start_position, end_position, audio1_length, audio2_leng
 										case 'pencil':
 											switch (_current.ev)
 											{
-												case 'mousedrag': pencilTool.onMouseDrag(_current.e, 1); break;
-												case 'mousedown': pencilTool.onMouseDown(_current.e, 1); break;
-												case 'mouseup': pencilTool.onMouseUp(_current.e, 1); break;
+												case 'mousedrag': pencilTool.onMouseDrag(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mousedown': pencilTool.onMouseDown(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mouseup': pencilTool.onMouseUp(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
 											}
 										break;
 
 										case 'erase':
 											switch (_current.ev)
 											{
-												case 'mousedrag': eraseTool.onMouseDrag(_current.e, 1); break;
-												case 'mousedown': eraseTool.onMouseDown(_current.e, 1); break;
-												case 'mouseup': eraseTool.onMouseUp(_current.e, 1); break;
+												case 'mousedrag': eraseTool.onMouseDrag(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mousedown': eraseTool.onMouseDown(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mouseup': eraseTool.onMouseUp(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
 											}
 										break;
 
 										case 'rectangle':
 											switch (_current.ev)
 											{
-												case 'mousedrag': rectangleTool.onMouseDrag(_current.e, 1); break;
-												case 'mousedown': rectangleTool.onMouseDown(_current.e, 1); break;
-												case 'mouseup': rectangleTool.onMouseUp(_current.e, 1); break;
+												case 'mousedrag': rectangleTool.onMouseDrag(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mousedown': rectangleTool.onMouseDown(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mouseup': rectangleTool.onMouseUp(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
 											}
 										break;
 
 										case 'ellipse':
 											switch (_current.ev)
 											{
-												case 'mousedrag': ellipseTool.onMouseDrag(_current.e, 1); break;
-												case 'mousedown': ellipseTool.onMouseDown(_current.e, 1); break;
-												case 'mouseup': ellipseTool.onMouseUp(_current.e, 1); break;
+												case 'mousedrag': ellipseTool.onMouseDrag(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mousedown': ellipseTool.onMouseDown(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mouseup': ellipseTool.onMouseUp(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
 											}
 										break;
 
 										default:
 											switch (_current.ev)
 											{
-												case 'mousedrag': lineTool.onMouseDrag(_current.e, 1); break;
-												case 'mousedown': lineTool.onMouseDown(_current.e, 1); break;
-												case 'mouseup': lineTool.onMouseUp(_current.e, 1); break;
+												case 'mousedrag': lineTool.onMouseDrag(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mousedown': lineTool.onMouseDown(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
+												case 'mouseup': lineTool.onMouseUp(_current.e, (_data[0].u == _data[player.last_item].u) ? 0 : 1); break;
 											}
 									}
 
@@ -94,17 +93,17 @@ var Player = (function (start_position, end_position, audio1_length, audio2_leng
 									switch (_current.type)
 									{
 										case 'color':
-											styles[1].strokeColor = _current.value;
+											styles[(_data[0].u == _data[player.last_item].u) ? 0 : 1].strokeColor = _current.value;
 										break;
 
 										case 'size':
-											styles[1].strokeWidth = _current.value;
+											styles[(_data[0].u == _data[player.last_item].u) ? 0 : 1].strokeWidth = _current.value;
 										break;
 									}
 								break;
 
 								case 'chat':
-									tsChatAdd(_current.message);
+									tsChatAdd(_current.message, (_data[0].u == _data[player.last_item].u) ? 0 : 1);
 								break;
 
 								case 'mode':
@@ -115,15 +114,15 @@ var Player = (function (start_position, end_position, audio1_length, audio2_leng
 									switch (_current.action)
 									{
 										case 'add':
-											// tsAddTab();
+											tsAddTab();
 										break;
 
 										case 'remove':
-											// tsRemoveTab();
+											tsRemoveTab();
 										break;
 
 										case 'focus':
-											// tsFocusTab(_current.tab_id);
+											tsFocusTab(_current.tab_id);
 										break;
 									}
 								break;

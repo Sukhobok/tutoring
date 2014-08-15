@@ -47,8 +47,8 @@ var tsFocusTab = function (index) {
 }
 
 var activateLayer = function (index) {
-	for(i = 0; i < project.layers.length; i++) {
-		project.layers[i].visible = false;
+	for(_i = 0; _i < project.layers.length; _i++) {
+		project.layers[_i].visible = false;
 	}
 
 	project.layers[index].visible = true;
