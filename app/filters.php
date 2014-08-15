@@ -50,6 +50,11 @@ App::before(function($request)
 // NOTE: Executed twice because of $response->setContent!
 App::after(function($request, $response)
 {
+	if ($response->headers->get('content-disposition'))
+	{
+		return null;
+	}
+	
 	$content = $response->getContent();
 	$pattern = '/\[alias type=([a-zA-Z]+) id=([0-9]+)\]/';
 
