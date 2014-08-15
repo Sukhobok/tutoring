@@ -378,6 +378,26 @@ class TutoringSession extends Eloquent {
 		}
 		unset($_audio_files);
 		unset($_audio_files_array);
+
+		// 3) Save file manager
+		$_files = File::allFiles(
+			storage_path('tutoring_sessions/' . $ts_id . '/files')
+		);
+
+		foreach ($_files as $file)
+		{
+			$filename = 'tutoring_sessions/' . $ts_id . '/files/';
+			$filename .= $file->getFilename();
+
+			$s3 = AWS::get('s3');
+			$result = $s3->putObject(array(
+				'Bucket' => Config::get('s3.bucket'),
+				'Key' => $filename,
+				'Body' => File::get((string) $file),
+				'ACL' => 'public-read'
+			));
+		}
+		unset($_files);
 	}
 
 }

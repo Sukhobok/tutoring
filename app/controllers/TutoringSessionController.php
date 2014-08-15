@@ -217,10 +217,17 @@ class TutoringSessionController extends BaseController {
 	public function ajaxDownloadFile()
 	{
 		// Checking access
-		$ts_id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
-		if (!$ts_id)
+		if (!(int) Input::get('ts_id'))
 		{
-			App::abort(403, 'Unauthorized');
+			$ts_id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
+			if (!$ts_id)
+			{
+				App::abort(403, 'Unauthorized');
+			}
+		}
+		else
+		{
+			$ts_id = (int) Input::get('ts_id');
 		}
 
 		return Response::download(

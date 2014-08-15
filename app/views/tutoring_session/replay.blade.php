@@ -4,11 +4,11 @@
 			<div class="ts-top">
 				{{-- Top left buttons --}}
 				<div class="ts-mode-tools-top" data-ts-mode="whiteboard">
-					<div class="ts-button-unfilled ts-mode-tool-top" id="ss-action-play">
+					<div class="ts-button-unfilled ts-mode-tool-top" id="ss-action-play" style="line-height: 35px;">
 						&#9658;
 					</div>
 
-					<div class="ts-button-unfilled ts-mode-tool-top" id="ss-action-stop">
+					<div class="ts-button-unfilled ts-mode-tool-top" id="ss-action-stop" style="line-height: 35px;">
 						&bull;
 					</div>
 				</div>
@@ -133,15 +133,15 @@
 			</div>
 
 			<div class="ss-container">
-				{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 220)) }}
+				{{ HTML::image(HTML::profile_picture($_ts[0]->student), 'Profile Picture', array('width' => 220)) }}
 			</div>
 
 			<div class="ts-video-buttons">
-				<button class="ss-button blue bold">CLOSE THE SESSION</button>
+				<button class="ss-button blue bold">GO BACK</button>
 			</div>
 
 			<div class="ss-container">
-				{{ HTML::image(HTML::profile_picture(Auth::user()), 'Profile Picture', array('width' => 220)) }}
+				{{ HTML::image(HTML::profile_picture($_ts[0]->tutor), 'Profile Picture', array('width' => 220)) }}
 			</div>
 		</div>
 	</div>
@@ -154,23 +154,45 @@
 						Chat
 					</div>
 				</div>
-				<div class="ts-chat-messages"></div>
-				<textarea class="ts-chat-textarea"></textarea>
-			</div>
-
-			<div class="ts-chat-bot">
-				<button class="ss-button blue bold ts-chat-send">SEND MESSAGE</button>
-
-				<div class="ts-chat-pressing-enter">
-					{{ Form::checkbox('ts-chat-pressing-enter-cb', '1', true, array('id' => 'ts-chat-pressing-enter-cb')) }}
-					Send by pressing enter
-				</div>
-				<div class="clear"></div>
+				<div class="ts-chat-messages" style="height: 150px;"></div>
 			</div>
 		</div>
 		
 		<div class="ts-file-manager ts-module">
-			&nbsp;
+			<div class="ts-module-container">
+				<div class="ts-module-toolbar">
+					<div class="ts-module-title">
+						File manager (<span class="ts-file-manager-count">0</span> files)
+					</div>
+				</div>
+
+				<div class="ts-file-manager-files">
+					<div class="ts-file-manager-file snippet-ts-file-manager-file hide">
+						<div class="ts-file-manager-file-actions" data-ss-file="">
+							<div class="ts-file-manager-file-action" data-ss-action="remove">
+								{{ HTML::image('images/tutoring_session/file_actions/remove_icon.png', 'Remove') }}
+								Remove
+							</div>
+
+							<div class="ts-file-manager-file-action" data-ss-action="download">
+								{{ HTML::image('images/tutoring_session/file_actions/download_icon.png', 'Download') }}
+								Download
+							</div>
+
+							<div class="ts-file-manager-file-action" data-ss-action="download">
+								{{ HTML::image('images/tutoring_session/file_actions/load_icon.png', 'Load') }}
+								Load
+							</div>
+						</div>
+
+						<div class="ts-file-manager-file-caption" title="">
+							File
+						</div>
+
+						{{ HTML::image('images/tutoring_session/file_icons/ppt_icon.png', '', array('class' => 'ts-file-manager-file-icon')) }}
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -178,6 +200,7 @@
 <script type="text/javascript">
 	var _data = {{ $_data }};
 	var _started_at = {{{ $_ts[0]->started_at->getTimestamp()*1000 }}};
+	var _ended_at = {{{ $_ts[0]->ended_at->getTimestamp()*1000 }}};
 	var partner_name = '{{{ $_ts[0]->tutor->name }}}';
 	var current_name = '{{{ $_ts[0]->student->name }}}';
 </script>

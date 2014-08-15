@@ -110,7 +110,7 @@
     
 		    
     <!-- Slider -->
-    <section class="join-form">
+    <section class="join-form" style="height: 550px;">
     	<div class="slider-container">
 		    <ul class="rslides" id="slider">
 			  <li><img src="/themes/university/img/slider/img-1.jpg"  alt="//"/></li>
