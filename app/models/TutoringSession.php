@@ -358,7 +358,7 @@ class TutoringSession extends Eloquent {
 		foreach ($_audio_files as $file)
 		{
 			$filename = explode('.', $file->getFilename());
-			$_audio_files_array[$filename[1]][] = $file->getFilename();
+			$_audio_files_array[$filename[1]][] = (string) $file;
 		}
 
 		foreach ($_audio_files_array as $k => $v)
@@ -371,7 +371,7 @@ class TutoringSession extends Eloquent {
 
 			$result = $s3->putObject(array(
 				'Bucket' => Config::get('s3.bucket'),
-				'Key' => 'tutoring_sessions/' . $ts_id . '/audio' . $k . '.mp3',
+				'Key' => 'tutoring_sessions/' . $ts_id . '/audio.' . $k . '.mp3',
 				'Body' => File::get(storage_path('tutoring_sessions/' . $ts_id . '/audio.' . $k . '.mp3')),
 				'ACL' => 'public-read'
 			));
