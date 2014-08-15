@@ -358,7 +358,7 @@ class TutoringSession extends Eloquent {
 		foreach ($_audio_files as $file)
 		{
 			$filename = explode('.', $file->getFilename());
-			$_audio_files_array[$filename[1]][] = $file->getFilename;
+			$_audio_files_array[$filename[1]][] = $file->getFilename();
 		}
 
 		foreach ($_audio_files_array as $k => $v)
