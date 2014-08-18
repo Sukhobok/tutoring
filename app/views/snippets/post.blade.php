@@ -38,7 +38,7 @@
 					@endif
 				</div>
 
-				{{ $post->post }}
+				<div class="article-content-text">{{ $post->post }}</div>
 
 				@if($post->images)
 					<div class="article-photos">

@@ -89,7 +89,12 @@ $(document).on('keyup', '.post-comment-textarea', function (e) {
 });
 
 /**
- * Show more
+ * Read More (article)
+ */
+$('.article-content-text').readmore();
+
+/**
+ * Show more comments
  */
 $(document).on('click', '.posted-comments .show-more', function () {
 	$(this).parents('.posted-comments').children('.posted-comment').css({ 'display': 'block' });

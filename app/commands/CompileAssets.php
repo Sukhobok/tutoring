@@ -106,6 +106,7 @@ class CompileAssets extends Command {
 			'plugins/jquery-mCustomScrollbar.js',
 			'plugins/jquery-growl.js',
 			'plugins/jquery-pageslide-ss.js',
+			'plugins/jquery-readmore.js',
 			'core.js',
 			'socket.io.js',
 			'ss_modals.js',

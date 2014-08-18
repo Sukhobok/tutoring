@@ -12,7 +12,7 @@
 
 		<div class="ss-search-result-bio">
 			<div class="ss-search-result-section-title">{{{ strtoupper($user->name) }}}'S BIO</div>
-			{{{ $user->bio }}}
+			<div class="ss-search-result-bio-text">{{{ $user->bio }}}</div>
 		</div>
 
 		<div class="ss-search-result-teaches">

@@ -43,6 +43,7 @@ var ss_get_search_results = function ()
 			$('.ss-tutor-search-result').html(data);
 			$('.ss-tutor-search-result').show();
 			$('.ss-search-no-results').hide();
+			$('.ss-search-result-bio-text').readmore();
 		}
 	});
 }
