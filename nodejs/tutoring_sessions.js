@@ -241,7 +241,7 @@ io.sockets.on('connection', function (socket)
 				{
 					ss_debug('TS Finished');
 					io.sockets.in('ts_' + hs.ts_id).emit('canceled');
-					delete timeouts['ts_' + handshakeData.ts_id];
+					delete timeouts['ts_' + hs.ts_id];
 
 					_in_room.forEach(function (item) {
 						item.disconnect_by_sever = true;

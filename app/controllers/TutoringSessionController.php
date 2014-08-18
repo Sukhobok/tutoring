@@ -205,45 +205,54 @@ class TutoringSessionController extends BaseController {
 			return array('error' => 1, 'error_type' => 'size');
 		}
 
-		$time = new DateTime('now');
 		$dir = storage_path() . '/tutoring_sessions/' . $ts_id . '/files/';
-		$filename = preg_replace(
-			"/[^A-Za-z0-9]/", '',
-			pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
-		);
-		$filename .= '.' . str_random(3) . time() . str_random(3);
-		$filename .= '.' . $file->getClientOriginalExtension();
-		unset($time);
-
-		switch ($file->getClientOriginalExtension())
+		if (Input::get('ts-file-type') == 'screenshot')
 		{
-			case 'xls':
-			case 'xlsx':
-				$icon = '/images/tutoring_session/file_icons/excel_icon.png';
-				break;
+			$filename = 'screenshot';
+			$filename .= '.' . str_random(3) . time() . str_random(3);
+			$filename .= '.png';
 
-			case 'pdf':
-				$icon = '/images/tutoring_session/file_icons/pdf_icon.png';
-				break;
-
-			case 'ppt':
-			case 'pptx':
-				$icon = '/images/tutoring_session/file_icons/ppt_icon.png';
-				break;
-
-			case 'doc':
-			case 'docx':
-				$icon = '/images/tutoring_session/file_icons/word_icon.png';
-				break;
-			
-			default:
-				$icon = '/images/tutoring_session/file_icons/programming_icon.png';
-				break;
-		}
-
-		if (in_array($file->guessExtension(), array('jpeg', 'png', 'gif', 'bmp')))
-		{
 			$icon = URL::to('ajax/session/download_file?file=' . $filename);
+		}
+		else
+		{
+			$filename = preg_replace(
+				"/[^A-Za-z0-9]/", '',
+				pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+			);
+			$filename .= '.' . str_random(3) . time() . str_random(3);
+			$filename .= '.' . $file->getClientOriginalExtension();
+
+			switch ($file->getClientOriginalExtension())
+			{
+				case 'xls':
+				case 'xlsx':
+					$icon = '/images/tutoring_session/file_icons/excel_icon.png';
+					break;
+
+				case 'pdf':
+					$icon = '/images/tutoring_session/file_icons/pdf_icon.png';
+					break;
+
+				case 'ppt':
+				case 'pptx':
+					$icon = '/images/tutoring_session/file_icons/ppt_icon.png';
+					break;
+
+				case 'doc':
+				case 'docx':
+					$icon = '/images/tutoring_session/file_icons/word_icon.png';
+					break;
+				
+				default:
+					$icon = '/images/tutoring_session/file_icons/programming_icon.png';
+					break;
+			}
+
+			if (in_array($file->guessExtension(), array('jpeg', 'png', 'gif', 'bmp')))
+			{
+				$icon = URL::to('ajax/session/download_file?file=' . $filename);
+			}
 		}
 
 		$file->move($dir, $filename);

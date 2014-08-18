@@ -165,9 +165,9 @@
 			</div>
 
 			<div class="ts-video-buttons">
-				<button class="ss-button blue bold">TAKE A SCREENSHOT</button>
+				<button class="ss-button blue bold ts-take-screenshot">TAKE A SCREENSHOT</button>
 				@if ($role == 'student')
-					<button class="ss-button blue bold">CLOSE THE SESSION</button>
+					<button class="ss-button blue bold ts-close-session">CLOSE THE SESSION</button>
 				@else
 					<button class="ss-button blue bold" style="visibility: hidden;">CLOSE THE SESSION</button>
 				@endif

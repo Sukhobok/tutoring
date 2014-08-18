@@ -137,20 +137,11 @@ function xhr(url, data, callback) {
 function end_audio_recording() {
 	if(_recordRTC) {
 		_recordRTC.stopRecording(function (audio) {
+			var formData = new FormData();
+			formData.append('audio-filename', 'recording.wav');
+			formData.append('audio-blob', _recordRTC.getBlob());
 			_recordRTC.startRecording();
-
-			var _xhr = new XMLHttpRequest();
-			_xhr.open('GET', audio, true);
-			_xhr.responseType = 'blob';
-			_xhr.onload = function(e) {
-				var _blob = this.response;
-				var formData = new FormData();
-				formData.append('audio-filename', 'recording.wav');
-				formData.append('audio-blob', _blob);
-
-				xhr('/ajax/session/receive_audio', formData, function (data) { });
-			};
-			_xhr.send();
+			xhr('/ajax/session/receive_audio', formData, function (data) { });
 		});
 	}
 }

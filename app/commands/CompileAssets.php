@@ -221,6 +221,7 @@ class CompileAssets extends Command {
 			'whiteboard_tabs.js',
 			'whiteboard_interaction.js',
 			'whiteboard_color_size.js',
+			'whiteboard_screenshot.js',
 			'socket_receive.js',
 		));
 		$compiler->setTargetFile('whiteboard.min.js');
