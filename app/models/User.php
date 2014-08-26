@@ -488,6 +488,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Get Header Notifications
+	 */
+	public static function getUserNotifications()
+	{
+		// TO DO
+		return array();
+	}
+
+	/**
 	 * Laravel Update
 	 * http://laravel.com/docs/upgrade
 	 */

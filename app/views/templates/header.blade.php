@@ -14,14 +14,23 @@
 		<div class="header-right">
 			<div class="header-icon header-friend-icon">
 				{{ HTML::image('images/header/friend.png') }}
+				<div class="header-icon-count {{ count($friend_requests) ? '' : 'hide' }}">
+					{{{ count($friend_requests) > 9 ? '9+' : count($friend_requests) }}}
+				</div>
 			</div>
 			
 			<div class="header-icon header-notif-icon">
 				{{ HTML::image('images/header/notification.png') }}
+				<div class="header-icon-count {{ count($friend_requests) ? '' : 'hide' }}">
+					{{{ count($friend_requests) > 9 ? '9+' : count($friend_requests) }}}
+				</div>
 			</div>
 
 			<div class="header-icon header-chat-icon">
 				{{ HTML::image('images/header/chat.png') }}
+				<div class="header-icon-count {{ count($unread_messages) ? '' : 'hide' }}">
+					{{{ count($unread_messages) > 9 ? '9+' : count($unread_messages) }}}
+				</div>
 			</div>
 
 			<div class="header-icon header-settings-icon">

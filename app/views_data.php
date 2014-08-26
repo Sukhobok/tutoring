@@ -12,6 +12,7 @@
 View::composer('templates.header', function($view)
 {
 	$view->with('friend_requests', FriendshipRequest::getUserRequests());
+	$view->with('notifications', User::getUserNotifications());
 	$view->with('unread_messages', Message::unreadMessages());
 });
 

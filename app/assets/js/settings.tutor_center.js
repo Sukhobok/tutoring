@@ -27,6 +27,31 @@ if($('.ss-complete-subjects').length != 0) {
 }
 
 /**
+ * Request Subject
+ */
+$(document).on('click', '.ss-request-subject', function ()
+{
+	$.ajax(
+	{
+		url: '/ajax/settings/request_subject',
+		type: 'POST',
+		data: { name: $('.ss-request-subject-name').val() }
+	}).done(function (data)
+	{
+		if (data.error == 0)
+		{
+			alert('Request Sent! Please allow a few hours for us to review it!');
+		}
+		else
+		{
+			alert('There was an error! Please complete the fields!');
+		}
+	});
+
+	$('.ss-request-subject-name').val('');
+});
+
+/**
  * Change user data
  */
 $(document).on('change', '[name="tc-available-now"]', function () {

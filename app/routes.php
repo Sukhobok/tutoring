@@ -259,6 +259,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'SettingsController@ajaxDeleteSubject'
 	));
 
+	Route::post('settings/request_subject', array(
+		'uses' => 'SettingsController@ajaxRequestSubject'
+	));
+
 	Route::post('settings/change_user_data', array(
 		'uses' => 'SettingsController@ajaxChangeUserData'
 	));

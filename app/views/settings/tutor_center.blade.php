@@ -13,7 +13,11 @@
 						<p>Type in and select subjects you want to tutor:</p>
 						<br />
 						{{ Form::text('ss-complete-subjects', '', array('class' => 'ss-complete-subjects')) }}
-						<p>{{ Form::checkbox('tc-available-now', '1', (bool) Auth::user()->available) }} I'm Available Now</p>
+						<p>Haven't found your subject? You can send a request below:</p>
+						{{ Form::text('ss-request-subject-name', '', array('class' => 'ss-request-subject-name ss-input2')) }}
+						<button class="ss-button green bold inline ss-request-subject">Send request</button>
+
+						<p style="margin-top: 25px;">{{ Form::checkbox('tc-available-now', '1', (bool) Auth::user()->available) }} I'm Available Now</p>
 						
 						<table>
 							<tr>

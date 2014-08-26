@@ -526,6 +526,26 @@ class SettingsController extends BaseController {
 	}
 
 	/**
+	 * Ajax: Send subject request
+	 */
+	public function ajaxRequestSubject()
+	{
+		if (Input::get('name'))
+		{
+			$sr = new SubjectRequest;
+			$sr->user_id = Auth::user()->id;
+			$sr->name = Input::get('name');
+			$sr->save();
+			
+			return array('error' => 0);
+		}
+		else
+		{
+			return array('error' => 1);
+		}
+	}
+
+	/**
 	 * Ajax: Change user data (bio, price, available, ...)
 	 */
 	public function ajaxChangeUserData()
