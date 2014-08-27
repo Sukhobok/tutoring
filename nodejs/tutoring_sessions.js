@@ -224,9 +224,34 @@ io.sockets.on('connection', function (socket)
 		socket.broadcast.to('ts_' + hs.ts_id).emit('message', data);
 	});
 
+	socket.on('close_session', function (data)
+	{
+		if (hs.client_type === 'server')
+		{
+			var _in_room = io.sockets.clients('ts_' + data.ts_id);
+			if (_in_room.length === 2)
+			{
+				var _base_url = data.base_url;
+				var _query = 'uid=0&ts_id=' + data.ts_id + '&signature=' + _signature;
+				var _url = _base_url + 'api/finish_tutoring_session?' + _query;
+				needle.get(_url, function (err, resp)
+				{
+					ss_debug('TS Finished Normal By Student');
+					io.sockets.in('ts_' + data.ts_id).emit('finished');
+					delete timeouts['ts_' + data.ts_id];
+
+					_in_room.forEach(function (item) {
+						item.disconnect_by_sever = true;
+						item.disconnect();
+					});
+				});
+			}
+		}
+	});
+
 	socket.on('disconnect', function ()
 	{
-		if (typeof socket.disconnect_by_sever === 'undefined')
+		if (typeof socket.disconnect_by_sever === 'undefined' && hs.client_type === 'user')
 		{
 			ss_debug('User disconected');
 			socket.leave('ts_' + hs.ts_id);

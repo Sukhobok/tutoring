@@ -299,6 +299,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'MessageController@ajaxSeen'
 	));
 
+	Route::post('session/close_session', array(
+		'uses' => 'TutoringSessionController@ajaxCloseSession'
+	));
+
 	Route::post('session/receive_audio', array(
 		'uses' => 'TutoringSessionController@ajaxReceiveAudio'
 	));

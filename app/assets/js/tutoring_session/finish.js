@@ -1,4 +1,22 @@
 /**
+ * Close Session
+ */
+$(document).on('click', '.ts-close-session', function ()
+{
+	$(this).css({ visibility: 'hidden' });
+
+	$.ajax(
+	{
+		url: '/ajax/session/close_session',
+		type: 'POST',
+		data: { }
+	}).done(function (data)
+	{
+		//
+	});
+});
+
+/**
  * Stars
  */
 $('#ss-modal-ts-finished-stars').on('click', '.ss-modal-ts-finished-star', function ()

@@ -150,12 +150,50 @@ class TutoringSessionController extends BaseController {
 	}
 
 	/**
+	 * Ajax: Close Session
+	 */
+	public function ajaxCloseSession()
+	{
+		$ts_id = TutoringSession::deleteExpiredAndGetSession();
+		if (!$ts_id)
+		{
+			App::abort(403, 'Unauthorized');
+		}
+
+		$role = TutoringSession::getUserRole(
+			$ts_id,
+			Auth::user()->id
+		);
+
+		if ($role === 'student')
+		{
+			$elephant = new Elephant(Config::get('elephant.ts_domain'));
+			$elephant->setHandshakeQuery(array(
+				'signature' => Config::get('elephant.signature')
+			));
+
+			$elephant->init();
+			$elephant->emit('close_session', array(
+				'base_url' => URL::to('/'),
+				'ts_id' => $ts_id
+			));
+			$elephant->close();
+
+			return array('error' => 0);
+		}
+		else
+		{
+			App::abort(403, 'Unauthorized');
+		}
+	}
+
+	/**
 	 * Ajax: Receive Audio
 	 */
 	public function ajaxReceiveAudio()
 	{
 		// Checking access
-		$ts_id = TutoringSession::deleteExpiredAndGetSession((int) Input::get('uid'));
+		$ts_id = TutoringSession::deleteExpiredAndGetSession();
 		if (!$ts_id)
 		{
 			App::abort(403, 'Unauthorized');
