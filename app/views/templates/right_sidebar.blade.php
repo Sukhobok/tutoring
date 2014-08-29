@@ -9,13 +9,6 @@
 	</div>
 
 	<div class="ss-section">
-		@if (Auth::check())
-			<button class="ss-button green find-tutor-button ss-open-chat-button">
-				<span class="bold">OPEN/CLOSE CHAT</span><br />
-				Open the chat panel
-			</button>
-		@endif
-
 		<div id="right-calendar"></div>
 
 		<script type="text/javascript">

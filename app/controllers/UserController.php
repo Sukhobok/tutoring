@@ -470,6 +470,32 @@ class UserController extends BaseController {
 		$p->amount = $price;
 		$p->save();
 
+		// Send email
+		$student = Auth::user();
+		$tutor = User::find(Input::get('tutor_id'));
+		
+		$email_data = array();
+		$email_data['student'] = $student->name;
+		$email_data['tutor'] = $tutor->name;
+		$email_data['hours'] = (int) Input::get('hours');
+		$email_data['description'] = Input::get('description');
+		Mail::send('emails.new_session_student', $email_data, function($message) use ($student)
+		{
+			$message->to($student->email, $student->name)
+				->subject('New tutoring session request');
+		});
+
+		$email_data = array();
+		$email_data['student'] = $student->name;
+		$email_data['hours'] = (int) Input::get('hours');
+		$email_data['price'] = $price / (int) Input::get('hours');
+		$email_data['description'] = Input::get('description');
+		Mail::send('emails.new_session_tutor', $email_data, function($message) use ($tutor)
+		{
+			$message->to($tutor->email, $tutor->name)
+				->subject('New tutoring session request');
+		});
+
 		return array('error' => 0);
 	}
 

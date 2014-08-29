@@ -51,17 +51,6 @@ $(document).on('click', '.header-notif-icon', function (e) {
 });
 
 /**
- * Extend chat menu
- */
-$(document).on('click', '.header-chat-icon', function (e) {
-	if($('.header-chat-extended').css('display') == 'none')
-		header_close_extended();
-	$('.header-chat-extended').animate({ height: 'toggle' });
-
-	e.stopPropagation();
-});
-
-/**
  * Friend requests
  */
 $(document).on('click', '.accept-friendship-request', function () {

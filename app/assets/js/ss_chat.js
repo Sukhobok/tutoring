@@ -1,4 +1,21 @@
-$(document).on('click', '.ss-open-chat-button', function ()
+socket.on('new_message', function (data)
+{
+	audio_alert();
+
+	if (!$('.ss-chat').is(':visible'))
+	{
+		$.growl({
+			title: "New message!",
+			message: '<span class="bold">' + data.from_name + '</span> sent you a message!',
+			ss_redirect: '/messages/' + data.from_id
+		});
+	}
+});
+
+/**
+ * Chat Open/Close
+ */
+$(document).on('click', '.header-chat-icon', function ()
 {
 	if ($('.ss-chat').is(':visible'))
 	{
@@ -6,6 +23,8 @@ $(document).on('click', '.ss-open-chat-button', function ()
 	}
 	else
 	{
+		$('.header-icon-count', this).text('0');
+		$('.header-icon-count', this).addClass('hide');
 		$.pageslide({ direction: 'left', href: '#ss-chat-inner', modal: true });
 		$('.ss-chat').mCustomScrollbar();
 	}

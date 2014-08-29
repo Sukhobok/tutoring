@@ -13,15 +13,13 @@
 		<div id="index_top" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;position: relative;height: 240px !important;width: 100%;background: #000 url({{ URL::to('themes/university/img/slider/img-1.jpg') }}) no-repeat;background-size: 100% 100%;z-index: 0;text-align: center;border-bottom: 15px solid #252525;margin-bottom: 45px;margin-top:-10px;">
 			<div class="description" style="margin: 0 auto;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;display: block;position: relative;">
 				<br /><br /><br /><br /><br /><br /><br />
-				<p style="margin: 0;padding: 3px 3px;border: 0;font-size: 28px;font: inherit;vertical-align: baseline;margin-top: 3px;display: inline-block;background: rgba(0, 0, 0, 0.6);color: #fff;font-weight: 700;">You forgot your password</p>
+				<p style="margin: 0;padding: 3px 3px;border: 0;font-size: 28px;font: inherit;vertical-align: baseline;margin-top: 3px;display: inline-block;background: rgba(0, 0, 0, 0.6);color: #fff;font-weight: 700;">Happy Birthday!</p>
 			</div>
 		</div>
 		
 		<div id="index_top_description" style="margin: 0;padding: 20px;border: 0;font-size: 12px;font: inherit;vertical-align: baseline;font-weight: 400;color: #727272; clear:both;">
 			<p style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline">
-			You have just sent a request for a forgotten password.<br />
-			You can login with your temporary link: <a href="{{ $token_link }}">{{ $token_link }}</a><br />
-			You can change your password after accessing this link.
+			The StudySquare Team is pleased to wish you a very happy birthday. May you get the best of everything in life.
 			</p>
 			<br /><br />
 			Thank you for choosing Study Square for all your tutoring needs!
