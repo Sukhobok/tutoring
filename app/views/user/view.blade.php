@@ -19,7 +19,7 @@
 							<button class="ss-button2 green bold hire-user-button">HIRE</button>
 						@endif
 						@if ($canSendMessage)
-							<button class="ss-button2 blue bold ss-link" data-ss-link="{{ URL::route('messages', $user->id) }}">SEND A MESSAGE</button>
+							<button class="ss-button2 blue bold ss-chat-open-user-conversation" data-ss-uid="{{{ $user->id }}}">SEND A MESSAGE</button>
 						@endif
 						<button class="ss-button2 red bold">BLOCK</button>
 					@endif

@@ -155,3 +155,56 @@ socket.on('new_message', function (data)
 		convert_time();
 	}
 });
+
+/**
+ * Open user conversation
+ */
+var ss_chat_open_user_conversation = function (uid)
+{
+	if (!$('.ss-chat').is(':visible'))
+	{
+		// Open the chat first
+		$.pageslide({ direction: 'left', href: '#ss-chat-inner', modal: true });
+	}
+
+	$('.ss-chat-main').fadeOut(250);
+	$('.ss-chat-conversation')[0].setAttribute('data-ss-uid', uid);
+
+	$.ajax({
+		url: '/ajax/messages/get_conversation',
+		type: 'GET',
+		data: { uid: uid }
+	}).done(function (data) {
+		$('.ss-chat .sent-message, .ss-chat .received-message').not('.ss-chat-conversation-write').remove();
+
+		$.each(data, function (k, v) {
+			add_ss_chat_message(v.type, v.message, v.created_at, v.message_picture);
+		});
+
+		// Color - Red
+		$('.chat-conversation-container').removeClass('is-green');
+		$('.chat-conversation-container').removeClass('is-blue');
+		$('.chat-conversation-container').removeClass('is-red');
+		$('.chat-conversation-container').addClass('is-red');
+
+		$('.ss-chat-conversation').fadeIn(250, function ()
+		{
+			if (!$('.ss-chat').find('.mCSB_container').length)
+			{
+				$('.ss-chat').mCustomScrollbar();
+			}
+			else
+			{
+				$('.ss-chat').mCustomScrollbar('update');
+			}
+			
+			$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
+		});
+		convert_time();
+	});
+}
+
+$(document).on('click', '.ss-chat-open-user-conversation', function ()
+{
+	ss_chat_open_user_conversation(this.getAttribute('data-ss-uid'));
+});
