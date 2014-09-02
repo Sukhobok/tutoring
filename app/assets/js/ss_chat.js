@@ -7,7 +7,7 @@ socket.on('new_message', function (data)
 		$.growl({
 			title: "New message!",
 			message: '<span class="bold">' + data.from_name + '</span> sent you a message!',
-			ss_redirect: '/messages/' + data.from_id
+			from_id: data.from_id
 		});
 	}
 });
@@ -149,7 +149,7 @@ socket.on('new_message', function (data)
 {
 	if (data.from_id == $('.ss-chat-conversation')[0].getAttribute('data-ss-uid'))
 	{
-		add_ss_chat_message('received', data.message, Math.round(new Date()/1000), false);
+		add_ss_chat_message('received', data.message, Math.round(new Date()/1000), data.profile_picture);
 		$('.ss-chat').mCustomScrollbar('update');
 		$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
 		convert_time();

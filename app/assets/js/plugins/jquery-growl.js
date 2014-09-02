@@ -165,7 +165,7 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Growl.prototype.html = function() {
-      return "<div class='ss-link " + this.settings.namespace + " " + this.settings.namespace + "-" + this.settings.style + " " + this.settings.namespace + "-" + this.settings.size + "' data-ss-link='" + this.settings.ss_redirect + "'>\n  <div class='" + this.settings.namespace + "-close'>" + this.settings.close + "</div>\n  <div class='" + this.settings.namespace + "-title'>" + this.settings.title + "</div>\n  <div class='" + this.settings.namespace + "-message'>" + this.settings.message + "</div>\n</div>";
+      return "<div class='ss-chat-open-user-conversation " + this.settings.namespace + " " + this.settings.namespace + "-" + this.settings.style + " " + this.settings.namespace + "-" + this.settings.size + "' data-ss-uid='" + this.settings.from_id + "' style='cursor: pointer;'>\n  <div class='" + this.settings.namespace + "-close'>" + this.settings.close + "</div>\n  <div class='" + this.settings.namespace + "-title'>" + this.settings.title + "</div>\n  <div class='" + this.settings.namespace + "-message'>" + this.settings.message + "</div>\n</div>";
     };
 
     return Growl;

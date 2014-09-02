@@ -460,13 +460,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$ts = DB::table('tutoring_sessions')
 			->where('student_id', '=', $uid)
 			->orWhere('tutor_id', '=', $uid)
-			->select('session_date', 'hours')
+			->leftJoin(
+				'tutoring_sessions_info',
+				'tutoring_sessions_info.ts_id', '=', 'tutoring_sessions.id'
+			)
+			->select(
+				'tutoring_sessions.session_date',
+				'tutoring_sessions.hours',
+				'tutoring_sessions_info.started_at',
+				'tutoring_sessions_info.ended_at'
+			)
 			->get();
 
 		foreach ($ts as $_ts)
 		{
 			$_ts->session_start = strtotime($_ts->session_date);
 			$_ts->session_end = $_ts->session_start + ($_ts->hours*3600) + 6*60;
+
+			if ($_ts->started_at != '0000-00-00 00:00:00' && $_ts->started_at != null)
+				$_ts->session_start = strtotime($_ts->started_at);
+
+			if ($_ts->ended_at != '0000-00-00 00:00:00' && $_ts->ended_at != null)
+				$_ts->session_end = strtotime($_ts->ended_at);
 
 			$_now = new DateTime('now');
 			$_end = new DateTime('now + ' . $hours . ' hours');

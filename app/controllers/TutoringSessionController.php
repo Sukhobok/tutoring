@@ -174,7 +174,7 @@ class TutoringSessionController extends BaseController {
 
 			$elephant->init();
 			$elephant->emit('close_session', array(
-				'base_url' => URL::to('/'),
+				'base_url' => URL::to('/') . '/',
 				'ts_id' => $ts_id
 			));
 			$elephant->close();

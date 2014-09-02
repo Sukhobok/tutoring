@@ -47,11 +47,16 @@ class Withdrawal extends Eloquent {
 		$dwolla->setSandbox(Config::get('dwolla.sandbox'));
 
 		$transaction_id = $dwolla->send(
-			Config::get('dwolla.pin'),
-			$email,
-			$amount,
-			'Email',
-			'StudySquare Withdrawal'
+			Config::get('dwolla.pin'), // pin
+			$email, // destinationId
+			$amount, // amount
+			'Email', // destinationType
+			'StudySquare Withdrawal', // notes
+			NULL, // facilitatorAmount
+			false, // assumeCosts
+			Config::get('dwolla.fundsSource') // fundsSource
+
+
 		);
 
 		// Debugbar::info($dwolla->getError());

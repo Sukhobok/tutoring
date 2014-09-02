@@ -21,8 +21,8 @@
 			
 			<div class="header-icon header-notif-icon">
 				{{ HTML::image('images/header/notification.png') }}
-				<div class="header-icon-count {{ count($friend_requests) ? '' : 'hide' }}">
-					{{{ count($friend_requests) > 9 ? '9+' : count($friend_requests) }}}
+				<div class="header-icon-count hide">
+					0
 				</div>
 			</div>
 
