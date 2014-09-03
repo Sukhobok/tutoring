@@ -329,8 +329,10 @@
 			</p>
 
 			<button class="ss-button blue bold inline" id="ss-hire-send">Send Request</button>
-			<span class="bold" style="margin: 0 25px;"> OR </span>
-			<button class="ss-button blue bold inline" id="ss-hire-now">Hire Now</button>
+			@if ($user->available == 1)
+				<span class="bold" style="margin: 0 25px;"> OR </span>
+				<button class="ss-button blue bold inline" id="ss-hire-now">Hire Now</button>
+			@endif
 		</p>
 	</div>
 </div>

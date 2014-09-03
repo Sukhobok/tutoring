@@ -55,8 +55,6 @@ class Withdrawal extends Eloquent {
 			NULL, // facilitatorAmount
 			false, // assumeCosts
 			Config::get('dwolla.fundsSource') // fundsSource
-
-
 		);
 
 		// Debugbar::info($dwolla->getError());
