@@ -563,7 +563,7 @@
     <!--Copyright-->
 	 <div class="copy">
      	<section class="container">
-			<p>© 2013 StudySquare, LLC. All Rights Reserved</p>
+			<p>© {{ date('Y') }} StudySquare, LLC. All Rights Reserved</p>
 		</section>
 	</div>
     <!--End Copyright-->

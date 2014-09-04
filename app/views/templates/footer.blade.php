@@ -97,7 +97,7 @@
 		<div class="clear"></div>
 
 		<div style="font-size: 12px; text-align: right; padding-top: 32px;">
-			&copy; 2013 Study Square, LLC. All Rights Reserved
+			&copy; {{ date('Y') }} Study Square, LLC. All Rights Reserved
 		</div>
 	</div>
 </footer>

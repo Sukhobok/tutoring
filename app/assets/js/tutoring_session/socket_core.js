@@ -6,7 +6,7 @@ var waiting_interval = false;
 if(environment === 'local') {
 	var ts_socket = io.connect('http://studysquare.lh:53101');
 } else {
-	var ts_socket = io.connect('http://beta.studysquare.com:53101');
+	var ts_socket = io.connect('http://studysquare.com:53101');
 }
 
 ts_socket.on('waiting', function (data) {

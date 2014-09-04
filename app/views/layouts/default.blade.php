@@ -63,7 +63,7 @@
 	@if (App::environment() == 'local')
 		{{ HTML::script('http://studysquare.lh:53100/socket.io/socket.io.js') }}
 	@else
-		{{ HTML::script('http://beta.studysquare.com:53100/socket.io/socket.io.js') }}
+		{{ HTML::script('http://studysquare.com:53100/socket.io/socket.io.js') }}
 	@endif
 
 	{{-- Online/CDN JQuery --}}

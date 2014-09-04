@@ -30,7 +30,7 @@
 		<br /><br />
 		
 		<div style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;display: block;height: 75px;width: 100%;background: #dde5ea;padding-top: 25px;text-align: center">
-			Copyright &copy; 2013. All rights reserved to StudySquare
+			Copyright &copy; {{ date('Y') }}. All rights reserved to StudySquare
 		</div>
 		<div style="clear:both;"></div>
 	</div>
