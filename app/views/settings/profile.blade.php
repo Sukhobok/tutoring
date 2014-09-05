@@ -12,7 +12,7 @@
 			<div class="ss-container">
 				<div class="ss-section">
 					{{ Form::open(array('route' => 'settings.profile', 'files' => true)) }}
-						{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
+						{{-- Form::submit('Save', array('class' => 'ss-button green bold ss-save')) --}}
 						<h1>General information</h1>
 						<div class="clear"></div>
 
@@ -94,6 +94,8 @@
 									<div class="ss-picture-preview"></div>
 								</td>
 						</table>
+
+						{{ Form::submit('Save', array('class' => 'ss-button green bold', 'style' => 'margin: 0 10px 15px 10px;')) }}
 					{{ Form::close() }}
 				</div>
 
@@ -104,7 +106,7 @@
 
 				<div class="ss-section">
 					{{ Form::open(array('route' => 'settings.save_education')) }}
-						{{ Form::submit('Save', array('class' => 'ss-button green bold ss-save')) }}
+						{{-- Form::submit('Save', array('class' => 'ss-button green bold ss-save')) --}}
 						<h1 style="float: left;">Education</h1>
 						{{ Form::button('Add new', array('class' => 'ss-button blue bold ss-add-education')) }}
 						<div class="clear"></div>
@@ -124,6 +126,8 @@
 								</tr>
 							@endforeach
 						</table>
+
+						{{ Form::submit('Save', array('class' => 'ss-button green bold', 'style' => 'margin: 0 10px 15px 10px;')) }}
 					{{ Form::close() }}
 				</div>
 			</div>
