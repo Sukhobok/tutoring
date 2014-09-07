@@ -514,61 +514,7 @@
      <!--End Newsletter-->
     
     <!--Footer-->
-	 <div class="footer">
-		 <section class="container generic-section">
-			<div class="row-fluid">	
-            			
-	    		<div class="span3 item left">
-	    			<h3>About StudySquare</h3>
-	    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet ligula vel diam 
-	    			congue semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus</p>
-	    			<p>Ligula vel diam congue semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus</p>
-	    		</div>  	
-
-	    		<div class="span3 item left">
-	    			<h3>Contact Us</h3>
-	    			
-					<p><i class="icon-mail-alt"></i> <a href="mailto:info@company.com?subject=feedback">info@company.com</a><br />
-					<i class="icon-phone"></i> (123) 456-7890<br />
-					<i class="icon-home"></i> 15465 Stick Street <br />
-					New Orleans, LA 626, USA</p>
-	    		</div>  	
-                	
-	    		<div class="span3 item right">
-	    			<h3>Popular Subjects</h3>
-					<p><a href="#">+ PHP</a></p>
-					<p><a href="#">+ Java</a></p>
-					<p><a href="#">+ HTML</a></p>
-					<p><a href="#">+ Javascript</a></p>
-					<p><a href="#">+ Algebra</a></p>	
-	    		</div>  
-              
-	    		<div class="span3 item right">
-	    			<h3>Stay in Touch!</h3>
-	    			<p>Follow US in our social networks!<br />
-					Lorem ipsum dolor sit amet, consectetur and go adipiscing elit.</p>
-					<ul class="social">
-						<li class="tooltip_hover" title="" data-original-title="Linkedin"><a href="#" class="in">Linked In</a></li>
-						<li class="tooltip_hover" title="" data-original-title="Youtube"><a href="#" class="youtube">Linked In</a></li>
-						<li class="tooltip_hover" title="" data-original-title="Facebook"><a href="#" class="facebook">Linked In</a></li>
-						<li class="tooltip_hover" title="" data-original-title="Twitter"><a href="#" class="twitter">Linked In</a></li>
-					</ul>
-	    		</div>  		
-			</div>
-		</section>
-	</div>
-	<!-- End Footer -->  
-        	
-    
-    <!--Copyright-->
-	 <div class="copy">
-     	<section class="container">
-			<p>© {{ date('Y') }} StudySquare, LLC. All Rights Reserved</p>
-		</section>
-	</div>
-    <!--End Copyright-->
- 
-    
+    @include('templates.footer')
     
     
 	    
@@ -607,7 +553,46 @@
 	    
     
     
+<style type="text/css">
+	/**
+	 * Old StudySquare footer
+	 */
+	.clear {
+		clear: both;
+	}
 
+	.content {
+		width: 960px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	footer {
+		width: 100%;
+		min-width: 960px;
+		background: #272727;
+		position: relative;
+		padding: 40px 0 30px 0;
+		font-weight: 400;
+		font-size: 16px;
+		color: #ccc;
+	}
+
+	footer a {
+		text-decoration: none;
+		color: #fff;
+		font-size: 13px;
+		padding-bottom: 4px;
+	}
+
+	footer a:hover {
+		color: #fff;
+	}
+
+	footer hr {
+		display: block !important;
+	}
+</style>
 
 </body>
 </html>
