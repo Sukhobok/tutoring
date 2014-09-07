@@ -67,14 +67,14 @@
 	@endif
 
 	{{-- Online/CDN JQuery --}}
-	{{--
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
-	--}}
 
 	{{-- Offline JQuery --}}
+	{{--
 	{{ HTML::script('js/offline_jquery.min.js') }}
 	{{ HTML::script('js/offline_jquery-ui.min.js') }}
+	--}}
 	{{ HTML::script('js/script.min.js') }}
 
 	{{-- Tutoring Session --}}

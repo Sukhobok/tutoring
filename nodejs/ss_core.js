@@ -1,114 +1,129 @@
-var io = require('socket.io').listen(53100);
+var io = require('socket.io')(53100);
 var needle = require('needle');
-var clients = {};
 var _signature = '008ae19bff7861eeec0ecdf80f8915b842cd34e1';
+var _environment = process.env.STUDYSQUARE_ENV;
+var clients = {};
 
-/**
- * Only for debugging
- */
-function ss_debug (data)
+if (_environment === 'local')
 {
-	console.log("\033[31;43m" + data + "\033[0m");
+	var _base_url = 'http://studysquare.lh';
+}
+else
+{
+	var _base_url = 'http://studysquare.com';
 }
 
-io.configure(function ()
+var get_ss_session_from_cookie = function (cookie)
 {
-	io.set('authorization', function (handshakeData, callback)
+	var session = '';
+	if (cookie)
 	{
-		var _base_url = handshakeData.headers.origin;
-		var cookie = handshakeData.headers.cookie;
-		if (cookie)
-		{
-			cookie = cookie.split(';');
-		}
-		else
-		{
-			cookie = new Array();
-		}
-		var session = '';
+		cookie = cookie.split(';');
+	}
+	else
+	{
+		cookie = new Array();
+	}
 
-		cookie.forEach(function (e)
+	cookie.forEach(function (e)
+	{
+		var temp = e.split('=');
+		temp[0] = temp[0].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		if (temp[0] === 'laravel_session')
 		{
-			var temp = e.split('=');
-			// Trim first and last spaces
-			temp[0] = temp[0].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-			if (temp[0] === 'laravel_session')
-			{
-				session = temp[1];
-			}
-		});
-
-		if (session != '')
-		{
-			var _query = 'session=' + session + '&signature=' + _signature;
-			var _url = _base_url + '/api/get_user_by_session?' + _query;
-			needle.get(_url, function (err, resp)
-			{
-				if (!err && resp.body.error == 0)
-				{
-					handshakeData.client_type = 'user';
-					handshakeData.user_id = parseInt(resp.body.result, 10);
-					callback(null, true);
-				}
-				else
-				{
-					if (typeof handshakeData.query.signature !== 'undefined'
-						&& handshakeData.query.signature === _signature)
-					{
-						// Allow as server
-						handshakeData.client_type = 'server';
-						callback(null, true);
-					}
-					else
-					{
-						// Deny
-						callback(null, false);
-					}
-				}
-			});
+			session = temp[1];
 		}
-		else
+	});
+
+	return session;
+}
+
+/**
+ * Socket.IO - Auth
+ */
+io.use(function (socket, next)
+{
+	var session = get_ss_session_from_cookie(socket.request.headers.cookie);
+
+	if (session != '')
+	{
+		var _query = 'session=' + session + '&signature=' + _signature;
+		var _url = _base_url + '/api/get_user_by_session?' + _query;
+		needle.get(_url, function (err, resp)
 		{
-			if (typeof handshakeData.query.signature !== 'undefined'
-				&& handshakeData.query.signature === _signature)
+			if (!err && resp.body.error == 0)
 			{
-				// Allow as server
-				handshakeData.client_type = 'server';
-				callback(null, true);
+				// Allow as user
+				socket.request.client_type = 'user';
+				socket.request.user_id = parseInt(resp.body.result, 10);
+				next();
 			}
 			else
 			{
-				// Deny
-				callback(null, false);
+				if (typeof socket.request._query.signature !== 'undefined'
+					&& socket.request._query.signature === _signature)
+				{
+					// Allow as server
+					socket.request.client_type = 'server';
+					next();
+				}
+				else
+				{
+					// Deny
+					next(new Error('Not logged in'));
+				}
 			}
-		}
-	});
-});
-
-io.sockets.on('connection', function (socket)
-{
-	var hs = socket.handshake;
-	if (hs.client_type === 'user')
+		});
+	}
+	else
 	{
-		if (clients.hasOwnProperty(hs.user_id))
+		if (typeof socket.request._query.signature !== 'undefined'
+			&& socket.request._query.signature === _signature)
 		{
-			socket.emit('duplicate_session');
-			socket.disconnect();
+			// Allow as server
+			socket.request.client_type = 'server';
+			next();
 		}
 		else
 		{
-			clients[hs.user_id] = socket;
+			// Deny
+			next(new Error('Not logged in'));
 		}
 	}
+});
 
-	socket.on('new_comment', function (data)
+/**
+ * Socket.IO - Duplicate session
+ */
+io.use(function (socket, next)
+{
+	if (socket.request.client_type === 'user')
 	{
-		//
-	});
+		if (clients.hasOwnProperty(socket.request.user_id))
+		{
+			socket.emit('duplicate_session');
+			next(new Error('Duplicate session'));
+		}
+		else
+		{
+			clients[socket.request.user_id] = socket;
+			next();
+		}
+	}
+	else
+	{
+		next();
+	}
+});
 
+/**
+ * Socket.IO
+ */
+io.on('connection', function (socket)
+{
 	socket.on('new_message', function (data)
 	{
-		if (hs.client_type === 'server')
+		if (socket.request.client_type === 'server')
 		{
 			if (clients.hasOwnProperty(data.to_id))
 			{
@@ -119,7 +134,7 @@ io.sockets.on('connection', function (socket)
 
 	socket.on('hire_now', function (data)
 	{
-		if (hs.client_type === 'server')
+		if (socket.request.client_type === 'server')
 		{
 			if (clients.hasOwnProperty(data.tutor_id))
 			{
@@ -130,7 +145,7 @@ io.sockets.on('connection', function (socket)
 
 	socket.on('hire_now_response', function (data)
 	{
-		if (hs.client_type === 'server')
+		if (socket.request.client_type === 'server')
 		{
 			if (clients.hasOwnProperty(data.student_id))
 			{
@@ -141,9 +156,9 @@ io.sockets.on('connection', function (socket)
 
 	socket.on('disconnect', function ()
 	{
-		if (hs.client_type === 'user')
+		if (socket.request.client_type === 'user')
 		{
-			delete clients[hs.user_id];
+			delete clients[socket.request.user_id];
 		}
 	});
 });

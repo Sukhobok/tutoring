@@ -1,6 +1,7 @@
 <?php
 
-use ElephantIO\Client as Elephant;
+use ElephantIO\Client as Elephant,
+	ElephantIO\Engine\SocketIO\Version1XStudySquare as Version1X;
 
 class TutoringSessionController extends BaseController {
 
@@ -167,12 +168,10 @@ class TutoringSessionController extends BaseController {
 
 		if ($role === 'student')
 		{
-			$elephant = new Elephant(Config::get('elephant.ts_domain'));
-			$elephant->setHandshakeQuery(array(
-				'signature' => Config::get('elephant.signature')
-			));
-
-			$elephant->init();
+			$_elephant_url = Config::get('elephant.ts_domain') . '?signature=';
+			$_elephant_url .= Config::get('elephant.signature');
+			$elephant = new Elephant(new Version1X($_elephant_url));
+			$elephant->initialize();
 			$elephant->emit('close_session', array(
 				'base_url' => URL::to('/') . '/',
 				'ts_id' => $ts_id
@@ -296,12 +295,10 @@ class TutoringSessionController extends BaseController {
 		$file->move($dir, $filename);
 
 		// Send to socket.io
-		$elephant = new Elephant(Config::get('elephant.ts_domain'));
-		$elephant->setHandshakeQuery(array(
-			'signature' => Config::get('elephant.signature')
-		));
-
-		$elephant->init();
+		$_elephant_url = Config::get('elephant.ts_domain') . '?signature=';
+		$_elephant_url .= Config::get('elephant.signature');
+		$elephant = new Elephant(new Version1X($_elephant_url));
+		$elephant->initialize();
 		$elephant->emit('server_tutoring_session_data', array(
 			'what' => 'new_file',
 			'user_id' => Auth::user()->id,
@@ -363,12 +360,10 @@ class TutoringSessionController extends BaseController {
 		);
 
 		// Send to socket.io
-		$elephant = new Elephant(Config::get('elephant.ts_domain'));
-		$elephant->setHandshakeQuery(array(
-			'signature' => Config::get('elephant.signature')
-		));
-
-		$elephant->init();
+		$_elephant_url = Config::get('elephant.ts_domain') . '?signature=';
+		$_elephant_url .= Config::get('elephant.signature');
+		$elephant = new Elephant(new Version1X($_elephant_url));
+		$elephant->initialize();
 		$elephant->emit('server_tutoring_session_data', array(
 			'what' => 'remove_file',
 			'user_id' => Auth::user()->id,

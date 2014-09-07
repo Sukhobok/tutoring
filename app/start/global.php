@@ -81,3 +81,4 @@ App::down(function()
 require app_path().'/filters.php';
 require app_path().'/views_data.php';
 require app_path().'/studysquare.php';
+require app_path().'/Version1XStudySquare.php'; // Elephant.IO extend

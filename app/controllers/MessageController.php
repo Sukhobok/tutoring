@@ -1,6 +1,7 @@
 <?php
 
-use ElephantIO\Client as Elephant;
+use ElephantIO\Client as Elephant,
+	ElephantIO\Engine\SocketIO\Version1XStudySquare as Version1X;
 
 class MessageController extends BaseController {
 
@@ -99,12 +100,10 @@ class MessageController extends BaseController {
 		$message->save();
 
 		// Send to socket.io
-		$elephant = new Elephant(Config::get('elephant.domain'));
-		$elephant->setHandshakeQuery(array(
-			'signature' => Config::get('elephant.signature')
-		));
-
-		$elephant->init();
+		$_elephant_url = Config::get('elephant.domain') . '?signature=';
+		$_elephant_url .= Config::get('elephant.signature');
+		$elephant = new Elephant(new Version1X($_elephant_url));
+		$elephant->initialize();
 		$elephant->emit('new_message', array(
 			'from_id' => Auth::user()->id,
 			'from_name' => Auth::user()->name,

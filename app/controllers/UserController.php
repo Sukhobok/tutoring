@@ -1,6 +1,7 @@
 <?php
 
-use ElephantIO\Client as Elephant;
+use ElephantIO\Client as Elephant,
+	ElephantIO\Engine\SocketIO\Version1XStudySquare as Version1X;
 
 class UserController extends BaseController {
 
@@ -554,12 +555,10 @@ class UserController extends BaseController {
 		$p->save();
 
 		// Send to socket.io
-		$elephant = new Elephant(Config::get('elephant.domain'));
-		$elephant->setHandshakeQuery(array(
-			'signature' => Config::get('elephant.signature')
-		));
-
-		$elephant->init();
+		$_elephant_url = Config::get('elephant.domain') . '?signature=';
+		$_elephant_url .= Config::get('elephant.signature');
+		$elephant = new Elephant(new Version1X($_elephant_url));
+		$elephant->initialize();
 		$elephant->emit('hire_now', array(
 			'request_id' => $hr->id,
 			'student_id' => Auth::user()->id,
@@ -588,12 +587,10 @@ class UserController extends BaseController {
 		if ($student_id)
 		{
 			// Send to socket.io
-			$elephant = new Elephant(Config::get('elephant.domain'));
-			$elephant->setHandshakeQuery(array(
-				'signature' => Config::get('elephant.signature')
-			));
-
-			$elephant->init();
+			$_elephant_url = Config::get('elephant.domain') . '?signature=';
+			$_elephant_url .= Config::get('elephant.signature');
+			$elephant = new Elephant(new Version1X($_elephant_url));
+			$elephant->initialize();
 			$elephant->emit('hire_now_response', array(
 				'response' => 'approve',
 				'student_id' => $student_id
@@ -616,12 +613,10 @@ class UserController extends BaseController {
 		if ($student_id)
 		{
 			// Send to socket.io
-			$elephant = new Elephant(Config::get('elephant.domain'));
-			$elephant->setHandshakeQuery(array(
-				'signature' => Config::get('elephant.signature')
-			));
-
-			$elephant->init();
+			$_elephant_url = Config::get('elephant.domain') . '?signature=';
+			$_elephant_url .= Config::get('elephant.signature');
+			$elephant = new Elephant(new Version1X($_elephant_url));
+			$elephant->initialize();
 			$elephant->emit('hire_now_response', array(
 				'response' => 'decline',
 				'student_id' => $student_id
