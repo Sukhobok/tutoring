@@ -18,9 +18,16 @@
 
 						<table>
 							<tr>
-								<td>Name</td>
+								<td>First Name</td>
 								<td>
-									{{ Form::text('name', $user->name, array('class' => 'ss-input1')) }}
+									{{ Form::text('first_name', $user->first_name, array('class' => 'ss-input1')) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td>Last Name</td>
+								<td>
+									{{ Form::text('last_name', $user->last_name, array('class' => 'ss-input1')) }}
 								</td>
 							</tr>
 
@@ -41,9 +48,6 @@
 							<tr>
 								<td>Password</td>
 								<td>
-									Old password:
-									{{ Form::password('old_password', array('class' => 'ss-input2')) }}
-									<br />
 									New password:
 									{{ Form::password('password', array('class' => 'ss-input2')) }}
 									<br />

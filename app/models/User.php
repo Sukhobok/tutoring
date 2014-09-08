@@ -18,15 +18,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	public static $signup_rules = array(
-		'name' => 'required|min:2',
-		'nickname' => '',
+		'first_name' => 'required|min:2',
+		'last_name' => 'required|min:2',
 		'email' => 'required|email|unique:users',
 		'password' => 'required|min:6|confirmed',
-		'password_confirmation' => 'required|min:6'
+		'password_confirmation' => 'required|min:6',
+		'agree' => 'required'
 	);
 
 	public static $settings_profile_rules = array(
-		'name' => 'required|min:2',
+		'first_name' => 'required|min:2',
+		'last_name' => 'required|min:2',
 		'nickname' => '',
 		'email' => 'required|email',
 		'gender' => 'required'

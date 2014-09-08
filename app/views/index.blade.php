@@ -118,70 +118,82 @@
 			  <li><img src="/themes/university/img/slider/img-3.jpg"  alt="//"/></li>
 		    </ul>
 	    </div>
-	    <div class="container">
+	    <div class="container" style="width: 100%;">
 	    	<div class="row-fluid">
 	    		<div class="span12">
-	    			<div class="form-container pull-right box animated pulse">
+	    			<div class="form-container pull-right box animated pulse" style="margin: 0; background: rgba(255, 255, 255, .65); max-width: 650px; padding: 0; padding-bottom: 20px;">
 	    				{{ Form::open(array('url' => 'signup', 'id' => 'ss-joinForm')) }}
 						   <fieldset>
 						    
-						    <legend class="text-center nb nm"><span>Sign Up</span></legend>
-						    <p class="text-center">Create a FREE account</p>
-						    
-						    
-						    <div class="row-fluid">
-						    	<div class="span12">
-								    <label class="no">Name</label>
-								    {{ Form::text('name', Input::old('name'), array('placeholder' => 'Name', 'class' => $input_classes['name'])) }}
-						    	</div>
-						    </div>
+						    <p style="color: #000; font-size: 28px; text-align: center; color: #7bb21b; background: rgba(255, 255, 255, .8); padding: 25px; margin-bottom: 25px; border-bottom: 4px solid #7bb21b;">
+						    	Start collaborating with other students around the world
+						    </p>
 
-						    <div class="row-fluid">
-						    	<div class="span12">
-								    <label class="no">E-mail address</label>
-								    {{ Form::email('email', Input::old('email'), array('placeholder' => 'E-mail address', 'class' => $input_classes['email'])) }}
-						    	</div>
-						    </div>
+						    <p style="color: #000; font-size: 18px; font-width: bold; text-align: center; margin-top: 40px;">
+						    	JOIN THE BEST ONLINE SOCIAL LEARNING NETWORK
+						    </p>
 
-						    <div class="row-fluid">
-						    	<div class="span12">
-								    <label class="no">Password</label>
-								    {{ Form::password('password', array('placeholder' => 'Password', 'class' => $input_classes['password'])) }}
-						    	</div>
-						    </div>
+						    <div style="padding: 0 20px;"> 
+						    	<div style="float: left; width: 290px;"> 
+								    {{ Form::text('first_name', Input::old('first_name'), array(
+								    	'placeholder' => 'First Name',
+								    	'class' => $input_classes['first_name'],
+								    	'style' => 'background: rgba(255, 255, 255, .9); border: 1px solid #666; color: #000; margin-top: 13px;'
+								    )) }}
 
-						    <div class="row-fluid">
-						    	<div class="span12">
-								    <label class="no">Retype Password</label>
-								    {{ Form::password('password_confirmation', array('placeholder' => 'Retype Password', 'class' => $input_classes['password_confirmation'])) }}
-						    	</div>
-						    </div>
-                            
-						    <div class="row-fluid">
-						    	<div class="span12">	
-						    		<div class="row-fluid">
-									    <select name="you_are" class="selectpicker span12">
-									    	<option value="" disabled selected>You are a:</option>
-										  	<option value="s">Student</option>
-										  	<option value="t">Teacher</option>       
-										</select>
-									</div>
-						    	</div>
-						    </div>
-						    
-						    		
-				    		<div class="formFoot">
-				    			<button type="submit" class="btn">Create Account</button>
-				    			<span class="leftSide">
-				    				
-				    			</span>
-				    			<span class="rightSide">
-				    				
-				    			</span>
-				    		</div>
-				    		
+								    <br />
 								    
-						    <span class="help-block text-center footForm">By signing up you agree our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span>
+								    {{ Form::text('email', Input::old('first_name'), array(
+								    	'placeholder' => 'Email',
+								    	'class' => $input_classes['email'],
+								    	'style' => 'background: rgba(255, 255, 255, .9); border: 1px solid #666; color: #000; margin-top: 13px;'
+								    )) }}
+
+								    <br />
+
+								    {{ Form::password('password', array(
+								    	'placeholder' => 'Password',
+								    	'class' => $input_classes['password'],
+								    	'style' => 'background: rgba(255, 255, 255, .9); border: 1px solid #666; color: #000; margin-top: 13px;'
+								    )) }}
+							    </div>
+
+							    <div style="float: left; width: 290px; margin-left: 25px;"> 
+								    {{ Form::text('last_name', Input::old('last_name'), array(
+								    	'placeholder' => 'Last Name',
+								    	'class' => $input_classes['last_name'],
+								    	'style' => 'background: rgba(255, 255, 255, .9); border: 1px solid #666; color: #000; margin-top: 13px;'
+								    )) }}
+
+								    <br />
+
+								    <select name="you_are" class="selectpicker span12">
+										<option value="" disabled selected>You are a:</option>
+										<option value="s">Student</option>
+										<option value="t">Teacher</option>       
+									</select>
+
+									<br />
+
+								    {{ Form::password('password_confirmation', array(
+								    	'placeholder' => 'Retype Password',
+								    	'class' => $input_classes['password_confirmation'],
+								    	'style' => 'background: rgba(255, 255, 255, .9); border: 1px solid #666; color: #000; margin-top: 0px;'
+								    )) }}
+							    </div>
+
+							    <div class="clear" style="display: block;"></div>
+
+							    <div style="float: left; margin-top: 22px;">
+							    	<input type="checkbox" name="agree" />
+						    	</div>
+							    <div style="float: left; color: #000; font-size: 14px; margin-left: 10px; margin-top: 22px;">
+							    	I agree with the <a style="color: #000; font-weight: bold;" href="#">Terms</a> and the <a style="color: #000; font-weight: bold;" href="#">Privacy Policy</a>
+						    	</div>
+						    	<div class="clear"></div>
+						    </div>
+
+						    <button type="submit" class="btn ss-btn-submit">START FREE TODAY</button>
 
 						  </fieldset>
 						{{ Form::close() }}
@@ -307,30 +319,6 @@
         </div>
 	</section><!-- .container -->
 	<!-- end Why -->
-
-
-     <!--Testimonials-->
-     <section class="testimonials">
-     	<div class="container">
-            <div class="row-fluid bottom">
-            	<div class="span12">
-                    <ul class="list-testimonials" id="slider2">
-                        <li>
-                            <img class="img-circle" src="/themes/university/img/testimonials/img-avatar.png" alt="testimonial image" />
-                            <p class="comment">“When I was applying to Univeristy, I had so many questions! The admissions department and staff were wonderful”</p>
-                            <p class="date"><span></span> RECEIVE SUPPORT 24/7</p>
-                        </li>
-                        <li>
-                            <img class="img-circle " src="/themes/university/img/testimonials/img-avatar-2.png" alt="testimonial image" />
-                            <p class="comment">“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy tex”</p>
-                            <p class="date"><span></span> RECEIVE SUPPORT 24/7</p>
-                        </li>            		            	
-                    </ul>
-                </div>
-            </div>
-        </div>
-     </section>
-     <!--End Testimonials-->
     
     
     
@@ -554,6 +542,36 @@
     
     
 <style type="text/css">
+	.form-container .btn-group.bootstrap-select.span12 button {
+		margin-top: 13px;
+		background: rgba(255, 255, 255, .9); border: 1px solid #666; color: #000;
+	}
+
+	.form-container .jstyling-checkbox {
+		position: relative;
+		top: 0;
+		margin-top: 0;
+	}
+
+	.form-container .ss-btn-submit {
+		display: block;
+		border: 0;
+		padding: 5px 12px;
+		font-size: 13px;
+		cursor: pointer;
+		border-radius: 4px;
+
+		color: #fff;
+		background: #82bb1f;
+		box-shadow: 0 4px 0px 0 #648f18;
+
+		margin: 24px auto;
+	}
+
+	.form-container .ss-btn-submit:hover {
+		background: #79ae1d;
+	}
+
 	/**
 	 * Old StudySquare footer
 	 */

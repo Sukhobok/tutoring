@@ -23,8 +23,9 @@ class UserController extends BaseController {
 		if ($validator->passes())
 		{
 			$user = new User;
-			$user->nickname = Input::get('nickname');
-			$user->name = Input::get('name');
+			$user->first_name = Input::get('first_name');
+			$user->last_name = Input::get('last_name');
+			$user->name = Input::get('first_name') . ' ' . Input::get('last_name');
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
@@ -35,7 +36,14 @@ class UserController extends BaseController {
 				'password' => Input::get('password')
 			));
 
-			return Redirect::route('dashboard');
+			if (Input::get('you_are') == 't')
+			{
+				return Redirect::route('settings.tutor_center');
+			}
+			else
+			{
+				return Redirect::route('dashboard');
+			}
 		}
 		else
 		{

@@ -14,7 +14,8 @@ class PageController extends BaseController {
 	{
 		$input_classes = array(
 			'nickname' =>  '',
-			'name' => '',
+			'first_name' => '',
+			'last_name' => '',
 			'email' => '',
 			'password' => '',
 			'password_confirmation' => '',

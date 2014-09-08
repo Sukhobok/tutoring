@@ -39,7 +39,9 @@ class SettingsController extends BaseController {
 		if ($validator->passes())
 		{
 			$messages[] = 'Changes saved!';
-			$user->name = Input::get('name');
+			$user->first_name = Input::get('first_name');
+			$user->last_name = Input::get('last_name');
+			$user->name = Input::get('first_name') . ' ' . Input::get('last_name');
 			$user->nickname = Input::get('nickname');
 			$user->email = Input::get('email');
 			$user->gender = Input::get('gender');
@@ -61,21 +63,20 @@ class SettingsController extends BaseController {
 				}
 			}
 
-			if (Input::get('old_password'))
+			if (Input::get('password'))
 			{
 				$password_validator = Validator::make(
 					Input::all(),
 					User::$password_rules
 				);
 
-				if ($password_validator->passes()
-					&& Hash::check(Input::get('old_password'), $user->password))
+				if ($password_validator->passes())
 				{
 					$user->password = Hash::make(Input::get('password'));
 				}
 				else
 				{
-					$messages[] = 'Incorrect password!';
+					$messages[] = 'The password should have at least 6 characters!';
 				}
 			}
 
