@@ -60,11 +60,7 @@
 		var environment = '{{{ App::environment() }}}';
 	</script>
 
-	@if (App::environment() == 'local')
-		{{ HTML::script('http://studysquare.lh:53100/socket.io/socket.io.js') }}
-	@else
-		{{ HTML::script('http://studysquare.com:53100/socket.io/socket.io.js') }}
-	@endif
+	{{ HTML::script('//cdn.socket.io/socket.io-1.1.0.js') }}
 
 	{{-- Online/CDN JQuery --}}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
