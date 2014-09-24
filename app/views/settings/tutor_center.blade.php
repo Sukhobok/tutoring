@@ -107,6 +107,55 @@
 						</div>
 					</div>
 				@endif
+
+				@if (count($oldSessions) > 0)
+					<div class="ss-section">
+						<h1>Old Tutoring Sessions</h1>
+						<div class="page-settings-inner">
+							<p>View all your sessions history here.</p>
+
+							<table class="settings-filled-table">
+								<tr>
+									<td>Person</td>
+									<td>Date</td>
+									<td>What you learned</td>
+									<td>Actions</td>
+								</tr>
+
+								@foreach ($oldSessions as $oldSession)
+									<tr>
+										<td style="width: 100px;">
+											<div class="profile-picture">
+												{{ HTML::image(HTML::profile_picture($oldSession), 'Profile Picture', array('width' => 60)) }}
+											</div>
+											<br /><br />
+											<div>
+												{{{ $oldSession->userName }}}
+											</div>
+										</td>
+
+										<td>
+											<span class="time-ago" data-time="{{ $oldSession->started_at }}"></span>
+										</td>
+										
+										<td style="width: 100px;">
+											{{{ $oldSession->description }}}
+										</td>
+										
+										<td>
+											@if ($oldSession->saved == 'yes')
+												<button class="ss-button green bold small-button ss-link" data-ss-link="{{{ URL::route('tutoring_session.replay', $oldSession->id) }}}">REPLAY</button>
+											@else
+												-
+											@endif
+										</td>
+									</tr>
+								@endforeach
+								
+							</table>
+						</div>
+					</div>
+				@endif
 			</div>
 		</div>
 

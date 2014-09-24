@@ -412,4 +412,36 @@ class TutoringSession extends Eloquent {
 		unset($_files);
 	}
 
+	/**
+	 * Get old Tutoring Sessions
+	 * @param integer $uid (optional)
+	 * @return array
+	 */
+	public static function getOldSessions($uid = 0)
+	{
+		if (!$uid) $uid = Auth::user()->id;
+
+		$sessions = 'SELECT tutoring_sessions.hours,
+		tutoring_sessions.description,
+		tutoring_sessions.id,
+		tutoring_sessions_info.started_at,
+		tutoring_sessions_info.saved,
+		users.name as userName,
+		users.profile_picture
+		FROM tutoring_sessions, users, tutoring_sessions_info
+		WHERE users.id = tutoring_sessions.tutor_id
+			AND tutoring_sessions_info.ts_id = tutoring_sessions.id
+			AND tutoring_sessions.student_id = ?
+		ORDER BY tutoring_sessions_info.started_at DESC';
+
+		$sessions = DB::select($sessions, array_fill(0, 1, $uid));
+
+		foreach ($sessions as $session)
+		{
+			$session->started_at = strtotime($session->started_at);
+		}
+
+		return $sessions;
+	}
+
 }

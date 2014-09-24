@@ -488,10 +488,11 @@ class SettingsController extends BaseController {
 		$user = Auth::user();
 		$current_user_subjects = Subject::getUserSubjects();
 		$incomingRequests = HireRequest::getIncomingRequests($user->id);
+		$oldSessions = TutoringSession::getOldSessions();
 
 		$this->layout->content = View::make(
 			'settings.tutor_center',
-			compact('current_user_subjects', 'incomingRequests')
+			compact('current_user_subjects', 'incomingRequests', 'oldSessions')
 		);
 	}
 
