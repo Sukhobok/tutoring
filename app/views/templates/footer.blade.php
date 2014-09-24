@@ -13,9 +13,9 @@
 		<div style="float: left; width: 160px;">
 			<p><b>Legal</b></p><br />
 
-			<a href="{{ URL::to('site/terms') }}">Terms of service</a><br />
-			<a href="{{ URL::to('site/privacy') }}">Privacy policy</a><br />
-			<a href="{{ URL::to('site/cookie') }}">Cookie policy</a><br />
+			<a href="{{ URL::route('page.terms') }}">Terms of service</a><br />
+			<a href="{{ URL::route('page.privacy') }}">Privacy policy</a><br />
+			<a href="{{ URL::route('page.cookie') }}">Cookie policy</a><br />
 			<a href="http://support.studysquare.com/contact-us/">Contact Us</a>
 		</div>
 		<div style="float: left; width: 160px;">

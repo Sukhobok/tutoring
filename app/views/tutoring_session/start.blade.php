@@ -4,16 +4,16 @@
 			<div class="ts-top">
 				{{-- Top left buttons --}}
 				<div class="ts-mode-tools-top" data-ts-mode="whiteboard">
-					<div class="ts-button-unfilled ts-mode-tool-top ts-whiteboard-undo">
-						{{ HTML::image('images/tutoring_session/buttons_unfilled/remove.png', 'Undo') }}
+					<div class="ts-button-unfilled ts-mode-tool-top ts-mode-tool-top-text ts-whiteboard-undo">
+						&larr;
 					</div>
 
 					<div class="ts-button-unfilled ts-mode-tool-top ts-whiteboard-clear">
 						{{ HTML::image('images/tutoring_session/buttons_unfilled/remove.png', 'Clear') }}
 					</div>
 
-					<div class="ts-button-unfilled ts-mode-tool-top ts-whiteboard-redo">
-						{{ HTML::image('images/tutoring_session/buttons_unfilled/remove.png', 'Redo') }}
+					<div class="ts-button-unfilled ts-mode-tool-top ts-mode-tool-top-text ts-whiteboard-redo">
+						&rarr;
 					</div>
 				</div>
 

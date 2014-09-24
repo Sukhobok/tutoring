@@ -6,7 +6,9 @@
 
 		<div class="layout-main page-settings">
 			@foreach ($messages as $message)
-				<p>{{ $message }}</p>
+				<div style="background: #7bb21b; color: #fff; font-weight: 700; text-align: center; padding: 8px; border-radius: 5px; margin-bottom: 12px;">
+					{{ $message }}
+				</div>
 			@endforeach
 
 			<div class="ss-container">

@@ -64,4 +64,28 @@ class PageController extends BaseController {
 		}
 	}
 
+	/**
+	 * Terms of service
+	 */
+	public function getTerms()
+	{
+		$this->layout->content = View::make('page.terms');
+	}
+
+	/**
+	 * Privacy policy
+	 */
+	public function getPrivacy()
+	{
+		$this->layout->content = View::make('page.privacy');
+	}
+
+	/**
+	 * Cookie policy
+	 */
+	public function getCookie()
+	{
+		$this->layout->content = View::make('page.cookie');
+	}
+
 }

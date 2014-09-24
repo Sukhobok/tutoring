@@ -2,26 +2,36 @@
  * Close any extended
  */
 function header_close_extended () {
-	$('.header-extended').each(function () {
-		if($(this).css('display') != 'none') {
+	$('.header-extended').each(function ()
+	{
+		if ($(this).css('display') != 'none')
+		{
 			$(this).animate({ height: 'toggle' });
 		}
 	});
 
-	if($('.header-settings-extended').css('display') != 'none') {
+	if ($('.header-settings-extended').css('display') != 'none')
+	{
 		$('.header-settings-extended').animate({ height: 'toggle' });
+	}
+
+	if ($('.ss-chat').is(':visible'))
+	{
+		$.pageslide.close();
 	}
 }
 
-$(document).on('click', function () {
+$(document).on('click', function ()
+{
 	header_close_extended();
 });
 
 /**
  * Extend settings menu
  */
-$(document).on('click', '.header-settings-icon', function (e) {
-	if($('.header-settings-extended').css('display') == 'none')
+$(document).on('click', '.header-settings-icon', function (e)
+{
+	if ($('.header-settings-extended').css('display') == 'none')
 		header_close_extended();
 	$('.header-settings-extended').animate({ height: 'toggle' });
 
@@ -31,8 +41,9 @@ $(document).on('click', '.header-settings-icon', function (e) {
 /**
  * Extend friends menu
  */
-$(document).on('click', '.header-friend-icon', function (e) {
-	if($('.header-friend-extended').css('display') == 'none')
+$(document).on('click', '.header-friend-icon', function (e)
+{
+	if ($('.header-friend-extended').css('display') == 'none')
 		header_close_extended();
 	$('.header-friend-extended').animate({ height: 'toggle' });
 
@@ -42,8 +53,9 @@ $(document).on('click', '.header-friend-icon', function (e) {
 /**
  * Extend notifications menu
  */
-$(document).on('click', '.header-notif-icon', function (e) {
-	if($('.header-notif-extended').css('display') == 'none')
+$(document).on('click', '.header-notif-icon', function (e)
+{
+	if ($('.header-notif-extended').css('display') == 'none')
 		header_close_extended();
 	$('.header-notif-extended').animate({ height: 'toggle' });
 
@@ -53,7 +65,8 @@ $(document).on('click', '.header-notif-icon', function (e) {
 /**
  * Friend requests
  */
-$(document).on('click', '.accept-friendship-request', function () {
+$(document).on('click', '.accept-friendship-request', function ()
+{
 	var uid = this.getAttribute('data-uid');
 	$(this).parents('.header-extended-item').hide();
 	
@@ -66,7 +79,8 @@ $(document).on('click', '.accept-friendship-request', function () {
 	});
 });
 
-$(document).on('click', '.decline-friendship-request', function () {
+$(document).on('click', '.decline-friendship-request', function ()
+{
 	var uid = this.getAttribute('data-uid');
 	$(this).parents('.header-extended-item').hide();
 	

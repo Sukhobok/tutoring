@@ -24,7 +24,7 @@
 					<td>{{{ $complaint->name }}}</td>
 					<td>{{{ $complaint->email }}}</td>
 					<td>
-						<span class="btn btn-block btn-info">View Session</span>
+						<a href="{{{ URL::route('tutoring_session.replay', $complaint->id) }}}" class="btn btn-block btn-info">View Session</a>
 					</td>
 					<td>{{{ $complaint->complaint_created_at->format('M d, Y \a\t H:i:s') }}}</td>
 					<td class="center">

@@ -337,6 +337,21 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
  */
 Route::group(array(), function()
 {
+	Route::get('page/terms', array(
+		'as' => 'page.terms',
+		'uses' => 'PageController@getTerms'
+	));
+
+	Route::get('page/privacy', array(
+		'as' => 'page.privacy',
+		'uses' => 'PageController@getPrivacy'
+	));
+
+	Route::get('page/cookie', array(
+		'as' => 'page.cookie',
+		'uses' => 'PageController@getCookie'
+	));
+
 	Route::get('user/{id}', array(
 		'as' => 'user.view',
 		'uses' => 'UserController@getUser'
