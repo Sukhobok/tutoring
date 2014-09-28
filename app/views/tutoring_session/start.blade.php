@@ -287,9 +287,11 @@
 			</div>
 
 			<div class="ss-modal-ts-finished-cases ss-modal-ts-finished-case1" style="margin-top: 25px; text-align: center;">
+				{{--
 				<button class="ss-button green bold inline ss-modal-ts-finished-save" style="margin-right: 30px;">
 					SAVE SESSION (<span class="ss-modal-ts-finished-complaint">05:00</span>) - $5.00
 				</button>
+				--}}
 
 				<button class="ss-button green bold inline ss-modal-ts-finished-complaint-send" style="margin-right: 30px;">
 					SEND A COMPLAINT (<span class="ss-modal-ts-finished-complaint">05:00</span>)
