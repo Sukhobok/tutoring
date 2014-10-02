@@ -14,6 +14,72 @@ class Friendship extends Eloquent {
 	public function setUpdatedAtAttribute($value) {}
 
 	/**
+	 * Get friends id of $uid that joined Classroom $cid
+	 * @param integer $uid
+	 * @param integer $cid
+	 * @return array
+	 */
+	public static function getFriendsJoinedClassroom($uid, $cid)
+	{
+		return DB::table('friendships')
+			->join('classroom_users', 'classroom_users.user_id', '=', 'friendships.friend_id')
+			->where('friendships.user_id', '=', $uid)
+			->where('classroom_users.classroom_id', '=', $cid)
+			->whereNotNull('classroom_users.id')
+			->lists('friendships.friend_id');
+	}
+
+	/**
+	 * Get friends id of $uid that were invited to Classroom $cid
+	 * @param integer $uid
+	 * @param integer $cid
+	 * @return array
+	 */
+	public static function getFriendsInvitedClassroom($uid, $cid)
+	{
+		return DB::table('friendships')
+			->join('invitations', 'invitations.to_id', '=', 'friendships.friend_id')
+			->where('friendships.user_id', '=', $uid)
+			->where('invitations.object', '=', 'Classroom')
+			->where('invitations.object_id', '=', $cid)
+			->whereNotNull('invitations.id')
+			->lists('friendships.friend_id');
+	}
+
+	/**
+	 * Get friends id of $uid that joined Group $gid
+	 * @param integer $uid
+	 * @param integer $gid
+	 * @return array
+	 */
+	public static function getFriendsJoinedGroup($uid, $gid)
+	{
+		return DB::table('friendships')
+			->join('group_users', 'group_users.user_id', '=', 'friendships.friend_id')
+			->where('friendships.user_id', '=', $uid)
+			->where('group_users.group_id', '=', $gid)
+			->whereNotNull('group_users.id')
+			->lists('friendships.friend_id');
+	}
+
+	/**
+	 * Get friends id of $uid that were invited to Group $gid
+	 * @param integer $uid
+	 * @param integer $gid
+	 * @return array
+	 */
+	public static function getFriendsInvitedGroup($uid, $gid)
+	{
+		return DB::table('friendships')
+			->join('invitations', 'invitations.to_id', '=', 'friendships.friend_id')
+			->where('friendships.user_id', '=', $uid)
+			->where('invitations.object', '=', 'Group')
+			->where('invitations.object_id', '=', $gid)
+			->whereNotNull('invitations.id')
+			->lists('friendships.friend_id');
+	}
+
+	/**
 	 * Get friends of $uid
 	 * @param integer $uid
 	 * @return array Friend ids

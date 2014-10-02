@@ -23,6 +23,11 @@ View::composer('templates.left_sidebar', function($view)
 	$view->with('tutors', User::getUserTutors(Auth::user()->id));
 });
 
+View::composer('snippets.invite_friends', function($view)
+{
+	$view->with('friends', Friendship::getFriends(Auth::user()->id));
+});
+
 View::composer('snippets.chat', function($view)
 {
 	$view->with('chat_friends', Friendship::getFriends(Auth::user()->id));

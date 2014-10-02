@@ -107,6 +107,8 @@ class GroupController extends BaseController {
 			App::abort('404');
 		}
 
+		$friends_joined = Friendship::getFriendsJoinedGroup(Auth::user()->id, $id);
+		$friends_invited = Friendship::getFriendsInvitedGroup(Auth::user()->id, $id);
 		$posts = Group::getGroupPosts($id);
 
 		if (Auth::check())
@@ -116,7 +118,13 @@ class GroupController extends BaseController {
 
 		$this->layout->content = View::make(
 			'group.view',
-			compact('group', 'posts', 'isJoined')
+			compact(
+				'group',
+				'posts',
+				'isJoined',
+				'friends_joined',
+				'friends_invited'
+			)
 		);
 	}
 

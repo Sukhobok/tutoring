@@ -68,6 +68,8 @@ class ClassroomController extends BaseController {
 			App::abort('404');
 		}
 
+		$friends_joined = Friendship::getFriendsJoinedClassroom(Auth::user()->id, $id);
+		$friends_invited = Friendship::getFriendsInvitedClassroom(Auth::user()->id, $id);
 		$posts = Classroom::getClassroomPosts($id);
 
 		if (Auth::check())
@@ -77,7 +79,13 @@ class ClassroomController extends BaseController {
 
 		$this->layout->content = View::make(
 			'classroom.view',
-			compact('classroom', 'posts', 'isJoined')
+			compact(
+				'classroom',
+				'posts',
+				'isJoined',
+				'friends_joined',
+				'friends_invited'
+			)
 		);
 	}
 

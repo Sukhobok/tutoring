@@ -22,7 +22,7 @@
 							<h2 class="count-members">{{ $group->count_members }}</h2> members
 						</div>
 
-						<button class="ss-button2 blue bold">INVITE FRIENDS</button>
+						<button class="ss-button2 blue bold ss-cg-invite-friends-start">INVITE FRIENDS</button>
 					</div>
 				</div>
 			</div>
@@ -54,3 +54,5 @@
 		</div>
 	</div>
 </div>
+
+@include('snippets.invite_friends')
