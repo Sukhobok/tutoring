@@ -288,7 +288,7 @@ class UserController extends BaseController {
 		if (Auth::check())
 		{
 			// Exclude current user
-			$users = $users->where('users.id', '!=', Auth::user()->id)
+			$users = $users->where('users.id', '!=', Auth::user()->id);
 		}
 
 		$users = $users->where('users.price', '<=', (int) Input::get('price'))

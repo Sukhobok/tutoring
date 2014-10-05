@@ -27,7 +27,11 @@
 		<div class="ss-search-result-other">
 			<div class="ss-search-result-rating">
 				<div class="ss-search-result-section-title">RATING</div>
-				asd
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
 			</div>
 
 			<div class="ss-search-result-price">
@@ -36,8 +40,8 @@
 			</div>
 
 			<div class="ss-search-result-reviews">
-				<div class="ss-search-result-section-title">REVIEWS (3)</div>
-				asd
+				<div class="ss-search-result-section-title">REVIEWS</div>
+				(click to open)
 			</div>
 			<div class="clear"></div>
 		</div>
