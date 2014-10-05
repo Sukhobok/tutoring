@@ -1,6 +1,6 @@
 socket.on('new_message', function (data)
 {
-	audio_alert();
+	new_ss_notification();
 
 	if (!$('.ss-chat').is(':visible'))
 	{
