@@ -2,11 +2,31 @@
  * Display friend name on hover
  */
 $(document).on('mouseenter', '.friend', function () {
-	$('span', this).fadeIn();
+	$('.friend-hover-content', this).fadeIn();
 	$('.friend-hover', this).fadeIn();
 }).on('mouseleave', '.friend', function () {
-	$('span', this).fadeOut();
+	$('.friend-hover-content', this).fadeOut();
 	$('.friend-hover', this).fadeOut();
+});
+
+/**
+ * Remove friend
+ */
+$(document).on('click', '.ss-friend-remove', function (e)
+{
+	e.stopPropagation();
+	$(this).parents('.friend').remove();
+	var _id = this.getAttribute('data-ss-uid');
+
+	$.ajax(
+	{
+		url: '/ajax/friendship/remove',
+		type: 'POST',
+		data: { id: _id }
+	}).done(function ()
+	{
+		//
+	});
 });
 
 /**

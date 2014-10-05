@@ -296,6 +296,10 @@
 				<button class="ss-button green bold inline ss-modal-ts-finished-complaint-send" style="margin-right: 30px;">
 					SEND A COMPLAINT (<span class="ss-modal-ts-finished-complaint">05:00</span>)
 				</button>
+
+				<div class="ss-modal-ts-finished-complaint-pre-message hide">
+					Your session complaint is being processed. Please wait ...
+				</div>
 			</div>
 
 			<div style="margin-top: 15px; text-align: center;">

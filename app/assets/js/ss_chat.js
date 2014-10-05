@@ -204,7 +204,8 @@ var ss_chat_open_user_conversation = function (uid)
 	});
 }
 
-$(document).on('click', '.ss-chat-open-user-conversation', function ()
+$(document).on('click', '.ss-chat-open-user-conversation', function (e)
 {
+	e.stopPropagation();
 	ss_chat_open_user_conversation(this.getAttribute('data-ss-uid'));
 });

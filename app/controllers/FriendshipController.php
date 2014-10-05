@@ -50,4 +50,13 @@ class FriendshipController extends BaseController {
 		return array('error' => 0);
 	}
 
+	/**
+	 * Ajax: Remove friendship
+	 */
+	public function ajaxRemoveFriendship()
+	{
+		Friendship::removeFriend(Input::get('id'));
+		return array('error' => 0);
+	}
+
 }

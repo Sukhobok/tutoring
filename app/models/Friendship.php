@@ -80,6 +80,27 @@ class Friendship extends Eloquent {
 	}
 
 	/**
+	 * Remove Friend
+	 * @param integer $uid1
+	 * @param integer $uid2 (optional)
+	 * @return boolean TRUE
+	 */
+	public static function removeFriend($uid1, $uid2 = 0)
+	{
+		if (!$uid2) $uid2 = Auth::user()->id;
+
+		Friendship::where('user_id', '=', $uid1)
+			->where('friend_id', '=', $uid2)
+			->delete();
+
+		Friendship::where('user_id', '=', $uid2)
+			->where('friend_id', '=', $uid1)
+			->delete();
+
+		return true;
+	}
+
+	/**
 	 * Get friend ids of $uid
 	 * @param integer $uid
 	 * @return array

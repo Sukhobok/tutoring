@@ -199,6 +199,10 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 		'uses' => 'FriendshipController@ajaxDeclineRequest'
 	));
 
+	Route::post('friendship/remove', array(
+		'uses' => 'FriendshipController@ajaxRemoveFriendship'
+	));
+
 	Route::post('post/save_thumb', array(
 		'uses' => 'PostController@ajaxSaveThumb'
 	));

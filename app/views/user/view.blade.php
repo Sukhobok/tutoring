@@ -120,7 +120,15 @@
 						<div class="friend ss-link" data-ss-link="{{ URL::route('user.view', $friend->id) }}">
 							<div class="friend-hover"></div>
 							{{ HTML::image(HTML::profile_picture($friend), 'Profile Picture', array('width' => 160)) }}
-							<span>{{{ $friend->name }}}</span>
+							<div class="friend-hover-content">
+								<span>{{{ HTML::limit($friend->name, 11) }}}</span>
+
+								@if (Auth::check() && Auth::user()->id == $user->id)
+									<button class="ss-button2 green bold ss-link" data-ss-link="{{{ URL::route('user.view', $friend->id) }}}?hire=true" style="margin-top: 10px;">HIRE {{{ HTML::limit(strtoupper($friend->name), 8) }}}</button>
+									<button class="ss-button2 red bold ss-friend-remove" data-ss-uid="{{{ $friend->id }}}">REMOVE</button>
+									<button class="ss-button2 blue bold ss-chat-open-user-conversation" data-ss-uid="{{{ $friend->id }}}">MESSAGE {{{ HTML::limit(strtoupper($friend->name), 8) }}}</button>
+								@endif
+							</div>
 						</div>
 					@endforeach
 

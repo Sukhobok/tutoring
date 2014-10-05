@@ -77,6 +77,7 @@ $('#ss-modal-ts-finished').on('click', '.ss-modal-ts-finished-rate-tutor', funct
 $('#ss-modal-ts-finished').on('click', '.ss-modal-ts-finished-complaint-send', function ()
 {
 	$(this).remove();
+	$('.ss-modal-ts-finished-complaint-pre-message').removeClass('hide');
 
 	$.ajax(
 	{
@@ -88,7 +89,7 @@ $('#ss-modal-ts-finished').on('click', '.ss-modal-ts-finished-complaint-send', f
 		}
 	}).done(function ()
 	{
-		//
+		$('.ss-modal-ts-finished-complaint-pre-message').text('Your complaint was sent successfully!');
 	});
 });
 

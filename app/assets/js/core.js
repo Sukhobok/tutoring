@@ -1,7 +1,9 @@
 /**
  * Simulate link press
  */
-$(document).on('click', '.ss-link', function () {
+$(document).on('click', '.ss-link', function (e)
+{
+	e.stopPropagation();
 	window.location.href = this.getAttribute('data-ss-link');
 });
 
