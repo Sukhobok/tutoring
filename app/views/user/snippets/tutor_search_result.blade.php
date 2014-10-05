@@ -43,7 +43,7 @@
 		</div>
 
 		<div class="ss-search-result-hire">
-			<button class="ss-button green bold ss-link" data-ss-link="{{{ Alias::getURL('User', $user->id) }}}">
+			<button class="ss-button green bold ss-link" data-ss-link="{{{ Alias::getURL('User', $user->id) }}}?hire=true">
 				HIRE {{{ strtoupper($user->name) }}}
 			</button>
 		</div>

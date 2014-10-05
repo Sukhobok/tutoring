@@ -54,6 +54,13 @@ $(document).on('click', '.hire-user-button', function () {
 	});
 });
 
+if (window.location.search.substring(1, 5) === 'hire')
+{
+	$.ssModal({
+		modalId: 'hire'
+	});
+}
+
 $('#ss-hire-date1').datepicker();
 $('#ss-hire-date2').datepicker();
 $('#ss-hire-date3').datepicker();
