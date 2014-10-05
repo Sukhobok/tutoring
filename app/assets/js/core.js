@@ -50,7 +50,7 @@ var new_ss_notification = function ()
 	if (!window_has_focus)
 	{
 		ss_notifications++;
-		document.title = '(' + notifications + ') ' + document_title;
+		document.title = '(' + ss_notifications + ') ' + old_document_title;
 		audio_alert();
 	}
 };
