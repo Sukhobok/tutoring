@@ -51,4 +51,4 @@
 	</div>
 </div>
 
-@include('snippets.invite_friends')
+@include('snippets.invite_friends', array('object' => 'Classroom', 'object_id' => $classroom->id))

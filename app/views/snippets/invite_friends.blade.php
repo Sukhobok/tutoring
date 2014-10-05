@@ -1,5 +1,5 @@
 {{-- Invite friends modal --}}
-<div class="ss-modal" id="ss-modal-invite-friends">
+<div class="ss-modal" id="ss-modal-invite-friends" data-ss-object="{{{ $object }}}" data-ss-object-id="{{{ $object_id }}}">
 	<div class="ss-modal-top ss-modal-type-exclam"></div>
 	<div class="ss-modal-body">
 		<h1 style="font-size: 18px; font-weight: 700; margin-bottom: 15px;">Invite Friends</h1>

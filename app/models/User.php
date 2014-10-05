@@ -506,11 +506,44 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Get Header Notifications
+	 * @param integer $uid (optional)
+	 * @return array
 	 */
-	public static function getUserNotifications()
+	public static function getUserNotifications($uid = 0)
 	{
-		// TO DO
-		return array();
+		if (!$uid) $uid = Auth::user()->id;
+
+		$query = 'SELECT users.name as from_name,
+		users.profile_picture,
+		invitations.id,
+		invitations.object,
+		invitations.object_id,
+		invitations.created_at,
+			CASE invitations.object
+				WHEN "Classroom" THEN classrooms.name
+				ELSE groups.name
+			END as object_name
+		FROM invitations
+		LEFT JOIN users ON invitations.from_id = users.id
+		LEFT JOIN classrooms ON (
+			invitations.object = "Classroom"
+			AND invitations.object_id = classrooms.id
+		)
+		LEFT JOIN groups ON (
+			invitations.object != "Classroom"
+			AND invitations.object_id = groups.id
+		)
+		WHERE invitations.to_id = ?
+			AND invitations.status = "pending"';
+
+		$query = DB::select($query, array_fill(0, 1, $uid));
+
+		foreach ($query as $_query)
+		{
+			$_query->created_at = strtotime($_query->created_at);
+		}
+
+		return $query;
 	}
 
 	/**

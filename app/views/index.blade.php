@@ -325,7 +325,7 @@
 	<!--Image Gallery-->
 	<section class="generic-section wall text-center">
 		<div class="container">
-	        <h2 class="keft">real students arrownd the world</h2>
+	        <h2 class="keft">real students around the world</h2>
 	        <p class="intro-text right"><em>Donec felis nisl, scelerisque nec porttitor sed, scelerisque sed tortor. Quisque quis nisl neque. Nec lobortis  <br> 
             amet consectetur rem ipsum dolor sit amet, consectetur pisici do eiusmod tempor.</em></p>
 		</div>

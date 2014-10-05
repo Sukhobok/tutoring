@@ -179,6 +179,12 @@ class Classroom extends Eloquent {
 			);
 
 			DB::table('classroom_users')->insert($insert);
+
+			Invitation::where('object', '=', 'Classroom')
+				->where('object_id', '=', $cid)
+				->where('to_id', '=', $uid)
+				->delete();
+			
 			return true;
 		}
 

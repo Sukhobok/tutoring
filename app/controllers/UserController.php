@@ -635,4 +635,23 @@ class UserController extends BaseController {
 		return array('error' => (int) !$student_id);
 	}
 
+	/**
+	 * Decline CG invitation
+	 */
+	public static function ajaxDeclineInvitation()
+	{
+		$i = Invitation::where('id', '=', (int) Input::get('id'))
+			->where('to_id', '=', Auth::user()->id)
+			->first();
+
+		if (!$i)
+		{
+			return array('error' => 1);
+		}
+		
+		$i->status = 'declined';
+		$i->save();
+		return array('error' => 0);
+	}
+
 }

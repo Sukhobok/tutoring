@@ -177,6 +177,12 @@ class Group extends Eloquent {
 			);
 
 			DB::table('group_users')->insert($insert);
+
+			Invitation::where('object', '=', 'Group')
+				->where('object_id', '=', $gid)
+				->where('to_id', '=', $uid)
+				->delete();
+
 			return true;
 		}
 

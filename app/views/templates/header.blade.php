@@ -73,9 +73,35 @@
 
 		<div class="header-extended header-notif-extended">
 			<div class="header-extended-in">
-				<div class="header-extended-item bold no-new">
-					No new notifications
-				</div>
+				@foreach($notifications as $notification)
+					<div class="header-extended-item ss-link" data-ss-link="{{{ URL::route(strtolower($notification->object) . '.view', $notification->object_id) }}}">
+						<div class="header-extended-img">
+							<div class="profile-picture">
+								{{ HTML::image(HTML::profile_picture($notification), 'Profile Picture', array('width' => 55)) }}
+							</div>
+						</div>
+
+						<div class="header-extended-content">
+							<p>
+								<span class="bold">{{{ $notification->from_name }}}</span>
+								invited you to join
+								<span class="bold">{{{ $notification->object_name }}}!</span>
+							</p>
+							<p>
+								<button class="ss-button green bold small-button inline accept-cg-invitation" data-ss-object="{{{ $notification->object }}}" data-ss-object-id="{{{ $notification->object_id }}}" data-ss-id="{{{ $notification->id }}}">Join</button>
+								<button class="ss-button red bold small-button inline decline-cg-invitation" data-ss-id="{{{ $notification->id }}}">Decline</button>
+							</p>
+							<p class="header-extended-date time-ago" data-time="{{ $notification->created_at }}"></p>
+						</div>
+						<div class="clear"></div>
+					</div>
+				@endforeach
+
+				@if(count($notifications) == 0)
+					<div class="header-extended-item bold no-new">
+						No new notifications
+					</div>
+				@endif
 			</div>
 		</div>
 

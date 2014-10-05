@@ -80,9 +80,21 @@ class Friendship extends Eloquent {
 	}
 
 	/**
+	 * Get friend ids of $uid
+	 * @param integer $uid
+	 * @return array
+	 */
+	public static function getFriendIds($uid)
+	{
+		return DB::table('friendships')
+			->where('friendships.user_id', '=', $uid)
+			->lists('friendships.friend_id');
+	}
+
+	/**
 	 * Get friends of $uid
 	 * @param integer $uid
-	 * @return array Friend ids
+	 * @return array Friends
 	 */
 	public static function getFriends($uid)
 	{

@@ -171,4 +171,36 @@ class GroupController extends BaseController {
 		}
 	}
 
+	/**
+	 * Invite friends
+	 */
+	public function ajaxInvite()
+	{
+		$object_id = (int) Input::get('object_id');
+		$friends = Friendship::getFriendIds(Auth::user()->id);
+		$friends_joined = Friendship::getFriendsJoinedGroup(Auth::user()->id, $object_id);
+		$friends_invited = Friendship::getFriendsInvitedGroup(Auth::user()->id, $object_id);
+
+		$uids = explode(',', Input::get('user_ids'));
+		foreach ($uids as $uid)
+		{
+			$uid = (int) $uid;
+
+			if (in_array($uid, $friends)
+				&& !in_array($uid, $friends_joined)
+				&& !in_array($uid, $friends_invited))
+			{
+				$invitation = new Invitation;
+				$invitation->from_id = Auth::user()->id;
+				$invitation->to_id = $uid;
+				$invitation->object = 'Group';
+				$invitation->object_id = $object_id;
+				$invitation->status = 'pending';
+				$invitation->save();
+			}
+		}
+
+		return array('error' => 0);
+	}
+
 }

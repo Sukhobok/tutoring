@@ -330,6 +330,18 @@ Route::group(array('before' => 'auth|ajax', 'prefix' => 'ajax'), function ()
 	Route::post('session/save', array(
 		'uses' => 'TutoringSessionController@ajaxSave'
 	));
+
+	Route::post('classroom/invite', array(
+		'uses' => 'ClassroomController@ajaxInvite'
+	));
+
+	Route::post('group/invite', array(
+		'uses' => 'GroupController@ajaxInvite'
+	));
+
+	Route::post('user/decline_invitation', array(
+		'uses' => 'UserController@ajaxDeclineInvitation'
+	));
 });
 
 /**

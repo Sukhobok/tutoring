@@ -55,4 +55,4 @@
 	</div>
 </div>
 
-@include('snippets.invite_friends')
+@include('snippets.invite_friends', array('object' => 'Group', 'object_id' => $group->id))
