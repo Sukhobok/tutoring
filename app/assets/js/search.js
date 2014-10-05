@@ -51,7 +51,7 @@ var ss_get_search_results = function ()
 /**
  * On name change
  */
-$('.ss-search-name .ss-search').on('change', function ()
+$('.ss-search-name .ss-search').on('keyup', function ()
 {
 	ss_get_search_results();
 });
