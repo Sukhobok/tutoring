@@ -195,6 +195,7 @@ class UserController extends BaseController {
 					'users.profile_picture',
 					'users.name'
 				)
+				->orderBy('feedback.created_at', 'desc')
 				->get();
 		}
 

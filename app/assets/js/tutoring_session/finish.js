@@ -1,4 +1,15 @@
 /**
+ * On user leave
+ */
+window.onbeforeunload = function ()
+{
+	if (!session_finished)
+	{
+		return 'Navigating away from this page will terminate your tutoring session and all the progress will be lost!';
+	}
+};
+
+/**
  * Close Session
  */
 $(document).on('click', '.ts-close-session', function ()
