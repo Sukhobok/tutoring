@@ -122,10 +122,10 @@ class Subject extends Eloquent {
 	 * @param array $filters
 	 * @param boolean $return_current: If the function
 	 * is allowed to return the current logged in user
-	 * (optional, default: true)
+	 * (optional, default: false)
 	 * @return array (count, data)
 	 */
-	public static function getSubjectUsers($sid, $offset = 0, $filters = array(), $return_current = true)
+	public static function getSubjectUsers($sid, $offset = 0, $filters = array(), $return_current = false)
 	{
 		$query = DB::table('user_subjects')
 			->where('subject_id', '=', $sid)

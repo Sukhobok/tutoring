@@ -285,6 +285,12 @@ class UserController extends BaseController {
 			$users = $users->where('users.available', '=', 1);
 		}
 
+		if (Auth::check())
+		{
+			// Exclude current user
+			$users = $users->where('users.id', '!=', Auth::user()->id)
+		}
+
 		$users = $users->where('users.price', '<=', (int) Input::get('price'))
 			->join('user_subjects', 'users.id', '=', 'user_subjects.user_id')
 			->join('subjects', 'user_subjects.subject_id', '=', 'subjects.id')
