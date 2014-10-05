@@ -115,6 +115,11 @@ class TutoringSessionController extends BaseController {
 		));
 		$_files = $_files['Contents']; */
 
+		if (!$_files)
+		{
+			$_files = array();
+		}
+
 		foreach ($_files as &$_file)
 		{
 			switch (pathinfo($_file['Key'], PATHINFO_EXTENSION))
