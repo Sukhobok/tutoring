@@ -206,7 +206,7 @@ class SettingsController extends BaseController {
 			// If StudySquare fee, add to previous item
 			if ($_transaction_history->type === 'studysquare_fee')
 			{
-				$transaction_history[$i - 1]->amount += $_transaction_history->amount;
+				$transaction_history[$i + 1]->amount += $_transaction_history->amount;
 				unset($transaction_history[$i]);
 				continue;
 			}

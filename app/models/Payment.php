@@ -133,6 +133,7 @@ class Payment extends Eloquent {
 
 		return Payment::where('from_id', '=', $uid)
 			->orWhere('to_id', '=', $uid)
+			->orderBy('created_at', 'desc')
 			->get();
 	}
 
