@@ -56,7 +56,7 @@
             
             <div class="pull-right">
             	
-	            <div id="lang-menu" class="btn-group pull-right">
+	            <!-- <div id="lang-menu" class="btn-group pull-right">
 				  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 				    <img src="/themes/university/img/flags/us.png" alt="" />
 				    <span class="caret"></span>
@@ -71,7 +71,7 @@
                     <li><a href=""><img src="/themes/university/img/flags/ro.png" alt="" />Romania</a></li>
                     <li><a href=""><img src="/themes/university/img/flags/fi.png" alt="" />Finland</a></li>
 				  </ul>
-				</div>
+				</div> -->
 
 				<div class="btn-login pull-right" style="margin-left: 20px;">
 	            	<a href="#"><span class="toggle"></span><span class="toggleText">Forgot Pass</span></a>
@@ -170,7 +170,7 @@
 								    <select name="you_are" class="selectpicker span12">
 										<option value="" disabled selected>You are a:</option>
 										<option value="s">Student</option>
-										<option value="t">Teacher</option>       
+										<option value="t">Tutor</option>       
 									</select>
 
 									<br />
@@ -188,12 +188,12 @@
 							    	<input type="checkbox" name="agree" />
 						    	</div>
 							    <div style="float: left; color: #000; font-size: 14px; margin-left: 10px; margin-top: 22px;">
-							    	I agree with the <a style="color: #000; font-weight: bold;" href="#">Terms</a> and the <a style="color: #000; font-weight: bold;" href="#">Privacy Policy</a>
+							    	I agree with the <a style="color: #000; font-weight: bold;" href="{{ URL::route('page.terms') }}">Terms</a> and the <a style="color: #000; font-weight: bold;" href="{{ URL::route('page.privacy') }}">Privacy Policy</a>
 						    	</div>
 						    	<div class="clear"></div>
 						    </div>
 
-						    <button type="submit" class="btn ss-btn-submit">START FREE TODAY</button>
+						    <button type="submit" class="btn ss-btn-submit" style="font-size: 22px; padding: 14px; padding-bottom: 10px;">JOIN FREE TODAY!</button>
 
 						  </fieldset>
 						{{ Form::close() }}
@@ -326,8 +326,7 @@
 	<section class="generic-section wall text-center">
 		<div class="container">
 	        <h2 class="keft">real students around the world</h2>
-	        <p class="intro-text right"><em>Donec felis nisl, scelerisque nec porttitor sed, scelerisque sed tortor. Quisque quis nisl neque. Nec lobortis  <br> 
-            amet consectetur rem ipsum dolor sit amet, consectetur pisici do eiusmod tempor.</em></p>
+	        <p class="intro-text right"><em>Interact and collaborate with students around the world to increase education world wide. Make friends, find tutors, join classrooms and excel academically!</em></p>
 		</div>
 		<div class="row-fluid">
 			<div id="screenshot" class="span12">
