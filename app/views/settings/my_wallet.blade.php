@@ -45,7 +45,7 @@
 										</td>
 
 										<td>
-											${{{ $_transaction_history->amount }}}
+											${{{ number_format($_transaction_history->amount, 2) }}}
 										</td>
 									</tr>
 								@endforeach

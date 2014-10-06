@@ -192,7 +192,7 @@ class SettingsController extends BaseController {
 	{
 		$money = Payment::getAvailableMoney();
 		$transaction_history = Payment::getTransactionHistory();
-		foreach ($transaction_history as $_transaction_history)
+		foreach ($transaction_history as $i => $_transaction_history)
 		{
 			if ($_transaction_history->from_id == Auth::user()->id)
 			{
@@ -201,6 +201,14 @@ class SettingsController extends BaseController {
 			else
 			{
 				$_transaction_history->display_icon = 'plus';
+			}
+
+			// If StudySquare fee, add to previous item
+			if ($_transaction_history->type === 'studysquare_fee')
+			{
+				$transaction_history[$i - 1]->amount += $_transaction_history->amount;
+				unset($transaction_history[$i]);
+				continue;
 			}
 
 			switch ($_transaction_history->type)
