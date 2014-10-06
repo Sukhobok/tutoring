@@ -305,6 +305,7 @@ class UserController extends BaseController {
 		foreach ($users as $user)
 		{
 			$user->subjects = explode('|=|', $user->subjects);
+			$user->rating = User::get_user_rating($user->id);
 
 			$result .= View::make(
 				'user.snippets.tutor_search_result',

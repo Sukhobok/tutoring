@@ -27,11 +27,14 @@
 		<div class="ss-search-result-other">
 			<div class="ss-search-result-rating">
 				<div class="ss-search-result-section-title">RATING</div>
-				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
-				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
-				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
-				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
-				{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+				
+				@for ($i = 1; $i <= $user->rating['average']; $i++)
+					{{ HTML::image(URL::to('images/rating_full.png'), 'Rating', array('width' => '22')) }}
+				@endfor
+
+				@for ($i = 5; $i > $user->rating['average']; $i--)
+					{{ HTML::image(URL::to('images/rating_empty.png'), 'Rating', array('width' => '22')) }}
+				@endfor
 			</div>
 
 			<div class="ss-search-result-price">
