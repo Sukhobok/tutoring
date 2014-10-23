@@ -355,8 +355,10 @@ class TutoringSession extends Eloquent {
 			'Body' => $_data,
 			'ACL' => 'public-read'
 		));
+		Log::info($_data);
 		unset($_data_files);
 		unset($_data);
+
 
 		// 2) Merge audio files
 		$_audio_files = File::allFiles(

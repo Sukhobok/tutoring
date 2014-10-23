@@ -208,7 +208,7 @@ class TutoringSessionController extends BaseController {
 		$filename .= $time->getTimestamp() . '.' . Auth::user()->id;
 		unset($time);
 
-		// Log::info($_FILES['audio-blob']);
+		Log::info($_FILES['audio-blob']);
 
 		if (!move_uploaded_file($_FILES['audio-blob']['tmp_name'], $filename . '.wav'))
 		{

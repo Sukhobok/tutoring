@@ -8,7 +8,7 @@ var mediaConstraints = {
 		'OfferToReceiveVideo': true
 	}
 };
-var _recordRTC = null;
+var _recorder = null;
 
 function startVideo() {
 	if(localStream)
@@ -23,8 +23,10 @@ function startVideo() {
 		audio: true
 	}, function (stream) {
 		localStream = stream;
-		_recordRTC = RecordRTC(localStream);
-		_recordRTC.startRecording();
+		var _context = new AudioContext();
+		var _mediaStreamSource = _context.createMediaStreamSource(stream);
+		_recorder = new Recorder(_mediaStreamSource);
+		_recorder.record();
 
 		if (sourcevid.mozSrcObject) {
 			sourcevid.mozSrcObject = localStream;
@@ -135,12 +137,13 @@ function xhr(url, data, callback) {
 }
 
 function end_audio_recording() {
-	if(_recordRTC) {
-		_recordRTC.stopRecording(function (audio) {
+	if(_recorder) {
+		_recorder.exportWAV(function (audio) {
+			_recorder.clear();
 			var formData = new FormData();
 			formData.append('audio-filename', 'recording.wav');
-			formData.append('audio-blob', _recordRTC.getBlob());
-			_recordRTC.startRecording();
+			formData.append('audio-blob', audio);
+			
 			xhr('/ajax/session/receive_audio', formData, function (data) { });
 		});
 	}

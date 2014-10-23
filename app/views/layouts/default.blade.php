@@ -60,7 +60,7 @@
 		var environment = '{{{ App::environment() }}}';
 	</script>
 
-	{{ HTML::script('//cdn.socket.io/socket.io-1.1.0.js') }}
+	{{ HTML::script('//cdn.socket.io/socket.io-1.0.6.js') }}
 
 	{{-- Online/CDN JQuery --}}
 	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js') }}
@@ -78,7 +78,7 @@
 		{{ HTML::script('js/plugins/paper-v0.9.18.min.js') }}
 		{{ HTML::script('js/plugins/tinymce/tinymce-v4.0.26.min.js') }}
 		{{ HTML::script('js/plugins/ace/ace.js') }}
-		{{ HTML::script('js/plugins/RecordRTC-v1.8.js') }}
+		{{ HTML::script('js/plugins/recorder.js') }}
 		{{ HTML::script('js/tutoring_session/tutoring_session.min.js') }}
 		{{ HTML::script('js/tutoring_session/whiteboard.min.js', array('type' => 'text/paperscript', 'canvas' => 'ts-canvas')) }}
 	@endif
