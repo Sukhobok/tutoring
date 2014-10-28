@@ -6,6 +6,13 @@
 	cursor: pointer;
 	border-radius: 4px;
 
+	&.disabled {
+		cursor: auto !important;
+		color: #000 !important;
+		background: #b9b9b9 !important;
+		box-shadow: 0 4px 0px 0 darken(#b9b9b9, 10%) !important;
+	}
+
 	&.blue {
 		color: #000;
 		background: @ss-blue;

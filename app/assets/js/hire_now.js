@@ -1,4 +1,6 @@
 $(document).on('click', '#ss-hire-now', function () {
+	if($(this).hasClass('disabled')) return false;
+	
 	// Close hire form
 	$.ssModal({
 		action: 'close'

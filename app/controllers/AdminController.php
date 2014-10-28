@@ -143,4 +143,67 @@ class AdminController extends BaseController {
 		return array('error' => 0);
 	}
 
+	/**
+	 * POST: Refund
+	 */
+	public function postRefundComplaint()
+	{
+		$complaint = Complaint::findOrFail((int) Input::get('id'));
+		
+		Payment::where('type', '=', 'tutoring_session')
+			->where('type_id', '=', $complaint->ts_id)
+			->delete();
+
+		Payment::where('type', '=', 'studysquare_fee')
+			->where('type_id', '=', $complaint->ts_id)
+			->delete();
+		
+		$complaint->solved = 'yes';
+		$complaint->accepted = 'yes';
+		$complaint->save();
+
+		$tsi = TutoringSessionInfo::findOrFail($complaint->ts_id);
+		if ($tsi->saved == 'only_for_complaint')
+		{
+			$tsi->saved = 'no';
+			$tsi->save();
+
+			// TODO: Delete files
+		}
+
+		// TODO: Let users know
+		return array('error' => 0);
+	}
+
+	/**
+	 * POST: Release
+	 */
+	public function postReleaseComplaint()
+	{
+		$complaint = Complaint::findOrFail((int) Input::get('id'));
+
+		$p = Payment::where('type', '=', 'tutoring_session')
+			->where('type_id', '=', $complaint->ts_id)
+			->first();
+		
+		$p->award_date = new DateTIme('now');
+		$p->save();
+
+		$complaint->solved = 'yes';
+		$complaint->accepted = 'no';
+		$complaint->save();
+
+		$tsi = TutoringSessionInfo::findOrFail($complaint->ts_id);
+		if ($tsi->saved == 'only_for_complaint')
+		{
+			$tsi->saved = 'no';
+			$tsi->save();
+
+			// TODO: Delete files
+		}
+
+		// TODO: Let users know
+		return array('error' => 0);
+	}
+
 }

@@ -1,4 +1,21 @@
 /**
+ * Disable buttons for hire
+ */
+$('#ss-hire-desc textarea').on('keyup', function ()
+{
+	if($.trim($('#ss-hire-desc textarea').val()) !== '')
+	{
+		$('#ss-hire-send').removeClass('disabled');
+		$('#ss-hire-now').removeClass('disabled');
+	}
+	else
+	{
+		$('#ss-hire-send').addClass('disabled');
+		$('#ss-hire-now').addClass('disabled');
+	}
+});
+
+/**
  * Display friend name on hover
  */
 $(document).on('mouseenter', '.friend', function () {
@@ -66,6 +83,8 @@ $('#ss-hire-date2').datepicker();
 $('#ss-hire-date3').datepicker();
 
 $(document).on('click', '#ss-hire-send', function () {
+	if($(this).hasClass('disabled')) return false;
+
 	// Close hire form
 	$.ssModal({
 		action: 'close'
