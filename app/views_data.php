@@ -46,7 +46,7 @@ View::composer('templates.right_sidebar', function($view)
 		$view->with('futureSessions', array());
 	}
 
-	$view->with('new_members', User::take(6)->get());
+	$view->with('new_members', User::take(6)->orderBy('created_at', 'desc')->get());
 	$view->with('new_groups', Group::take(6)->get());
 });
 
