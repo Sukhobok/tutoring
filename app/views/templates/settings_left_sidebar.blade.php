@@ -28,13 +28,14 @@
 	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Financial Center' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.financial') }}">
 		Financial Center
 	</div>
-
+	{{--
 	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Groups Management' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.groups_management') }}">
 		Groups Management
 	</div>
+	--}}
 
 	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Classrooms Management' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.classrooms_management') }}">
-		Classrooms Management
+		Study Rooms Management
 	</div>
 
 	<div class="ss-section left-sidebar-section ss-link {{ $selected == 'Identity Verification' ? 'is-selected' : '' }}" data-ss-link="{{ URL::route('settings.verification') }}">

@@ -4,9 +4,9 @@
 			<div class="ss-container">
 				{{ Form::open(array('route' => 'classroom.create')) }}
 					<div class="ss-section">
-						<h1>Create a classroom</h1>
+						<h1>Create a Study Room</h1>
 						<p>
-							Classrooms are a place where students can come together from all around the world and interact, socialize and collaborate about a specific class. Just enter the class name. Avoid names like Bio 121. For example, use Introduction to Biology.
+							Study Rooms are a place where students can come together from all around the world and interact, socialize and collaborate about a specific class. Just enter the study room name. Avoid names like Bio 121. For example, use Introduction to Biology.
 						</p>
 
 						<table>

@@ -7,7 +7,7 @@
 		<div class="layout-main page-settings">
 			<div class="ss-container">
 				<div class="ss-section">
-					<h1>Classrooms</h1>
+					<h1>Study Rooms</h1>
 
 					<table>
 						<tr>
@@ -43,7 +43,7 @@
 
 					<div style="text-align: center;"> 
 						{{ Form::text('search', '', array(
-							'placeholder' => 'Enter a classroom ...',
+							'placeholder' => 'Enter a study room ...',
 							'class' => 'ss-search classroom-autocomplete'
 						)) }}
 					</div>
@@ -51,7 +51,7 @@
 
 				@if($suggested)
 					<div class="ss-section">
-						<h1>Suggested Classrooms</h1>
+						<h1>Suggested Study Rooms</h1>
 
 						<table>
 							<tr>
