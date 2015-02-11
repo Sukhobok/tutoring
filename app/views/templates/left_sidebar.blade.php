@@ -39,7 +39,7 @@
 		@endif
 
 		{{ Form::text('search', '', array(
-			'placeholder' => 'Enter a classroom ...',
+			'placeholder' => 'Enter a Study Room ...',
 			'class' => 'ss-search classroom-autocomplete'
 		)) }}
 		<a href="#" class="create-classroom">Create</a>
