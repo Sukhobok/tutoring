@@ -29,7 +29,7 @@
 	</div>
 
 	<div class="ss-section left-sidebar-section classroom-color">
-		Classrooms
+		Study Rooms
 		@if(count($classrooms) > 0)
 			<ul class="classroom_list">
 				@foreach($classrooms as $classroom)
@@ -44,7 +44,7 @@
 		)) }}
 		<a href="#" class="create-classroom">Create</a>
 	</div>
-
+	{{--
 	<div class="ss-section left-sidebar-section group-color">
 		Groups
 		@if(count($groups) > 0)
@@ -61,4 +61,5 @@
 		)) }}
 		<a href="#" class="create-group">Create</a>
 	</div>
+	--}}
 </div>
