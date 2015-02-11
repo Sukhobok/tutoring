@@ -174,13 +174,15 @@
 					<li class="ss-link" data-ss-link="{{ URL::route('settings.invite') }}">
 						<i class="ss-icon ss-person"></i> Invite Friends
 					</li>
-
+					
+					{{--
 					<li class="ss-link" data-ss-link="{{ URL::route('settings.groups_management') }}">
 						<i class="ss-icon ss-list"></i> Groups Management
 					</li>
+					--}}
 
 					<li class="ss-link" data-ss-link="{{ URL::route('settings.classrooms_management') }}">
-						<i class="ss-icon ss-classroom"></i> Classrooms Management
+						<i class="ss-icon ss-classroom"></i> Study Rooms Management
 					</li>
 
 					<li class="ss-link" data-ss-link="{{ URL::route('logout') }}">

@@ -27,7 +27,7 @@
 					</div>
 
 					<div class="ss-section">
-						{{ Form::submit('CREATE CLASSROOM', array('class' => 'ss-button blue bold')) }}
+						{{ Form::submit('CREATE STUDY ROOM', array('class' => 'ss-button blue bold')) }}
 					</div>
 				{{ Form::close() }}
 			</div>
