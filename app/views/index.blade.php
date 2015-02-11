@@ -321,7 +321,7 @@
 	<!-- end Why -->
     
     
-    
+    {{--
 	<!--Image Gallery-->
 	<section class="generic-section wall text-center">
 		<div class="container">
@@ -408,6 +408,7 @@
 		</div>
 	</section>
 	<!-- End Image Gallery-->
+	--}}
     
        
     
