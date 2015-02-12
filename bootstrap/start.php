@@ -29,7 +29,8 @@ $env = $app->detectEnvironment(function()
 	$hosts = array(
 		'Alex-laptop' => 'local',
 		'Alex-iMac.local' => 'local',
-		'alex-ubuntu-virtual' => 'local'
+		'alex-ubuntu-virtual' => 'local',
+		'AlexLocalWS' => 'local'
 	);
 
 	if (gethostname() && isset($hosts[gethostname()]))
