@@ -1,13 +1,17 @@
+/**
+ * Growl
+ */
 socket.on('new_message', function (data)
 {
 	new_ss_notification();
 
-	if (!$('.ss-chat').is(':visible'))
+	if ($.inArray(parseInt(data.from_id), chat_opened) == -1)
 	{
 		$.growl({
 			title: "New message!",
 			message: '<span class="bold">' + data.from_name + '</span> sent you a message!',
-			from_id: data.from_id
+			from_id: data.from_id,
+			from_name: data.from_name
 		});
 	}
 });
@@ -30,7 +34,9 @@ $(document).on('click', '.header-chat-icon', function ()
 	}
 });
 
-// Cateogry Change
+/**
+ * Cateogry Change
+ */
 $('.ss-chat').on('click', '.ss-chat-category', function ()
 {
 	$('.ss-chat-category').removeClass('is-active');
@@ -46,166 +52,177 @@ $('.ss-chat').on('click', '.ss-chat-category', function ()
 	});
 });
 
-var add_ss_chat_message = function (_type, _message, _time, _picture)
-{
-	var snippet_message = $('.ss-chat .ss-chat-conversation-write').clone().removeClass('ss-chat-conversation-write');
-	snippet_message.removeClass('sent-message');
-	snippet_message.addClass(_type + '-message');
-	$('.message-content p', snippet_message).text_multiline(_message);
-	$('.message-time', snippet_message)[0].setAttribute('data-time', _time);
-	$('.message-time', snippet_message).show();
-	if (_picture !== false)
-	{
-		$('.message-picture img', snippet_message)[0].setAttribute('src', _picture);
-	}
-	$('.ss-chat-conversation-write').before(snippet_message);
-}
-
-// User click
+/**
+ * User click
+ */
 $('.ss-chat').on('click', '.ss-chat-item', function ()
 {
-	var selected_uid = this.getAttribute('data-ss-uid');
-	$('.ss-chat-main').fadeOut(250);
-	$('.ss-chat-conversation')[0].setAttribute('data-ss-uid', selected_uid);
-
-	$.ajax({
-		url: '/ajax/messages/get_conversation',
-		type: 'GET',
-		data: { uid: selected_uid }
-	}).done(function (data) {
-		$('.ss-chat .sent-message, .ss-chat .received-message').not('.ss-chat-conversation-write').remove();
-
-		$.each(data, function (k, v) {
-			add_ss_chat_message(v.type, v.message, v.created_at, v.message_picture);
-		});
-
-		// Get the color
-		$('.chat-conversation-container').removeClass('is-green');
-		$('.chat-conversation-container').removeClass('is-blue');
-		$('.chat-conversation-container').removeClass('is-red');
-
-		if ($('.ss-chat .ss-chat-category.is-active .ss-chat-category-bull').hasClass('is-red'))
-			$('.chat-conversation-container').addClass('is-red');
-		else if ($('.ss-chat .ss-chat-category.is-active .ss-chat-category-bull').hasClass('is-blue'))
-			$('.chat-conversation-container').addClass('is-blue');
-		else
-			$('.chat-conversation-container').addClass('is-green');
-
-		$('.ss-chat-conversation').fadeIn(250, function ()
-		{
-			$('.ss-chat').mCustomScrollbar('update');
-			$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
-		});
-		convert_time();
-	});
-}).on('click', '.ss-chat-conversation-back', function ()
-{
-	$('.ss-chat-conversation').fadeOut(250, function ()
-	{
-		$('.ss-chat .sent-message textarea').val('');
-		$('.ss-chat-main').fadeIn(250, function ()
-		{
-			$('.ss-chat').mCustomScrollbar('update');
-		});
-	});
+	open_new_chat_window(parseInt(this.getAttribute('data-ss-uid')), this.getAttribute('data-ss-name'));
 });
-
-// Textarea (send chat message)
-$('.ss-chat').on('keyup', '.sent-message textarea', function (e)
-{
-	while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')))
-	{
-		$(this).height($(this).height()+10);
-		$('.ss-chat').mCustomScrollbar('update');
-	};
-
-	if (e.keyCode === 13 && $.trim($(this).val()) !== '')
-	{
-		var _uid = $('.ss-chat-conversation')[0].getAttribute('data-ss-uid');
-		add_ss_chat_message('sent', $.trim($(this).val()), Math.round(new Date()/1000), false);
-		$('.ss-chat').mCustomScrollbar('update');
-		$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
-		convert_time();
-		
-		$.ajax({
-			url: '/ajax/messages/send_message',
-			type: 'POST',
-			data: { message: $.trim($(this).val()), uid: _uid }
-		}).done(function (data) {
-			// Done
-		});
-
-		$(this).val('');
-		$(this).height(30);
-	}
-}).on('focus', '.sent-message textarea', function ()
-{
-	// Bugfix that caused scroll to top
-	$('.ss-chat').mCustomScrollbar('scrollTo', this);
-});
-
-// On receive
-socket.on('new_message', function (data)
-{
-	if (data.from_id == $('.ss-chat-conversation')[0].getAttribute('data-ss-uid'))
-	{
-		add_ss_chat_message('received', data.message, Math.round(new Date()/1000), data.profile_picture);
-		$('.ss-chat').mCustomScrollbar('update');
-		$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
-		convert_time();
-	}
-});
-
-/**
- * Open user conversation
- */
-var ss_chat_open_user_conversation = function (uid)
-{
-	if (!$('.ss-chat').is(':visible'))
-	{
-		// Open the chat first
-		$.pageslide({ direction: 'left', href: '#ss-chat-inner', modal: true });
-	}
-
-	$('.ss-chat-main').fadeOut(250);
-	$('.ss-chat-conversation')[0].setAttribute('data-ss-uid', uid);
-
-	$.ajax({
-		url: '/ajax/messages/get_conversation',
-		type: 'GET',
-		data: { uid: uid }
-	}).done(function (data) {
-		$('.ss-chat .sent-message, .ss-chat .received-message').not('.ss-chat-conversation-write').remove();
-
-		$.each(data, function (k, v) {
-			add_ss_chat_message(v.type, v.message, v.created_at, v.message_picture);
-		});
-
-		// Color - Red
-		$('.chat-conversation-container').removeClass('is-green');
-		$('.chat-conversation-container').removeClass('is-blue');
-		$('.chat-conversation-container').removeClass('is-red');
-		$('.chat-conversation-container').addClass('is-red');
-
-		$('.ss-chat-conversation').fadeIn(250, function ()
-		{
-			if (!$('.ss-chat').find('.mCSB_container').length)
-			{
-				$('.ss-chat').mCustomScrollbar();
-			}
-			else
-			{
-				$('.ss-chat').mCustomScrollbar('update');
-			}
-			
-			$('.ss-chat').mCustomScrollbar('scrollTo', 'bottom');
-		});
-		convert_time();
-	});
-}
 
 $(document).on('click', '.ss-chat-open-user-conversation', function (e)
 {
 	e.stopPropagation();
-	ss_chat_open_user_conversation(this.getAttribute('data-ss-uid'));
+	open_new_chat_window(parseInt(this.getAttribute('data-ss-uid')), this.getAttribute('data-ss-name'));
+});
+
+/**
+ * Open New Chat Window
+ */
+var chat_opened = [];
+var open_new_chat_window = function (uid, name)
+{
+	var exists = chat_opened.indexOf(uid);
+
+	if (exists == -1)
+	{
+		chat_opened.push(uid);
+
+		var $newchat = $('.layout-chat-right-window-model').clone();
+		$newchat.removeClass('layout-chat-right-window-model');
+		$newchat.children('h1').text(name);
+		$newchat.children('.layout-chat-right-window-content').html('');
+		$newchat.css({ right: chat_opened.length*260 + 80 });
+		$('.layout-chat-right').after($newchat);
+
+		$newchat[0].setAttribute('data-uid', uid);
+
+		$.ajax({
+			url: '/ajax/messages/get_conversation',
+			type: 'GET',
+			data: { uid: uid }
+		}).done(function (data)
+		{
+			$.each(data, function (k, v) {
+				add_ss_chat_message(uid, v.type, v.message, v.created_at, v.message_picture);
+			});
+
+			convert_time();
+			var $container = $('.layout-chat-right-window[data-uid=' + uid + ']').children('.layout-chat-right-window-content');
+			$container.scrollTop($container[0].scrollHeight);
+		});
+	}
+}
+
+/**
+ * Add a new message to a chat window
+ */
+var add_ss_chat_message = function (_uid, _type, _message, _time, _picture)
+{
+	switch (_type)
+	{
+		case 'sent':
+			var $right_message = $('.layout-chat-right-window-model .right_message').clone();
+			$right_message.children('.message').children('p').text(_message);
+			$right_message.children('.message_time').children('.time-ago')[0].setAttribute('data-time', _time);
+			$('.layout-chat-right-window[data-uid="' + _uid + '"]').children('.layout-chat-right-window-content').append($right_message).append('<div class="clear"></div>');
+			break;
+
+		default:
+			var $left_message = $('.layout-chat-right-window-model .left_message').clone();
+			$left_message.children('.message').children('p').text(_message);
+			$left_message.children('.message_time').children('.time-ago')[0].setAttribute('data-time', _time);
+			$('.layout-chat-right-window[data-uid="' + _uid + '"]').children('.layout-chat-right-window-content').append($left_message).append('<div class="clear"></div>');
+
+			if (_picture !== false)
+			{
+				$('.message-picture img', $left_message)[0].setAttribute('src', _picture);
+			}
+			break;
+	}
+};
+
+/**
+ * Close Chat Window
+ */
+$(document).on('click', '.close-chat-window', function ()
+{
+	var $chat_window = $(this).parents('.layout-chat-right-window');
+	var uid = parseInt($chat_window[0].getAttribute('data-uid'));
+	var key = $.inArray(uid, chat_opened);
+	
+	chat_opened.splice(key, 1);
+	$chat_window.animate({ height: 'toggle' }, { duration: 500, complete: function()
+	{
+		$chat_window.remove();
+	}});
+
+	for (var i = key; i < chat_opened.length; i++)
+	{
+		$('.layout-chat-right-window[data-uid=' + chat_opened[i] + ']').animate({ right: '-=260' }, 500);
+	}
+});
+
+/**
+ * Hire
+ */
+$(document).on('click', '.chat-window-hire', function ()
+{
+	var $chat_window = $(this).parents('.layout-chat-right-window');
+	var uid = $chat_window[0].getAttribute('data-uid');
+	window.location.href = '/user/' + uid + '?hire=true';
+});
+
+/**
+ * Minimize
+ */
+$(document).on('click', '.layout-chat-right-window h1, .minimize-chat-window', function()
+{
+	var $chat_window = $(this).parents('.layout-chat-right-window');
+
+	if($chat_window.children('.layout-chat-right-window-content').is(':visible'))
+	{
+		$chat_window.children('.layout-chat-right-window-content').hide();
+		$chat_window.children('.layout-chat-right-window-input').hide();
+	}
+	else
+	{
+		$chat_window.children('.layout-chat-right-window-content').show();
+		$chat_window.children('.layout-chat-right-window-input').show();
+	}
+});
+
+/**
+ * Send message
+ */
+$(document).on('keydown', '.layout-chat-right-window-input textarea', function (e)
+{
+	var uid = $(this).parents('.layout-chat-right-window').data('uid');
+	
+	if(e.which == 13)
+	{
+		if($.trim($(this).val()) != '')
+		{
+			add_ss_chat_message(uid, 'sent', $.trim($(this).val()), Math.round(Date.now()/1000), false);
+			convert_time();
+
+			$.ajax({
+				url: '/ajax/messages/send_message',
+				type: 'POST',
+				data: { message: $.trim($(this).val()), uid: uid }
+			}).done(function (data) {
+				// Done
+			});
+		}
+
+		var $container = $(this).parent('.layout-chat-right-window-input').siblings('.layout-chat-right-window-content');
+		$container.scrollTop($container[0].scrollHeight);
+		$(this).val('');
+		e.preventDefault();
+	}
+});
+
+/**
+ * On receive message
+ */
+socket.on('new_message', function (data)
+{
+	if ($.inArray(parseInt(data.from_id), chat_opened) >= 0)
+	{
+		add_ss_chat_message(data.from_id, 'received', data.message, Math.round(new Date()/1000), data.profile_picture);
+		
+		var $container = $('.layout-chat-right-window[data-uid="' + data.from_id + '"] .layout-chat-right-window-content');
+		$container.scrollTop($container[0].scrollHeight);
+		convert_time();
+	}
 });
