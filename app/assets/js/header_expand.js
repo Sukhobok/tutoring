@@ -14,11 +14,6 @@ function header_close_extended () {
 	{
 		$('.header-settings-extended').animate({ height: 'toggle' });
 	}
-
-	if ($('.ss-chat').is(':visible'))
-	{
-		$.pageslide.close();
-	}
 }
 
 $(document).on('click', function ()

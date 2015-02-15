@@ -82,7 +82,7 @@ var open_new_chat_window = function (uid, name)
 		$newchat.removeClass('layout-chat-right-window-model');
 		$newchat.children('h1').text(name);
 		$newchat.children('.layout-chat-right-window-content').html('');
-		$newchat.css({ right: chat_opened.length*260 + 80 });
+		$newchat.css({ right: chat_opened.length*260 + 20 });
 		$('.layout-chat-right').after($newchat);
 
 		$newchat[0].setAttribute('data-uid', uid);

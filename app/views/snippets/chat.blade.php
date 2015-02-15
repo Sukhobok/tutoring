@@ -1,4 +1,4 @@
-<div id="ss-chat-inner" style="display: none;">
+<div id="ss-chat-inner">
 	<div class="ss-chat-main">
 		<h1 class="ss-chat-title">
 			Categories
@@ -85,7 +85,7 @@
 						<div class="ss-chat-item-right" style="margin-top: 0;">
 							<h2 class="ss-chat-item-name">{{{ HTML::limit($conversation->name) }}}</h2>
 							<span class="ss-chat-item-info">
-								<span style="font-size: 12px;" class="time-ago" data-time="{{{ $conversation->created_at }}}"></span>
+								<span style="font-size: 10px;" class="time-ago" data-time="{{{ $conversation->created_at }}}"></span>
 								<br />
 								{{{ HTML::limit($conversation->message) }}}
 							</span>
