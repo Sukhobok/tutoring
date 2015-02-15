@@ -1,4 +1,12 @@
-<div id="ss-chat-inner">
+<div class="toggle-chat-icon">
+	{{ HTML::image('images/header/chat.png') }}
+	<div class="chat-icon-count {{ count($unread_messages) ? '' : 'hide' }}">
+		{{{ count($unread_messages) > 9 ? '9+' : count($unread_messages) }}}
+	</div>
+</div>
+
+{{-- Right Chat --}}
+<div id="ss-chat-inner" style="display: none;">
 	<div class="ss-chat-main">
 		<h1 class="ss-chat-title">
 			Categories

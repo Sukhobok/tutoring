@@ -19,7 +19,7 @@ socket.on('new_message', function (data)
 /**
  * Chat Open/Close
  */
-$(document).on('click', '.header-chat-icon', function ()
+$(document).on('click', '.toggle-chat-icon', function ()
 {
 	if ($('.ss-chat').is(':visible'))
 	{
@@ -27,8 +27,8 @@ $(document).on('click', '.header-chat-icon', function ()
 	}
 	else
 	{
-		$('.header-icon-count', this).text('0');
-		$('.header-icon-count', this).addClass('hide');
+		$('.chat-icon-count', this).text('0');
+		$('.chat-icon-count', this).addClass('hide');
 		$.pageslide({ direction: 'left', href: '#ss-chat-inner', modal: true });
 		$('.ss-chat').mCustomScrollbar();
 	}
@@ -82,7 +82,7 @@ var open_new_chat_window = function (uid, name)
 		$newchat.removeClass('layout-chat-right-window-model');
 		$newchat.children('h1').text(name);
 		$newchat.children('.layout-chat-right-window-content').html('');
-		$newchat.css({ right: chat_opened.length*260 + 20 });
+		$newchat.css({ right: chat_opened.length*260 + 60 });
 		$('.layout-chat-right').after($newchat);
 
 		$newchat[0].setAttribute('data-uid', uid);

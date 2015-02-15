@@ -13,6 +13,7 @@
 ;(function($){
     // Convenience vars for accessing elements
     var $body = $('.content'),
+        $chat_icon = $('.toggle-chat-icon'),
         $pageslide = $('.ss-chat');
     
     var _sliding = false,   // Mutex to assist closing only once
@@ -81,6 +82,7 @@
                     
         // Animate the slide, and attach this slide's settings to the element
         $body.animate(bodyAnimateIn, speed);
+        $chat_icon.animate({ right: '+=' + slideWidth }, speed);
         $pageslide.show()
                   .animate(slideAnimateIn, speed, function() {
                       _sliding = false;
@@ -180,6 +182,7 @@
             _sliding = false;
             if( typeof callback != 'undefined' ) callback();
         });
+        $chat_icon.animate({ right: '-=' + slideWidth }, speed, function() { });
     }
 	
 	/* Events */

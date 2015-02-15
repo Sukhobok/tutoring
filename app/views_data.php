@@ -13,7 +13,6 @@ View::composer('templates.header', function($view)
 {
 	$view->with('friend_requests', FriendshipRequest::getUserRequests());
 	$view->with('notifications', User::getUserNotifications());
-	$view->with('unread_messages', Message::unreadMessages());
 });
 
 View::composer('templates.left_sidebar', function($view)
@@ -33,6 +32,8 @@ View::composer('snippets.chat', function($view)
 	$view->with('chat_friends', Friendship::getFriends(Auth::user()->id));
 	$view->with('chat_tutors', Subject::getPopularSubjects());
 	$view->with('chat_conversations', Message::getConversations());
+
+	$view->with('unread_messages', Message::unreadMessages());
 });
 
 View::composer('templates.right_sidebar', function($view)

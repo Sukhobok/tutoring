@@ -44,7 +44,7 @@
 			</div>
 		@endforeach
 		<div class="ss-invite-friends">
-			<a href="{{ URL::route('settings.profile') }}">Invite Friends</a>
+			<a href="{{ URL::route('settings.invite') }}">Invite Friends</a>
 		</div>
 		{{--
 		<h1>New groups</h1>

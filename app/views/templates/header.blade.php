@@ -26,13 +26,6 @@
 				</div>
 			</div>
 
-			<div class="header-icon header-chat-icon">
-				{{ HTML::image('images/header/chat.png') }}
-				<div class="header-icon-count {{ count($unread_messages) ? '' : 'hide' }}">
-					{{{ count($unread_messages) > 9 ? '9+' : count($unread_messages) }}}
-				</div>
-			</div>
-
 			<div class="header-icon header-settings-icon">
 				{{ HTML::image('images/header/settings.png') }}
 			</div>
@@ -100,35 +93,6 @@
 				@if(count($notifications) == 0)
 					<div class="header-extended-item bold no-new">
 						No new notifications
-					</div>
-				@endif
-			</div>
-		</div>
-
-		<div class="header-extended header-chat-extended">
-			<div class="header-extended-in">
-				@foreach($unread_messages as $unread_message)
-					<div class="header-extended-item ss-link" data-ss-link="{{{ URL::route('messages', $unread_message->user_id) }}}">
-						<div class="header-extended-img">
-							<div class="profile-picture">
-								{{ HTML::image(HTML::profile_picture($unread_message), 'Profile Picture', array('width' => 55)) }}
-							</div>
-						</div>
-
-						<div class="header-extended-content">
-							<p>
-								<span class="bold">{{{ $unread_message->name }}}</span> sent you a message:<br />
-								{{{ HTML::limit($unread_message->message, 55) }}}
-							</p>
-							<p class="header-extended-date time-ago" data-time="{{ $unread_message->created_at }}"></p>
-						</div>
-						<div class="clear"></div>
-					</div>
-				@endforeach
-
-				@if(count($unread_messages) == 0)
-					<div class="header-extended-item bold no-new">
-						No new messages
 					</div>
 				@endif
 			</div>
