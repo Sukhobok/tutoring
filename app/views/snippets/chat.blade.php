@@ -12,14 +12,14 @@
 			Categories
 		</h1>
 
-		<div class="ss-chat-category is-active" data-ss-chat-category="tutors">
-			<span class="ss-chat-category-bull is-green">&#x25cf;</span>
-			Tutors
-		</div>
-
-		<div class="ss-chat-category" data-ss-chat-category="friends">
+		<div class="ss-chat-category is-active" data-ss-chat-category="friends">
 			<span class="ss-chat-category-bull is-blue">&#x25cf;</span>
 			Friends
+		</div>
+
+		<div class="ss-chat-category" data-ss-chat-category="tutors">
+			<span class="ss-chat-category-bull is-green">&#x25cf;</span>
+			Tutors
 		</div>
 
 		<div class="ss-chat-category" data-ss-chat-category="latest">
@@ -28,7 +28,30 @@
 		</div>
 
 		{{-- Categories Content --}}
-		<div class="ss-chat-category-items" data-ss-chat-category="tutors">
+		<div class="ss-chat-category-items" data-ss-chat-category="friends">
+			<h1 class="ss-chat-title is-blue">
+				Friends
+			</h1>
+			<div class="ss-chat-item-list">
+				@foreach ($chat_friends as $friend)
+					<div class="ss-chat-item" data-ss-uid="{{{ $friend->id }}}" data-ss-name="{{{ $friend->name }}}">
+						<div class="ss-chat-item-left">
+							<div class="profile-picture">
+								{{ HTML::image(HTML::profile_picture($friend), 'Profile Picture', array('width' => 50)) }}
+							</div>
+						</div>
+
+						<div class="ss-chat-item-right">
+							<h2 class="ss-chat-item-name">{{{ HTML::limit($friend->name) }}}</h2>
+							<span class="ss-chat-item-info">{{{ $friend->education }}}</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+				@endforeach
+			</div>
+		</div>
+		
+		<div class="ss-chat-category-items" data-ss-chat-category="tutors" style="display: none;">
 			@foreach($chat_tutors as $subject)
 				<h1 class="ss-chat-title is-green">
 					{{{ HTML::limit($subject->name, 18) }}} Tutors
@@ -52,29 +75,6 @@
 					@endforeach
 				</div>
 			@endforeach
-		</div>
-
-		<div class="ss-chat-category-items" data-ss-chat-category="friends" style="display: none;">
-			<h1 class="ss-chat-title is-blue">
-				Friends
-			</h1>
-			<div class="ss-chat-item-list">
-				@foreach ($chat_friends as $friend)
-					<div class="ss-chat-item" data-ss-uid="{{{ $friend->id }}}" data-ss-name="{{{ $friend->name }}}">
-						<div class="ss-chat-item-left">
-							<div class="profile-picture">
-								{{ HTML::image(HTML::profile_picture($friend), 'Profile Picture', array('width' => 50)) }}
-							</div>
-						</div>
-
-						<div class="ss-chat-item-right">
-							<h2 class="ss-chat-item-name">{{{ HTML::limit($friend->name) }}}</h2>
-							<span class="ss-chat-item-info">{{{ $friend->education }}}</span>
-						</div>
-						<div class="clear"></div>
-					</div>
-				@endforeach
-			</div>
 		</div>
 
 		<div class="ss-chat-category-items" data-ss-chat-category="latest" style="display: none;">
