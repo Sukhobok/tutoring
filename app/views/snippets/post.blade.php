@@ -38,7 +38,13 @@
 					@endif
 				</div>
 
-				<div class="article-content-text">{{ HTML::parse_links($post->post) }}</div>
+				<div class="article-content-text">
+					{{ nl2br(HTML::parse_links($post->post)) }}
+				</div>
+
+				@foreach (parse_youtube_links($post->post) as $youtube_link)
+					<iframe style="margin-top: 15px;" width="380" height="220" src="//www.youtube.com/embed/{{{ $youtube_link }}}" frameborder="0" allowfullscreen></iframe>
+				@endforeach
 
 				@if($post->images)
 					<div class="article-photos">

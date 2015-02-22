@@ -92,6 +92,38 @@ HTML::macro('parse_links', function($message)
 });
 
 /**
+ * Parse Youtube Videos
+ */
+function parse_youtube_links($message)
+{
+	preg_match_all('@https?://(www\.)?youtube.com/.[^\s.,"\']+@i', $message, $matches);
+
+	$pattern = '#^(?:https?://)?';    # Optional URL scheme. Either http or https.
+	$pattern .= '(?:www\.)?';         #  Optional www subdomain.
+	$pattern .= '(?:';                #  Group host alternatives:
+	$pattern .=   'youtu\.be/';       #    Either youtu.be,
+	$pattern .=   '|youtube\.com';    #    or youtube.com
+	$pattern .=   '(?:';              #    Group path alternatives:
+	$pattern .=     '/embed/';        #      Either /embed/,
+	$pattern .=     '|/v/';           #      or /v/,
+	$pattern .=     '|/watch\?v=';    #      or /watch?v=,    
+	$pattern .=     '|/watch\?.+&v='; #      or /watch?other_param&v=
+	$pattern .=   ')';                #    End path alternatives.
+	$pattern .= ')';                  #  End host alternatives.
+	$pattern .= '([\w-]{11})';        # 11 characters (Length of Youtube video ids).
+	$pattern .= '(?:.+)?$#x';         # Optional other ending URL parameters.
+	
+	$return = array();
+	foreach ($matches[0] as $match)
+	{
+		preg_match($pattern, $match, $matches2);
+		$return[] = (isset($matches2[1])) ? $matches2[1] : false;
+	}
+
+	return array_values(array_filter($return));
+}
+
+/**
  * Validation: Require a file
  */
 Validator::extend('required_file', function($attribute, $value, $parameters)
