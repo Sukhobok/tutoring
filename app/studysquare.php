@@ -73,6 +73,25 @@ HTML::macro('format_date', function($date, $format = 'F d Y')
 });
 
 /**
+ * Parse Links
+ */
+HTML::macro('parse_links', function($message)
+{
+	$message = preg_replace_callback('#(?:https?://\S+)|(?:www.\S+)|(?:\S+\.\S+)#', function($arr)
+	{
+		// Add http:// for links that don't have http:// or https://
+		if ((strpos($arr[0], 'http://') !== 0) && (strpos($arr[0], 'https://') !== 0))
+		{
+			$arr[0] = 'http://' . $arr[0];
+		}
+		
+		return '<a href="' . $arr[0] . '">' . $arr[0] . '</a>';
+	}, $message);
+
+	return $message;
+});
+
+/**
  * Validation: Require a file
  */
 Validator::extend('required_file', function($attribute, $value, $parameters)

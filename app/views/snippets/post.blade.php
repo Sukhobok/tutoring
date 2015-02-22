@@ -38,7 +38,7 @@
 					@endif
 				</div>
 
-				<div class="article-content-text">{{ $post->post }}</div>
+				<div class="article-content-text">{{ HTML::parse_links($post->post) }}</div>
 
 				@if($post->images)
 					<div class="article-photos">
