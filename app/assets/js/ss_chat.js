@@ -164,9 +164,19 @@ $(document).on('click', '.chat-window-hire', function ()
 });
 
 /**
+ * Click on name
+ */
+$(document).on('click', '.layout-chat-right-window h1', function ()
+{
+	var $chat_window = $(this).parents('.layout-chat-right-window');
+	var uid = $chat_window[0].getAttribute('data-uid');
+	window.location.href = '/user/' + uid;
+});
+
+/**
  * Minimize
  */
-$(document).on('click', '.layout-chat-right-window h1, .minimize-chat-window', function()
+$(document).on('click', '.minimize-chat-window', function()
 {
 	var $chat_window = $(this).parents('.layout-chat-right-window');
 

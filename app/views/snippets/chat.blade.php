@@ -113,7 +113,9 @@
 		<h1>name</h1>
 		<span class="close-chat-window">X</span>
 		<span class="minimize-chat-window">_</span>
-		<span class="chat-window-hire">Hire</span>
+		<button class="chat-window-hire">
+			Hire
+		</button>
 		<div class="layout-chat-right-window-content">
 			<div class="typing">
 				...
