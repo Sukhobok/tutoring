@@ -35,6 +35,7 @@
 							{{ Form::submit('POST', array('class' => 'ss-button blue bold')) }}
 							{{ Form::ss_file('photos[]', array('multiple' => true)) }}
 							<div class="clear"></div>
+							<div class="ss-pictures-preview"></div>
 						{{ Form::close() }}
 					</div>
 				@endif

@@ -1,4 +1,32 @@
 /**
+ * Post Picture Upload
+ */
+$(document).on('change', '#post_message [name="photos[]"]', function ()
+{
+	var that = this;
+	var preview = $(that).parents('.ss-file-wrapper').siblings('.ss-pictures-preview');
+	preview.html('');
+
+	if(that.files)
+	{
+		for (var i = 0; i < that.files.length; i++)
+		{
+			var file = that.files[i];
+			if (!file.type.match(/image.*/)) continue;
+
+			var reader = new FileReader();
+			reader.onload = function (e)
+			{
+				var uploaded_img = $('<div class="ss-photo" />').html($('<img/>').attr('src', e.target.result));
+				preview.append(uploaded_img).show();
+			}
+
+			reader.readAsDataURL(file);
+		}
+	}
+});
+
+/**
  * Thumb up post
  */
 $(document).on('click', '.thumb-up', function () {
