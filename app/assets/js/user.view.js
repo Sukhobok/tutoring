@@ -71,7 +71,7 @@ $(document).on('click', '.hire-user-button', function () {
 	});
 });
 
-if (window.location.search.substring(1, 5) === 'hire')
+if (window.location.search.substring(1, 5) === 'hire' && logged_in)
 {
 	$.ssModal({
 		modalId: 'hire'

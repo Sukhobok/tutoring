@@ -426,4 +426,5 @@
 
 <script type="text/javascript">
 	var user_view_id = '{{{ $user->id }}}';
+	var logged_in = {{{ Auth::check() ? 'true' : 'false' }}};
 </script>
