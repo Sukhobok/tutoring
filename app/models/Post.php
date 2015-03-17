@@ -13,7 +13,7 @@ class Post extends Eloquent {
 	 * @var array
 	 */
 	public static $rules = array(
-		'post' => 'required'
+		// 'post' => 'required'
 	);
 
 	/**

@@ -12,12 +12,7 @@ class PostController extends BaseController {
 	 */
 	public function postUserPost()
 	{
-		$validator = Validator::make(
-			Input::all(),
-			Post::$rules
-		);
-
-		if ($validator->passes())
+		if (trim(Input::get('post')) != '' || Input::file('photos')[0])
 		{
 			$post = new Post;
 			$post->post = Input::get('post');
@@ -58,12 +53,7 @@ class PostController extends BaseController {
 	 */
 	public function postClassroomPost()
 	{
-		$validator = Validator::make(
-			Input::all(),
-			Post::$rules
-		);
-
-		if ($validator->passes())
+		if (trim(Input::get('post')) != '' || Input::file('photos')[0])
 		{
 			$post = new Post;
 			$post->post = Input::get('post');
@@ -110,12 +100,7 @@ class PostController extends BaseController {
 	 */
 	public function postGroupPost()
 	{
-		$validator = Validator::make(
-			Input::all(),
-			Post::$rules
-		);
-
-		if ($validator->passes())
+		if (trim(Input::get('post')) != '' || Input::file('photos')[0])
 		{
 			$post = new Post;
 			$post->post = Input::get('post');
