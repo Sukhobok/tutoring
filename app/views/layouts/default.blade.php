@@ -53,6 +53,16 @@
 
 		{{-- StudySquare Chat --}}
 		@include('snippets.chat')
+
+		{{-- Large Image Modal --}}
+		<div class="ss-modal" id="ss-modal-large-image">
+			<div id="ss-modal-large-image-left">
+				<img src="http://placehold.it/250x250" />
+			</div>
+
+			<div id="ss-modal-large-image-right"></div>
+			<div class="clear"></div>
+		</div>
 	@endif
 
 	{{-- Javascript --}}

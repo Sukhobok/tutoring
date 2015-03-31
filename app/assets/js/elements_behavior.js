@@ -14,7 +14,12 @@ $(document).on('click', '.page-tab', function () {
  * StudySquare Photo (eg. user photos, profile photos)
  */
 $(document).on('click', '.ss-photo', function () {
-	console.log('--Expand photo');
+	// Set the New Image for the modal
+	$('#ss-modal-large-image img').attr('src', $(this).children('img').attr('src'));
+	$.ssModal({ modalId: 'large-image' });
+	
+	// Remove Old Comments (if any)
+	$('#ss-modal-large-image-right .comments').remove();
 });
 
 /**

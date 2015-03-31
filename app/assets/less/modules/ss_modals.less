@@ -44,3 +44,43 @@
 		padding-top: 75px;
 	}
 }
+
+#ss-modal-large-image {
+	display: none;
+	position: fixed;
+	width: 80%;
+	height: 80%;
+	left: 10%;
+	top: 10%;
+	margin-left: 0;
+	background: #000;
+	border-radius: 0;
+	text-align: left;
+	z-index: 101;
+
+	#ss-modal-large-image-left {
+		float: left;
+		width: 65%;
+		height: 100%;
+		position: relative;
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+			margin: 0 auto;
+			display: block;
+
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0; right: 0;
+			margin: auto;
+		}
+	}
+
+	#ss-modal-large-image-right {
+		background: #fff;
+		float: left;
+		width: 35%;
+		height: 100%;
+	}
+}
