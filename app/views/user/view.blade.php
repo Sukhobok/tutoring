@@ -101,7 +101,7 @@
 							<div class="ss-photo">
 								{{ HTML::image(HTML::get_from_s3($photo->path), 'Photo') }}
 
-								@if(Auth::user()->id == $user->id)
+								@if(Auth::check() && Auth::user()->id == $user->id)
 									<div class="ss-photo-hover"></div>
 									<div class="ss-photo-delete" data-ss-photo-id="{{{ $photo->id }}}"></div>
 								@endif
