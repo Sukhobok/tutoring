@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration {
 	public function up()
 	{
 		Schema::create('users', function(Blueprint $table) {
+			$table->engine = 'MyISAM';
 			$table->increments('id');
 			$table->string('nickname')->nullable();
 			$table->string('name');

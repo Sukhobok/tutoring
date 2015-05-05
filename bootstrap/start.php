@@ -30,6 +30,7 @@ $env = $app->detectEnvironment(function()
 		'Alex-laptop' => 'local',
 		'Alex-iMac.local' => 'local',
 		'alex-ubuntu-virtual' => 'local',
+		'studysquare-local' => 'local',
 		'AlexLocalWS' => 'local'
 	);
 

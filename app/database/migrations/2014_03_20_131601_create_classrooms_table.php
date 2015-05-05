@@ -13,6 +13,7 @@ class CreateClassroomsTable extends Migration {
 	public function up()
 	{
 		Schema::create('classrooms', function(Blueprint $table) {
+			$table->engine = 'MyISAM';
 			$table->increments('id');
 			$table->string('name');
 			$table->text('description');

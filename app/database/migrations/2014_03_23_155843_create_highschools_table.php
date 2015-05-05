@@ -13,6 +13,7 @@ class CreateHighschoolsTable extends Migration {
 	public function up()
 	{
 		Schema::create('highschools', function(Blueprint $table) {
+			$table->engine = 'MyISAM';
 			$table->increments('id');
 			$table->string('name');
 			$table->string('address')->nullable();
