@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>XScholar &#8211; Learning Manager System WordPress Theme | Just another WordPress siteXScholar - Learning Manager System WordPress Theme | Just another WordPress site</title>
+    <title>StudySquare</title>
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="http://live.spacexthemes.com/xscholar/xmlrpc.php" />
     <!--Favicon-->
@@ -1051,35 +1051,32 @@
                                     <div id="user-trigger" class="select_wrapper pinned">
 
 
-                                        <span class="select_trigger login_form_open"><i class="fa fa-sign-in"></i>Login / Register</span>
+                                        <span style="display: inline;" class="select_trigger login_form_open"><i class="fa fa-sign-in"></i>Login</span> / <span style="display: inline;" class="select_trigger register_form_open"><i class="fa fa-sign-in"></i>Register</span>
+
                                         <div id="login_form" class="login-form">
                                             <h3 style="color:#fff">Login</h3>
                                             <input type="hidden" id="wp_uf_nonce_login" name="wp_uf_nonce_login" value="c4cedd655f" />
                                             <input type="hidden" name="_wp_http_referer" value="/xscholar/" />
-                                            <form id="loginform" action="http://live.spacexthemes.com/xscholar/user-action/?action=login" method="post" class="">
+                                            {{ Form::open(array('url' => 'login', 'id' => 'loginform', 'class' => '')) }}
                                                 <div class="inner-user-form">
-                                                    <input type="hidden" id="wp_uf_nonce_login" name="wp_uf_nonce_login" value="c4cedd655f" />
-                                                    <input type="hidden" name="_wp_http_referer" value="/xscholar/" />
                                                     <p class="login-username">
-                                                        <label for="user_login">Username</label>
-                                                        <input type="text" name="user_login" id="user_login">
+                                                        <label for="email">Email</label>
+                                                        {{ Form::text('email', '', array('placeholder' => 'Email', 'class' => '', 'id' => 'email')) }}
                                                     </p>
                                                     <p class="login-password">
-                                                        <label for="user_pass">Password</label>
-                                                        <input type="password" name="user_pass" id="user_pass">
+                                                        <label for="password">Password</label>
+                                                        {{ Form::password('password', array('placeholder' => 'Password', 'class' => '', 'id' => 'password')) }}
                                                     </p>
                                                     <p class="login-button">
-                                                        <input type="submit" name="submit" id="submit" value="Submit">
+                                                        <input type="submit" name="submit" id="submit" value="Sign In">
                                                     </p>
                                                     <p class="login-footer">
                                                         <label class="login-remember" for="rememberme">
                                                             <input type="checkbox" name="rememberme" id="rememberme">Remember Me</label>
-                                                        <a class="user_forgot" href="http://live.spacexthemes.com/xscholar/user-forgot-password/">Forgot Password?</a>
+                                                        {{-- <a class="user_forgot" href="http://live.spacexthemes.com/xscholar/user-forgot-password/">Forgot Password?</a> --}}
                                                     </p>
-                                                    <p class="login-register">
-                                                        <label>or you can</label><a class="button" href="http://live.spacexthemes.com/xscholar/user-register/">Register</a></p>
                                                 </div>
-                                            </form>
+                                            {{ Form::close() }}
                                             <script>
                                                 jQuery(document).ready(function() {
 
@@ -1091,6 +1088,67 @@
                                                 });
                                             </script>
                                         </div>
+
+                                        <div id="register_form" class="login-form">
+                                            <h3 style="color:#fff">Register</h3>
+                                            <input type="hidden" id="wp_uf_nonce_login" name="wp_uf_nonce_login" value="c4cedd655f" />
+                                            <input type="hidden" name="_wp_http_referer" value="/xscholar/" />
+                                            {{ Form::open(array('url' => 'signup', 'id' => 'registerform', 'class' => '')) }}
+                                                <div class="inner-user-form">
+                                                    <p class="login-username">
+                                                        <label for="first_name">First Name</label>
+                                                        {{ Form::text('first_name', Input::old('first_name'), array('placeholder' => 'First Name', 'class' => $input_classes['first_name'])) }}
+                                                    </p>
+                                                    <p class="login-username">
+                                                        <label for="last_name">Last Name</label>
+                                                        {{ Form::text('last_name', Input::old('last_name'), array('placeholder' => 'Last Name', 'class' => $input_classes['last_name'])) }}
+                                                    </p>
+                                                    <p class="login-username">
+                                                        <label for="email">Email</label>
+                                                        {{ Form::text('email', Input::old('email'), array('placeholder' => 'Email', 'class' => $input_classes['email'])) }}
+                                                    </p>
+                                                    <p class="login-password">
+                                                        <label for="password">Password</label>
+                                                        {{ Form::password('password', array('placeholder' => 'Password', 'class' => $input_classes['password'])) }}
+                                                    </p>
+                                                    <p class="login-password">
+                                                        <label for="password">Retype Password</label>
+                                                        {{ Form::password('password_confirmation', array('placeholder' => 'Retype Password', 'class' => $input_classes['password_confirmation'])) }}
+                                                    </p>
+                                                    <p>
+                                                        <select name="you_are" class="selectpicker span12">
+                                                            <option value="" disabled selected>You are a:</option>
+                                                            <option value="s">Student</option>
+                                                            <option value="t">Tutor</option>       
+                                                        </select>
+                                                    </p>
+                                                    <div>
+                                                        <div style="float: left; margin-top: 6px;">
+                                                            <input type="checkbox" name="agree" />
+                                                        </div>
+                                                        <div style="float: left; color: #000; font-size: 14px; margin-left: 10px; margin-top: 6px;">
+                                                            I agree with the <a style="color: #000; font-weight: bold;" href="{{ URL::route('page.terms') }}">Terms</a> and the <a style="color: #000; font-weight: bold;" href="{{ URL::route('page.privacy') }}">Privacy Policy</a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <p class="login-button">
+                                                        <input type="submit" name="submit" value="Register">
+                                                    </p>
+                                                </div>
+                                            {{ Form::close() }}
+                                            <script>
+                                                jQuery(document).ready(function() {
+
+                                                    // Initialize the plugin
+                                                    jQuery("#register_form").popup({
+                                                        transition: "all 0.3s"
+                                                    });
+
+                                                });
+                                            </script>
+                                        </div>
+
                                     </div>
 
                                 </aside>
