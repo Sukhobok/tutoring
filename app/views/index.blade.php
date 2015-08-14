@@ -1203,8 +1203,8 @@
                                                 <div class="slide_text_content">
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
-                                                            <h2 class="slide_title">SMART IS BEAUTIFUL</h2>
-                                                            <div class="slide_byline wpb_text_column">Vestibulum sagittis,felis in accumsans is a faubus, orci leo cursus felis, nec mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cramsuada lobortis semper. Duis non posuere orci. </div><a class="xslider-readmore" href="http://live.spacexthemes.com/xscholar/course">Read More</a> </div>
+                                                            <h2 class="slide_title">ONLINE TUTORING</h2>
+                                                            <div class="slide_byline wpb_text_column">School is tough. Getting a tutor is easy. Get a real tutor anytime, anywhere in Study Square. </div><a class="xslider-readmore" href="http://live.spacexthemes.com/xscholar/course">Read More</a> </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1216,8 +1216,8 @@
                                                 <div class="slide_text_content">
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
-                                                            <h2 class="slide_title">Selling Ticket Event</h2>
-                                                            <div class="slide_byline wpb_text_column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cramsuada lobortis semper. Duis non posuere orci. Vestibulum sagittis,felis in accumsans is a faubus, orci leo cursus felis, nec mattis.</div>
+                                                            <h2 class="slide_title">THE BEST TUTORS</h2>
+                                                            <div class="slide_byline wpb_text_column">We have some of the best tutors in the world on StudySquare. We provide the tools and resources every tutor needs to be successful on Study Square.</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1230,8 +1230,8 @@
                                                 <div class="slide_text_content">
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
-                                                            <h2 class="slide_title">KNOWLEDGE IS POWER!</h2>
-                                                            <div class="slide_byline wpb_text_column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cramsuada lobortis semper. Duis non posuere orci. Vestibulum sagittis,felis in accumsans is a faubus, orci leo cursus felis, nec mattis.</div>
+                                                            <h2 class="slide_title">VARIETY OF SUBJECTS</h2>
+                                                            <div class="slide_byline wpb_text_column">From Algebra and statistics to biology and French. We have tutors for everything and anything. We also have Study Rooms for you to collaborate with other like minds to get the help you need.</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1244,8 +1244,8 @@
                                                 <div class="slide_text_content">
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
-                                                            <h2 class="slide_title">CAREER SUCCESS</h2>
-                                                            <div class="slide_byline wpb_text_column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cramsuada lobortis semper. Duis non posuere orci. Vestibulum sagittis,felis in accumsans is a faubus, orci leo cursus felis, nec mattis.</div><a class="xslider-readmore" href="http://live.spacexthemes.com/xscholar/course">Read More</a> </div>
+                                                            <h2 class="slide_title">PERSONALIZED TUTORING</h2>
+                                                            <div class="slide_byline wpb_text_column">Every tutoring session is personalized to your exact needs. The one on one session enables you to get the help and exact answers you need.</div><a class="xslider-readmore" href="http://live.spacexthemes.com/xscholar/course">Read More</a> </div>
                                                     </div>
                                                 </div>
                                             </div>
