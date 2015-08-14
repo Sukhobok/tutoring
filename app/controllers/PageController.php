@@ -12,6 +12,12 @@ class PageController extends BaseController {
 	 */
 	public function getIndex()
 	{
+		$users = User::count();
+		$subjects = Subject::count();
+		$tutors = DB::table('user_subjects')
+			->distinct('user_id')
+			->count('user_id');
+
 		$input_classes = array(
 			'nickname' =>  '',
 			'first_name' => '',
@@ -31,7 +37,10 @@ class PageController extends BaseController {
 		}
 
 		return View::make('index', array(
-			'input_classes' => $input_classes
+			'input_classes' => $input_classes,
+			'users' => $users,
+			'subjects' => $subjects,
+			'tutors' => $tutors
 		));
 	}
 
