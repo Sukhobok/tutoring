@@ -1197,7 +1197,7 @@
                         <div class="wpb_wrapper">
                             <div class="xslider sc-flexslider">
                                 <ul class="slides">
-                                    <li class="has-button"><img width="1920" height="744" src="http://live.spacexthemes.com/xscholar/wp-content/uploads/2015/07/slide-3.jpg" class="attachment-full wp-post-image" alt="slide-3" />
+                                    <li class="has-button"><img width="1920" height="744" src="/images/Slider-Studysquare1.jpg" class="attachment-full wp-post-image" alt="slide-3" />
                                         <div class="slide_text">
                                             <div class="container">
                                                 <div class="slide_text_content">
@@ -1210,7 +1210,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li><img width="1920" height="744" src="http://live.spacexthemes.com/xscholar/wp-content/uploads/2015/07/slide-4.jpg" class="attachment-full wp-post-image" alt="slide-4" />
+                                    <li><img width="1920" height="744" src="/images/Slider-Studysquare2.jpg" class="attachment-full wp-post-image" alt="slide-4" />
                                         <div class="slide_text">
                                             <div class="container">
                                                 <div class="slide_text_content">
