@@ -1563,7 +1563,151 @@
         </section>
         <!-- Footer
 ===============================-->
-        @include('templates.footer')
+
+
+<footer class="dark">
+    <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row  main-footer-right">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <aside id="link-column-9" class="widget widget_footer_link_item">
+                        <h3 class="widget-title">LEGAL</h3>
+                        <div class="footer-link-widget">
+                            <ul class="footer-link list-style">
+                                <li>
+                                    <a href="{{ URL::route('page.terms') }}">Terms of service</a>
+                                </li>
+                                <li>
+                                    <a href="{{ URL::route('page.privacy') }}">Privacy policy</a>
+                                </li>
+                                <li>
+                                    <a href="{{ URL::route('page.cookie') }}">Cookie policy</a>
+                                </li>
+                                <li>
+                                    <a href="http://support.studysquare.com/contact-us/">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <aside id="link-column-10" class="widget widget_footer_link_item">
+                        <h3 class="widget-title">ABOUT US</h3>
+                        <div class="footer-link-widget">
+                            <ul class="footer-link list-style">
+                                <li>
+                                    <a href="#">Get to know us</a>
+                                </li>
+                                <li>
+                                    <a href="#">In the news</a>
+                                </li>
+                                <li>
+                                    <a href="#">Our Mission</a>
+                                </li>
+                                <li>
+                                    <a href="#">Testimonials</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <aside id="link-column-11" class="widget widget_footer_link_item">
+                        <h3 class="widget-title">RESOURCES</h3>
+                        <div class="footer-link-widget">
+                            <ul class="footer-link list-style">
+                                <li>
+                                    <a href="http://blog.studysquare.com/">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="http://support.studysquare.com/">Support Cener</a>
+                                </li>
+                                <li>
+                                    <a href="#‎">Become a University Rep</a>
+                                </li>
+                                <li>
+                                    <a href="{{ URL::to('settings/tutor_center') }}">Start Tutoring</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <aside id="link-column-12" class="widget widget_footer_link_item">
+                        <h3 class="widget-title">CONNECT WITH US</h3>
+                        <div class="footer-link-widget">
+                            <ul class="footer-link list-style">
+                                <li>
+                                    <a href="https://www.facebook.com/studysquareusa">Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/studysquareusa">Twitter</a>
+                                </li>
+                                <li>
+                                    <a href="https://plus.google.com/+Studysquareusa/">Google +</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.youtube.com/TheStudySquare">YouTube</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <aside id="link-column-13" class="widget widget_footer_link_item">
+                        <h3 class="widget-title">MATH TUTORS</h3>
+                        <div class="footer-link-widget">
+                            <ul class="footer-link list-style">
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 1) }}">Algebra Tutors</a>
+                                </li>
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 2) }}">Calculus Tutors</a>
+                                </li>
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 3) }}">Statistics Tutors</a>
+                                </li>
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 4) }}">Geometry Tutors</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <aside id="link-column-14" class="widget widget_footer_link_item">
+                        <h3 class="widget-title">COMPUTER TUTORS</h3>
+                        <div class="footer-link-widget">
+                            <ul class="footer-link list-style">
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 102) }}">HTML Tutors</a>
+                                </li>
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 118) }}">PHP Tutors</a>
+                                </li>
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 1) }}">Objective C Tutors</a>
+                                </li>
+                                <li>
+                                    <a href="{{ Alias::getURL('Subject', 110) }}">Javascript Tutors</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+        <!-- End Footer-->
+
+
 
     </div>
     <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/bbpress/templates/default/js/editor.js?ver=2.5.8-5815'></script>
