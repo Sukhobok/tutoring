@@ -20,7 +20,7 @@
     <link href="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/favicon/apple-touch-icon-114.png" sizes="114x114" rel="apple-touch-icon-precomposed"></link>
     <link href="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/favicon/apple-touch-icon-72.png" sizes="72x72" rel="apple-touch-icon-precomposed"></link>
     <link href="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/favicon/apple-touch-icon-57.png" rel="apple-touch-icon-precomposed"></link>
-    <link href="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/favicon/favicon.png" rel="shortcut icon"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!--[if lt IE 9]>
                 <script src="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/respond.min.js" type="text/javascript"></script>
                 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -30,9 +30,6 @@
         var spacex_base_url = 'http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/';
     </script>
 
-    <title>XScholar &#8211; Learning Manager System WordPress Theme | Just another WordPress siteXScholar - Learning Manager System WordPress Theme | Just another WordPress site</title>
-    <link rel="alternate" type="application/rss+xml" title="XScholar - Learning Manager System Wordpress Theme &raquo; Feed" href="http://live.spacexthemes.com/xscholar/feed/" />
-    <link rel="alternate" type="application/rss+xml" title="XScholar - Learning Manager System Wordpress Theme &raquo; Comments Feed" href="http://live.spacexthemes.com/xscholar/comments/feed/" />
     <script type="text/javascript">
         window._wpemojiSettings = {
             "baseUrl": "http:\/\/s.w.org\/images\/core\/emoji\/72x72\/",
