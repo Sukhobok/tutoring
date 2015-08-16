@@ -1195,7 +1195,9 @@
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
                                                             <h2 class="slide_title">ONLINE TUTORING</h2>
-                                                            <div class="slide_byline wpb_text_column">School is tough. Getting a tutor is easy. Get a real tutor anytime, anywhere in Study Square. </div><span style="display: inline; font-size: 22px;" class="select_trigger register_form_open"><i class="fa fa-sign-in"></i>Register</span>
+                                                            <div class="slide_byline wpb_text_column">School is tough. Getting a tutor is easy. Get a real tutor anytime, anywhere in Study Square. </div>
+                                                            <a class="xslider-readmore register_form_open" href="http://live.spacexthemes.com/xscholar/course"><i class="fa fa-sign-in"></i> Register</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1236,7 +1238,9 @@
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
                                                             <h2 class="slide_title">PERSONALIZED TUTORING</h2>
-                                                            <div class="slide_byline wpb_text_column">Every tutoring session is personalized to your exact needs. The one on one session enables you to get the help and exact answers you need.</div><span style="display: inline; font-size: 22px;" class="select_trigger register_form_open"><i class="fa fa-sign-in"></i>Register</span></div>
+                                                            <div class="slide_byline wpb_text_column">Every tutoring session is personalized to your exact needs. The one on one session enables you to get the help and exact answers you need.</div>
+                                                            <a class="xslider-readmore register_form_open" href="http://live.spacexthemes.com/xscholar/course"><i class="fa fa-sign-in"></i> Register</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
