@@ -30,7 +30,7 @@
         var spacex_base_url = 'http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/';
     </script>
 
-    <title>XScholar &#8211; Learning Manager System WordPress Theme | Just another WordPress siteXScholar - Learning Manager System WordPress Theme | Just another WordPress site</title>
+    <title>Study Square | an Online tutoring platform with free social collaboration features</title>
     <link rel="alternate" type="application/rss+xml" title="XScholar - Learning Manager System Wordpress Theme &raquo; Feed" href="http://live.spacexthemes.com/xscholar/feed/" />
     <link rel="alternate" type="application/rss+xml" title="XScholar - Learning Manager System Wordpress Theme &raquo; Comments Feed" href="http://live.spacexthemes.com/xscholar/comments/feed/" />
     <script type="text/javascript">
@@ -1204,7 +1204,7 @@
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
                                                             <h2 class="slide_title">ONLINE TUTORING</h2>
-                                                            <div class="slide_byline wpb_text_column">School is tough. Getting a tutor is easy. Get a real tutor anytime, anywhere in Study Square. </div><a class="xslider-readmore" href="http://live.spacexthemes.com/xscholar/course">Read More</a> </div>
+                                                            <div class="slide_byline wpb_text_column">School is tough. Getting a tutor is easy. Get a real tutor anytime, anywhere in Study Square. </div><span style="display: inline; font-size: 22px;" class="select_trigger register_form_open"><i class="fa fa-sign-in"></i>Register</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1231,7 +1231,7 @@
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
                                                             <h2 class="slide_title">VARIETY OF SUBJECTS</h2>
-                                                            <div class="slide_byline wpb_text_column">From Algebra and statistics to biology and French. We have tutors for everything and anything. We also have Study Rooms for you to collaborate with other like minds to get the help you need.</div>
+                                                            <div class="slide_byline wpb_text_column">From Algebra and statistics to biology and French. We have tutors for everything and anything. We also have Study Rooms for you to collaborate with other like minds to get the help you need.<br /></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1245,7 +1245,7 @@
                                                     <div class="sc-table">
                                                         <div class="sc-cell">
                                                             <h2 class="slide_title">PERSONALIZED TUTORING</h2>
-                                                            <div class="slide_byline wpb_text_column">Every tutoring session is personalized to your exact needs. The one on one session enables you to get the help and exact answers you need.</div><a class="xslider-readmore" href="http://live.spacexthemes.com/xscholar/course">Read More</a> </div>
+                                                            <div class="slide_byline wpb_text_column">Every tutoring session is personalized to your exact needs. The one on one session enables you to get the help and exact answers you need.</div><span style="display: inline; font-size: 22px;" class="select_trigger register_form_open"><i class="fa fa-sign-in"></i>Register</span></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1256,20 +1256,20 @@
                             <div class="xslider-control flexslider-controls">
                                 <ol class="flex-control-nav container">
                                     <li class="col-lg-3 col-xs-12 col-md-3 col-sm-3 ">
-                                        <h3>SMART IS BEAUTIFUL</h3>
-                                        <p class="wpb_text_column">Smart WP Theme</p>
+                                        <h3>ONLINE TUTORING</h3>
+                                        <p class="wpb_text_column">The best online platform to tutor</p>
                                     </li>
                                     <li class="col-lg-3 col-xs-12 col-md-3 col-sm-3 ">
-                                        <h3>Selling Ticket Event</h3>
-                                        <p class="wpb_text_column">Quickly to become member</p>
+                                        <h3>THE BEST AND BRIGHTEST</h3>
+                                        <p class="wpb_text_column">Quick and easy to become a tutor</p>
                                     </li>
                                     <li class="col-lg-3 col-xs-12 col-md-3 col-sm-3 ">
                                         <h3>KNOWLEDGE IS POWER!</h3>
                                         <p class="wpb_text_column">To change the world</p>
                                     </li>
                                     <li class="col-lg-3 col-xs-12 col-md-3 col-sm-3 ">
-                                        <h3>CAREER SUCCESS</h3>
-                                        <p class="wpb_text_column">Best LMS Theme</p>
+                                        <h3>YOUR SUCCESS</h3>
+                                        <p class="wpb_text_column">Personal one on one tutoring</p>
                                     </li>
                                 </ol>
                             </div>
@@ -1483,9 +1483,9 @@
 
                                             <div class="course-loop-thumbnail">
                                                 <span class="course-loop-status Opening"><b>Opening</b></span>
-                                                <a href="http://live.spacexthemes.com/xscholar/course/social-innovation-2/"><img width="400" height="300" src="/themes/university/img/features/feature1.jpg" class="attachment-course_catalog wp-post-image" alt="computer-767781_1920 - Copy" /></a>
+                                                <a href="http://studysquare.com/"><img width="400" height="300" src="/themes/university/img/features/feature1.jpg" class="attachment-course_catalog wp-post-image" alt="computer-767781_1920 - Copy" /></a>
                                             </div>
-                                            <h3 class="course-loop-title"><a href="http://live.spacexthemes.com/xscholar/course/social-innovation-2/" title="http://live.spacexthemes.com/xscholar/course/social-innovation-2/">Connect with Learners</a></h3>
+                                            <h3 class="course-loop-title"><a href="http://http://studysquare.com/" title="http://studysquare.com/">Connect with Learners</a></h3>
 
                                             <div class="course-loop-meta clearfix">
 
@@ -1499,9 +1499,9 @@
 
                                             <div class="course-loop-thumbnail">
                                                 <span class="course-loop-status Opening"><b>Opening</b></span>
-                                                <a href="http://live.spacexthemes.com/xscholar/course/programming-using-python-3/"><img width="400" height="300" src="/themes/university/img/features/feature2.jpg" class="attachment-course_catalog wp-post-image" alt="picjumbo.com_HNCK5723" /></a>
+                                                <a href="http://studysquare.com/"><img width="400" height="300" src="/themes/university/img/features/feature2.jpg" class="attachment-course_catalog wp-post-image" alt="picjumbo.com_HNCK5723" /></a>
                                             </div>
-                                            <h3 class="course-loop-title"><a href="http://live.spacexthemes.com/xscholar/course/programming-using-python-3/" title="http://live.spacexthemes.com/xscholar/course/programming-using-python-3/">Join Groups</a></h3>
+                                            <h3 class="course-loop-title"><a href="http://studysquare.com/" title="http://studysquare.com">Join Groups</a></h3>
 
                                             <div class="course-loop-meta clearfix">
 
@@ -1515,9 +1515,9 @@
 
                                             <div class="course-loop-thumbnail">
                                                 <span class="course-loop-status Opening"><b>Opening</b></span>
-                                                <a href="http://live.spacexthemes.com/xscholar/course/programming-using-python-4/"><img width="400" height="300" src="/themes/university/img/features/feature3.jpg" class="attachment-course_catalog wp-post-image" alt="desk-601540_1920" /></a>
+                                                <a href="http://studysquare.com/"><img width="400" height="300" src="/themes/university/img/features/feature3.jpg" class="attachment-course_catalog wp-post-image" alt="desk-601540_1920" /></a>
                                             </div>
-                                            <h3 class="course-loop-title"><a href="http://live.spacexthemes.com/xscholar/course/programming-using-python-4/" title="http://live.spacexthemes.com/xscholar/course/programming-using-python-4/">Market Your Skills</a></h3>
+                                            <h3 class="course-loop-title"><a href="http://studysquare.com/" title="http://studysquare.com/">Market Your Skills</a></h3>
 
                                             <div class="course-loop-meta clearfix">
 
