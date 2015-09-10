@@ -31,8 +31,8 @@ return array(
     | more information see http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
     |
     */
-    'key'    => 'AKIAJUBUZ2Y7DVPCK4MQ',
-    'secret' => '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',
+    'key'    => 'AKIAJCZRWMEMAE7WRNRA',
+    'secret' => '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',
 
     /*
     |--------------------------------------------------------------------------

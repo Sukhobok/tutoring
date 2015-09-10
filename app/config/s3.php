@@ -2,7 +2,7 @@
 
 return array(
 
-	'bucket' => 'studysquare',
-	'url' => 'https://s3-us-west-2.amazonaws.com/studysquare/'
+	'bucket' => 'studysquaredo',
+	'url' => 'https://s3-website-us-west-2.amazonaws.com/studysquaredo/'
 
 );
