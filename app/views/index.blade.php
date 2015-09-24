@@ -1307,7 +1307,7 @@
                                 <div class="wpb_wrapper">
 
                                     <div class="vc_single_image-wrapper   vc_box_border_grey">
-                                        <iframe width="600" height="325" src="//www.youtube.com/embed/zHSeJOJM7mg" frameborder="0" allowfullscreen></iframe>
+                                        <iframe width="600" height="325" src="//www.youtube.com/embed/zHSeJOJM7mg" style="width: 100%;" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
