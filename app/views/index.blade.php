@@ -1565,7 +1565,7 @@
 ===============================-->
 
 
-<footer class="dark">
+<footer class="dark" style="min-width: 0 !important;">
     <div class="container">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="row  main-footer-right">
