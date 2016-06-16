@@ -1,0 +1,219 @@
+/* =============================================================== */
+/* Switcher
+/* =============================================================== */
+.x-switcher
+{
+	position:fixed;
+	top:0;
+	height:100%;
+	right:-280px;
+	width:280px;
+	background:#fff;
+	z-index:9999;
+	border:1px solid #eaeaea;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	box-shadow: 5px 5px 0px rgba(0,0,0,.01);
+}
+.x-switcher.show
+{
+	right:0;
+}
+.switcher-inside
+{
+
+	text-align:center;
+	overflow-y:scroll
+}
+.switcher-inside .label{ margin:0 0 7px 0; color:rgba(0,0,0,.5); font-size:13px; font-weight:bold; display:inline-block; text-transform:uppercase}
+.switcher-inside p.sw-field{	margin-bottom:15px; padding-top:5px;}
+.sw-field
+{
+	width:100%;
+	background:#fff;
+}
+.switch-color, .switch-background {background:none;}
+.switch-color > span,
+.switch-background > span
+{
+	display:inline-block;
+	width:25px; height:25px;
+	background:red;
+	padding:5px;
+	border:1px solid #eaeaea;
+	cursor:pointer;
+	margin-right:2px;
+}
+.switch-layout,
+.switch-header
+{
+	border-radius:2px;
+	overflow:hidden;
+}
+.switch-color > span:hover
+{
+	opacity:.7;
+}
+.switch-background > span {border:1px solid #ccc;}
+.switch-background > span:hover
+{
+	border:1px solid #aaa;
+}
+.switch-color > span.red
+{
+	background:#e15258;
+}
+.switch-color > span.blue
+{
+	background:#39add1;
+}
+.switch-color > span.green
+{
+	background:#5cb860;
+}
+.switch-color > span.purple
+{
+	background:#9b59b6;
+}
+.switch-color > span.orange
+{
+	background:#f9845b
+}
+.switch-color > span.midnightblue
+{
+	background:#2c3e50
+}
+.switch-color > span.turquose
+{
+	background:#53bbb4
+}
+.switch-color > span.concrete
+{
+	background:#95a5a6
+}
+
+.switch-background > span#img0
+{
+	background:#eaeaea;
+}
+.switch-background > span#img1
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/1-thumb.jpg');
+}
+.switch-background > span#img2
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/2-thumb.jpg');
+}
+.switch-background > span#img3
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/3-thumb.jpg');
+}
+.switch-background > span#img4
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/4-thumb.jpg');
+}
+.switch-background > span#img5
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/5-thumb.jpg');
+}
+.switch-background > span#img6
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/6-thumb.jpg');
+}
+.switch-background > span#img7
+{
+	background:url('<?php echo get_template_directory_uri();?>/images/background/7-thumb.jpg');
+}
+.sw-field > span
+{
+	width:25%;
+	display:inline-block;
+	padding:7px 5px;
+	cursor:pointer;
+	background:#f5f5f5;
+	font-size:12px;
+	border: 1px solid #eaeaea;
+	margin-left: -1px;
+	margin-top: -1px;
+}
+
+.switch-layout > span
+{
+	width:50%;
+}
+.switch-color > span,
+.switch-background > span
+{
+	width:24%;
+}
+.switch-hidden > span {width:100%;}
+.switch-sidebar > span {width:50%;}
+
+.sw-field > span.active
+{
+	background:#fff;
+
+}
+
+.switch-header > span:hover,
+.switch-layout > span:hover,
+.switch-sidebar > span:hover
+{
+	background:#eaeaea;
+
+}
+.switcher-title
+{
+	text-align:center;
+	font-size:14px;
+	text-transform:uppercase;
+	font-weight:bold;
+	-ms-transform: rotate(90deg); /* IE 9 */
+	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+	transform: rotate(90deg);
+	position: absolute;
+	right: 199px;
+	top: 280px;
+	width: 200px;
+	color:rgba(0,0,0,.5);
+	letter-spacing:1px;
+	background:#fff;
+	border:1px solid #eaeaea;
+	cursor:pointer;
+	height: 42px;
+	line-height: 40px;
+	padding-left:50px;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
+}
+.switcher-title i
+{
+	display:inline-block;
+	line-height:40px;
+	width:40px;
+	height:40px;
+	position:absolute;
+	top:0;
+	left:0;
+	font-size:18px;
+	margin-right:5px;
+	border-right:1px solid #eaeaea;
+}
+.switcher-title i:hover
+{
+	color:#333;
+}
+.switcher-field {border-bottom:1px solid #eaeaea; padding-bottom:10px; margin-bottom:10px; padding:20px;}
+.switcher-field:last-child {border:none; margin-bottom:0;}
+.switcher-field.bg
+{
+	display:none;
+}
+p.small {font-size:11px;}
+
+@media (max-width: 769px) {
+
+	.x-switcher {display:none !important;}
+}

@@ -1,0 +1,133 @@
+/*=========================================
+General
+==========================================*/
+::selection{color:#fff;background:#39add1;}
+::-moz-selection{color:#fff;background:#39add1;}
+a:hover, a:focus,
+ul.instructors li a:hover,
+.sc-entry-cat span.posted_in a:hover,
+.sc-entry-cat span.tagged_as a:hover,
+.mm-listview a:hover,
+.main-menu .sf-menu a:hover,
+#main-header.white .main-menu .sf-menu .sf-mega a:hover,
+#main-header #user-trigger a.user_forgot:hover,
+#page-side-wrapper .user_forgot:hover,
+a.readmore:hover,
+.post-categories a,
+.tag-links a:hover,
+.course-loop-price .amount,
+.post-like .voted span.fa,
+.post-like span.fa:hover,
+.sc-testimonial .testimonial-item .author-name,
+.single-course .course-meta li span a,
+.course-list .amount,
+.list-course.list-style .course .course-title,
+.footer-link.list-style li a:hover,
+footer a:hover,
+.benefit-2 .vtcc-benefit-icon,
+.sc-gallery h3 a:hover,
+.nav-link a:hover,
+#user-trigger.select_wrapper .nav-link a:hover,
+#course-filter.select_wrapper .select_dropdown li:hover,
+#course-filter.select_wrapper .select_dropdown li.active,
+.list-style.blog li span.post_categories a,
+.select_dropdown  li:hover,
+ul.product_list_widget li a:hover,
+.text-color,
+#spacex-breadcrumb a:hover,
+.nav-tabs > li.active > a i,
+.header-white #topbar .textwidget a,
+.header-dark #topbar .textwidget a,
+#main-header.white .main-menu-wrapper .main-menu a:hover,
+#main-header.white .main-menu-wrapper .main-menu li.current-menu-item > a,
+.course-loop-price,
+.event-loop-price,
+.single-course span.posted_in a,
+.single-event span.posted_in a,
+.xslider .xslider-readmore:hover,
+.xbutton > a:hover,
+.table-col.col-price,
+.togglex-toggler i
+{color:#39add1;}
+.mm-listview .mm-next:hover,
+.tag-links a:hover,
+.post-like span.fa:hover,
+.post-like .voted span.fa,
+#course-filter.select_wrapper .select_dropdown li.active,
+#course-filter.select_wrapper .select_dropdown li:hover
+{border-color:#39add1 !important;}
+.readmore:hover,
+.single-course .course-meta li span a:hover,
+.list-style.blog li span.post_categories a:hover
+{border-color:#333 !important; color:#333 !important;}
+.nav-tabs > li.active > a
+{
+	box-shadow: inset 0 2px 0 #39add1;	
+}
+.vertical-tabs .nav-tabs > li.active > a
+{
+	box-shadow: inset 2px 0 0 #39add1;		
+}
+/*=========================================
+Site
+==========================================*/
+span.post_categories a,
+.sc-wall .sc-categories,
+.comment-number,
+#user-trigger,
+.flex-direction-nav .flex-next,
+.flex-direction-nav .flex-prev,
+#wp-calendar caption,
+.single-event .entry-thumbnail .posted_in,
+.event-date-time,
+.xslider-control 
+{
+	background:#39add1	
+}
+.sf-menu .sf-mega,
+#user-trigger.select_wrapper .select_dropdown,
+#topbar .cart-list
+ {border-top:3px solid #39add1}
+/*=========================================
+Woocommerce
+==========================================*/
+.woocommerce table.shop_table a,
+.woocommerce table.shop_table td .product-name
+.woocommerce table.shop_table td .product-name strong,
+.checkout-msg a:hover,
+#topbar a.cart-contents:hover,
+#bbpress-forums div.bbp-reply-content a,
+.bbp-topic-started-by .bbp-author-name,
+.bbp-topic-freshness-author .bbp-author-name
+{color:#39add1;}
+.woocommerce .single_add_to_cart_button.button.alt
+{
+	background:#39add1	
+}
+.bbp-topic-started-by .bbp-author-name:hover,
+.bbp-topic-freshness-author .bbp-author-name:hover
+{
+	color:#777;
+}
+
+/*=========================================
+XCourse
+==========================================*/
+.ts-tab .nav-tabs > li.active > a, .ts-tab .nav-tabs > li.active > a:hover, .ts-tab .nav-tabs > li.active > a:focus,
+.ts-tab .nav-tabs > li > a:hover
+{
+  box-shadow: inset 0 -3px 0 0 #39add1;
+}
+.nav-link a:hover, .nav-link a:focus, .nav-link a.active {
+  box-shadow: inset 3px 0px 0 0  #39add1;
+}
+.user-manager .user-avatar,
+.xevent-pagination .page-numbers span.current, .xevent-pagination .page-numbers a:hover, .xevent-pagination .page-numbers a:focus,
+.xcourse-pagination .page-numbers span.current, .xcourse-pagination .page-numbers a:hover, .xcourse-pagination .page-numbers a:focus
+{
+	background:#39add1	
+}
+.dashboard-header .user-name
+{
+	color:#39add1;
+}

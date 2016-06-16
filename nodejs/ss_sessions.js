@@ -1,4 +1,24 @@
-var io = require('socket.io')(53101);
+var https = require('https'),
+    fs =    require('fs');
+
+var options = {
+    key:    fs.readFileSync('/var/ssl/server.key'),
+    cert:   fs.readFileSync('/var/ssl/studysquare.crt'),
+    ca:     fs.readFileSync('/var/ssl/alphassl.crt')
+};
+var app = https.createServer(options);
+var io = require('socket.io').listen(app);
+app.listen(53101, "0.0.0.0");
+
+
+
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
+
+
+
+
+// var io = require('socket.io')(53101);
 var needle = require('needle');
 var fs = require('fs');
 var _signature = '008ae19bff7861eeec0ecdf80f8915b842cd34e1';
@@ -11,7 +31,7 @@ if (_environment === 'local')
 }
 else
 {
-	var _base_url = 'http://studysquare.com';
+	var _base_url = 'https://studysquare.com';
 }
 
 var get_ss_session_from_cookie = function (cookie)

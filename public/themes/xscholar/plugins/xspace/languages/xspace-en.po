@@ -1,0 +1,433 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: XSpace\n"
+"POT-Creation-Date: 2015-07-18 18:05+0700\n"
+"PO-Revision-Date: 2015-07-18 18:05+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-xspace-admin-menu.php:49
+msgid "WooCommerce Status"
+msgstr ""
+
+#: includes/class-xspace-admin-menu.php:49
+msgid "System Status"
+msgstr ""
+
+#: includes/class-xspace-admin-menu.php:87
+#: includes/class-xspace-admin-menu.php:89
+msgctxt "Admin menu name"
+msgid "Orders"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:41
+msgid "Categories"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:42
+msgid "Category"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:60
+#: includes/class-xspace-post-types.php:61
+msgid "XSlider"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:82
+#: includes/class-xspace-post-types.php:83
+msgid "Gallery"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:142
+#: includes/class-xspace-post-types.php:143
+msgid "Client"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:164
+#: includes/class-xspace-post-types.php:165
+msgid "Counter"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:186
+#: includes/class-xspace-post-types.php:187
+msgid "Benefit"
+msgstr ""
+
+#: includes/class-xspace-post-types.php:208
+#: includes/class-xspace-post-types.php:209
+msgid "Testimonial"
+msgstr ""
+
+#: includes/shortcodes/benefit.php:99 includes/shortcodes/benefit.php:128
+#: includes/shortcodes/benefit.php:150 includes/shortcodes/benefit.php:184
+#: includes/shortcodes/gallery.php:176
+msgid "Readmore"
+msgstr ""
+
+#: includes/shortcodes/benefit.php:165
+msgid "Detail"
+msgstr ""
+
+#: includes/shortcodes/category.php:63
+msgid "products"
+msgstr ""
+
+#: includes/shortcodes/category.php:66
+msgid "product"
+msgstr ""
+
+#: includes/shortcodes/fromblogpost.php:161 includes/shortcodes/xslider.php:89
+msgid "Read More"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:35
+msgid "Username"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:40
+msgid "Password"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:48
+msgid "Submit"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:51
+msgid "Remember Me"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:52
+msgid "Forgot Password?"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:58
+msgid "or you can"
+msgstr ""
+
+#: includes/shortcodes/login_form.php:60
+msgid "Register"
+msgstr ""
+
+#: includes/shortcodes/minicart.php:28
+msgid "No products in the cart."
+msgstr ""
+
+#: includes/shortcodes/minicart.php:36
+msgid "View your shopping cart"
+msgstr ""
+
+#: includes/shortcodes/minicart.php:48
+msgid " items"
+msgstr ""
+
+#: includes/shortcodes/productsearch.php:26
+msgid "Search"
+msgstr ""
+
+#: includes/shortcodes/verticalmenu.php:32
+msgid "SHOP BY CATEGORY"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:13
+msgid "Displays Flickr Photo"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:14
+msgid "SpaceX Flickr Widget"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:46
+msgid "Flickr"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:125
+#: includes/widgets/Latest_Post_Widget.class.php:113
+#: includes/widgets/Link_Column.class.php:151
+#: includes/widgets/Single_Image_Widget.class.php:112
+#: includes/widgets/Social_Icons_Widget.class.php:103
+#: includes/widgets/Testimonial_Widget.class.php:88
+msgid "Title:"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:128
+msgid "Flickr RSS Feed URL:"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:130
+msgid "or User ID:"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:132
+msgid "API Key"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:134
+msgid "Limit"
+msgstr ""
+
+#: includes/widgets/Flickr_Widget.class.php:135
+msgid "Filter by tags (comma seperated):"
+msgstr ""
+
+#: includes/widgets/Latest_Post_Widget.class.php:13
+msgid "Displays the most latest posts."
+msgstr ""
+
+#: includes/widgets/Latest_Post_Widget.class.php:14
+msgid "SpaceX Latest Posts"
+msgstr ""
+
+#: includes/widgets/Latest_Post_Widget.class.php:47
+msgid "Popular Posts"
+msgstr ""
+
+#: includes/widgets/Latest_Post_Widget.class.php:116
+#: includes/widgets/Testimonial_Widget.class.php:91
+msgid "Number of posts to show:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:14
+msgid "Create link in column"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:15
+msgid "SpaceX Links Column"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:47
+msgid "Links"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:153
+msgid "Text 1:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:155
+msgid "Link 1:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:157
+msgid "Text 2:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:159
+msgid "Link 2:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:161
+msgid "Text 3:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:163
+msgid "Link 3:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:165
+msgid "Text 4:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:167
+msgid "Link 4:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:169
+msgid "Text 5:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:171
+msgid "Link 5:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:173
+msgid "Text 6:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:175
+msgid "Link 6:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:177
+msgid "Text 7:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:179
+msgid "Link 7:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:181
+msgid "Text 8:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:183
+msgid "Link 8:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:185
+msgid "Text 9:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:187
+msgid "Link 9:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:189
+msgid "Text 10:"
+msgstr ""
+
+#: includes/widgets/Link_Column.class.php:191
+msgid "Link 10:"
+msgstr ""
+
+#: includes/widgets/MiniCart_Widget.class.php:14
+msgid "Display mini cart."
+msgstr ""
+
+#: includes/widgets/MiniCart_Widget.class.php:15
+msgid "SpaceX Mini Cart"
+msgstr ""
+
+#: includes/widgets/MiniCart_Widget.class.php:47
+#: includes/widgets/Social_Icons_Widget.class.php:47
+#: includes/widgets/User_Button.class.php:47
+msgid "Random Work"
+msgstr ""
+
+#: includes/widgets/Multi_Posts_Widget.class.php:14
+msgid "Displays tabs with most popular posts, recent posts and comments"
+msgstr ""
+
+#: includes/widgets/Multi_Posts_Widget.class.php:15
+msgid "SpaceX Multi Posts"
+msgstr ""
+
+#: includes/widgets/Multi_Posts_Widget.class.php:55
+msgid "Popular"
+msgstr ""
+
+#: includes/widgets/Multi_Posts_Widget.class.php:56
+msgid "Recent"
+msgstr ""
+
+#: includes/widgets/Multi_Posts_Widget.class.php:57
+msgid "Comments"
+msgstr ""
+
+#: includes/widgets/Multi_Posts_Widget.class.php:188
+msgid "No options here"
+msgstr ""
+
+#: includes/widgets/Recent_Tweets_Widget.php:15
+msgid "Display recent tweets"
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:13
+msgid "Create single image on sidebar."
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:14
+msgid "SpaceX Single Image"
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:115
+msgid "Image:"
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:130
+msgid "Link:"
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:133
+msgid "Target"
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:133
+msgid "Current Window"
+msgstr ""
+
+#: includes/widgets/Single_Image_Widget.class.php:133
+msgid "New Window"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:14
+msgid "Display social icons activated in theme options"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:15
+msgid "SpaceX Social Icons Widget"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:105
+msgid "Facebook:"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:107
+msgid "Twitter:"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:109
+msgid "Google Plus:"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:111
+msgid "Tumblr:"
+msgstr ""
+
+#: includes/widgets/Social_Icons_Widget.class.php:113
+msgid "Skype:"
+msgstr ""
+
+#: includes/widgets/Testimonial_Widget.class.php:13
+msgid "Displays the testimonial."
+msgstr ""
+
+#: includes/widgets/Testimonial_Widget.class.php:14
+msgid "SpaceX Testimonial"
+msgstr ""
+
+#: includes/widgets/Testimonial_Widget.class.php:47
+msgid "Testimonials"
+msgstr ""
+
+#: includes/widgets/User_Button.class.php:14
+msgid "Display button trigger user login"
+msgstr ""
+
+#: includes/widgets/User_Button.class.php:15
+msgid "SpaceX User Button"
+msgstr ""
+
+#: includes/widgets/User_Button.class.php:61
+msgid "<i class=\"fa fa-sign-in\"></i>Login / Register"
+msgstr ""
+
+#: includes/widgets/User_Button.class.php:83
+msgid "Login"
+msgstr ""
+
+#: templates/single-xgallery.php:42
+msgid "View all posts in"
+msgstr ""
+
+#: templates/single-xgallery.php:104
+msgid "Read more"
+msgstr ""
+
+#: templates/single-xgallery.php:137
+msgid "Other Gallery"
+msgstr ""
+
+#: xspace.php:100 xspace.php:109
+msgid "Cheatin&#8217; huh?"
+msgstr ""

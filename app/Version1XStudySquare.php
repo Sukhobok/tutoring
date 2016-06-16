@@ -36,7 +36,7 @@ class Version1XStudySquare extends Version1X
 			$query = array_replace($query, $_query);
 		}
 
-		$url	= sprintf('%s://%s:%d/%s/?%s', true === $this->url['secured'] ? 'ssl' : $this->url['scheme'], $this->url['host'], $this->url['port'], trim($this->url['path'], '/'), http_build_query($query));
+		$url	= sprintf('%s://%s:%d/%s/?%s', true === $this->url['secured'] ? 'https' : $this->url['scheme'], $this->url['host'], $this->url['port'], trim($this->url['path'], '/'), http_build_query($query));
 		$result = @file_get_contents($url, false, stream_context_create(['http' => ['timeout' => (float) $this->options['timeout']]]));
 
 		if (false === $result) {

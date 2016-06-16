@@ -1,0 +1,495 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: XEvent\n"
+"POT-Creation-Date: 2015-07-18 18:05+0700\n"
+"PO-Revision-Date: 2015-07-18 18:05+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-xevent-admin-menu.php:50
+msgid "WooCommerce Status"
+msgstr ""
+
+#: includes/class-xevent-admin-menu.php:50
+msgid "System Status"
+msgstr ""
+
+#: includes/class-xevent-admin-menu.php:88
+#: includes/class-xevent-admin-menu.php:90
+msgctxt "Admin menu name"
+msgid "Orders"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:44
+#: includes/class-xevent-post-types.php:46
+msgid "Event Categories"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:47
+msgid "Event Category"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:48
+msgctxt "Admin menu name"
+msgid "Categories"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:49
+msgid "Search Course Categories"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:50
+msgid "All Event Categories"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:51
+msgid "Parent Event Category"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:52
+msgid "Parent Event Category:"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:53
+msgid "Edit Event Category"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:54
+msgid "Update Event Category"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:55
+msgid "Add New Event Category"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:56
+msgid "New Event Name"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:77
+#: includes/class-xevent-post-types.php:79
+msgid "Event Tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:80
+msgid "Event Tag"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:81
+msgctxt "Admin menu name"
+msgid "Tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:82
+msgid "Search Event Tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:83
+msgid "All Event Tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:84
+msgid "Edit Event Tag"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:85
+msgid "Update Event Tag"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:86
+msgid "Add New Event Tag"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:87
+msgid "New Event Tag Name"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:88
+msgid "Popular Event Tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:89
+msgid "Separate Event Tags with commas"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:90
+msgid "Add or remove Event Tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:91
+msgid "Choose from the most used Event tags"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:92
+msgid "No Event Tags found"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:114
+#: includes/class-xevent-post-types.php:115
+msgid "Event"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:116
+#: includes/class-xevent-post-types.php:117
+msgid "Add New Event"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:118
+msgid "Edit Event"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:119
+msgid "New Event"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:120
+#: templates/global/page-header.php:118
+msgid "All Events"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:121
+msgid "View Event"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:122
+msgid "Search Events"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:123
+msgid "No Events Found"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:124
+msgid "No events found in Trash"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:126
+msgid "XEvent"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:128
+msgid "This is where you can add new xevents."
+msgstr ""
+
+#: includes/class-xevent-post-types.php:147
+#: includes/class-xevent-post-types.php:148
+#: includes/class-xevent-post-types.php:159
+#: templates/global/page-header.php:122
+msgid "Speaker"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:149
+#: includes/class-xevent-post-types.php:150
+msgid "Add New Speaker"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:151
+msgid "Edit Speaker"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:152
+msgid "New Speaker"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:153
+msgid "All Speakers"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:154
+msgid "View Speaker"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:155
+msgid "Search Speakers"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:156
+msgid "No Speakers Found"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:157
+msgid "No Speakers found in Trash"
+msgstr ""
+
+#: includes/class-xevent-post-types.php:161
+msgid "This is where you can add new Speakers."
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:47
+#: includes/class-xevent-taxonomies.php:142
+msgid "Scheme"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:54
+#: includes/class-xevent-taxonomies.php:148
+#: includes/class-xevent-taxonomies.php:272
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:58
+#: includes/class-xevent-taxonomies.php:153
+msgid "Upload/Add image"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:59
+#: includes/class-xevent-taxonomies.php:154
+msgid "Remove image"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:82
+msgid "Choose an image"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:84
+msgid "Use image"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:238
+msgid "Image"
+msgstr ""
+
+#: includes/class-xevent-taxonomies.php:239
+msgid "Color"
+msgstr ""
+
+#: includes/core-functions.php:14 templates/loop/price.php:71
+#: templates/single/price.php:40
+msgid "Free!"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:188 includes/template-functions.php:303
+msgid "Jan"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:191 includes/template-functions.php:306
+msgid "Feb"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:194 includes/template-functions.php:309
+msgid "March"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:197 includes/template-functions.php:312
+msgid "April"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:200 includes/template-functions.php:315
+msgid "May"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:203 includes/template-functions.php:318
+msgid "June"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:206 includes/template-functions.php:321
+msgid "July"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:209 includes/template-functions.php:324
+msgid "August"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:212 includes/template-functions.php:327
+msgid "Sep"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:215 includes/template-functions.php:330
+msgid "Oct"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:218 includes/template-functions.php:333
+msgid "Nov"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:221 includes/template-functions.php:336
+msgid "Dec"
+msgstr ""
+
+#: includes/shortcodes/xevents.php:301
+msgid " People has joined"
+msgstr ""
+
+#: includes/template-functions.php:159
+msgid "Default sorting"
+msgstr ""
+
+#: includes/template-functions.php:160
+msgid "Sort by popularity"
+msgstr ""
+
+#: includes/template-functions.php:161
+msgid "Sort by average rating"
+msgstr ""
+
+#: includes/template-functions.php:162
+msgid "Sort by newness"
+msgstr ""
+
+#: includes/template-functions.php:163
+msgid "Sort by price: low to high"
+msgstr ""
+
+#: includes/template-functions.php:164
+msgid "Sort by price: high to low"
+msgstr ""
+
+#: includes/template-functions.php:258
+msgid "Opening"
+msgstr ""
+
+#: includes/template-functions.php:261
+msgid "Completed"
+msgstr ""
+
+#: includes/template-functions.php:264
+msgid "Coming"
+msgstr ""
+
+#: includes/template-functions.php:516
+msgid "Placeholder"
+msgstr ""
+
+#: includes/widget.php:6
+msgid "Event Sidebar"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:13
+msgid "Displays events."
+msgstr ""
+
+#: includes/widget/Events_Widget.php:14
+msgid "SpaceX Events"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:47
+msgid "Events"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:91 includes/widget/Speakers_Widget.php:90
+msgid "Title:"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:94 includes/widget/Speakers_Widget.php:93
+msgid "Number of posts to show:"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:100
+msgid "Feature Events"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:105
+#: includes/widget/Speakers_Widget.php:104
+msgid "Orderby"
+msgstr ""
+
+#: includes/widget/Events_Widget.php:122
+#: includes/widget/Speakers_Widget.php:121
+msgid "Order"
+msgstr ""
+
+#: includes/widget/Speakers_Widget.php:13
+msgid "Displays speakers."
+msgstr ""
+
+#: includes/widget/Speakers_Widget.php:14
+msgid "SpaceX Speakers"
+msgstr ""
+
+#: includes/widget/Speakers_Widget.php:47 templates/single/speakers.php:24
+msgid "Speakers"
+msgstr ""
+
+#: includes/widget/Speakers_Widget.php:99
+msgid "Carousel"
+msgstr ""
+
+#: templates/content-single-speaker.php:187
+msgid "event by"
+msgstr ""
+
+#: templates/content-single-speaker.php:231 templates/loop/pagination.php:28
+msgid "Prev"
+msgstr ""
+
+#: templates/content-single-speaker.php:232 templates/loop/pagination.php:29
+msgid "Next"
+msgstr ""
+
+#: templates/content-single-xevent.php:77
+msgid "Opp! We only support HTML5 video or video source from youtube, vimeo."
+msgstr ""
+
+#: templates/global/page-header.php:94
+msgid "Search results for:"
+msgstr ""
+
+#: templates/global/page-header.php:114
+msgid "Sorry, your page was not found!"
+msgstr ""
+
+#: templates/global/page-header.php:127
+msgid "Category"
+msgstr ""
+
+#: templates/global/page-header.php:132
+msgid "Tag"
+msgstr ""
+
+#: templates/loop/action_button.php:35
+msgid "View Detail"
+msgstr ""
+
+#: templates/loop/pagination.php:44 templates/loop/result-count.php:28
+msgid "Showing the single result"
+msgstr ""
+
+#: templates/loop/pagination.php:46 templates/loop/result-count.php:30
+#, php-format
+msgid "Showing all %d results"
+msgstr ""
+
+#: templates/loop/pagination.php:48 templates/loop/result-count.php:32
+#, php-format
+msgctxt "%1$d = first, %2$d = last, %3$d = total"
+msgid "Showing %1$d&ndash;%2$d of %3$d results"
+msgstr ""
+
+#: templates/single/content.php:18
+msgid "About This Event"
+msgstr ""
+
+#: templates/single/event-images.php:28
+msgid "Category:"
+msgid_plural "Categories:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single/event-images.php:30
+msgid "Tag:"
+msgid_plural "Tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single/price.php:23
+msgid "Student"
+msgstr ""
+
+#: templates/single/price.php:69
+msgid "BUY THE TICKET"
+msgstr ""
+
+#: xevent.php:100 xevent.php:109
+msgid "Cheatin&#8217; huh?"
+msgstr ""

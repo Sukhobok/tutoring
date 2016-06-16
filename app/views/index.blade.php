@@ -16,12 +16,12 @@
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!--[if lt IE 9]>
-                <script src="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/respond.min.js" type="text/javascript"></script>
+                <script src="/themes/xscholar/js/respond.min.js" type="text/javascript"></script>
                 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
                 <![endif]-->
     <script type="text/javascript">
         var spacex_ajaxurl = 'http://live.spacexthemes.com/xscholar/wp-admin/admin-ajax.php';
-        var spacex_base_url = 'http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/';
+        var spacex_base_url = '/themes/xscholar/';
     </script>
 
     <script type="text/javascript">
@@ -70,9 +70,9 @@
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='bbp-default-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/bbpress/templates/default/css/bbpress.css?ver=2.5.8-5815' type='text/css' media='screen' />
-    <link rel='stylesheet' id='cptch_stylesheet-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/captcha/css/style.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='mashsb-styles-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/mashsharer/templates/mashsb.min.css?ver=2.3.8' type='text/css' media='all' />
+    <link rel='stylesheet' id='bbp-default-css' href='/themes/xscholar/plugins/bbpress/templates/default/css/bbpress.css?ver=2.5.8-5815' type='text/css' media='screen' />
+    <link rel='stylesheet' id='cptch_stylesheet-css' href='/themes/xscholar/plugins/captcha/css/style.css?ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='mashsb-styles-css' href='/themes/xscholar/plugins/mashsharer/templates/mashsb.min.css?ver=2.3.8' type='text/css' media='all' />
     <style id='mashsb-styles-inline-css' type='text/css'>
         .mashsb-count {
             color: ;
@@ -82,7 +82,7 @@
             min-width: px;
         }
     </style>
-    <link rel='stylesheet' id='rs-plugin-settings-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/revslider/rs-plugin/css/settings.css?ver=4.6.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-plugin-settings-css' href='/themes/xscholar/plugins/revslider/rs-plugin/css/settings.css?ver=4.6.3' type='text/css' media='all' />
     <style id='rs-plugin-settings-inline-css' type='text/css'>
         .tp-caption a {
             color: #ff7302;
@@ -97,22 +97,24 @@
             color: #ffa902
         }
     </style>
-    <link rel='stylesheet' id='woocommerce-layout-css' href='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=2.3.13' type='text/css' media='all' />
-    <link rel='stylesheet' id='woocommerce-smallscreen-css' href='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=2.3.13' type='text/css' media='only screen and (max-width: 768px)' />
-    <link rel='stylesheet' id='woocommerce-general-css' href='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=2.3.13' type='text/css' media='all' />
-    <link rel='stylesheet' id='xcourse-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/xcourse/assets/css/xcourse.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='xevent-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/xevent/assets/css/xevent.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='js_composer_front-css' href='http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/css/js_composer.css?ver=4.5.3' type='text/css' media='all' />
-    <link rel='stylesheet' id='tt-theme-styles-css' href='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/style.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='custom-css-css' href='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/css/custom.css.php?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='theme-responive-css' href='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/css/responsive.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='layout-css' href='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/css/layout/fullwidth.css?ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-layout-css' href='/themes/xscholar/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=2.3.13' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-smallscreen-css' href='/themes/xscholar/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=2.3.13' type='text/css' media='only screen and (max-width: 768px)' />
+    <link rel='stylesheet' id='woocommerce-general-css' href='/themes/xscholar/plugins/woocommerce/assets/css/woocommerce.css?ver=2.3.13' type='text/css' media='all' />
+    <link rel='stylesheet' id='xcourse-css' href='/themes/xscholar/plugins/xcourse/assets/css/xcourse.css?ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='xevent-css' href='/themes/xscholar/plugins/xevent/assets/css/xevent.css?ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='js_composer_front-css' href='/themes/xscholar/plugins/js_composer/assets/css/js_composer.css?ver=4.5.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='tt-theme-styles-css' href='/themes/xscholar/style.css?ver=4.2.4' type='text/css' media='all' />
+<!--
+    <link rel='stylesheet' id='custom-css-css' href='/themes/xscholar/css/custom.css.php?ver=4.2.4' type='text/css' media='all' />
+-->
+    <link rel='stylesheet' id='theme-responive-css' href='/themes/xscholar/css/responsive.css?ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='layout-css' href='/themes/xscholar/css/layout/fullwidth.css?ver=4.2.4' type='text/css' media='all' />
     <link rel='stylesheet' id='content_font-css' href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700&#038;ver=4.2.4' type='text/css' media='all' />
     <link rel='stylesheet' id='heading_font-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A300%2C400%2C600%2C700&#038;ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='user-frontend-css-css' href='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/framework/user-frontend/css/user-frontend.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='like_post-css' href='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/framework/rating/css/style.css?ver=4.2.4' type='text/css' media='all' />
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+    <link rel='stylesheet' id='user-frontend-css-css' href='/themes/xscholar/framework/user-frontend/css/user-frontend.css?ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='like_post-css' href='/themes/xscholar/framework/rating/css/style.css?ver=4.2.4' type='text/css' media='all' />
+    <script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var mashsb = {
@@ -132,9 +134,9 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/mashsharer/assets/js/mashsb.min.js?ver=2.3.8'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js?ver=4.6.3'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js?ver=4.6.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/mashsharer/assets/js/mashsb.min.js?ver=2.3.8'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js?ver=4.6.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js?ver=4.6.3'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var wc_add_to_cart_params = {
@@ -146,8 +148,8 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=2.3.13'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/js/vendors/woocommerce-add-to-cart.js?ver=4.5.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=2.3.13'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/js_composer/assets/js/vendors/woocommerce-add-to-cart.js?ver=4.5.3'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var userSettings = {
@@ -158,7 +160,9 @@
         };
         /* ]]> */
     </script>
+<!--
     <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-includes/js/utils.min.js?ver=4.2.4'></script>
+-->
     <script type='text/javascript'>
         /* <![CDATA[ */
         var uf_vars = {
@@ -171,13 +175,15 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/framework/user-frontend/js/password.dev.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/framework/user-frontend/js/password.dev.js?ver=4.2.4'></script>
+<!--
     <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://live.spacexthemes.com/xscholar/xmlrpc.php?rsd" />
     <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://live.spacexthemes.com/xscholar/wp-includes/wlwmanifest.xml" />
     <meta name="generator" content="WordPress 4.2.4" />
     <meta name="generator" content="WooCommerce 2.3.13" />
     <link rel='canonical' href='http://live.spacexthemes.com/xscholar/' />
     <link rel='shortlink' href='http://live.spacexthemes.com/xscholar/' />
+-->
     <script type="text/javascript">
         jQuery(document).ready(function() {
             // CUSTOM AJAX CONTENT LOADING FUNCTION
@@ -253,7 +259,7 @@
         }
     </style>
     <meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress." />
-    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/css/vc-ie8.css" media="screen"><![endif]-->
+    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/themes/xscholar/plugins/js_composer/assets/css/vc-ie8.css" media="screen"><![endif]-->
     <style type="text/css" data-type="vc_shortcodes-custom-css">
         .vc_custom_1436534686329 {
             margin-bottom: 0px !important;
@@ -382,7 +388,7 @@
 
 <body class="home page page-id-21 page-template page-template-template-homepage page-template-template-homepage-php woocommerce xcourse xevent header-white sidebar-clean wpb-js-composer js-comp-ver-4.5.3 vc_responsive">
     <div id="preloader">
-        <img src="http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/svg-loaders/puff.svg" width="50" alt="">
+        <img src="/themes/xscholar/images/svg-loaders/puff.svg" width="50" alt="">
     </div>
     <script type="text/javascript">
         jQuery(window).load(function() {
@@ -783,31 +789,31 @@
             }
             
             .switch-background > span#img1 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/1-thumb.jpg');
+                background: url('/themes/xscholar/images/background/1-thumb.jpg');
             }
             
             .switch-background > span#img2 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/2-thumb.jpg');
+                background: url('/themes/xscholar/images/background/2-thumb.jpg');
             }
             
             .switch-background > span#img3 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/3-thumb.jpg');
+                background: url('/themes/xscholar/images/background/3-thumb.jpg');
             }
             
             .switch-background > span#img4 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/4-thumb.jpg');
+                background: url('/themes/xscholar/images/background/4-thumb.jpg');
             }
             
             .switch-background > span#img5 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/5-thumb.jpg');
+                background: url('/themes/xscholar/images/background/5-thumb.jpg');
             }
             
             .switch-background > span#img6 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/6-thumb.jpg');
+                background: url('/themes/xscholar/images/background/6-thumb.jpg');
             }
             
             .switch-background > span#img7 {
-                background: url('http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/images/background/7-thumb.jpg');
+                background: url('/themes/xscholar/images/background/7-thumb.jpg');
             }
             
             .sw-field > span {
@@ -934,13 +940,13 @@
 
 
                     if (id == 'boxed') {
-                        jQuery('link[id="layout-css"]').attr('href', 'http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/css/layout/boxed.css');
+                        jQuery('link[id="layout-css"]').attr('href', '/themes/xscholar/css/layout/boxed.css');
                         jQuery('.switcher-field.bg').show('slow');
 
                         jQuery(window).resize();
                     } else if (id == 'fullwidth') {
                         jQuery('body').css('background', "#fff");
-                        jQuery('link[id="layout-css"]').attr('href', 'http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/css/layout/fullwidth.css');
+                        jQuery('link[id="layout-css"]').attr('href', '/themes/xscholar/css/layout/fullwidth.css');
                         jQuery(window).resize();
                         jQuery('.switcher-field.bg').hide('slow');
                     }
@@ -1217,7 +1223,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li><img width="1920" height="744" src="http://live.spacexthemes.com/xscholar/wp-content/uploads/2015/07/slide-21.jpg" class="attachment-full wp-post-image" alt="slide-2" />
+                                    <li><img width="1920" height="744" src="/images/Slider-Studysquare1.jpg" class="attachment-full wp-post-image" alt="slide-2" />
                                         <div class="slide_text">
                                             <div class="container">
                                                 <div class="slide_text_content">
@@ -1231,7 +1237,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="has-button"><img width="1920" height="744" src="http://live.spacexthemes.com/xscholar/wp-content/uploads/2015/07/slide-1.jpg" class="attachment-full wp-post-image" alt="slide-1" />
+                                    <li class="has-button"><img width="1920" height="744" src="/images/Slider-Studysquare2.jpg" class="attachment-full wp-post-image" alt="slide-1" />
                                         <div class="slide_text">
                                             <div class="container">
                                                 <div class="slide_text_content">
@@ -1710,8 +1716,8 @@
 
 
     </div>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/bbpress/templates/default/js/editor.js?ver=2.5.8-5815'></script>
-    <script type='text/javascript' src='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.60'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/bbpress/templates/default/js/editor.js?ver=2.5.8-5815'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.60'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var woocommerce_params = {
@@ -1719,8 +1725,8 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=2.3.13'></script>
-    <script type='text/javascript' src='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/js/jquery-cookie/jquery.cookie.min.js?ver=1.4.1'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=2.3.13'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/woocommerce/assets/js/jquery-cookie/jquery.cookie.min.js?ver=1.4.1'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var wc_cart_fragments_params = {
@@ -1729,19 +1735,20 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='//live.spacexthemes.com/xscholar/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=2.3.13'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/xcourse/assets/js/single-course.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/xevent/assets/js/single-xevent.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/bootstrap.min.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/lib/bower/flexslider/jquery.flexslider-min.js?ver=4.5.3'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/superfish.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/jquery.mmenu.min.all.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min.js?ver=4.5.3'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/jquery.fancybox.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/custom_woo.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/custom.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/popup.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/js/js_composer_front.js?ver=4.5.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=2.3.13'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/xcourse/assets/js/single-course.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/xevent/assets/js/single-xevent.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/bootstrap.min.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/js_composer/assets/lib/bower/flexslider/jquery.flexslider-min.js?ver=4.5.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/superfish.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/jquery.mmenu.min.all.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min.js?ver=4.5.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/jquery.fancybox.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/custom_woo.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/custom.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/popup.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/js_composer/assets/js/js_composer_front.js?ver=4.5.3'></script>
+<!--
     <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-includes/js/comment-reply.min.js?ver=4.2.4'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
@@ -1751,11 +1758,12 @@
         };
         /* ]]> */
     </script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/framework/rating/js/post-like.js?ver=1.0'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/plugins/js_composer/assets/lib/waypoints/waypoints.min.js?ver=4.5.3'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/counter.js?ver=4.2.4'></script>
+-->
+    <script type='text/javascript' src='/themes/xscholar/framework/rating/js/post-like.js?ver=1.0'></script>
+    <script type='text/javascript' src='/themes/xscholar/plugins/js_composer/assets/lib/waypoints/waypoints.min.js?ver=4.5.3'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/counter.js?ver=4.2.4'></script>
     <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://live.spacexthemes.com/xscholar/wp-content/themes/xscholar/js/autocomplete.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='/themes/xscholar/js/autocomplete.js?ver=4.2.4'></script>
 </body>
 
 </html>

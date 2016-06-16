@@ -1,0 +1,489 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: XCourse\n"
+"POT-Creation-Date: 2015-07-18 18:05+0700\n"
+"PO-Revision-Date: 2015-07-18 18:05+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-xcourse-admin-menu.php:50
+msgid "WooCommerce Status"
+msgstr ""
+
+#: includes/class-xcourse-admin-menu.php:50
+msgid "System Status"
+msgstr ""
+
+#: includes/class-xcourse-admin-menu.php:88
+#: includes/class-xcourse-admin-menu.php:90
+msgctxt "Admin menu name"
+msgid "Orders"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:44
+#: includes/class-xcourse-post-types.php:46
+msgid "Course Categories"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:47
+msgid "Course Category"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:48
+msgctxt "Admin menu name"
+msgid "Categories"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:49
+msgid "Search Course Categories"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:50
+msgid "All Course Categories"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:51
+msgid "Parent Course Category"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:52
+msgid "Parent Course Category:"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:53
+msgid "Edit Course Category"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:54
+msgid "Update Course Category"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:55
+msgid "Add New Course Category"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:56
+msgid "New Product Course Name"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:71
+msgid "Product Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:73
+msgid "Course Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:74
+msgid "Course Tag"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:75
+msgctxt "Admin menu name"
+msgid "Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:76
+msgid "Search Course Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:77
+msgid "All Course Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:78
+msgid "Edit Course Tag"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:79
+msgid "Update Course Tag"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:80
+msgid "Add New Course Tag"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:81
+msgid "New Course Tag Name"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:82
+msgid "Popular Course Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:83
+msgid "Separate Course Tags with commas"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:84
+msgid "Add or remove Course Tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:85
+msgid "Choose from the most used Course tags"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:86
+msgid "No Course Tags found"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:107
+#: includes/class-xcourse-post-types.php:108
+msgid "Course"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:109
+#: includes/class-xcourse-post-types.php:110
+msgid "Add New Course"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:111
+msgid "Edit Course"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:112
+msgid "New Course"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:113
+#: templates/global/page-header.php:118
+msgid "All Courses"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:114
+msgid "View Course"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:115
+msgid "Search Courses"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:116
+msgid "No Courses Found"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:117
+msgid "No courses found in Trash"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:119
+msgid "XCourse"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:121
+msgid "This is where you can add new courses."
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:140
+#: includes/class-xcourse-post-types.php:141
+#: includes/class-xcourse-post-types.php:152
+#: templates/global/page-header.php:122
+msgid "Instructor"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:142
+#: includes/class-xcourse-post-types.php:143
+msgid "Add New Instructor"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:144
+msgid "Edit Instructor"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:145
+msgid "New Instructor"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:146
+msgid "All Instructors"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:147
+msgid "View Instructor"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:148
+msgid "Search Instructors"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:149
+msgid "No Instructors Found"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:150
+msgid "No Instructors found in Trash"
+msgstr ""
+
+#: includes/class-xcourse-post-types.php:154
+msgid "This is where you can add new Instructors."
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:47
+#: includes/class-xcourse-taxonomies.php:142
+msgid "Scheme"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:54
+#: includes/class-xcourse-taxonomies.php:148
+#: includes/class-xcourse-taxonomies.php:272
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:58
+#: includes/class-xcourse-taxonomies.php:153
+msgid "Upload/Add image"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:59
+#: includes/class-xcourse-taxonomies.php:154
+msgid "Remove image"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:82
+msgid "Choose an image"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:84
+msgid "Use image"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:238
+msgid "Image"
+msgstr ""
+
+#: includes/class-xcourse-taxonomies.php:239
+msgid "Color"
+msgstr ""
+
+#: includes/core-functions.php:115 templates/loop/price.php:69
+#: templates/single/price.php:40
+msgid "Free!"
+msgstr ""
+
+#: includes/core-functions.php:565
+msgid "Type"
+msgstr ""
+
+#: includes/shortcodes/courses.php:221
+msgid " People has joined"
+msgstr ""
+
+#: includes/template-functions.php:145
+msgid "Default sorting"
+msgstr ""
+
+#: includes/template-functions.php:146
+msgid "Sort by popularity"
+msgstr ""
+
+#: includes/template-functions.php:147
+msgid "Sort by average rating"
+msgstr ""
+
+#: includes/template-functions.php:148
+msgid "Sort by newness"
+msgstr ""
+
+#: includes/template-functions.php:149
+msgid "Sort by price: low to high"
+msgstr ""
+
+#: includes/template-functions.php:150
+msgid "Sort by price: high to low"
+msgstr ""
+
+#: includes/template-functions.php:244
+msgid "Opening"
+msgstr ""
+
+#: includes/template-functions.php:247
+msgid "Completed"
+msgstr ""
+
+#: includes/template-functions.php:250
+msgid "Coming"
+msgstr ""
+
+#: includes/template-functions.php:422
+msgid "Placeholder"
+msgstr ""
+
+#: includes/widgets.php:6
+msgid "Course Sidebar"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:13
+msgid "Displays courses."
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:14
+msgid "SpaceX Courses"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:47
+msgid "Courses"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:91
+#: includes/widgets/Instructors_Widget.php:90
+#: includes/widgets/Taxonomies_Widget.php:93
+msgid "Title:"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:94
+#: includes/widgets/Instructors_Widget.php:93
+#: includes/widgets/Taxonomies_Widget.php:96
+msgid "Number of posts to show:"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:100
+msgid "Feature Courses"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:105
+#: includes/widgets/Instructors_Widget.php:104
+#: includes/widgets/Taxonomies_Widget.php:117
+msgid "Orderby"
+msgstr ""
+
+#: includes/widgets/Courses_Widget.php:122
+#: includes/widgets/Instructors_Widget.php:121
+#: includes/widgets/Taxonomies_Widget.php:134
+msgid "Order"
+msgstr ""
+
+#: includes/widgets/Instructors_Widget.php:13
+msgid "Displays instructors."
+msgstr ""
+
+#: includes/widgets/Instructors_Widget.php:14
+msgid "SpaceX Instructors"
+msgstr ""
+
+#: includes/widgets/Instructors_Widget.php:47
+#: templates/single/instructors.php:24
+msgid "Instructors"
+msgstr ""
+
+#: includes/widgets/Instructors_Widget.php:99
+msgid "Carousel"
+msgstr ""
+
+#: includes/widgets/Taxonomies_Widget.php:13
+msgid "Displays taxonomies of theme."
+msgstr ""
+
+#: includes/widgets/Taxonomies_Widget.php:14
+msgid "SpaceX Taxonomies"
+msgstr ""
+
+#: includes/widgets/Taxonomies_Widget.php:47
+msgid "Title"
+msgstr ""
+
+#: includes/widgets/Taxonomies_Widget.php:100
+msgid "Taxonomies"
+msgstr ""
+
+#: templates/content-single-instructor.php:188
+msgid "Course by"
+msgstr ""
+
+#: templates/content-single-instructor.php:232
+#: templates/loop/pagination.php:28
+msgid "Prev"
+msgstr ""
+
+#: templates/content-single-instructor.php:233
+#: templates/loop/pagination.php:29
+msgid "Next"
+msgstr ""
+
+#: templates/content-single-xcourse.php:77
+msgid "Opp! We only support HTML5 video or video source from youtube, vimeo."
+msgstr ""
+
+#: templates/global/page-header.php:94
+msgid "Search results for:"
+msgstr ""
+
+#: templates/global/page-header.php:114
+msgid "Sorry, your page was not found!"
+msgstr ""
+
+#: templates/global/page-header.php:127 templates/single/cat_tag.php:20
+#, fuzzy
+msgid "Category"
+msgstr ""
+"#-#-#-#-#  2extracted.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  3extracted.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/global/page-header.php:132 templates/single/cat_tag.php:22
+#, fuzzy
+msgid "Tag"
+msgstr ""
+"#-#-#-#-#  2extracted.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  3extracted.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/loop/action_button.php:35
+msgid "View Detail"
+msgstr ""
+
+#: templates/loop/pagination.php:44 templates/loop/result-count.php:28
+msgid "Showing the single result"
+msgstr ""
+
+#: templates/loop/pagination.php:46 templates/loop/result-count.php:30
+#, php-format
+msgid "Showing all %d results"
+msgstr ""
+
+#: templates/loop/pagination.php:48 templates/loop/result-count.php:32
+#, php-format
+msgctxt "%1$d = first, %2$d = last, %3$d = total"
+msgid "Showing %1$d&ndash;%2$d of %3$d results"
+msgstr ""
+
+#: templates/single/content.php:18
+msgid "About This Course"
+msgstr ""
+
+#: templates/single/course-images.php:24
+msgid "Category:"
+msgid_plural "Categories:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single/course-images.php:26
+msgid "Tag:"
+msgid_plural "Tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/single/price.php:23
+msgid "Student"
+msgstr ""
+
+#: templates/single/price.php:73
+msgid "ENROLL THIS COURSE"
+msgstr ""
+
+#: templates/single/price.php:94
+msgid "GO TO CHECKOUT"
+msgstr ""
+
+#: xcourse.php:100 xcourse.php:109
+msgid "Cheatin&#8217; huh?"
+msgstr ""

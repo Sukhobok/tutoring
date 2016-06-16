@@ -1,0 +1,26 @@
+.wrapper
+{
+	width:1200px;
+	margin:0 auto;
+	background:#fff;
+	overflow:hidden;
+	margin-top:30px;
+}
+body{background-color:#eaeaea;}
+
+#sticky-nav {background:none; left:0; border-bottom:none;}
+#sticky-nav > .container{background:#fff;}
+
+@media (max-width: 1200px) {
+	.wrapper {width:100%;} 
+}
+@media (min-width: 1200px) {
+
+}
+@media (max-width: 979px) {
+	.wrapper
+	{
+		margin:0;
+	}
+
+}
