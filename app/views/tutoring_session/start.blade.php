@@ -173,8 +173,8 @@
 				@endif
 			</div>
 
-			<div class="ss-container" id="webrtc-remote">
-				<!-- <video id="webrtc-remote"></video> -->
+			<div class="ss-container">
+				<div id="webrtc-remote"></div>
 			</div>
 		</div>
 	</div>
