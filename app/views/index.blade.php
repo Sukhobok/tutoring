@@ -109,12 +109,12 @@
 -->
     <link rel='stylesheet' id='theme-responive-css' href='/themes/xscholar/css/responsive.css?ver=4.2.4' type='text/css' media='all' />
     <link rel='stylesheet' id='layout-css' href='/themes/xscholar/css/layout/fullwidth.css?ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='content_font-css' href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700&#038;ver=4.2.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='heading_font-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A300%2C400%2C600%2C700&#038;ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='content_font-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700&#038;ver=4.2.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='heading_font-css' href='//fonts.googleapis.com/css?family=Montserrat%3A300%2C400%2C600%2C700&#038;ver=4.2.4' type='text/css' media='all' />
     <link rel='stylesheet' id='user-frontend-css-css' href='/themes/xscholar/framework/user-frontend/css/user-frontend.css?ver=4.2.4' type='text/css' media='all' />
     <link rel='stylesheet' id='like_post-css' href='/themes/xscholar/framework/rating/css/style.css?ver=4.2.4' type='text/css' media='all' />
-    <script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.12.4.min.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var mashsb = {
@@ -1762,7 +1762,7 @@
     <script type='text/javascript' src='/themes/xscholar/framework/rating/js/post-like.js?ver=1.0'></script>
     <script type='text/javascript' src='/themes/xscholar/plugins/js_composer/assets/lib/waypoints/waypoints.min.js?ver=4.5.3'></script>
     <script type='text/javascript' src='/themes/xscholar/js/counter.js?ver=4.2.4'></script>
-    <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js?ver=4.2.4'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js?ver=4.2.4'></script>
     <script type='text/javascript' src='/themes/xscholar/js/autocomplete.js?ver=4.2.4'></script>
 </body>
 

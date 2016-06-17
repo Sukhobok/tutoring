@@ -173,8 +173,8 @@
 				@endif
 			</div>
 
-			<div class="ss-container">
-				<video id="webrtc-remote"></video>
+			<div class="ss-container" id="webrtc-remote">
+				<!-- <video id="webrtc-remote"></video> -->
 			</div>
 		</div>
 	</div>
@@ -331,6 +331,8 @@
 		</div>
 	</div>
 @endif
+
+<script src="//simplewebrtc.com/latest-v2.js"></script>
 
 <script>
 	var global_ts_id = '{{{ $ts_id }}}';

@@ -121,11 +121,14 @@ io.use(function (socket, next)
 	{
 		if (clients.hasOwnProperty(socket.request.user_id))
 		{
-			clients[socket.request.user_id].emit('duplicate_session');
+			socket.emit('duplicate_session');
+			next(new Error('Duplicate session'));
 		}
-
-		clients[socket.request.user_id] = socket;
-		next();
+		else
+		{
+			clients[socket.request.user_id] = socket;
+			next();
+		}
 	}
 	else
 	{
